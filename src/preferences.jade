@@ -1,0 +1,40 @@
+- var lineBreak = " "
+- var skinAuthor = "NeonWilderness"
+- var createTime = Date.now(), createDateStr = Date(createTime);
+doctype xml
+| <?xml-stylesheet type="text/xsl" href="helma.xsl"?>
+xmlroot(xmlns:hop="http://www.helma.org/docs/guide/features/database")
+    hopobject(id="t33088486", name="HopObject", prototype="HopObject", created="#{createTime}", lastModified="#{createTime}")
+        exporter #{skinAuthor}
+        modifier #{skinAuthor}
+        creator #{skinAuthor}
+        fullexport(type="boolean") false
+        alias foundation5skin
+        preferences(id="t33088487", name="preferences", prototype="HopObject", created="#{createTime}", lastModified="#{createTime}")
+            | <hop:parent idref="t33088486" prototyperef="HopObject"/>
+            bgcolor ffffff
+            copyright #{skinAuthor}
+            orientation 2c_center_left
+            textfont Trebuchet MS, Verdana, Arial
+            titlefont Trebuchet MS, Verdana, Arial
+            textsize 13px
+            titlesize 16px
+            vlinkcolor 666666
+            smallcolor 999999
+            titlecolor 444444
+            linkcolor 666666
+            importantimages header
+            email neonwilderness@ymail.com
+            allowedorientations 2c_center_left;2c_center_right;2c_left_left;2c_left_right
+            alinkcolor 666666
+            linecolor ffffff
+            smallfont Trebuchet MS, Verdana, Arial
+            blockcolor e6e6e6
+            smallsize 11px
+            textcolor 333333
+        createtime(type="date") #{createDateStr}
+        title foundation5skin
+        exporttime(type="date") #{createDateStr}
+        locale de
+        modifytime(type="date") #{createDateStr}
+        description Responsives Twoday-Skin basierend auf Foundation 5 von Zurb. (C) 2015 #{skinAuthor}

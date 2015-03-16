@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="helma.xsl"?>
+<xmlroot xmlns:hop="http://www.helma.org/docs/guide/features/database">
+  <hopobject id="t33088486" name="HopObject" prototype="HopObject" created="1425861563523" lastModified="1425861563523">
+    <exporter>NeonWilderness</exporter>
+    <modifier>NeonWilderness</modifier>
+    <creator>NeonWilderness</creator>
+    <fullexport type="boolean">false</fullexport>
+    <alias>foundation5skin</alias>
+    <preferences id="t33088487" name="preferences" prototype="HopObject" created="1425861481178" lastModified="1425861481178">
+       
+      <hop:parent idref="t33088486" prototyperef="HopObject"/>
+      <bgcolor>ffffff</bgcolor>
+      <copyright>NeonWilderness</copyright>
+      <orientation>2c_center_left</orientation>
+      <textfont>Trebuchet MS, Verdana, Arial</textfont>
+      <titlefont>Trebuchet MS, Verdana, Arial</titlefont>
+      <textsize>13px</textsize>
+      <titlesize>16px</titlesize>
+      <vlinkcolor>666666</vlinkcolor>
+      <smallcolor>999999</smallcolor>
+      <titlecolor>444444</titlecolor>
+      <linkcolor>666666</linkcolor>
+      <importantimages>header</importantimages>
+      <email>neonwilderness@ymail.com</email>
+      <allowedorientations>2c_center_left;2c_center_right;2c_left_left;2c_left_right</allowedorientations>
+      <alinkcolor>666666</alinkcolor>
+      <linecolor>ffffff</linecolor>
+      <smallfont>Trebuchet MS, Verdana, Arial</smallfont>
+      <blockcolor>e6e6e6</blockcolor>
+      <smallsize>11px</smallsize>
+      <textcolor>333333</textcolor>
+    </preferences>
+    <createtime type="date">30.10.2014 16:04:55 CET</createtime>
+    <title>foundation5skin</title>
+    <exporttime type="date">09.03.2015 01:39:23 CET</exporttime>
+    <locale>de</locale>
+    <modifytime type="date">09.03.2015 01:37:25 CET</modifytime>
+    <description>Responsives Twoday-Skin basierend auf Foundation 5 von Zurb. (C) 2015 NeonWilderness</description>
+  </hopobject>
+</xmlroot>

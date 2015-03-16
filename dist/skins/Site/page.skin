@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="de-DE" class="no-js">
+  <head>
+    <meta charset="UTF-8">
+    <title><% response.title %></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="In A Neon Wilderness: Blogging about urban hymns and bitter-sweet symphonies">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="<% site.alias %>"> 
+    <% site.metaRobots %>
+    <% site.metaAlternate %>
+    <meta property="og:url" content="<% site.href %>">
+    <meta property="og:title" content="<% site.alias %>">
+    <meta property="og:site_name" content="<% site.title %>">
+    <meta property="og:image" content="https://googledrive.com/host/0B87rILW4RVIJNlN3eUJxVWN5ZWM/og-image.png">
+    <meta property="og:image:type" content="image/png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="https://googledrive.com/host/0B87rILW4RVIJNlN3eUJxVWN5ZWM/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://googledrive.com/host/0B87rILW4RVIJNlN3eUJxVWN5ZWM/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://googledrive.com/host/0B87rILW4RVIJNlN3eUJxVWN5ZWM/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="https://googledrive.com/host/0B87rILW4RVIJNlN3eUJxVWN5ZWM/apple-touch-icon-57x57.png">
+    <link rel="shortcut icon" href="<% image name="favicon" fallback="/favicon" class="icon" as="url" %>">
+    <link rel="stylesheet" href="<% site.url %>main.css">
+    <script id="cdnModernizr" src="<% staticUrl %>cdn/files/modernizr-custom-min-js.js"></script>
+    <script src="<% staticUrl %>sys.files/js/jquery/jquery.min.js"></script>
+    <script src="<% staticURL %>cdn/files/fastclick-min-js.js"></script> 
+    <% root.skin name="statsCounter" %>
+    <link rel="stylesheet" href="<% site.skin name="googleDrive" %>css/rainy.min.css"> 
+    <% site.skin name="browsertest" %>
+  </head>
+  <body class="usesBackstretch antialiased">
+    <div id="preloadWrapper">
+      <div id="preloadAnimation"></div>
+    </div>
+    <div id="f5body" data-offcanvas class="off-canvas-wrap">
+      <div class="inner-wrap"><% site.skin name="foundationToolbar" %>
+        <div id="header">
+          <h1><% site.title %><span><% site.tagline %></span></h1>
+        </div>
+        <div id="foundation5" class="container">
+          <div class="row">
+            <div id="content" class="large-9 medium-8 small-12 columns">
+              <% response.message prefix="<div class='message alert-box radius' data-alert>" suffix="<a href='#' class='close'>&times;</a></div>" %>
+              <% response.body %>
+            </div>
+            <div id="sidebar" class="large-3 medium-offset-0 medium-4 small-offset-2 small-8 end columns"><% site.sidebar01 %><% site.sidebar02 %></div>
+          </div>
+        </div><a href="#" class="exit-off-canvas"></a>
+      </div>
+    </div> 
+    <% site.skin name="commentIcon_min" %>
+    <% modToolbarDropdowns %>
+    <% site.skin name="statcounter_min" %>
+    <% site.skin name="cdnSettings" %>
+    <script id="cdnTwoday" src="<% site.skin name="googleDrive" %>js/cdnconnect.min.js"></script>
+  </body>
+</html>
