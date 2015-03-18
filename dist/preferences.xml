@@ -1,15 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/xsl" href="helma.xsl"?>
+<?xml version="1.0" encoding="utf-8" ?><?xml-stylesheet type="text/xsl" href="helma.xsl"?>
 <xmlroot xmlns:hop="http://www.helma.org/docs/guide/features/database">
-  <hopobject id="t33088486" name="HopObject" prototype="HopObject" created="1425861563523" lastModified="1425861563523">
+  <hopobject id="t33088486" name="HopObject" prototype="HopObject" created="1426610125724" lastModified="1426610125724">
     <exporter>NeonWilderness</exporter>
     <modifier>NeonWilderness</modifier>
     <creator>NeonWilderness</creator>
     <fullexport type="boolean">false</fullexport>
     <alias>foundation5skin</alias>
-    <preferences id="t33088487" name="preferences" prototype="HopObject" created="1425861481178" lastModified="1425861481178">
-       
-      <hop:parent idref="t33088486" prototyperef="HopObject"/>
+    <preferences id="t33088487" name="preferences" prototype="HopObject" created="1426610125724" lastModified="1426610125724"><hop:parent idref="t33088486" prototyperef="HopObject"/>
       <bgcolor>ffffff</bgcolor>
       <copyright>NeonWilderness</copyright>
       <orientation>2c_center_left</orientation>
@@ -31,11 +28,11 @@
       <smallsize>11px</smallsize>
       <textcolor>333333</textcolor>
     </preferences>
-    <createtime type="date">30.10.2014 16:04:55 CET</createtime>
+    <createtime type="date">Tue Mar 17 2015 17:35:25 GMT+0100 (Mitteleuropäische Zeit)</createtime>
     <title>foundation5skin</title>
-    <exporttime type="date">09.03.2015 01:39:23 CET</exporttime>
+    <exporttime type="date">Tue Mar 17 2015 17:35:25 GMT+0100 (Mitteleuropäische Zeit)</exporttime>
     <locale>de</locale>
-    <modifytime type="date">09.03.2015 01:37:25 CET</modifytime>
+    <modifytime type="date">Tue Mar 17 2015 17:35:25 GMT+0100 (Mitteleuropäische Zeit)</modifytime>
     <description>Responsives Twoday-Skin basierend auf Foundation 5 von Zurb. (C) 2015 NeonWilderness</description>
   </hopobject>
 </xmlroot>

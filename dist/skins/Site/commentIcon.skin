@@ -1,0 +1,35 @@
+
+<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/md5.js"></script>
+<script type="text/javascript">
+  $(function(){ "use strict";
+      $(".commentUser").each( function(){
+          var self = $(this),
+              userLink = self.find("a"),
+              userUrl = (userLink.length>0 ? userLink.attr("href").toLowerCase() : ""),
+              userName = (userLink.length>0 ? userLink.text() : self.text().substr(0, self.text().length-1)),
+              userMail = $.trim(self.find("span").text()),
+              setIconImg = function(path){
+                  self.closest(".commentBox").before('<img src="'+path+'" alt="'+userName+'" class="userIcon" width="48" height="48" />');
+              },
+              setAnonymousImg = function(){
+                  setIconImg("http://static.twoday.net/cdn/images/user.png");
+              };
+          if (userMail.length>0){
+              setIconImg("http://www.gravatar.com/avatar/" + CryptoJS.MD5(userMail.toLowerCase()) + "?s=48");
+          } else {
+              if (userUrl.match(/http:\/\/(.*).twoday.net/)===null) userUrl = "http://"+userName.toLowerCase().replace(/\s/g, "")+".twoday.net/";
+              $('<img src="'+userUrl+(userUrl.substr(userUrl.length-1)!=='/' ? '/' : '')+'images/icon" />')
+                  .load(function(){
+                      if (this.naturalWidth!==0 && this.naturalHeight!==0){
+                          setIconImg(this.src);
+                      } else {
+                          setAnonymousImg();
+                      }
+                  })
+                  .error(function(){
+                      setAnonymousImg();
+                  });
+          }
+      });
+  });
+</script>
