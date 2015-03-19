@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="de-DE" class="no-js">
+<html lang="de-DE" ng-app="f5Twoday" class="no-js">
   <head>
     <meta charset="UTF-8">
     <title>{{site.title}}</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="description" content="{{site.description}}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="{{site.title}}"> 
+    <meta name="author" content="{{site.author}}"> 
     <% site.metaRobots %>
     <% site.metaAlternate %>
     <meta property="og:url" content="<% site.href %>">
@@ -22,13 +22,9 @@
     <link rel="apple-touch-icon-precomposed" sizes="57x57" href="{{site.imgFolder}}apple-touch-icon-57x57.png">
     <link rel="shortcut icon" href="<% image name="favicon" fallback="/favicon" class="icon" as="url" %>">
     <link rel="stylesheet" href="<% site.url %>main.css">
-    <script id="cdnModernizr" src="<% staticUrl %>cdn/files/modernizr-custom-min-js.js"></script>
-    <script src="<% staticUrl %>sys.files/js/jquery/jquery.min.js"></script>
-    <script src="<% staticURL %>cdn/files/fastclick-min-js.js"></script> 
-    <link rel="stylesheet" href="https://googledrive.com/host/0B87rILW4RVIJeG9TV2M4YnBwekk/rainy.min.css"> 
-    <% site.skin name="browsertest" %>
+    <script src="<% staticURL %>cdn/files/headjs.js"></script>
   </head>
-  <body class="usesBackstretch antialiased">
+  <body class="antialiased">
     <div id="preloadWrapper">
       <div id="preloadAnimation"></div>
     </div>

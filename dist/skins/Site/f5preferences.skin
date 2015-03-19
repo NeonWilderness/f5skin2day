@@ -13,11 +13,26 @@
           { "from": 0, "to": 24, "href": "{{site.imgFolder}}default.jpg" }
       ],
       columns: [
-          { "id": "mainContent", "class": "large-9 medium-8 small-12", "bgColor": "rgba(255,255,255,.8)",
-            "contains": "<% response.message prefix=\"<div class='message alert-box radius' data-alert>\" suffix=\"<a href='#' class='close'>&times;</a></div>\" %><% response.body %>"
+          {
+              "id": "leftSidebar",
+              "activate": false,
+              "class": "",
+              "bgColor": "",
+              "contains": ""
           },
-          { "id": "rightSidebar", "class": "large-3 medium-4 small-10", bgColor: "rgba(255,255,255,.8)",
-            "contains": "<% site.sidebar01 %><% site.sidebar02 %>"
+          {
+              "id": "mainContent",
+              "activate": true,
+              "class": "large-9 medium-8 small-12",
+              "bgColor": "rgba(255,255,255,.8)",
+              "contains": "<% response.message prefix=\"<div class='message alert-box radius' data-alert>\" suffix=\"<a href='#' class='close'>&times;</a></div>\" %><% response.body %>"
+          },
+          {
+              "id": "rightSidebar",
+              "activate": true,
+              "class": "large-3 medium-4 small-10",
+              "bgColor": "rgba(255,255,255,.8)",
+              "contains": "<% site.sidebar01 %><% site.sidebar02 %>"
           }
       ],
       "format": {

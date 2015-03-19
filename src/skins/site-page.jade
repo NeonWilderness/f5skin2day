@@ -15,15 +15,9 @@ html.no-js(lang="de-DE", ng-app="f5Twoday")
         include partials/metaapple.jade
         link(rel="shortcut icon", href!='<% image name="favicon" fallback="/favicon" class="icon" as="url" %>')
         link(rel="stylesheet", href!="<% site.url %>main.css")
-        script#cdnModernizr(src!="<% staticUrl %>cdn/files/modernizr-custom-min-js.js")
-        script(src!="<% staticUrl %>sys.files/js/jquery/jquery.min.js")
-        script(src!="<% staticURL %>cdn/files/fastclick-min-js.js")
-        | #{lineBreak}
-        link(rel="stylesheet", href!='#{cssFolder}/rainy.min.css')
-        | #{lineBreak}
-        | <% site.skin name="browsertest" %>
+        script(src!="<% staticURL %>cdn/files/head.js")
 
-    body.usesBackstretch.antialiased
+    body.antialiased
         #preloadWrapper: #preloadAnimation
         #f5body.off-canvas-wrap(data-offcanvas)
             .inner-wrap

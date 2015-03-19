@@ -1,0 +1,16 @@
+{
+  "name": "f5skin2day",
+  "version": "0.1.0",
+  "description": "A customizable Foundation 5 Layout for the Twoday Blogger Platform.",
+  "keywords": [
+    "twoday",
+    "layout",
+    "foundation",
+    "blog"
+  ],
+  "repository": "https://github.com/NeonWilderness/f5skin2day.git",
+  "author": "Neon <neonwilderness@ymail.com>",
+  "devDependencies": {
+    "gulp-concat-css": "^2.1.1"
+  }
+}

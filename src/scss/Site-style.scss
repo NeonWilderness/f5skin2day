@@ -1,2 +1,9 @@
-@import url("//cdnjs.cloudflare.com/ajax/libs/foundation/5.5.1/css/normalize.min.css");
-@import url("//cdnjs.cloudflare.com/ajax/libs/foundation/5.5.1/css/foundation.min.css");
+@import "normalize302.min.css";
+@import "foundation551.min.css";
+/* Modifications/Enhancements to the Foundation5 CSS */
+.top20 { margin-top: 20px; }
+.bottom0 { margin-bottom: 0; }
+
+
+/* Include User Layout Preferences CSS during runtime */
+/* <% site.skin name="myPreferencesCSS" %> */
