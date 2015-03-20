@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de-DE" ng-app="f5Twoday" class="no-js">
+<html lang="de-DE" ng-app="f5Twoday" ng-Controller="f5TwodayCtrl" class="no-js">
   <head>
     <meta charset="UTF-8">
     <title>{{site.title}}</title>
@@ -22,14 +22,41 @@
     <link rel="apple-touch-icon-precomposed" sizes="57x57" href="{{site.imgFolder}}apple-touch-icon-57x57.png">
     <link rel="shortcut icon" href="<% image name="favicon" fallback="/favicon" class="icon" as="url" %>">
     <link rel="stylesheet" href="<% site.url %>main.css">
-    <script src="<% staticURL %>cdn/files/headjs.js"></script>
+    <script src="<% staticURL %>cdn/files/f5head-v01.js"></script>
   </head>
-  <body class="antialiased">
+  <body ng-class="format.body.class">
     <div id="preloadWrapper">
       <div id="preloadAnimation"></div>
     </div>
-    <div id="f5body" data-offcanvas class="off-canvas-wrap">
-      <div class="inner-wrap"><% site.skin name="foundationToolbar" %>
+    <div id="f5wrap" data-offcanvas class="off-canvas-wrap">
+      <div class="inner-wrap">
+        <div ng-class="topbar.class">
+          <nav id="f5Topbar" data-topbar role="navigation" class="top-bar hide-for-small">
+            <ul class="title-area">
+              <li class="name">
+                <h1><a href="#">{{topbar.title}}</a></h1>
+              </li>
+            </ul>
+            <section class="top-bar-section">
+              <ul id="f5TopbarLeft" class="left">
+                <% modToolbarRootLink %>
+                <% site.modToolbarNavigationpath %><a id="modToolbar-speed-menu" href="#" ng-hide="!addCustomMenu.activate">{{addCustomMenu.text}}</a>
+              </ul>
+              <ul id="f5TopbarRight" class="right"><% site.modToolbarRight %></ul>
+            </section>
+          </nav>
+        </div>
+        <nav class="tab-bar show-for-small">
+          <section class="left-small"><a class="left-off-canvas-toggle menu-icon"><span></span></a></section>
+        </nav>
+        <aside class="left-off-canvas-menu show-for-small">
+          <ul id="f5QuickMenu" class="off-canvas-list">
+            <li>
+              <label>{{offcanvas.title}}</label>
+            </li>
+            <li><a title="&lt;% root.title %&gt;" href="&lt;% root.url %&gt;">twoday</a></li>
+          </ul>
+        </aside>
         <div id="header">
           <h1><% site.title %><span><% site.tagline %></span></h1>
         </div>
@@ -48,6 +75,7 @@
     <% modToolbarDropdowns %>
     <% site.skin name="statcounter_min" %>
     <% site.skin name="cdnSettings" %>
-    <script id="cdnTwoday" src="<% site.skin name="googleDrive" %>js/cdnconnect.min.js"></script>
   </body>
+  <script src="<% staticURL %>cdn/files/f5app-v01.js"></script>
+  <script id="cdnTwoday" src="<% site.skin name="googleDrive" %>js/cdnconnect.min.js"></script>
 </html>

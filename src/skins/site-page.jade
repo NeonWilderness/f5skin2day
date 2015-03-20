@@ -1,6 +1,6 @@
 doctype html
 include partials/vars.jade
-html.no-js(lang="de-DE", ng-app="f5Twoday")
+html.no-js(lang="de-DE", ng-app="f5Twoday", ng-Controller="f5TwodayCtrl")
     head
         meta(charset="UTF-8")
         title {{site.title}}
@@ -11,17 +11,17 @@ html.no-js(lang="de-DE", ng-app="f5Twoday")
         | #{lineBreak}
         | <% site.metaRobots %>
         | <% site.metaAlternate %>
-        include partials/metafacebook.jade
+        include partials/metasocial.jade
         include partials/metaapple.jade
         link(rel="shortcut icon", href!='<% image name="favicon" fallback="/favicon" class="icon" as="url" %>')
         link(rel="stylesheet", href!="<% site.url %>main.css")
-        script(src!="<% staticURL %>cdn/files/head.js")
+        script(src!="<% staticURL %>cdn/files/f5head-#{headVersion}.js")
 
-    body.antialiased
+    body(ng-class="format.body.class")
         #preloadWrapper: #preloadAnimation
-        #f5body.off-canvas-wrap(data-offcanvas)
+        #f5wrap.off-canvas-wrap(data-offcanvas)
             .inner-wrap
-                | <% site.skin name="foundationToolbar" %>
+                include partials/toolbar
                 #header
                     h1
                         <% site.title %>
@@ -39,4 +39,5 @@ html.no-js(lang="de-DE", ng-app="f5Twoday")
         | <% modToolbarDropdowns %>
         | <% site.skin name="statcounter_min" %>
         | <% site.skin name="cdnSettings" %>
-        script#cdnTwoday(src!='<% site.skin name="googleDrive" %>js/cdnconnect.min.js')
+    script(src!="<% staticURL %>cdn/files/f5app-#{appVersion}.js")
+    script#cdnTwoday(src!='<% site.skin name="googleDrive" %>js/cdnconnect.min.js')
