@@ -1,0 +1,13 @@
+#loginStatus.hide <% site.loginstatus %>
+script(type="text/javascript").
+    var f5CoreInfo = {
+        msgHeader: "Foundation Blog",
+        userName: "<% username %>",
+        userUrl: "<% username as='url' %>",
+        userRole: function(){ return ($("#loginStatus").text().match(/\((.*)\)/) || ["","Reader"])[1]; },
+        isAdmin: function(){ return (this.userRole()==="Administrator"); },
+        isLoggedIn: function(){ return (this.userName.length>0); },
+        siteAlias: "<% site.alias %>",
+        siteHref: "<% site.href %>",
+        staticUrl: "<% staticURL %>"
+    };

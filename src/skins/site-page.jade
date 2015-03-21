@@ -15,6 +15,7 @@ html.no-js(lang="de-DE", ng-app="f5Twoday", ng-Controller="f5TwodayCtrl")
         include partials/metaapple.jade
         link(rel="shortcut icon", href!='<% image name="favicon" fallback="/favicon" class="icon" as="url" %>')
         link(rel="stylesheet", href!="<% site.url %>main.css")
+        | <% site.skin name="coreInfo" %>
         script(src!="<% staticURL %>cdn/files/f5head-#{headVersion}.js")
 
     body(ng-class="format.body.class")
@@ -23,21 +24,16 @@ html.no-js(lang="de-DE", ng-app="f5Twoday", ng-Controller="f5TwodayCtrl")
             .inner-wrap
                 include partials/toolbar
                 #header
-                    h1
-                        <% site.title %>
-                        span <% site.tagline %>
-                #foundation5.container
+                    h1 {{site.title}}
+                        span {{site.subtitle}}
+                #f5container.container
                     .row
-                        #content.large-9.medium-8.small-12.columns
-                            | <% response.message prefix="<div class='message alert-box radius' data-alert>" suffix="<a href='#' class='close'>&times;</a></div>" %>
-                            | <% response.body %>
-                        #sidebar.large-3.medium-offset-0.medium-4.small-offset-2.small-8.end.columns
-                            | <% site.sidebar01 %><% site.sidebar02 %>
+                        div(ng-repeat="column in columns",
+                            ng-hide="!column.activate",
+                            id="{{column.id}}",
+                            class="{{column.class}}",
+                            ng-style="column.style") {{column.contains}}
                 a.exit-off-canvas(href="#")
         | #{lineBreak}
-        | <% site.skin name="commentIcon_min" %>
         | <% modToolbarDropdowns %>
-        | <% site.skin name="statcounter_min" %>
-        | <% site.skin name="cdnSettings" %>
-    script(src!="<% staticURL %>cdn/files/f5app-#{appVersion}.js")
-    script#cdnTwoday(src!='<% site.skin name="googleDrive" %>js/cdnconnect.min.js')
+        script(src!="<% staticURL %>cdn/files/f5app-#{appVersion}.js")
