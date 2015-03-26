@@ -1,17 +1,18 @@
 - var lineBreak = " "
 - var skinAuthor = "NeonWilderness"
-- var createTime = Date.now(), createDateStr = Date(createTime);
+- var d = new Date()
+- var createTime = d.getTime()
+- var createDateStr = ('0' + d.getDate()).slice(-2) + '.' + ('0' + (d.getMonth()+1)).slice(-2) + '.' + d.getFullYear() + " " + d.toLocaleTimeString()+ " CET"
 doctype xml
 | <?xml-stylesheet type="text/xsl" href="helma.xsl"?>
 xmlroot(xmlns:hop="http://helma.org/documentation")
-    hopobject(id="t33088486", name="HopObject", prototype="HopObject", created="#{createTime}", lastModified="#{createTime}")
+    hopobject(id="t83890658", name="HopObject", prototype="HopObject", created="#{createTime}", lastModified="#{createTime}")
         exporter #{skinAuthor}
-        modifier #{skinAuthor}
         creator #{skinAuthor}
         fullexport(type="boolean") false
         alias foundation5skin
-        preferences(id="t33088487", name="preferences", prototype="HopObject", created="#{createTime}", lastModified="#{createTime}")
-            | <hop:parent idref="t33088486" prototyperef="HopObject"/>
+        preferences(id="t83890659", name="preferences", prototype="HopObject", created="#{createTime}", lastModified="#{createTime}")
+            | <hop:parent idref="t83890658" prototyperef="HopObject"/>
             bgcolor ffffff
             copyright #{skinAuthor}
             orientation 2c_center_left

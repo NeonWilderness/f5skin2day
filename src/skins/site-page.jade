@@ -1,13 +1,13 @@
 doctype html
 include partials/vars.jade
-html.no-js(lang="de-DE", ng-app="f5Twoday", ng-Controller="f5TwodayCtrl")
+html.no-js(lang="de-DE", ng-app="f5SkinApp", ng-Controller="F5SkinController")
     head
         meta(charset="UTF-8")
-        title {{site.title}}
+        title {{param.site.title}}
         meta(http-equiv="X-UA-Compatible", content="IE=edge,chrome=1")
-        meta(name="description", content="{{site.description}}")
+        meta(name="description", content="{{param.site.description}}")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        meta(name="author", content="{{site.author}}")
+        meta(name="author", content="{{param.site.author}}")
         | #{lineBreak}
         | <% site.metaRobots %>
         | <% site.metaAlternate %>
@@ -15,25 +15,27 @@ html.no-js(lang="de-DE", ng-app="f5Twoday", ng-Controller="f5TwodayCtrl")
         include partials/metaapple.jade
         link(rel="shortcut icon", href!='<% image name="favicon" fallback="/favicon" class="icon" as="url" %>')
         link(rel="stylesheet", href!="<% site.url %>main.css")
+        script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js")
         | <% site.skin name="coreInfo" %>
-        script(src!="<% staticURL %>cdn/files/f5head-#{headVersion}.js")
+        // script(src="#{jsFolder}/f5skin2day/head.js")
 
-    body(ng-class="format.body.class")
+    body(ng-class="param.format.body.class", ng-style="param.format.body.style")
         #preloadWrapper: #preloadAnimation
         #f5wrap.off-canvas-wrap(data-offcanvas)
             .inner-wrap
                 include partials/toolbar
-                #header
-                    h1 {{site.title}}
-                        span {{site.subtitle}}
+                #header(ng-class="param.format.header.class", ng-style="param.format.header.style")
+                    h1(ng-class="param.format.title.class", ng-style="param.format.title.style") {{param.site.title}}{{param.format.header.titledelimiter}}
+                        small(ng-class="param.format.subtitle.class", ng-style="param.format.subtitle.style") {{param.site.subtitle}}
                 #f5container.container
                     .row
-                        div(ng-repeat="column in columns",
-                            ng-hide="!column.activate",
-                            id="{{column.id}}",
-                            class="{{column.class}}",
-                            ng-style="column.style") {{column.contains}}
-                a.exit-off-canvas(href="#")
+                        div(id="{{param.leftColumn.id}}", ng-hide="!param.leftColumn.activate", ng-class="param.leftColumn.class", ng-style="param.leftColumn.style")
+                        div(id="{{param.middleColumn.id}}", ng-hide="!param.middleColumn.activate", ng-class="param.middleColumn.class", ng-style="param.middleColumn.style")
+                            | <% response.message prefix="<div class='message alert-box radius' data-alert>" suffix="<a href='#' class='close'>&times;</a></div>" %>
+                            | <% response.body %>
+                        div(id="{{param.rightColumn.id}}", ng-hide="!param.rightColumn.activate", ng-class="param.rightColumn.class", ng-style="param.rightColumn.style")
+                            | <% site.sidebar01 %><% site.sidebar02 %>
+        a.exit-off-canvas(href="#")
         | #{lineBreak}
-        | <% modToolbarDropdowns %>
-        script(src!="<% staticURL %>cdn/files/f5app-#{appVersion}.js")
+        | <% site.skin name="stdPreferences" %><% site.skin name="usrPreferences" %>
+        script(src="#{jsFolder}/f5skin2day/app.js")
