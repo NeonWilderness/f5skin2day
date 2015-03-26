@@ -1,0 +1,370 @@
+<!-- Skin: Layout.testdrive -->
+<skin>
+<key>Layout.testdrive</key>
+<content>
+&lt;div class="row"&gt;
+  &lt;div class="small-10 columns"&gt;&lt;% param.message %&gt;&lt;/div&gt;
+  &lt;div class="small-2 columns"&gt;&lt;a class="button secondary small radius" href="&lt;% layout.url action="stopTestdrive" %&gt;?stop=1"&gt;&lt;% message key="Layout.testDrive.stopTesting" %&gt;&lt;/a&gt;&lt;/div&gt;
+&lt;/div&gt;
+</content>
+</skin>
+<!-- Skin: Site.browsertest -->
+<skin>
+<key>Site.browsertest</key>
+<content>
+&lt;script type="text/javascript"&gt;
+  var $buoop = {c:2};
+  function $buo_f(){
+      var e = document.createElement("script");
+      e.src = "//browser-update.org/update.js";
+      document.body.appendChild(e);
+  };
+  try {document.addEventListener("DOMContentLoaded", $buo_f, false)}
+  catch(e){window.attachEvent("onload", $buo_f)}
+&lt;/script&gt;
+</content>
+</skin>
+<!-- Skin: Site.commentIcon -->
+<skin>
+<key>Site.commentIcon</key>
+<content>
+&lt;script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/md5.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+  $(function(){ "use strict";
+      $(".commentUser").each( function(){
+          var self = $(this),
+              userLink = self.find("a"),
+              userUrl = (userLink.length&gt;0 ? userLink.attr("href").toLowerCase() : ""),
+              userName = (userLink.length&gt;0 ? userLink.text() : self.text().substr(0, self.text().length-1)),
+              userMail = $.trim(self.find("span").text()),
+              setIconImg = function(path){
+                  self.closest(".commentBox").before('&lt;img src="'+path+'" alt="'+userName+'" class="userIcon" width="48" height="48" /&gt;');
+              },
+              setAnonymousImg = function(){
+                  setIconImg("http://static.twoday.net/cdn/images/user.png");
+              };
+          if (userMail.length&gt;0){
+              setIconImg("http://www.gravatar.com/avatar/" + CryptoJS.MD5(userMail.toLowerCase()) + "?s=48");
+          } else {
+              if (userUrl.match(/http:\/\/(.*).twoday.net/)===null) userUrl = "http://"+userName.toLowerCase().replace(/\s/g, "")+".twoday.net/";
+              $('&lt;img src="'+userUrl+(userUrl.substr(userUrl.length-1)!=='/' ? '/' : '')+'images/icon" /&gt;')
+                  .load(function(){
+                      if (this.naturalWidth!==0 &amp;&amp; this.naturalHeight!==0){
+                          setIconImg(this.src);
+                      } else {
+                          setAnonymousImg();
+                      }
+                  })
+                  .error(function(){
+                      setAnonymousImg();
+                  });
+          }
+      });
+  });
+&lt;/script&gt;
+</content>
+</skin>
+<!-- Skin: Site.coreInfo -->
+<skin>
+<key>Site.coreInfo</key>
+<content>
+&lt;div id="loginStatus" class="hide"&gt;&lt;% site.loginstatus %&gt;&lt;/div&gt;
+&lt;script type="text/javascript"&gt;
+  var f5CoreInfo = {
+      msgHeader: "Foundation Blog",
+      userName: "&lt;% username %&gt;",
+      userUrl: "&lt;% username as='url' %&gt;",
+      userRole: function(){ return ($("#loginStatus").text().match(/\((.*)\)/) || ["","Reader"])[1]; },
+      siteAlias: "&lt;% site.alias %&gt;",
+      siteUrl: "&lt;% site.url %&gt;",
+      layoutUrl: "&lt;% layout.url %&gt;",
+      staticUrl: "&lt;% staticURL %&gt;",
+      navPath: "&lt;% site.modToolbarNavigationpath %&gt;",
+      imageMenu: function(){ return "&lt;% site.modToolbarImagetopicMenu prefix='&lt;ul class=\"dropdown\"&gt;' suffix='&lt;/ul&gt;' %&gt;".replace(/div&gt;/g, "li&gt;"); },
+      aboMenu: function(){ return "&lt;% site.modToolbarAboMenu prefix='&lt;ul class=\"dropdown\"&gt;' suffix='&lt;/ul&gt;' %&gt;".replace(/div&gt;/g, "li&gt;"); }
+  };
+&lt;/script&gt;
+</content>
+</skin>
+<!-- Skin: Site.page -->
+<skin>
+<key>Site.page</key>
+<content>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="de-DE" ng-app="f5SkinApp" ng-Controller="F5SkinController" class="no-js"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;{{param.site.title}}&lt;/title&gt;
+    &lt;meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"&gt;
+    &lt;meta name="description" content="{{param.site.description}}"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;meta name="author" content="{{param.site.author}}"&gt; 
+    &lt;% site.metaRobots %&gt;
+    &lt;% site.metaAlternate %&gt;
+    &lt;meta property="og:url" content="&lt;% site.href %&gt;"&gt;
+    &lt;meta property="og:title" content="{{param.site.title}}"&gt;
+    &lt;meta property="og:site_name" content="{{param.site.description}}"&gt;
+    &lt;meta property="og:image" content="{{param.site.imgFolder}}og-image.png"&gt;
+    &lt;meta property="og:image:type" content="image/png"&gt;
+    &lt;meta name="apple-mobile-web-app-capable" content="yes"&gt;
+    &lt;meta name="apple-mobile-web-app-status-bar-style" content="black"&gt;
+    &lt;link rel="apple-touch-icon-precomposed" sizes="152x152" href="{{param.site.imgFolder}}apple-touch-icon-152x152.png"&gt;
+    &lt;link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{param.site.imgFolder}}apple-touch-icon-114x114.png"&gt;
+    &lt;link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{param.site.imgFolder}}apple-touch-icon-72x72.png"&gt;
+    &lt;link rel="apple-touch-icon-precomposed" sizes="57x57" href="{{param.site.imgFolder}}apple-touch-icon-57x57.png"&gt;
+    &lt;link rel="shortcut icon" href="&lt;% image name="favicon" fallback="/favicon" class="icon" as="url" %&gt;"&gt;
+    &lt;link rel="stylesheet" href="&lt;% site.url %&gt;main.css"&gt;
+    &lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"&gt;&lt;/script&gt;&lt;% site.skin name="coreInfo" %&gt;
+    &lt;!-- script(src="#{jsFolder}/f5skin2day/head.js")--&gt;
+  &lt;/head&gt;
+  &lt;body ng-class="param.format.body.class" ng-style="param.format.body.style"&gt;
+    &lt;div id="preloadWrapper"&gt;
+      &lt;div id="preloadAnimation"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div id="f5wrap" data-offcanvas class="off-canvas-wrap"&gt;
+      &lt;div class="inner-wrap"&gt;
+        &lt;div ng-class="param.topbar.class"&gt;
+          &lt;nav id="f5Topbar" data-topbar role="navigation" class="top-bar hide-for-small"&gt;
+            &lt;ul class="title-area"&gt;
+              &lt;li class="name"&gt;
+                &lt;h1&gt;&lt;a href="#"&gt;{{param.topbar.title}}&lt;/a&gt;&lt;/h1&gt;
+              &lt;/li&gt;
+            &lt;/ul&gt;
+            &lt;section class="top-bar-section"&gt;
+              &lt;ul id="f5TopbarLeft" class="left"&gt;
+                &lt;li id="toolbarTwoday"&gt;&lt;a href="http://twoday.net/"&gt;&lt;i class="fa {{param.topbar.menuItems.twoday.icon}}"&gt;&lt;/i&gt;{{param.topbar.menuItems.twoday.text}}&lt;/a&gt;&lt;/li&gt;
+                &lt;li ng-hide="!param.topbar.menuItems.twoday.divider" class="divider"&gt;&lt;/li&gt;
+                &lt;li id="toolbarTopics" ng-class="param.topbar.menuItems.topics.class"&gt;&lt;a href="&lt;% site.url %&gt;"&gt;&lt;i class="fa {{param.topbar.menuItems.topics.icon}}"&gt;&lt;/i&gt;{{param.topbar.menuItems.topics.text}}&lt;/a&gt;&lt;% topiclist prefix="&lt;ul class='dropdown'&gt;" itemprefix="&lt;li&gt;" itemsuffix="&lt;/li&gt;" suffix="&lt;/ul&gt;" %&gt;&lt;/li&gt;
+                &lt;li ng-hide="!param.topbar.menuItems.topics.divider" class="divider"&gt;&lt;/li&gt;
+                &lt;li id="toolbarImages" ng-hide="!param.imageTopics.length" class="has-dropdown"&gt;&lt;a href="&lt;% site.url %&gt;images/topics"&gt;&lt;i class="fa {{param.topbar.menuItems.images.icon}}"&gt;&lt;/i&gt;{{param.topbar.menuItems.images.text}}&lt;/a&gt;{{param.imageMenu}}&lt;/li&gt;
+                &lt;li ng-hide="!param.topbar.menuItems.images.divider" class="divider"&gt;&lt;/li&gt;
+                &lt;li id="toolbarContributor" ng-hide="!param.isContributor" class="has-dropdown"&gt;&lt;a href="&lt;% site.url %&gt;contribute"&gt;&lt;i class="fa {{param.topbar.menuItems.contribute.icon}}"&gt;&lt;/i&gt;{{param.topbar.menuItems.contribute.text}}&lt;/a&gt;
+                  &lt;ul class="dropdown"&gt;
+                    &lt;li&gt;&lt;a href="&lt;% site.url %&gt;stories/create"&gt;beitrag verfassen&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="&lt;% site.url %&gt;stories/main"&gt;beiträge&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="&lt;% site.url %&gt;images/main"&gt;bilder&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="&lt;% site.url %&gt;files/main"&gt;dateien&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="&lt;% site.url %&gt;polls/main"&gt;umfragen&lt;/a&gt;&lt;/li&gt;
+                  &lt;/ul&gt;
+                &lt;/li&gt;
+                &lt;li ng-hide="!param.topbar.menuItems.contribute.divider" class="divider"&gt;&lt;/li&gt;
+                &lt;li id="toolbarAdmin" ng-hide="!param.isAdmin" class="has-dropdown"&gt;&lt;a href="&lt;% site.url %&gt;manage"&gt;&lt;i class="fa {{param.topbar.menuItems.admin.icon}}"&gt;&lt;/i&gt;{{param.topbar.menuItems.contribute.text}}&lt;/a&gt;
+                  &lt;ul class="dropdown"&gt;
+                    &lt;li&gt;&lt;a href="&lt;% site.url %&gt;manage"&gt;weblog&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="&lt;% layout.url %&gt;main"&gt;layout&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="&lt;% site.url %&gt;members/main"&gt;mitglieder&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="&lt;% site.url %&gt;modules/sidebar"&gt;module&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="&lt;% site.url %&gt;tdyBillingOverview"&gt;bezahlung&lt;/a&gt;&lt;/li&gt;
+                  &lt;/ul&gt;
+                &lt;/li&gt;
+                &lt;li ng-hide="!param.topbar.menuItems.admin.divider" class="divider"&gt;&lt;/li&gt;
+              &lt;/ul&gt;
+              &lt;ul id="f5TopbarRight" class="right"&gt;
+                &lt;li id="toolbarLogin" ng-hide="param.isLoggedIn"&gt;&lt;a href="&lt;% site.url %&gt;members/login"&gt;&lt;i class="fa {{param.topbar.menuItems.login.icon}}"&gt;&lt;/i&gt;{{param.topbar.menuItems.login.text}}&lt;/a&gt;&lt;/li&gt;
+                &lt;li ng-hide="!param.topbar.menuItems.login.divider" class="divider"&gt;&lt;/li&gt;
+                &lt;li id="toolbarAccount" ng-hide="!param.isLoggedIn" class="has-dropdown"&gt;&lt;a href="&lt;% site.url %&gt;members/account"&gt;&lt;i class="fa {{param.topbar.menuItems.account.icon}}"&gt;&lt;/i&gt;{{param.topbar.menuItems.account.text}}&lt;/a&gt;
+                  &lt;ul class="dropdown"&gt;
+                    &lt;li&gt;&lt;a href="&lt;% username as='url' %&gt;"&gt;home&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="&lt;% site.url %&gt;members/edit"&gt;profil&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="&lt;% site.url %&gt;members/logout"&gt;abmelden&lt;/a&gt;&lt;/li&gt;
+                  &lt;/ul&gt;
+                &lt;/li&gt;
+                &lt;li ng-hide="!param.topbar.menuItems.account.divider" class="divider"&gt;&lt;/li&gt;
+                &lt;li id="toolbarAbo" ng-hide="!param.isLoggedIn" class="has-dropdown"&gt;&lt;a href="&lt;% site.url %&gt;members/updated"&gt;&lt;i class="fa {{param.topbar.menuItems.abo.icon}}"&gt;&lt;/i&gt;{{param.topbar.menuItems.abo.text}}&lt;/a&gt;{{param.aboMenu}}&lt;/li&gt;
+                &lt;li ng-hide="!param.topbar.menuItems.abo.divider" class="divider"&gt;&lt;/li&gt;
+                &lt;li id="toolbarCustom" ng-hide="!param.topbar.addCustomMenu.activate" class="has-dropdown"&gt;&lt;a href=""&gt;&lt;i class="fa {{param.topbar.addCustomMenu.icon}}"&gt;&lt;/i&gt;{{param.topbar.addCustomMenu.text}}&lt;/a&gt;
+                  &lt;li&gt;
+                    &lt;label&gt;Twoday&lt;/label&gt;
+                  &lt;/li&gt;
+                  &lt;li&gt;&lt;a href="&lt;% layout.url %&gt;skins/modified"&gt;Meine bearbeiteten Skins&lt;/a&gt;&lt;/li&gt;
+                  &lt;li&gt;&lt;a href="&lt;% layout.url %&gt;skins/edit?key=Site.page"&gt;Hauptseite (Site.page)&lt;/a&gt;&lt;/li&gt;
+                  &lt;li&gt;&lt;a href="&lt;% layout.url %&gt;skins/edit?key=Site.foundationToolbar"&gt;Toolbar (Site.foundationToolbar)&lt;/a&gt;&lt;/li&gt;
+                  &lt;li&gt;
+                    &lt;label&gt;Foundation&lt;/label&gt;
+                  &lt;/li&gt;
+                  &lt;li&gt;&lt;a href="http://foundation.zurb.com/docs/" target="_blank"&gt;Foundation 5 docs&lt;/a&gt;&lt;/li&gt;
+                  &lt;li&gt;&lt;a href="https://github.com/zurb/foundation" target="_blank"&gt;Foundation 5 github&lt;/a&gt;&lt;/li&gt;
+                  &lt;li&gt;&lt;a href="http://fortawesome.github.io/Font-Awesome/cheatsheet/" target="_blank"&gt;Font Awesome Cheatsheet&lt;/a&gt;&lt;/li&gt;
+                &lt;/li&gt;
+                &lt;li ng-hide="!param.topbar.addCustomMenu.divider" class="divider"&gt;&lt;/li&gt;
+                &lt;li id="toolbarMail" ng-hide="!param.topbar.mailIcon.activate"&gt;&lt;a href="" title="{{param.topbar.mailIcon.title}}" ng-click="param.sendMail"&gt;&lt;i class="fa {{param.topbar.mailIcon.icon}}"&gt;&lt;/i&gt;{{param.topbar.mailIcon.text}}&lt;/a&gt;&lt;/li&gt;
+                &lt;li ng-hide="!param.topbar.mailIcon.divider" class="divider"&gt;&lt;/li&gt;
+              &lt;/ul&gt;
+            &lt;/section&gt;
+          &lt;/nav&gt;
+        &lt;/div&gt;
+        &lt;nav class="tab-bar show-for-small"&gt;
+          &lt;section class="left-small"&gt;&lt;a class="left-off-canvas-toggle menu-icon"&gt;&lt;span&gt;&lt;/span&gt;&lt;/a&gt;&lt;/section&gt;
+        &lt;/nav&gt;
+        &lt;aside class="left-off-canvas-menu show-for-small"&gt;
+          &lt;ul id="f5QuickMenu" class="off-canvas-list"&gt;
+            &lt;li&gt;
+              &lt;label&gt;{{param.offcanvas.title}}&lt;/label&gt;
+            &lt;/li&gt;
+            &lt;li&gt;&lt;a title="&lt;% root.title %&gt;" href="&lt;% root.url %&gt;"&gt;twoday&lt;/a&gt;&lt;/li&gt;
+          &lt;/ul&gt;
+        &lt;/aside&gt;
+        &lt;div id="header" ng-class="param.format.header.class" ng-style="param.format.header.style"&gt;
+          &lt;h1 ng-class="param.format.title.class" ng-style="param.format.title.style"&gt;{{param.site.title}}{{param.format.header.titledelimiter}}&lt;small ng-class="param.format.subtitle.class" ng-style="param.format.subtitle.style"&gt;{{param.site.subtitle}}&lt;/small&gt;&lt;/h1&gt;
+        &lt;/div&gt;
+        &lt;div id="f5container" class="container"&gt;
+          &lt;div class="row"&gt;
+            &lt;div id="{{param.leftColumn.id}}" ng-hide="!param.leftColumn.activate" ng-class="param.leftColumn.class" ng-style="param.leftColumn.style"&gt;&lt;/div&gt;
+            &lt;div id="{{param.middleColumn.id}}" ng-hide="!param.middleColumn.activate" ng-class="param.middleColumn.class" ng-style="param.middleColumn.style"&gt;
+              &lt;% response.message prefix="&lt;div class='message alert-box radius' data-alert&gt;" suffix="&lt;a href='#' class='close'&gt;&amp;times;&lt;/a&gt;&lt;/div&gt;" %&gt;
+              &lt;% response.body %&gt;
+            &lt;/div&gt;
+            &lt;div id="{{param.rightColumn.id}}" ng-hide="!param.rightColumn.activate" ng-class="param.rightColumn.class" ng-style="param.rightColumn.style"&gt;&lt;% site.sidebar01 %&gt;&lt;% site.sidebar02 %&gt;&lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;&lt;a href="#" class="exit-off-canvas"&gt;&lt;/a&gt; 
+    &lt;% site.skin name="stdPreferences" %&gt;&lt;% site.skin name="usrPreferences" %&gt;
+    &lt;script src="https://googledrive.com/host/0B87rILW4RVIJdzJiMW5WRUdfalE/f5skin2day/app.js"&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</content>
+</skin>
+<!-- Skin: Site.stdPreferences -->
+<skin>
+<key>Site.stdPreferences</key>
+<content>
+&lt;div id="stdPreferences" class="hide"&gt;
+  {
+      "version": "0.1",
+      "site": {
+          "title": "&lt;% site.title %&gt;",
+          "subtitle": "&lt;% site.tagline %&gt;",
+          "author": "&lt;% site.alias %&gt;",
+          "description": "&lt;% site.title %&gt; &lt;% site.tagline %&gt;",
+          "imgFolder": "https://googledrive.com/host/0B87rILW4RVIJNlN3eUJxVWN5ZWM/"
+      },
+      "timeSlots": [
+          { "from": 0, "to": 24, "href": "{{param.site.imgFolder}}bg/trolltunga@aramk.jpg" }
+      ],
+      "leftColumn": {
+          "id": "leftSidebar",
+          "activate": false,
+          "class": "sidebar",
+          "style": {}
+      },
+      "middleColumn": {
+          "id": "mainContent",
+          "activate": true,
+          "class": "large-9 medium-8 small-12 columns",
+          "style": { "background-color": "rgba(255,255,255,.8)" }
+      },
+      "rightColumn": {
+          "id": "rightSidebar",
+          "activate": true,
+          "class": "large-3 medium-offset-0 medium-4 small-offset-2 small-8 end columns sidebar",
+          "style": { "background-color": "rgba(255,255,255,.8)" }
+      },
+      "format": {
+          "body": {
+              "selector": "body",
+              "class": { "antialiased": true, "usesBackStretch": true},
+              "style": {"background-color": "#e6e6e6", "color": "#444"}
+          },
+          "header": {
+              "selector": "#header",
+              "class": "",
+              "style": {"margin": "80px 0 20px", "text-align": "center"},
+              "titledelimiter": " "
+          },
+          "title": {
+              "selector": "#header h1",
+              "class": "",
+              "style": {"color": "rgba(255,255,255,1)"}
+          },
+          "subtitle": {
+              "selector": "#header h1&gt;span",
+              "class": "",
+              "style": {"color": "rgba(255,255,255,.6)"}
+          },
+          "link": {
+              "selector": "a",
+              "class": "",
+              "style": {"color": "&lt;% layout.linkcolor %&gt;"}
+          },
+          "hover": {
+              "selector": "a:hover",
+              "class": "",
+              "style": {"color": "&lt;% layout.alinkcolor %&gt;"}
+          }
+      },
+      "topbar": {
+          "title": "",
+          "class": {"fixed": true, "containToGrid": false, "sticky": false},
+          "menuIconColor": "#4492B9",
+          "menuItems": {
+              "twoday": { "text": "twoday", "icon": "fa-circle-o", "divider": false },
+              "topics": { "text": "", "icon": "fa-home", "divider": false, "class": { "has-dropdown": false } },
+              "breadcrumbs": { "text": "", "icon": "fa-chevron-right", "divider": false },
+              "contribute": { "text": "contribute", "icon": "fa-pencil-square-o", "divider": false },
+              "admin": { "text": "admin", "icon": "fa-cog", "divider": false },
+              "images": { "text": "bilderalben", "icon": "fa-picture-o", "divider": false },
+              "login": { "text": "anmelden", "icon": "fa-sign-in", "divider": false },
+              "account": { "text": "account", "icon": "fa-bars", "divider": false },
+              "abo": { "text": "abonnements", "icon": "fa-tag", "divider": true }
+          },
+          "addCustomMenu": {
+              "activate": false,
+              "text": "goto",
+              "icon": "fa-rocket",
+              "divider": false,
+              "items": [
+                  { "type": "label", "text": "Twoday" },
+                  { "type": "a", "text": "Meine bearbeiteten Skins", "href": "&lt;% layout.url %&gt;skins/modified" },
+                  { "type": "a", "text": "(Site.page)", "href": "&lt;% layout.url %&gt;skins/edit?key=Site.page" },
+                  { "type": "a", "text": "(Site.usrPreferences)", "href": "&lt;% layout.url %&gt;skins/edit?key=Site.usrPreferences" },
+                  { "type": "label", "text": "Dokumentation" },
+                  { "type": "a", "text": "Angular docs (api)", "href": "https://docs.angularjs.org/api" },
+                  { "type": "a", "text": "Foundation 5 docs", "href": "http://foundation.zurb.com/docs/" },
+                  { "type": "a", "text": "Foundation 5 github", "href": "https://github.com/zurb/foundation" },
+                  { "type": "a", "text": "Font Awesome Cheatsheet", "href": "http://fortawesome.github.io/Font-Awesome/cheatsheet/" }
+              ]
+          },
+          "addLeft": "",
+          "addRight": "",
+          "mailIcon": {
+              "activate": true, "text": "", "icon": "fa-envelope", "divider": true, "title": "Mail senden",
+              "href": "znvygb:arbajvyqrearff@lznvy.pbz"
+          },
+          "searchIcon": {
+              "activate": true, "text": "", "icon": "fa-search", "divider": false, "title": "Blog durchsuchen",
+              "href": "&lt;% site.url %&gt;stories/search"
+          }
+      },
+      "offcanvas": {
+          "activate": true,
+          "title": "Quickmenü",
+          "position": "left"
+      }
+  }
+&lt;/div&gt;
+</content>
+</skin>
+<!-- Skin: Site.style -->
+<skin>
+<key>Site.style</key>
+<content>
+/* Integrated CSS file (will be compiled to main.css by the Twoday application) */
+&lt;% site.skin name="cssNormalize" %&gt;
+&lt;% site.skin name="cssFoundation" %&gt;
+&lt;% site.skin name="cssLayout" %&gt;
+&lt;% site.skin name="cssUser" %&gt;
+</content>
+</skin>
+<!-- Skin: Site.usrPreferences -->
+<skin>
+<key>Site.usrPreferences</key>
+<content>
+&lt;!--
+This skin will hold the user preferences based on the user's layout customization.
+User settings will prevail any given standard setting.
+--&gt;
+&lt;div id="usrPreferences" class="hide"&gt;&lt;/div&gt;
+</content>
+</skin>
+</layout>

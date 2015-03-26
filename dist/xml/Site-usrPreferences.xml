@@ -1,0 +1,11 @@
+<!-- Skin: Site.usrPreferences -->
+<skin>
+<key>Site.usrPreferences</key>
+<content>
+&lt;!--
+This skin will hold the user preferences based on the user's layout customization.
+User settings will prevail any given standard setting.
+--&gt;
+&lt;div id="usrPreferences" class="hide"&gt;&lt;/div&gt;
+</content>
+</skin>

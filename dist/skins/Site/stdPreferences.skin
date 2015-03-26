@@ -1,0 +1,114 @@
+<div id="stdPreferences" class="hide">
+  {
+      "version": "0.1",
+      "site": {
+          "title": "<% site.title %>",
+          "subtitle": "<% site.tagline %>",
+          "author": "<% site.alias %>",
+          "description": "<% site.title %> <% site.tagline %>",
+          "imgFolder": "https://googledrive.com/host/0B87rILW4RVIJNlN3eUJxVWN5ZWM/"
+      },
+      "timeSlots": [
+          { "from": 0, "to": 24, "href": "{{param.site.imgFolder}}bg/trolltunga@aramk.jpg" }
+      ],
+      "leftColumn": {
+          "id": "leftSidebar",
+          "activate": false,
+          "class": "sidebar",
+          "style": {}
+      },
+      "middleColumn": {
+          "id": "mainContent",
+          "activate": true,
+          "class": "large-9 medium-8 small-12 columns",
+          "style": { "background-color": "rgba(255,255,255,.8)" }
+      },
+      "rightColumn": {
+          "id": "rightSidebar",
+          "activate": true,
+          "class": "large-3 medium-offset-0 medium-4 small-offset-2 small-8 end columns sidebar",
+          "style": { "background-color": "rgba(255,255,255,.8)" }
+      },
+      "format": {
+          "body": {
+              "selector": "body",
+              "class": { "antialiased": true, "usesBackStretch": true},
+              "style": {"background-color": "#e6e6e6", "color": "#444"}
+          },
+          "header": {
+              "selector": "#header",
+              "class": "",
+              "style": {"margin": "80px 0 20px", "text-align": "center"},
+              "titledelimiter": " "
+          },
+          "title": {
+              "selector": "#header h1",
+              "class": "",
+              "style": {"color": "rgba(255,255,255,1)"}
+          },
+          "subtitle": {
+              "selector": "#header h1>span",
+              "class": "",
+              "style": {"color": "rgba(255,255,255,.6)"}
+          },
+          "link": {
+              "selector": "a",
+              "class": "",
+              "style": {"color": "<% layout.linkcolor %>"}
+          },
+          "hover": {
+              "selector": "a:hover",
+              "class": "",
+              "style": {"color": "<% layout.alinkcolor %>"}
+          }
+      },
+      "topbar": {
+          "title": "",
+          "class": {"fixed": true, "containToGrid": false, "sticky": false},
+          "menuIconColor": "#4492B9",
+          "menuItems": {
+              "twoday": { "text": "twoday", "icon": "fa-circle-o", "divider": false },
+              "topics": { "text": "", "icon": "fa-home", "divider": false, "class": { "has-dropdown": false } },
+              "breadcrumbs": { "text": "", "icon": "fa-chevron-right", "divider": false },
+              "contribute": { "text": "contribute", "icon": "fa-pencil-square-o", "divider": false },
+              "admin": { "text": "admin", "icon": "fa-cog", "divider": false },
+              "images": { "text": "bilderalben", "icon": "fa-picture-o", "divider": false },
+              "login": { "text": "anmelden", "icon": "fa-sign-in", "divider": false },
+              "account": { "text": "account", "icon": "fa-bars", "divider": false },
+              "abo": { "text": "abonnements", "icon": "fa-tag", "divider": true }
+          },
+          "addCustomMenu": {
+              "activate": false,
+              "text": "goto",
+              "icon": "fa-rocket",
+              "divider": false,
+              "items": [
+                  { "type": "label", "text": "Twoday" },
+                  { "type": "a", "text": "Meine bearbeiteten Skins", "href": "<% layout.url %>skins/modified" },
+                  { "type": "a", "text": "(Site.page)", "href": "<% layout.url %>skins/edit?key=Site.page" },
+                  { "type": "a", "text": "(Site.usrPreferences)", "href": "<% layout.url %>skins/edit?key=Site.usrPreferences" },
+                  { "type": "label", "text": "Dokumentation" },
+                  { "type": "a", "text": "Angular docs (api)", "href": "https://docs.angularjs.org/api" },
+                  { "type": "a", "text": "Foundation 5 docs", "href": "http://foundation.zurb.com/docs/" },
+                  { "type": "a", "text": "Foundation 5 github", "href": "https://github.com/zurb/foundation" },
+                  { "type": "a", "text": "Font Awesome Cheatsheet", "href": "http://fortawesome.github.io/Font-Awesome/cheatsheet/" }
+              ]
+          },
+          "addLeft": "",
+          "addRight": "",
+          "mailIcon": {
+              "activate": true, "text": "", "icon": "fa-envelope", "divider": true, "title": "Mail senden",
+              "href": "znvygb:arbajvyqrearff@lznvy.pbz"
+          },
+          "searchIcon": {
+              "activate": true, "text": "", "icon": "fa-search", "divider": false, "title": "Blog durchsuchen",
+              "href": "<% site.url %>stories/search"
+          }
+      },
+      "offcanvas": {
+          "activate": true,
+          "title": "Quickmenü",
+          "position": "left"
+      }
+  }
+</div>

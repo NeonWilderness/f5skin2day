@@ -1,0 +1,11 @@
+<!-- Skin: Site.style -->
+<skin>
+<key>Site.style</key>
+<content>
+/* Integrated CSS file (will be compiled to main.css by the Twoday application) */
+&lt;% site.skin name="cssNormalize" %&gt;
+&lt;% site.skin name="cssFoundation" %&gt;
+&lt;% site.skin name="cssLayout" %&gt;
+&lt;% site.skin name="cssUser" %&gt;
+</content>
+</skin>

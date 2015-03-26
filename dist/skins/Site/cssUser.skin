@@ -1,0 +1,2 @@
+/* Hier können Sie Ihre eigenen Layout-/Formatanweisungen (CSS-Styles) ergänzen */
+.meinroterhintergund { background-color: #f04124; }

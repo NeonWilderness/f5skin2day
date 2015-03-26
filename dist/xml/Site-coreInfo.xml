@@ -1,0 +1,22 @@
+<!-- Skin: Site.coreInfo -->
+<skin>
+<key>Site.coreInfo</key>
+<content>
+&lt;div id="loginStatus" class="hide"&gt;&lt;% site.loginstatus %&gt;&lt;/div&gt;
+&lt;script type="text/javascript"&gt;
+  var f5CoreInfo = {
+      msgHeader: "Foundation Blog",
+      userName: "&lt;% username %&gt;",
+      userUrl: "&lt;% username as='url' %&gt;",
+      userRole: function(){ return ($("#loginStatus").text().match(/\((.*)\)/) || ["","Reader"])[1]; },
+      siteAlias: "&lt;% site.alias %&gt;",
+      siteUrl: "&lt;% site.url %&gt;",
+      layoutUrl: "&lt;% layout.url %&gt;",
+      staticUrl: "&lt;% staticURL %&gt;",
+      navPath: "&lt;% site.modToolbarNavigationpath %&gt;",
+      imageMenu: function(){ return "&lt;% site.modToolbarImagetopicMenu prefix='&lt;ul class=\"dropdown\"&gt;' suffix='&lt;/ul&gt;' %&gt;".replace(/div&gt;/g, "li&gt;"); },
+      aboMenu: function(){ return "&lt;% site.modToolbarAboMenu prefix='&lt;ul class=\"dropdown\"&gt;' suffix='&lt;/ul&gt;' %&gt;".replace(/div&gt;/g, "li&gt;"); }
+  };
+&lt;/script&gt;
+</content>
+</skin>
