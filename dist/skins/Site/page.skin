@@ -22,10 +22,11 @@
     <link rel="apple-touch-icon-precomposed" sizes="57x57" href="{{param.site.imgFolder}}apple-touch-icon-57x57.png">
     <link rel="shortcut icon" href="<% image name="favicon" fallback="/favicon" class="icon" as="url" %>">
     <link rel="stylesheet" href="<% site.url %>main.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><% site.skin name="coreInfo" %>
     <!-- script(src="#{jsFolder}/f5skin2day/head.js")-->
   </head>
-  <body ng-class="param.format.body.class" ng-style="param.format.body.style">
+  <body ng-class="param.format.body.cls" ng-style="param.format.body.style">
     <div id="preloadWrapper">
       <div id="preloadAnimation"></div>
     </div>
@@ -35,7 +36,7 @@
           <nav id="f5Topbar" data-topbar role="navigation" class="top-bar hide-for-small">
             <ul class="title-area">
               <li class="name">
-                <h1><a href="#">{{param.topbar.title}}</a></h1>
+                <h1 ng-hide="param.topbar.title.length===0"><a href="#">{{param.topbar.title}}</a></h1>
               </li>
             </ul>
             <section class="top-bar-section">
@@ -44,8 +45,10 @@
                 <li ng-hide="!param.topbar.menuItems.twoday.divider" class="divider"></li>
                 <li id="toolbarTopics" ng-class="param.topbar.menuItems.topics.class"><a href="<% site.url %>"><i class="fa {{param.topbar.menuItems.topics.icon}}"></i>{{param.topbar.menuItems.topics.text}}</a><% topiclist prefix="<ul class='dropdown'>" itemprefix="<li>" itemsuffix="</li>" suffix="</ul>" %></li>
                 <li ng-hide="!param.topbar.menuItems.topics.divider" class="divider"></li>
-                <li id="toolbarImages" ng-hide="!param.imageTopics.length" class="has-dropdown"><a href="<% site.url %>images/topics"><i class="fa {{param.topbar.menuItems.images.icon}}"></i>{{param.topbar.menuItems.images.text}}</a>{{param.imageMenu}}</li>
-                <li ng-hide="!param.topbar.menuItems.images.divider" class="divider"></li>
+                <li id="toolbarImages" ng-hide="param.topbar.menuItems.images.items.length===0" class="has-dropdown"><a href="<% site.url %>images/topics"><i class="fa {{param.topbar.menuItems.images.icon}}"></i>{{param.topbar.menuItems.images.text}}</a>
+                  <ul ng-bind-html="param.topbar.menuItems.images.items" class="dropdown"></ul>
+                </li>
+                <li ng-hide="!param.topbar.menuItems.images.divider || param.topbar.menuItems.images.items.length===0" class="divider"></li>
                 <li id="toolbarContributor" ng-hide="!param.isContributor" class="has-dropdown"><a href="<% site.url %>contribute"><i class="fa {{param.topbar.menuItems.contribute.icon}}"></i>{{param.topbar.menuItems.contribute.text}}</a>
                   <ul class="dropdown">
                     <li><a href="<% site.url %>stories/create">beitrag verfassen</a></li>
@@ -56,7 +59,7 @@
                   </ul>
                 </li>
                 <li ng-hide="!param.topbar.menuItems.contribute.divider" class="divider"></li>
-                <li id="toolbarAdmin" ng-hide="!param.isAdmin" class="has-dropdown"><a href="<% site.url %>manage"><i class="fa {{param.topbar.menuItems.admin.icon}}"></i>{{param.topbar.menuItems.contribute.text}}</a>
+                <li id="toolbarAdmin" ng-hide="!param.isAdmin" class="has-dropdown"><a href="<% site.url %>manage"><i class="fa {{param.topbar.menuItems.admin.icon}}"></i>{{param.topbar.menuItems.admin.text}}</a>
                   <ul class="dropdown">
                     <li><a href="<% site.url %>manage">weblog</a></li>
                     <li><a href="<% layout.url %>main">layout</a></li>
@@ -68,9 +71,9 @@
                 <li ng-hide="!param.topbar.menuItems.admin.divider" class="divider"></li>
               </ul>
               <ul id="f5TopbarRight" class="right">
-                <li id="toolbarLogin" ng-hide="param.isLoggedIn"><a href="<% site.url %>members/login"><i class="fa {{param.topbar.menuItems.login.icon}}"></i>{{param.topbar.menuItems.login.text}}</a></li>
+                <li id="toolbarLogin" ng-hide="param.isLoggedIn()"><a href="<% site.url %>members/login"><i class="fa {{param.topbar.menuItems.login.icon}}"></i>{{param.topbar.menuItems.login.text}}</a></li>
                 <li ng-hide="!param.topbar.menuItems.login.divider" class="divider"></li>
-                <li id="toolbarAccount" ng-hide="!param.isLoggedIn" class="has-dropdown"><a href="<% site.url %>members/account"><i class="fa {{param.topbar.menuItems.account.icon}}"></i>{{param.topbar.menuItems.account.text}}</a>
+                <li id="toolbarAccount" ng-hide="!param.isLoggedIn()" class="has-dropdown"><a href="<% site.url %>members/account"><i class="fa {{param.topbar.menuItems.account.icon}}"></i>{{param.topbar.menuItems.account.text}}</a>
                   <ul class="dropdown">
                     <li><a href="<% username as='url' %>">home</a></li>
                     <li><a href="<% site.url %>members/edit">profil</a></li>
@@ -78,24 +81,17 @@
                   </ul>
                 </li>
                 <li ng-hide="!param.topbar.menuItems.account.divider" class="divider"></li>
-                <li id="toolbarAbo" ng-hide="!param.isLoggedIn" class="has-dropdown"><a href="<% site.url %>members/updated"><i class="fa {{param.topbar.menuItems.abo.icon}}"></i>{{param.topbar.menuItems.abo.text}}</a>{{param.aboMenu}}</li>
+                <li id="toolbarAbo" ng-hide="!param.isLoggedIn()" class="has-dropdown"><a href="<% site.url %>members/updated"><i class="fa {{param.topbar.menuItems.abo.icon}}"></i>{{param.topbar.menuItems.abo.text}}</a>
+                  <ul ng-bind-html="param.topbar.menuItems.abo.items" class="dropdown"></ul>
+                </li>
                 <li ng-hide="!param.topbar.menuItems.abo.divider" class="divider"></li>
                 <li id="toolbarCustom" ng-hide="!param.topbar.addCustomMenu.activate" class="has-dropdown"><a href=""><i class="fa {{param.topbar.addCustomMenu.icon}}"></i>{{param.topbar.addCustomMenu.text}}</a>
-                  <li>
-                    <label>Twoday</label>
-                  </li>
-                  <li><a href="<% layout.url %>skins/modified">Meine bearbeiteten Skins</a></li>
-                  <li><a href="<% layout.url %>skins/edit?key=Site.page">Hauptseite (Site.page)</a></li>
-                  <li><a href="<% layout.url %>skins/edit?key=Site.foundationToolbar">Toolbar (Site.foundationToolbar)</a></li>
-                  <li>
-                    <label>Foundation</label>
-                  </li>
-                  <li><a href="http://foundation.zurb.com/docs/" target="_blank">Foundation 5 docs</a></li>
-                  <li><a href="https://github.com/zurb/foundation" target="_blank">Foundation 5 github</a></li>
-                  <li><a href="http://fortawesome.github.io/Font-Awesome/cheatsheet/" target="_blank">Font Awesome Cheatsheet</a></li>
+                  <ul class="dropdown">
+                    <custom-menuitem ng-repeat="menuitem in param.topbar.addCustomMenu.menuitems"></custom-menuitem>
+                  </ul>
                 </li>
                 <li ng-hide="!param.topbar.addCustomMenu.divider" class="divider"></li>
-                <li id="toolbarMail" ng-hide="!param.topbar.mailIcon.activate"><a href="" title="{{param.topbar.mailIcon.title}}" ng-click="param.sendMail"><i class="fa {{param.topbar.mailIcon.icon}}"></i>{{param.topbar.mailIcon.text}}</a></li>
+                <li id="toolbarMail" ng-hide="!param.topbar.mailIcon.activate"><a href="" title="{{param.topbar.mailIcon.title}}" ng-click="param.sendMail()"><i class="fa {{param.topbar.mailIcon.icon}}"></i>{{param.topbar.mailIcon.text}}</a></li>
                 <li ng-hide="!param.topbar.mailIcon.divider" class="divider"></li>
               </ul>
             </section>
@@ -127,7 +123,7 @@
         </div>
       </div>
     </div><a href="#" class="exit-off-canvas"></a> 
-    <% site.skin name="stdPreferences" %><% site.skin name="usrPreferences" %>
+    <% site.skin name="stdPreferences" %><% site.skin name="usrPreferences" %><% site.skin name="genMenuItems" %>
     <script src="https://googledrive.com/host/0B87rILW4RVIJdzJiMW5WRUdfalE/f5skin2day/app.js"></script>
   </body>
 </html>

@@ -1,7 +1,7 @@
 div(ng-class="param.topbar.class")
     nav#f5Topbar.top-bar.hide-for-small(data-topbar, role="navigation")
         ul.title-area
-            li.name: h1: a(href="#") {{param.topbar.title}}
+            li.name: h1(ng-hide="param.topbar.title.length===0"): a(href="#") {{param.topbar.title}}
         section.top-bar-section
             ul#f5TopbarLeft.left
                 li#toolbarTwoday
@@ -11,10 +11,10 @@ div(ng-class="param.topbar.class")
                     a(href!="<% site.url %>") <i class="fa {{param.topbar.menuItems.topics.icon}}"></i>{{param.topbar.menuItems.topics.text}}
                     | <% topiclist prefix="<ul class='dropdown'>" itemprefix="<li>" itemsuffix="</li>" suffix="</ul>" %>
                 li.divider(ng-hide="!param.topbar.menuItems.topics.divider")
-                li#toolbarImages.has-dropdown(ng-hide="!param.imageTopics.length")
+                li#toolbarImages.has-dropdown(ng-hide="param.topbar.menuItems.images.items.length===0")
                     a(href!="<% site.url %>images/topics") <i class="fa {{param.topbar.menuItems.images.icon}}"></i>{{param.topbar.menuItems.images.text}}
-                    | {{param.imageMenu}}
-                li.divider(ng-hide="!param.topbar.menuItems.images.divider")
+                    ul.dropdown(ng-bind-html="param.topbar.menuItems.images.items")
+                li.divider(ng-hide="!param.topbar.menuItems.images.divider || param.topbar.menuItems.images.items.length===0")
                 li#toolbarContributor.has-dropdown(ng-hide="!param.isContributor")
                     a(href!="<% site.url %>contribute") <i class="fa {{param.topbar.menuItems.contribute.icon}}"></i>{{param.topbar.menuItems.contribute.text}}
                     ul.dropdown
@@ -25,7 +25,7 @@ div(ng-class="param.topbar.class")
                         li: a(href!="<% site.url %>polls/main") umfragen
                 li.divider(ng-hide="!param.topbar.menuItems.contribute.divider")
                 li#toolbarAdmin.has-dropdown(ng-hide="!param.isAdmin")
-                    a(href!="<% site.url %>manage") <i class="fa {{param.topbar.menuItems.admin.icon}}"></i>{{param.topbar.menuItems.contribute.text}}
+                    a(href!="<% site.url %>manage") <i class="fa {{param.topbar.menuItems.admin.icon}}"></i>{{param.topbar.menuItems.admin.text}}
                     ul.dropdown
                         li: a(href!="<% site.url %>manage") weblog
                         li: a(href!="<% layout.url %>main") layout
@@ -34,33 +34,27 @@ div(ng-class="param.topbar.class")
                         li: a(href!="<% site.url %>tdyBillingOverview") bezahlung
                 li.divider(ng-hide="!param.topbar.menuItems.admin.divider")
             ul#f5TopbarRight.right
-                li#toolbarLogin(ng-hide="param.isLoggedIn")
+                li#toolbarLogin(ng-hide="param.isLoggedIn()")
                     a(href!="<% site.url %>members/login") <i class="fa {{param.topbar.menuItems.login.icon}}"></i>{{param.topbar.menuItems.login.text}}
                 li.divider(ng-hide="!param.topbar.menuItems.login.divider")
-                li#toolbarAccount.has-dropdown(ng-hide="!param.isLoggedIn")
+                li#toolbarAccount.has-dropdown(ng-hide="!param.isLoggedIn()")
                     a(href!="<% site.url %>members/account") <i class="fa {{param.topbar.menuItems.account.icon}}"></i>{{param.topbar.menuItems.account.text}}
                     ul.dropdown
                         li: a(href!="<% username as='url' %>") home
                         li: a(href!="<% site.url %>members/edit") profil
                         li: a(href!="<% site.url %>members/logout") abmelden
                 li.divider(ng-hide="!param.topbar.menuItems.account.divider")
-                li#toolbarAbo.has-dropdown(ng-hide="!param.isLoggedIn")
+                li#toolbarAbo.has-dropdown(ng-hide="!param.isLoggedIn()")
                     a(href!="<% site.url %>members/updated") <i class="fa {{param.topbar.menuItems.abo.icon}}"></i>{{param.topbar.menuItems.abo.text}}
-                    | {{param.aboMenu}}
+                    ul.dropdown(ng-bind-html="param.topbar.menuItems.abo.items")
                 li.divider(ng-hide="!param.topbar.menuItems.abo.divider")
                 li#toolbarCustom.has-dropdown(ng-hide="!param.topbar.addCustomMenu.activate")
                     a(href="") <i class="fa {{param.topbar.addCustomMenu.icon}}"></i>{{param.topbar.addCustomMenu.text}}
-                    li: label Twoday
-                    li: a(href!="<% layout.url %>skins/modified") Meine bearbeiteten Skins
-                    li: a(href!="<% layout.url %>skins/edit?key=Site.page") Hauptseite (Site.page)
-                    li: a(href!="<% layout.url %>skins/edit?key=Site.foundationToolbar") Toolbar (Site.foundationToolbar)
-                    li: label Foundation
-                    li: a(href="http://foundation.zurb.com/docs/", target="_blank") Foundation 5 docs
-                    li: a(href="https://github.com/zurb/foundation", target="_blank") Foundation 5 github
-                    li: a(href="http://fortawesome.github.io/Font-Awesome/cheatsheet/", target="_blank") Font Awesome Cheatsheet
+                    ul.dropdown
+                        custom-menuitem(ng-repeat="menuitem in param.topbar.addCustomMenu.menuitems")
                 li.divider(ng-hide="!param.topbar.addCustomMenu.divider")
                 li#toolbarMail(ng-hide="!param.topbar.mailIcon.activate")
-                    a(href="", title="{{param.topbar.mailIcon.title}}", ng-click="param.sendMail") <i class="fa {{param.topbar.mailIcon.icon}}"></i>{{param.topbar.mailIcon.text}}
+                    a(href="", title="{{param.topbar.mailIcon.title}}", ng-click="param.sendMail()") <i class="fa {{param.topbar.mailIcon.icon}}"></i>{{param.topbar.mailIcon.text}}
                 li.divider(ng-hide="!param.topbar.mailIcon.divider")
 nav.tab-bar.show-for-small
     section.left-small

@@ -15,7 +15,7 @@
             "id": "leftSidebar",
             "activate": false,
             "class": "sidebar",
-            "style": {}
+            "style": { "background-color": "rgba(255,255,255,.8)" }
         },
         "middleColumn": {
             "id": "mainContent",
@@ -32,7 +32,7 @@
         "format": {
             "body": {
                 "selector": "body",
-                "class": { "antialiased": true, "usesBackStretch": true},
+                "cls": { "antialiased": true, "usesBackStretch": true},
                 "style": {"background-color": "#e6e6e6", "color": "#444"}
             },
             "header": {
@@ -82,7 +82,7 @@
                 "text": "goto",
                 "icon": "fa-rocket",
                 "divider": false,
-                "items": [
+                "menuitems": [
                     { "type": "label", "text": "Twoday" },
                     { "type": "a", "text": "Meine bearbeiteten Skins", "href": "<% layout.url %>skins/modified" },
                     { "type": "a", "text": "(Site.page)", "href": "<% layout.url %>skins/edit?key=Site.page" },

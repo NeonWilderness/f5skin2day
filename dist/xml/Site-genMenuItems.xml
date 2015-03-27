@@ -1,0 +1,11 @@
+<!-- Skin: Site.genMenuItems -->
+<skin>
+<key>Site.genMenuItems</key>
+<content>
+&lt;div id="genMenuItems" style="display:none"&gt;
+  &lt;div id="breadcrumbsMenu"&gt;&lt;% site.modToolbarNavigationpath %&gt;&lt;/div&gt;
+  &lt;div id="imageMenu"&gt;&lt;% site.modToolbarImagetopicMenu %&gt;&lt;/div&gt;
+  &lt;div id="aboMenu"&gt;&lt;% site.modToolbarAboMenu %&gt;&lt;/div&gt;
+&lt;/div&gt;
+</content>
+</skin>

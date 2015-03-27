@@ -15,11 +15,12 @@ html.no-js(lang="de-DE", ng-app="f5SkinApp", ng-Controller="F5SkinController")
         include partials/metaapple.jade
         link(rel="shortcut icon", href!='<% image name="favicon" fallback="/favicon" class="icon" as="url" %>')
         link(rel="stylesheet", href!="<% site.url %>main.css")
+        link(rel="stylesheet", href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css")
         script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js")
         | <% site.skin name="coreInfo" %>
         // script(src="#{jsFolder}/f5skin2day/head.js")
 
-    body(ng-class="param.format.body.class", ng-style="param.format.body.style")
+    body(ng-class="param.format.body.cls", ng-style="param.format.body.style")
         #preloadWrapper: #preloadAnimation
         #f5wrap.off-canvas-wrap(data-offcanvas)
             .inner-wrap
@@ -37,5 +38,5 @@ html.no-js(lang="de-DE", ng-app="f5SkinApp", ng-Controller="F5SkinController")
                             | <% site.sidebar01 %><% site.sidebar02 %>
         a.exit-off-canvas(href="#")
         | #{lineBreak}
-        | <% site.skin name="stdPreferences" %><% site.skin name="usrPreferences" %>
+        | <% site.skin name="stdPreferences" %><% site.skin name="usrPreferences" %><% site.skin name="genMenuItems" %>
         script(src="#{jsFolder}/f5skin2day/app.js")

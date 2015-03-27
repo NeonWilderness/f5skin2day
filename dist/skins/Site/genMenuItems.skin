@@ -1,0 +1,5 @@
+<div id="genMenuItems" style="display:none">
+  <div id="breadcrumbsMenu"><% site.modToolbarNavigationpath %></div>
+  <div id="imageMenu"><% site.modToolbarImagetopicMenu %></div>
+  <div id="aboMenu"><% site.modToolbarAboMenu %></div>
+</div>

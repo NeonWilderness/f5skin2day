@@ -12,10 +12,7 @@
       siteAlias: "&lt;% site.alias %&gt;",
       siteUrl: "&lt;% site.url %&gt;",
       layoutUrl: "&lt;% layout.url %&gt;",
-      staticUrl: "&lt;% staticURL %&gt;",
-      navPath: "&lt;% site.modToolbarNavigationpath %&gt;",
-      imageMenu: function(){ return "&lt;% site.modToolbarImagetopicMenu prefix='&lt;ul class=\"dropdown\"&gt;' suffix='&lt;/ul&gt;' %&gt;".replace(/div&gt;/g, "li&gt;"); },
-      aboMenu: function(){ return "&lt;% site.modToolbarAboMenu prefix='&lt;ul class=\"dropdown\"&gt;' suffix='&lt;/ul&gt;' %&gt;".replace(/div&gt;/g, "li&gt;"); }
+      staticUrl: "&lt;% staticURL %&gt;"
   };
 &lt;/script&gt;
 </content>

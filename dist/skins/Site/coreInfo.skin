@@ -8,9 +8,6 @@
       siteAlias: "<% site.alias %>",
       siteUrl: "<% site.url %>",
       layoutUrl: "<% layout.url %>",
-      staticUrl: "<% staticURL %>",
-      navPath: "<% site.modToolbarNavigationpath %>",
-      imageMenu: function(){ return "<% site.modToolbarImagetopicMenu prefix='<ul class=\"dropdown\">' suffix='</ul>' %>".replace(/div>/g, "li>"); },
-      aboMenu: function(){ return "<% site.modToolbarAboMenu prefix='<ul class=\"dropdown\">' suffix='</ul>' %>".replace(/div>/g, "li>"); }
+      staticUrl: "<% staticURL %>"
   };
 </script>
