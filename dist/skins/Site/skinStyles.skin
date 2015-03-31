@@ -1,0 +1,1 @@
+<style>#f5Topbar i { color: {{param.topbar.menuIconColor}}; }</style>

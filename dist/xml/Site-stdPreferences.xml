@@ -2,7 +2,7 @@
 <skin>
 <key>Site.stdPreferences</key>
 <content>
-&lt;div id="stdPreferences" class="hide"&gt;
+&lt;div id="stdPreferences" style="display:none"&gt;
   {
       "version": "0.1",
       "site": {
@@ -13,63 +13,65 @@
           "imgFolder": "https://googledrive.com/host/0B87rILW4RVIJNlN3eUJxVWN5ZWM/"
       },
       "timeSlots": [
-          { "from": 0, "to": 24, "href": "{{param.site.imgFolder}}bg/trolltunga@aramk.jpg" }
+          { "from": 0, "to": 24, "repeat": "no-repeat", "position": "top center", "size": "cover",
+            "attachment": "fixed", "href": "https://googledrive.com/host/0B87rILW4RVIJNlN3eUJxVWN5ZWM/bg/trolltunga@aramk.jpg" }
       ],
       "leftColumn": {
           "id": "leftSidebar",
           "activate": false,
           "class": "sidebar",
-          "style": { "background-color": "rgba(255,255,255,.8)" }
+          "style": { "background-color": "transparent" }
       },
       "middleColumn": {
           "id": "mainContent",
           "activate": true,
-          "class": "large-9 medium-8 small-12 columns",
+          "class": "large-9 medium-8 small-12 columns content",
           "style": { "background-color": "rgba(255,255,255,.8)" }
       },
       "rightColumn": {
           "id": "rightSidebar",
           "activate": true,
           "class": "large-3 medium-offset-0 medium-4 small-offset-2 small-8 end columns sidebar",
-          "style": { "background-color": "rgba(255,255,255,.8)" }
+          "style": { "background-color": "transparent" }
       },
       "format": {
           "body": {
               "selector": "body",
-              "cls": { "antialiased": true, "usesBackStretch": true},
-              "style": {"background-color": "#e6e6e6", "color": "#444"}
+              "class": ["antialiased"],
+              "style": { "background-color": "#e6e6e6", "color": "#444" }
           },
           "header": {
               "selector": "#header",
-              "class": "",
-              "style": {"margin": "80px 0 20px", "text-align": "center"},
+              "class": [],
+              "style": {"margin": "100px 0 50px", "text-align": "center"},
               "titledelimiter": " "
           },
           "title": {
               "selector": "#header h1",
-              "class": "",
-              "style": {"color": "rgba(255,255,255,1)"}
+              "class": [],
+              "style": {"color": "rgba(255,255,255,.9)"}
           },
           "subtitle": {
               "selector": "#header h1&gt;span",
-              "class": "",
+              "class": [],
               "style": {"color": "rgba(255,255,255,.6)"}
           },
           "link": {
               "selector": "a",
-              "class": "",
+              "class": [],
               "style": {"color": "&lt;% layout.linkcolor %&gt;"}
           },
           "hover": {
               "selector": "a:hover",
-              "class": "",
+              "class": [],
               "style": {"color": "&lt;% layout.alinkcolor %&gt;"}
           }
       },
       "topbar": {
           "title": "",
           "class": {"fixed": true, "containToGrid": false, "sticky": false},
-          "menuIconColor": "#4492B9",
+          "visibility": "hide-for-small",
+          "menuIconColor": "#407099",
           "menuItems": {
               "twoday": { "text": "twoday", "icon": "fa-circle-o", "divider": false },
               "topics": { "text": "", "icon": "fa-home", "divider": false, "class": { "has-dropdown": false } },
@@ -82,20 +84,20 @@
               "abo": { "text": "abonnements", "icon": "fa-tag", "divider": true }
           },
           "addCustomMenu": {
-              "activate": false,
+              "activate": true,
               "text": "goto",
               "icon": "fa-rocket",
               "divider": false,
-              "menuitems": [
-                  { "type": "label", "text": "Twoday" },
-                  { "type": "a", "text": "Meine bearbeiteten Skins", "href": "&lt;% layout.url %&gt;skins/modified" },
-                  { "type": "a", "text": "(Site.page)", "href": "&lt;% layout.url %&gt;skins/edit?key=Site.page" },
-                  { "type": "a", "text": "(Site.usrPreferences)", "href": "&lt;% layout.url %&gt;skins/edit?key=Site.usrPreferences" },
-                  { "type": "label", "text": "Dokumentation" },
-                  { "type": "a", "text": "Angular docs (api)", "href": "https://docs.angularjs.org/api" },
-                  { "type": "a", "text": "Foundation 5 docs", "href": "http://foundation.zurb.com/docs/" },
-                  { "type": "a", "text": "Foundation 5 github", "href": "https://github.com/zurb/foundation" },
-                  { "type": "a", "text": "Font Awesome Cheatsheet", "href": "http://fortawesome.github.io/Font-Awesome/cheatsheet/" }
+              "items": [
+                  { "link": false, "text": "Twoday" },
+                  { "link": true,  "text": "Meine bearbeiteten Skins", "href": "&lt;% layout.url %&gt;skins/modified" },
+                  { "link": true,  "text": "(Site.page)", "href": "&lt;% layout.url %&gt;skins/edit?key=Site.page" },
+                  { "link": true,  "text": "(Site.usrPreferences)", "href": "&lt;% layout.url %&gt;skins/edit?key=Site.usrPreferences" },
+                  { "link": false, "text": "Dokumentation" },
+                  { "link": true,  "text": "Angular docs (api)", "href": "https://docs.angularjs.org/api" },
+                  { "link": true,  "text": "Foundation 5 docs", "href": "http://foundation.zurb.com/docs/" },
+                  { "link": true,  "text": "Foundation 5 github", "href": "https://github.com/zurb/foundation" },
+                  { "link": true,  "text": "Font Awesome Cheatsheet", "href": "http://fortawesome.github.io/Font-Awesome/cheatsheet/" }
               ]
           },
           "addLeft": "",
@@ -105,13 +107,17 @@
               "href": "znvygb:arbajvyqrearff@lznvy.pbz"
           },
           "searchIcon": {
-              "activate": true, "text": "", "icon": "fa-search", "divider": false, "title": "Blog durchsuchen",
+              "activate": true, "text": "", "icon": "fa-search", "divider": true, "title": "Blog durchsuchen",
               "href": "&lt;% site.url %&gt;stories/search"
+          },
+          "customizeIcon": {
+              "activate": true, "text": "", "icon": "fa-cogs", "divider": false, "title": "Blog anpassen",
+              "href": ""
           }
       },
       "offcanvas": {
-          "activate": true,
           "title": "Quickmenü",
+          "visibility": "show-for-small",
           "position": "left"
       }
   }

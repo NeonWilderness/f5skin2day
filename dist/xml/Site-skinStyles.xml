@@ -1,0 +1,7 @@
+<!-- Skin: Site.skinStyles -->
+<skin>
+<key>Site.skinStyles</key>
+<content>
+&lt;style&gt;#f5Topbar i { color: {{param.topbar.menuIconColor}}; }&lt;/style&gt;
+</content>
+</skin>

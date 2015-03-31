@@ -125,16 +125,8 @@ gulp.task("zip", ['jade2skin'], function(){
 //-------- Browserifies and uglifies JS file/s to be encompassed in the head section
 gulp.task( 'headjs', function(){
 
-    var browserified = transform(function(filename) {
-        var b = browserify({entries: filename, debug: true});
-        return b.bundle();
-    });
-
-    return gulp.src('src/js/head/head.js')
-        .pipe(browserified)
-        .pipe(sourcemaps.init({loadMaps: true}))
-        .pipe(uglify())
-        .pipe(sourcemaps.write('./'))
+    return gulp.src(['./src/js/vendor/modernizr*.js', './src/js/vendor/fastclick*.js', './src/js/vendor/mm-foundation*.js'])
+        .pipe(concat('head.js'))
         .pipe(gulp.dest('dist/js/'));
 });
 

@@ -16,9 +16,26 @@
   "repository": "https://github.com/NeonWilderness/f5skin2day.git",
   "author": "NeonWilderness (https://github.com/NeonWilderness)",
   "license": "MIT",
-  "devDependencies": {
-    "angular": "^1.3.15",
+    "browser": {
+        "fastclick": "./src/js/vendor/fastclick-min.js",
+        "jquery": "./src/js/vendor/jquery213-min.js",
+        "mm-foundation": "./src/js/vendor/mm-foundation-tpls-0.5.1.js",
+        "modernizr": "./src/js/vendor/modernizr283-custom-min.js"
+    },
+    "browserify-shim": {
+        "angular": "global:angular",
+        "jquery": "global:$"
+    },
+    "browserify": {
+        "transform": [ "browserify-shim" ]
+    },
+    "dependencies": {
+        "browserify-shim": "~3.8.3"
+    },
+    "devDependencies": {
+    "angular": "^1.3.14",
     "browserify": "^9.0.3",
+    "browserify-shim": "^3.8.3",
     "del": "^1.1.1",
     "ga-browserify": "^0.1.1",
     "gulp": "^3.8.11",
