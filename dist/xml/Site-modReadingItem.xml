@@ -1,0 +1,10 @@
+<!-- Skin: Site.modReadingItem -->
+<skin>
+<key>Site.modReadingItem</key>
+<content>
+&lt;div class="sbBookItem"&gt;&lt;% param.ReadingImage %&gt;
+  &lt;div class="sbBookAuthor"&gt;&lt;% param.ReadingAuthor %&gt;&lt;/div&gt;
+  &lt;div class="sbBookTitle"&gt;&lt;% param.ReadingTitle %&gt;&lt;/div&gt;
+&lt;/div&gt;
+</content>
+</skin>

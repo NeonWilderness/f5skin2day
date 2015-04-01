@@ -22,7 +22,7 @@ html.no-js(lang="de-DE", ng-app="f5SkinApp", ng-controller="F5SkinController")
         | <% site.skin name="skinStyles" %><% site.skin name="coreInfo" %>
 
     body(ng-class="[param.format.body.class]", ng-style="param.format.body.style")
-        //#preloadWrapper: #preloadAnimation
+        #preloadWrapper: #preloadAnimation
         #f5wrap.off-canvas-wrap(data-offcanvas)
             .inner-wrap
                 include partials/toolbar

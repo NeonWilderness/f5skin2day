@@ -1,0 +1,7 @@
+<!-- Skin: Site.modReading -->
+<skin>
+<key>Site.modReading</key>
+<content>
+&lt;div class="sbBookContainer"&gt;&lt;% param.Reading %&gt;&lt;/div&gt;
+</content>
+</skin>

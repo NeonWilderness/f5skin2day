@@ -28,7 +28,9 @@
     <script src="https://googledrive.com/host/0B87rILW4RVIJdzJiMW5WRUdfalE/f5skin2day/head.js"></script><% site.skin name="skinStyles" %><% site.skin name="coreInfo" %>
   </head>
   <body ng-class="[param.format.body.class]" ng-style="param.format.body.style">
-    <!--#preloadWrapper: #preloadAnimation-->
+    <div id="preloadWrapper">
+      <div id="preloadAnimation"></div>
+    </div>
     <div id="f5wrap" data-offcanvas class="off-canvas-wrap">
       <div class="inner-wrap">
         <div ng-class="{'fixed':param.topbar.class.fixed, 'containToGrid':param.topbar.class.containToGrid, 'sticky':param.topbar.class.sticky}">

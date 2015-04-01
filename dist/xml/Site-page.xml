@@ -32,7 +32,9 @@
     &lt;script src="https://googledrive.com/host/0B87rILW4RVIJdzJiMW5WRUdfalE/f5skin2day/head.js"&gt;&lt;/script&gt;&lt;% site.skin name="skinStyles" %&gt;&lt;% site.skin name="coreInfo" %&gt;
   &lt;/head&gt;
   &lt;body ng-class="[param.format.body.class]" ng-style="param.format.body.style"&gt;
-    &lt;!--#preloadWrapper: #preloadAnimation--&gt;
+    &lt;div id="preloadWrapper"&gt;
+      &lt;div id="preloadAnimation"&gt;&lt;/div&gt;
+    &lt;/div&gt;
     &lt;div id="f5wrap" data-offcanvas class="off-canvas-wrap"&gt;
       &lt;div class="inner-wrap"&gt;
         &lt;div ng-class="{'fixed':param.topbar.class.fixed, 'containToGrid':param.topbar.class.containToGrid, 'sticky':param.topbar.class.sticky}"&gt;

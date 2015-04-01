@@ -49,4 +49,5 @@ f5SkinApp.controller("F5SkinController", ["$scope", function ($scope){
     };
 //- When true (user clicked the close button), it triggers the fadeout of the response alert-box
     $scope.msgClose = false;
+    $("#preloadWrapper").fadeOut();
 }]);

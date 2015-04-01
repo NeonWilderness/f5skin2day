@@ -1,0 +1,4 @@
+<div class="sbBookItem"><% param.ReadingImage %>
+  <div class="sbBookAuthor"><% param.ReadingAuthor %></div>
+  <div class="sbBookTitle"><% param.ReadingTitle %></div>
+</div>

@@ -103,3 +103,9 @@ body {
 .fade.in {
   @include opacity(1);
 }
+/* ---- Site.modReading Skin CSS ---- */
+.sbBookContainer {}
+.sbBookItem { margin-bottom: 20px; font-size: 13px; }
+.sbBookItem img { box-shadow: 3px 4px 6px #ccc; max-height: 120px; }
+.sbBookAuthor { font-style: italic; margin-top: 10px; }
+.sbBookTitle {}
