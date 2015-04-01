@@ -45,6 +45,7 @@ body {
 }
 .top20 { margin-top: 20px; }
 .bottom0 { margin-bottom: 0; }
+.button i, button i { margin-right: 6px; }
 
 /* ---- SCSS Mixins ---- */
 
@@ -109,3 +110,9 @@ body {
 .sbBookItem img { box-shadow: 3px 4px 6px #ccc; max-height: 120px; }
 .sbBookAuthor { font-style: italic; margin-top: 10px; }
 .sbBookTitle {}
+
+/* ---- Site.ngTemplates Skin CSS ---- */
+#customizeBlog {
+  p { font-size: 1em; }
+  #btnCancel { margin-left: 15px; }
+}

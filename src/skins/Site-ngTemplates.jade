@@ -1,0 +1,13 @@
+//- Holds ng-templates to be used with templateUrl
+script#customizeBlogHtml(type="text/ng-template")
+    #customizeBlog
+        h5 Mein Foundation-Blog anpassen
+        p Hier stehen ein paar einführende Worte zu den Customizing-Möglichkeiten
+        tabset
+            tab(heading="Grunddaten") Hier stehen die Eingabefelder für die Basisdaten
+            tab(heading="Hintergrundbilder") Hier stehen die Eingabefelder für die Auswahl der Hintergrundbilder
+            tab(heading="Bloglayout") Hier stehen die Eingabefelder für die Auswahl der Hintergrundbilder
+        p.text-center.bottom0
+            a.button.success.radius.tiny(ng-click="ok()") <i class="fa fa-check"></i>Einstellungen sichern
+            a#btnCancel.button.alert.radius.tiny(ng-click="cancel()") <i class="fa fa-times"></i>Änderung abbrechen
+        a.close-reveal-modal(ng-click="cancel()") &times;

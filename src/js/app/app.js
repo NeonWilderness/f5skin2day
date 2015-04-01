@@ -12,7 +12,7 @@ utils.pimpClasses();
 
 //--- Set up the Angular app and controller
 var f5SkinApp = angular.module("f5SkinApp", ['mm.foundation']);
-f5SkinApp.controller("F5SkinController", ["$scope", function ($scope){
+f5SkinApp.controller("F5SkinController", ["$scope", "$modal", function ($scope, $modal){
 
 //- Consolidate standardPreferences, userPreferences and generic core info from Twoday macros
     var stdPreferences = JSON.parse($("#stdPreferences").text() || "{}"),
@@ -47,7 +47,50 @@ f5SkinApp.controller("F5SkinController", ["$scope", function ($scope){
     $scope.param.sendMail = function(){
         window.location.href = utils.rot13($scope.param.topbar.mailIcon.href);
     };
+
 //- When true (user clicked the close button), it triggers the fadeout of the response alert-box
     $scope.msgClose = false;
+
+    $scope.customize = {
+
+        open: function(){
+            var modalCustomize = $modal.open({
+                templateUrl: "customizeBlogHtml",
+                controller:  "CustomizeBlogController",
+                resolve: {
+                    params: function () {
+                        return $scope.param;
+                    }
+                },
+                backdrop: false,
+                keyboard: false,
+                windowClass: "xlarge"
+            });
+            modalCustomize.result.then(function(customizedParams){
+                //dosomething with customizedParams
+                //alert("Welldone: "+customizedParams);
+            }, function(message){
+                //dosomething upon cancel
+                //alert("Dismissed: "+message);
+
+            });
+        }
+    };
+
+//- Fades the preloading animation
     $("#preloadWrapper").fadeOut();
+}]);
+
+f5SkinApp.controller("CustomizeBlogController", ["$scope", "$modalInstance", function ($scope, $modalInstance, params){
+
+    $scope.param = params;
+
+    $scope.ok = function(){
+        $modalInstance.close("Pressed OK!");
+    }
+
+    $scope.cancel = function(){
+        $modalInstance.dismiss("Pressed Cancel!");
+    }
+
 }]);

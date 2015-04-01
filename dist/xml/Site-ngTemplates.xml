@@ -1,0 +1,18 @@
+<!-- Skin: Site.ngTemplates -->
+<skin>
+<key>Site.ngTemplates</key>
+<content>
+&lt;script id="customizeBlogHtml" type="text/ng-template"&gt;
+  &lt;div id="customizeBlog"&gt;
+    &lt;h5&gt;Mein Foundation-Blog anpassen&lt;/h5&gt;
+    &lt;p&gt;Hier stehen ein paar einführende Worte zu den Customizing-Möglichkeiten&lt;/p&gt;
+    &lt;tabset&gt;
+      &lt;tab heading="Grunddaten"&gt;Hier stehen die Eingabefelder für die Basisdaten&lt;/tab&gt;
+      &lt;tab heading="Hintergrundbilder"&gt;Hier stehen die Eingabefelder für die Auswahl der Hintergrundbilder&lt;/tab&gt;
+      &lt;tab heading="Bloglayout"&gt;Hier stehen die Eingabefelder für die Auswahl der Hintergrundbilder&lt;/tab&gt;
+    &lt;/tabset&gt;
+    &lt;p class="text-center bottom0"&gt;&lt;a ng-click="ok()" class="button success radius tiny"&gt;&lt;i class="fa fa-check"&gt;&lt;/i&gt;Einstellungen sichern&lt;/a&gt;&lt;a id="btnCancel" ng-click="cancel()" class="button alert radius tiny"&gt;&lt;i class="fa fa-times"&gt;&lt;/i&gt;Änderung abbrechen&lt;/a&gt;&lt;/p&gt;&lt;a ng-click="cancel()" class="close-reveal-modal"&gt;&amp;times;&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/script&gt;
+</content>
+</skin>

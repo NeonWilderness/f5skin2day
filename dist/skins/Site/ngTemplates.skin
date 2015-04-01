@@ -1,0 +1,12 @@
+<script id="customizeBlogHtml" type="text/ng-template">
+  <div id="customizeBlog">
+    <h5>Mein Foundation-Blog anpassen</h5>
+    <p>Hier stehen ein paar einführende Worte zu den Customizing-Möglichkeiten</p>
+    <tabset>
+      <tab heading="Grunddaten">Hier stehen die Eingabefelder für die Basisdaten</tab>
+      <tab heading="Hintergrundbilder">Hier stehen die Eingabefelder für die Auswahl der Hintergrundbilder</tab>
+      <tab heading="Bloglayout">Hier stehen die Eingabefelder für die Auswahl der Hintergrundbilder</tab>
+    </tabset>
+    <p class="text-center bottom0"><a ng-click="ok()" class="button success radius tiny"><i class="fa fa-check"></i>Einstellungen sichern</a><a id="btnCancel" ng-click="cancel()" class="button alert radius tiny"><i class="fa fa-times"></i>Änderung abbrechen</a></p><a ng-click="cancel()" class="close-reveal-modal">&times;</a>
+  </div>
+</script>
