@@ -192,11 +192,12 @@
     &lt;div id="f5wrap" data-offcanvas class="off-canvas-wrap"&gt;
       &lt;div class="inner-wrap"&gt;
         &lt;div ng-class="{'fixed':param.topbar.class.fixed, 'containToGrid':param.topbar.class.containToGrid, 'sticky':param.topbar.class.sticky}"&gt;
-          &lt;top-bar id="f5Topbar" ng-cloak ng-class="['top-bar', param.topbar.visibility]" is-hover data-topbar role="navigation"&gt;
+          &lt;top-bar id="f5Topbar" ng-cloak ng-class="param.topbar.visibility" role="navigation" back-text="Eine Ebene höher"&gt;
             &lt;ul class="title-area"&gt;
               &lt;li class="name"&gt;
                 &lt;h1 ng-hide="param.topbar.title.length===0"&gt;&lt;a href="#"&gt;{{param.topbar.title}}&lt;/a&gt;&lt;/h1&gt;
               &lt;/li&gt;
+              &lt;li toggle-top-bar class="menu-icon"&gt;&lt;a href="#"&gt;&lt;span&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
             &lt;/ul&gt;
             &lt;top-bar-section&gt;
               &lt;ul id="f5TopbarLeft" class="left"&gt;
@@ -204,14 +205,14 @@
                 &lt;li ng-hide="!param.topbar.menuItems.twoday.divider" class="divider"&gt;&lt;/li&gt;
                 &lt;li id="toolbarTopics" ng-class="param.topbar.menuItems.topics.class"&gt;&lt;a href="&lt;% site.url %&gt;"&gt;&lt;i class="fa {{param.topbar.menuItems.topics.icon}}"&gt;&lt;/i&gt;{{param.topbar.menuItems.topics.text}}&lt;/a&gt;&lt;% topiclist prefix="&lt;ul class='dropdown'&gt;" itemprefix="&lt;li&gt;" itemsuffix="&lt;/li&gt;" suffix="&lt;/ul&gt;" %&gt;&lt;/li&gt;
                 &lt;li ng-hide="!param.topbar.menuItems.topics.divider" class="divider"&gt;&lt;/li&gt;
-                &lt;li id="toolbarImages" ng-hide="param.topbar.menuItems.images.items.length===0" class="has-dropdown"&gt;&lt;a href="&lt;% site.url %&gt;images/topics"&gt;&lt;i class="fa {{param.topbar.menuItems.images.icon}}"&gt;&lt;/i&gt;{{param.topbar.menuItems.images.text}}&lt;/a&gt;
-                  &lt;ul class="dropdown"&gt;
-                    &lt;li ng-repeat="item in param.topbar.menuItems.images.items"&gt;&lt;a ng-href="{{item.href}}" target="_blank"&gt;{{item.text}}&lt;/a&gt;&lt;/li&gt;
+                &lt;li id="toolbarImages" has-dropdown ng-hide="param.topbar.menuItems.images.items.length===0"&gt;&lt;a href="&lt;% site.url %&gt;images/topics"&gt;&lt;i class="fa {{param.topbar.menuItems.images.icon}}"&gt;&lt;/i&gt;{{param.topbar.menuItems.images.text}}&lt;/a&gt;
+                  &lt;ul top-bar-dropdown&gt;
+                    &lt;li ng-repeat="item in param.topbar.menuItems.images.items"&gt;&lt;a href="{{item.href}}" target="_blank"&gt;{{item.text}}&lt;/a&gt;&lt;/li&gt;
                   &lt;/ul&gt;
                 &lt;/li&gt;
                 &lt;li ng-hide="!param.topbar.menuItems.images.divider || param.topbar.menuItems.images.items.length===0" class="divider"&gt;&lt;/li&gt;
-                &lt;li id="toolbarContributor" ng-hide="!param.isContributor()" class="has-dropdown"&gt;&lt;a href="&lt;% site.url %&gt;contribute"&gt;&lt;i class="fa {{param.topbar.menuItems.contribute.icon}}"&gt;&lt;/i&gt;{{param.topbar.menuItems.contribute.text}}&lt;/a&gt;
-                  &lt;ul class="dropdown"&gt;
+                &lt;li id="toolbarContributor" has-dropdown ng-hide="!param.isContributor()"&gt;&lt;a href="&lt;% site.url %&gt;contribute"&gt;&lt;i class="fa {{param.topbar.menuItems.contribute.icon}}"&gt;&lt;/i&gt;{{param.topbar.menuItems.contribute.text}}&lt;/a&gt;
+                  &lt;ul top-bar-dropdown&gt;
                     &lt;li&gt;&lt;a href="&lt;% site.url %&gt;stories/create"&gt;beitrag verfassen&lt;/a&gt;&lt;/li&gt;
                     &lt;li&gt;&lt;a href="&lt;% site.url %&gt;stories/main"&gt;beiträge&lt;/a&gt;&lt;/li&gt;
                     &lt;li&gt;&lt;a href="&lt;% site.url %&gt;images/main"&gt;bilder&lt;/a&gt;&lt;/li&gt;
@@ -220,8 +221,8 @@
                   &lt;/ul&gt;
                 &lt;/li&gt;
                 &lt;li ng-hide="!param.topbar.menuItems.contribute.divider" class="divider"&gt;&lt;/li&gt;
-                &lt;li id="toolbarAdmin" ng-hide="!param.isAdmin()" class="has-dropdown"&gt;&lt;a href="&lt;% site.url %&gt;manage"&gt;&lt;i class="fa {{param.topbar.menuItems.admin.icon}}"&gt;&lt;/i&gt;{{param.topbar.menuItems.admin.text}}&lt;/a&gt;
-                  &lt;ul class="dropdown"&gt;
+                &lt;li id="toolbarAdmin" has-dropdown ng-hide="!param.isAdmin()"&gt;&lt;a href="&lt;% site.url %&gt;manage"&gt;&lt;i class="fa {{param.topbar.menuItems.admin.icon}}"&gt;&lt;/i&gt;{{param.topbar.menuItems.admin.text}}&lt;/a&gt;
+                  &lt;ul top-bar-dropdown&gt;
                     &lt;li&gt;&lt;a href="&lt;% site.url %&gt;manage"&gt;weblog&lt;/a&gt;&lt;/li&gt;
                     &lt;li&gt;&lt;a href="&lt;% layout.url %&gt;main"&gt;layout&lt;/a&gt;&lt;/li&gt;
                     &lt;li&gt;&lt;a href="&lt;% site.url %&gt;members/main"&gt;mitglieder&lt;/a&gt;&lt;/li&gt;
@@ -230,10 +231,10 @@
                   &lt;/ul&gt;
                 &lt;/li&gt;
                 &lt;li ng-hide="!param.topbar.menuItems.admin.divider" class="divider"&gt;&lt;/li&gt;
-                &lt;li id="toolbarCustom" ng-hide="!param.topbar.addCustomMenu.activate" class="has-dropdown"&gt;&lt;a href=""&gt;&lt;i class="fa {{param.topbar.addCustomMenu.icon}}"&gt;&lt;/i&gt;{{param.topbar.addCustomMenu.text}}&lt;/a&gt;
-                  &lt;ul class="dropdown"&gt;
+                &lt;li id="toolbarCustom" has-dropdown ng-hide="!param.topbar.addCustomMenu.activate"&gt;&lt;a href=""&gt;&lt;i class="fa {{param.topbar.addCustomMenu.icon}}"&gt;&lt;/i&gt;{{param.topbar.addCustomMenu.text}}&lt;/a&gt;
+                  &lt;ul top-bar-dropdown&gt;
                     &lt;li ng-repeat="item in param.topbar.addCustomMenu.items"&gt;
-                      &lt;label ng-if="!item.link"&gt;{{item.text}}&lt;/label&gt;&lt;a ng-if="item.link" ng-href="{{item.href}}" target="_blank"&gt;{{item.text}}&lt;/a&gt;
+                      &lt;label ng-if="!item.link"&gt;{{item.text}}&lt;/label&gt;&lt;a ng-if="item.link" href="{{item.href}}" target="_blank"&gt;{{item.text}}&lt;/a&gt;
                     &lt;/li&gt;
                   &lt;/ul&gt;
                 &lt;/li&gt;
@@ -242,25 +243,25 @@
               &lt;ul id="f5TopbarRight" class="right"&gt;
                 &lt;li id="toolbarLogin" ng-hide="param.isLoggedIn()"&gt;&lt;a href="&lt;% site.url %&gt;members/login"&gt;&lt;i class="fa {{param.topbar.menuItems.login.icon}}"&gt;&lt;/i&gt;{{param.topbar.menuItems.login.text}}&lt;/a&gt;&lt;/li&gt;
                 &lt;li ng-hide="!param.topbar.menuItems.login.divider" class="divider"&gt;&lt;/li&gt;
-                &lt;li id="toolbarAccount" ng-hide="!param.isLoggedIn()" class="has-dropdown"&gt;&lt;a href="&lt;% site.url %&gt;members/account"&gt;&lt;i class="fa {{param.topbar.menuItems.account.icon}}"&gt;&lt;/i&gt;{{param.topbar.menuItems.account.text}}&lt;/a&gt;
-                  &lt;ul class="dropdown"&gt;
+                &lt;li id="toolbarAccount" has-dropdown ng-hide="!param.isLoggedIn()"&gt;&lt;a href="&lt;% site.url %&gt;members/account"&gt;&lt;i class="fa {{param.topbar.menuItems.account.icon}}"&gt;&lt;/i&gt;{{param.topbar.menuItems.account.text}}&lt;/a&gt;
+                  &lt;ul top-bar-dropdown&gt;
                     &lt;li&gt;&lt;a href="&lt;% username as='url' %&gt;"&gt;home&lt;/a&gt;&lt;/li&gt;
                     &lt;li&gt;&lt;a href="&lt;% site.url %&gt;members/edit"&gt;profil&lt;/a&gt;&lt;/li&gt;
                     &lt;li&gt;&lt;a href="&lt;% site.url %&gt;members/logout"&gt;abmelden&lt;/a&gt;&lt;/li&gt;
                   &lt;/ul&gt;
                 &lt;/li&gt;
                 &lt;li ng-hide="!param.topbar.menuItems.account.divider" class="divider"&gt;&lt;/li&gt;
-                &lt;li id="toolbarAbo" ng-hide="!param.isLoggedIn()" class="has-dropdown"&gt;&lt;a href="&lt;% site.url %&gt;members/updated"&gt;&lt;i class="fa {{param.topbar.menuItems.abo.icon}}"&gt;&lt;/i&gt;{{param.topbar.menuItems.abo.text}}&lt;/a&gt;
-                  &lt;ul class="dropdown"&gt;
-                    &lt;li ng-repeat="item in param.topbar.menuItems.abo.items"&gt;&lt;a ng-href="{{item.href}}" target="_blank"&gt;{{item.text}}&lt;/a&gt;&lt;/li&gt;
+                &lt;li id="toolbarAbo" has-dropdown ng-hide="!param.isLoggedIn()"&gt;&lt;a href="&lt;% site.url %&gt;members/updated"&gt;&lt;i class="fa {{param.topbar.menuItems.abo.icon}}"&gt;&lt;/i&gt;{{param.topbar.menuItems.abo.text}}&lt;/a&gt;
+                  &lt;ul top-bar-dropdown&gt;
+                    &lt;li ng-repeat="item in param.topbar.menuItems.abo.items"&gt;&lt;a href="{{item.href}}" target="_blank"&gt;{{item.text}}&lt;/a&gt;&lt;/li&gt;
                   &lt;/ul&gt;
                 &lt;/li&gt;
                 &lt;li ng-hide="!param.topbar.menuItems.abo.divider" class="divider"&gt;&lt;/li&gt;
                 &lt;li id="toolbarMail" ng-hide="!param.topbar.mailIcon.activate"&gt;&lt;a href="" title="{{param.topbar.mailIcon.title}}" ng-click="param.sendMail()"&gt;&lt;i class="fa {{param.topbar.mailIcon.icon}}"&gt;&lt;/i&gt;{{param.topbar.mailIcon.text}}&lt;/a&gt;&lt;/li&gt;
                 &lt;li ng-hide="!param.topbar.mailIcon.divider" class="divider"&gt;&lt;/li&gt;
-                &lt;li id="toolbarSearch" ng-hide="!param.topbar.searchIcon.activate"&gt;&lt;a ng-href="{{param.topbar.searchIcon.href}}" title="{{param.topbar.searchIcon.title}}"&gt;&lt;i class="fa {{param.topbar.searchIcon.icon}}"&gt;&lt;/i&gt;{{param.topbar.searchIcon.text}}&lt;/a&gt;&lt;/li&gt;
+                &lt;li id="toolbarSearch" ng-hide="!param.topbar.searchIcon.activate"&gt;&lt;a href="{{param.topbar.searchIcon.href}}" title="{{param.topbar.searchIcon.title}}"&gt;&lt;i class="fa {{param.topbar.searchIcon.icon}}"&gt;&lt;/i&gt;{{param.topbar.searchIcon.text}}&lt;/a&gt;&lt;/li&gt;
                 &lt;li ng-hide="!param.topbar.searchIcon.divider" class="divider"&gt;&lt;/li&gt;
-                &lt;li id="toolbarCustomize" ng-hide="!param.topbar.customizeIcon.activate || !param.isAdmin()"&gt;&lt;a ng-href="" ng-click="customize.open()" title="{{param.topbar.customizeIcon.title}}"&gt;&lt;i class="fa {{param.topbar.customizeIcon.icon}}"&gt;&lt;/i&gt;{{param.topbar.customizeIcon.text}}&lt;/a&gt;&lt;/li&gt;
+                &lt;li id="toolbarCustomize" ng-hide="!param.topbar.customizeIcon.activate || !param.isAdmin()"&gt;&lt;a href="" ng-click="customize.open()" title="{{param.topbar.customizeIcon.title}}"&gt;&lt;i class="fa {{param.topbar.customizeIcon.icon}}"&gt;&lt;/i&gt;{{param.topbar.customizeIcon.text}}&lt;/a&gt;&lt;/li&gt;
                 &lt;li ng-hide="!param.topbar.customizeIcon.divider" class="divider"&gt;&lt;/li&gt;
               &lt;/ul&gt;
             &lt;/top-bar-section&gt;
@@ -305,7 +306,12 @@
 <skin>
 <key>Site.skinStyles</key>
 <content>
-&lt;style&gt;#f5Topbar i { color: {{param.topbar.menuIconColor}}; }&lt;/style&gt;
+&lt;style&gt;
+  #f5Topbar i { color: {{param.topbar.menuIconColor}}; }
+  #toolbarMail:hover i { color: {{param.topbar.mailIcon.hover}}; }
+  #toolbarSearch:hover i { color: {{param.topbar.searchIcon.hover}}; }
+  #toolbarCustomize:hover i { color: {{param.topbar.customizeIcon.hover}}; }
+&lt;/style&gt;
 </content>
 </skin>
 <!-- Skin: Site.specialMenuItems -->
@@ -395,7 +401,7 @@
           "menuIconColor": "#407099",
           "menuItems": {
               "twoday": { "text": "twoday", "icon": "fa-circle-o fa-margin", "divider": false },
-              "topics": { "text": "", "icon": "fa-home fa-margin", "divider": false, "class": { "has-dropdown": false } },
+              "topics": { "text": "", "icon": "fa-home fa-margin", "divider": false, "class": "" },
               "breadcrumbs": { "text": "", "icon": "fa-chevron-right", "divider": false },
               "contribute": { "text": "contribute", "icon": "fa-pencil-square-o fa-margin", "divider": false },
               "admin": { "text": "admin", "icon": "fa-cog fa-margin", "divider": false },
@@ -425,15 +431,15 @@
           "addRight": "",
           "mailIcon": {
               "activate": true, "text": "", "icon": "fa-envelope", "divider": true, "title": "Mail senden",
-              "href": "znvygb:arbajvyqrearff@lznvy.pbz"
+              "href": "znvygb:arbajvyqrearff@lznvy.pbz", "hover": "#fff"
           },
           "searchIcon": {
               "activate": true, "text": "", "icon": "fa-search", "divider": true, "title": "Blog durchsuchen",
-              "href": "&lt;% site.url %&gt;stories/search"
+              "href": "&lt;% site.url %&gt;stories/search", "hover": "#fff"
           },
           "customizeIcon": {
               "activate": true, "text": "", "icon": "fa-cogs", "divider": false, "title": "Blog anpassen",
-              "href": ""
+              "href": "", "hover": "#fff"
           }
       },
       "offcanvas": {

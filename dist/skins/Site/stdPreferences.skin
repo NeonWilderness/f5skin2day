@@ -70,7 +70,7 @@
           "menuIconColor": "#407099",
           "menuItems": {
               "twoday": { "text": "twoday", "icon": "fa-circle-o fa-margin", "divider": false },
-              "topics": { "text": "", "icon": "fa-home fa-margin", "divider": false, "class": { "has-dropdown": false } },
+              "topics": { "text": "", "icon": "fa-home fa-margin", "divider": false, "class": "" },
               "breadcrumbs": { "text": "", "icon": "fa-chevron-right", "divider": false },
               "contribute": { "text": "contribute", "icon": "fa-pencil-square-o fa-margin", "divider": false },
               "admin": { "text": "admin", "icon": "fa-cog fa-margin", "divider": false },
@@ -100,15 +100,15 @@
           "addRight": "",
           "mailIcon": {
               "activate": true, "text": "", "icon": "fa-envelope", "divider": true, "title": "Mail senden",
-              "href": "znvygb:arbajvyqrearff@lznvy.pbz"
+              "href": "znvygb:arbajvyqrearff@lznvy.pbz", "hover": "#fff"
           },
           "searchIcon": {
               "activate": true, "text": "", "icon": "fa-search", "divider": true, "title": "Blog durchsuchen",
-              "href": "<% site.url %>stories/search"
+              "href": "<% site.url %>stories/search", "hover": "#fff"
           },
           "customizeIcon": {
               "activate": true, "text": "", "icon": "fa-cogs", "divider": false, "title": "Blog anpassen",
-              "href": ""
+              "href": "", "hover": "#fff"
           }
       },
       "offcanvas": {
