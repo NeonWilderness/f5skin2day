@@ -126,7 +126,27 @@
   &lt;div id="customizeBlog"&gt;
     &lt;h5&gt;Mein Foundation-Blog anpassen&lt;/h5&gt;
     &lt;p&gt;Hier stehen ein paar einführende Worte zu den Customizing-Möglichkeiten&lt;/p&gt;
-    &lt;p class="text-center bottom0"&gt;&lt;a ng-click="ok()" class="button success radius tiny"&gt;&lt;i class="fa fa-check"&gt;&lt;/i&gt;Einstellungen sichern&lt;/a&gt;&lt;a id="btnCancel" ng-click="cancel()" class="button alert radius tiny"&gt;&lt;i class="fa fa-times"&gt;&lt;/i&gt;Änderung abbrechen&lt;/a&gt;&lt;/p&gt;&lt;a ng-click="cancel()" class="close-reveal-modal"&gt;&amp;times;&lt;/a&gt;
+    &lt;tabset&gt;
+      &lt;tab heading="Grunddaten"&gt;
+        &lt;p&gt;Grunddaten&lt;/p&gt;
+      &lt;/tab&gt;
+      &lt;tab heading="Hintergrundbilder"&gt;
+        &lt;p&gt;Hintergrundbilder&lt;/p&gt;
+      &lt;/tab&gt;
+      &lt;tab heading="Bloglayout"&gt;
+        &lt;p&gt;Bloglayout&lt;/p&gt;
+      &lt;/tab&gt;
+      &lt;tab heading="Typographie"&gt;
+        &lt;p&gt;Typographie&lt;/p&gt;
+      &lt;/tab&gt;
+      &lt;tab heading="Menüsteuerung"&gt;
+        &lt;p&gt;Menüsteuerung&lt;/p&gt;
+      &lt;/tab&gt;
+      &lt;tab heading="Eigene Menülinks"&gt;
+        &lt;p&gt;Eigene Menülinks&lt;/p&gt;
+      &lt;/tab&gt;
+    &lt;/tabset&gt;
+    &lt;p class="text-center bottom0"&gt;&lt;a ng-click="ok()" class="button success radius tiny"&gt;&lt;i class="fa fa-check fa-margin"&gt;&lt;/i&gt;Einstellungen sichern&lt;/a&gt;&lt;a id="btnCancel" ng-click="cancel()" class="button alert radius tiny"&gt;&lt;i class="fa fa-times fa-margin"&gt;&lt;/i&gt;Änderung abbrechen&lt;/a&gt;&lt;/p&gt;&lt;a ng-click="cancel()" class="close-reveal-modal"&gt;&amp;times;&lt;/a&gt;
   &lt;/div&gt;
 &lt;/script&gt;
 </content>
@@ -160,18 +180,19 @@
     &lt;link rel="shortcut icon" href="&lt;% image name="favicon" fallback="/favicon" class="icon" as="url" %&gt;"&gt;
     &lt;link rel="stylesheet" href="&lt;% site.url %&gt;main.css"&gt;
     &lt;link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"&gt;
+    &lt;script src="http://static.twoday.net/cdn/files/modernizr-custom-min-js.js"&gt;&lt;/script&gt;
     &lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"&gt;&lt;/script&gt;
     &lt;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"&gt;&lt;/script&gt;
     &lt;script src="https://googledrive.com/host/0B87rILW4RVIJdzJiMW5WRUdfalE/f5skin2day/head.js"&gt;&lt;/script&gt;&lt;% site.skin name="skinStyles" %&gt;&lt;% site.skin name="coreInfo" %&gt;
   &lt;/head&gt;
   &lt;body ng-class="[param.format.body.class]" ng-style="param.format.body.style"&gt;
-    &lt;div id="preloadWrapper"&gt;
-      &lt;div id="preloadAnimation"&gt;&lt;/div&gt;
+    &lt;div id="loader-wrapper"&gt;
+      &lt;div id="loader"&gt;&lt;/div&gt;
     &lt;/div&gt;
     &lt;div id="f5wrap" data-offcanvas class="off-canvas-wrap"&gt;
       &lt;div class="inner-wrap"&gt;
         &lt;div ng-class="{'fixed':param.topbar.class.fixed, 'containToGrid':param.topbar.class.containToGrid, 'sticky':param.topbar.class.sticky}"&gt;
-          &lt;top-bar id="f5Topbar" ng-cloak ng-class="['top-bar', param.topbar.visibility]" data-topbar role="navigation"&gt;
+          &lt;top-bar id="f5Topbar" ng-cloak ng-class="['top-bar', param.topbar.visibility]" is-hover data-topbar role="navigation"&gt;
             &lt;ul class="title-area"&gt;
               &lt;li class="name"&gt;
                 &lt;h1 ng-hide="param.topbar.title.length===0"&gt;&lt;a href="#"&gt;{{param.topbar.title}}&lt;/a&gt;&lt;/h1&gt;
@@ -373,20 +394,20 @@
           "visibility": "hide-for-small",
           "menuIconColor": "#407099",
           "menuItems": {
-              "twoday": { "text": "twoday", "icon": "fa-circle-o", "divider": false },
-              "topics": { "text": "", "icon": "fa-home", "divider": false, "class": { "has-dropdown": false } },
+              "twoday": { "text": "twoday", "icon": "fa-circle-o fa-margin", "divider": false },
+              "topics": { "text": "", "icon": "fa-home fa-margin", "divider": false, "class": { "has-dropdown": false } },
               "breadcrumbs": { "text": "", "icon": "fa-chevron-right", "divider": false },
-              "contribute": { "text": "contribute", "icon": "fa-pencil-square-o", "divider": false },
-              "admin": { "text": "admin", "icon": "fa-cog", "divider": false },
-              "images": { "text": "bilderalben", "icon": "fa-picture-o", "divider": false },
-              "login": { "text": "anmelden", "icon": "fa-sign-in", "divider": false },
-              "account": { "text": "account", "icon": "fa-bars", "divider": false },
-              "abo": { "text": "abonnements", "icon": "fa-tag", "divider": true }
+              "contribute": { "text": "contribute", "icon": "fa-pencil-square-o fa-margin", "divider": false },
+              "admin": { "text": "admin", "icon": "fa-cog fa-margin", "divider": false },
+              "images": { "text": "bilderalben", "icon": "fa-picture-o fa-margin", "divider": false },
+              "login": { "text": "anmelden", "icon": "fa-sign-in fa-margin", "divider": false },
+              "account": { "text": "account", "icon": "fa-bars fa-margin", "divider": false },
+              "abo": { "text": "abonnements", "icon": "fa-tag fa-margin", "divider": true }
           },
           "addCustomMenu": {
               "activate": true,
               "text": "goto",
-              "icon": "fa-rocket",
+              "icon": "fa-rocket fa-margin",
               "divider": false,
               "items": [
                   { "link": false, "text": "Twoday" },

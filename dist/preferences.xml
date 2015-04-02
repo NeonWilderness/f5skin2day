@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?><?xml-stylesheet type="text/xsl" href="helma.xsl"?>
 <xmlroot xmlns:hop="http://helma.org/documentation">
-  <hopobject id="t83890658" name="HopObject" prototype="HopObject" created="1427907773353" lastModified="1427907773353">
+  <hopobject id="t83890658" name="HopObject" prototype="HopObject" created="1427979335044" lastModified="1427979335044">
     <exporter>NeonWilderness</exporter>
     <creator>NeonWilderness</creator>
     <fullexport type="boolean">false</fullexport>
     <alias>foundation5skin</alias>
-    <preferences id="t83890659" name="preferences" prototype="HopObject" created="1427907773353" lastModified="1427907773353"><hop:parent idref="t83890658" prototyperef="HopObject"/>
+    <preferences id="t83890659" name="preferences" prototype="HopObject" created="1427979335044" lastModified="1427979335044"><hop:parent idref="t83890658" prototyperef="HopObject"/>
       <bgcolor>ffffff</bgcolor>
       <copyright>NeonWilderness</copyright>
       <orientation>2c_center_left</orientation>
@@ -27,11 +27,11 @@
       <smallsize>11px</smallsize>
       <textcolor>333333</textcolor>
     </preferences>
-    <createtime type="date">01.04.2015 19:02:53 CET</createtime>
+    <createtime type="date">02.04.2015 14:55:35 CET</createtime>
     <title>foundation5skin</title>
-    <exporttime type="date">01.04.2015 19:02:53 CET</exporttime>
+    <exporttime type="date">02.04.2015 14:55:35 CET</exporttime>
     <locale>de</locale>
-    <modifytime type="date">01.04.2015 19:02:53 CET</modifytime>
+    <modifytime type="date">02.04.2015 14:55:35 CET</modifytime>
     <description>Responsives Twoday-Skin basierend auf Foundation 5 von Zurb. (C) 2015 NeonWilderness</description>
   </hopobject>
 </xmlroot>

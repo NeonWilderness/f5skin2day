@@ -11,14 +11,22 @@ module.exports = {
 //----- check with each timeslot to find the appropriate entry
         $.each( timeSlots, function(){
             if (h>=this.from && h<this.to){
-//------------- once timeslot was found set the background-image with all params                
-                $('body').css({
-                    'background-image': 'url("'+this.href+'")',
-                    'background-repeat': this.repeat,
-                    'background-position': this.position,
-                    'background-attachment': this.attachment,
-                    'background-size': this.size,
-                    'height': '100%'
+//------------- once timeslot was found, preload the image
+                var self = this;
+                $('<img/>').attr('src', self.href).load( function(){
+//----------------- remove the temp img to prevent memory leaks
+                    $(this).remove();
+//----------------- now set the background-image with all params
+                    $('body').css({
+                        'background-image': 'url("'+self.href+'")',
+                        'background-repeat': self.repeat,
+                        'background-position': self.position,
+                        'background-attachment': self.attachment,
+                        'background-size': self.size,
+                        'height': '100%'
+                    });
+//----------------- and fade the preloading animation
+                    $("#loader-wrapper").fadeOut("slow");
                 });
 //------------- then quit the each loop
                 return false;

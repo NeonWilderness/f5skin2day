@@ -67,18 +67,12 @@ f5SkinApp.controller("F5SkinController", ["$scope", "$modal", function ($scope, 
                 windowClass: "xlarge"
             });
             modalCustomize.result.then(function(customizedParams){
-                //dosomething with customizedParams
-                //alert("Welldone: "+customizedParams);
+                //dosomething after OK
             }, function(message){
                 //dosomething upon cancel
-                //alert("Dismissed: "+message);
-
             });
         }
     };
-
-//- Fades the preloading animation
-    $("#preloadWrapper").fadeOut();
 }]);
 
 f5SkinApp.controller("CustomizeBlogController", ["$scope", "$modalInstance", function ($scope, $modalInstance, params){

@@ -125,7 +125,12 @@ gulp.task("zip", ['jade2skin'], function(){
 //-------- Browserifies and uglifies JS file/s to be encompassed in the head section
 gulp.task( 'headjs', function(){
 
-    return gulp.src(['./src/js/vendor/modernizr-*.js', './src/js/vendor/fastclick-*.js', './src/js/vendor/mm-foundation-*.js', './src/js/vendor/ga.js'])
+    return gulp.src([
+            //'./src/js/vendor/modernizr-*.js',
+            // './src/js/vendor/fastclick-*.js',
+            './src/js/vendor/mm-foundation-*.js',
+            './src/js/vendor/ga.js'
+        ])
         .pipe(concat('head.js'))
         .pipe(gulp.dest('dist/js/'));
 });
