@@ -88,7 +88,7 @@ gulp.task( 'jade2skin', ['css2skin'], function(){
 //-------- Enclose all skins in a xml wrapper, concatenate with a header file and push to a releaseinfo xml
 gulp.task("xml", ['jade2skin'], function(){
 
-    del([ './dist/release*.xml' ]);
+    del([ './dist/releaseinfo.xml' ]);
 
     gulp.src('./src/releasehead.jade')
         .pipe(jade({pretty:true}))

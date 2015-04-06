@@ -125,13 +125,170 @@
 &lt;script id="customizeBlogHtml" type="text/ng-template"&gt;
   &lt;div id="customizeBlog"&gt;
     &lt;h5&gt;Mein Foundation-Blog anpassen&lt;/h5&gt;
-    &lt;p&gt;Hier stehen ein paar einführende Worte zu den Customizing-Möglichkeiten&lt;/p&gt;
+    &lt;p&gt;Die Einstelloptionen zu Ihrem Blog erreichen Sie über die unten angezeigten Tabs:&lt;/p&gt;
     &lt;tabset&gt;
       &lt;tab heading="Grunddaten"&gt;
-        &lt;p&gt;Grunddaten&lt;/p&gt;
+        &lt;form ng-controller="tmplGrunddatenController"&gt;
+          &lt;fieldset&gt;
+            &lt;div class="row"&gt;
+              &lt;div class="small-4 columns"&gt;
+                &lt;label for="txtTitle"&gt;Blogtitel
+                  &lt;input type="text" id="txtTitle" ng-model="input.site.title"/&gt;
+                &lt;/label&gt;
+              &lt;/div&gt;
+              &lt;div class="small-4 columns"&gt;
+                &lt;label for="txtSubtitle"&gt;Bloguntertitel
+                  &lt;input type="text" id="txtSubtitle" ng-model="input.site.subtitle"/&gt;
+                &lt;/label&gt;
+              &lt;/div&gt;
+              &lt;div class="small-4 columns"&gt;
+                &lt;label for="txtAuthor"&gt;Autor
+                  &lt;input type="text" id="txtAuthor" ng-model="input.site.author"/&gt;
+                &lt;/label&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="row"&gt;
+              &lt;div class="small-12 columns"&gt;
+                &lt;label for="txtDescription"&gt;Blogbeschreibung
+                  &lt;input type="text" id="txtDescription" ng-model="input.site.description"/&gt;
+                &lt;/label&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="row"&gt;
+              &lt;div class="small-12 columns"&gt;
+                &lt;div class="row collapse"&gt;
+                  &lt;label for="txtImgFolder"&gt;URL (Verzeichnis) für Bilder&lt;/label&gt;
+                  &lt;div class="small-11 columns"&gt;
+                    &lt;input type="text" id="txtImgFolder" ng-model="input.site.imgFolder"/&gt;
+                  &lt;/div&gt;
+                  &lt;div class="small-1 columns"&gt;&lt;span ng-click="setStaticFolder()" class="postfix"&gt;&lt;i class="fa fa-image"&gt;&lt;/i&gt;&lt;/span&gt;&lt;/div&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="row"&gt;
+              &lt;div class="small-11 columns"&gt;
+                &lt;div class="row"&gt;
+                  &lt;div class="small-3 columns"&gt;
+                    &lt;input type="checkbox" id="chkLoader" ng-model="input.site.loader.animation"/&gt;
+                    &lt;label for="chkLoader"&gt;Lade-Animation anzeigen?&lt;/label&gt;
+                  &lt;/div&gt;
+                  &lt;div class="small-3 columns"&gt;
+                    &lt;label for="txtColor1"&gt;Farbe 1
+                      &lt;input type="text" id="txtColor1" ng-model="input.site.loader.color1"/&gt;
+                    &lt;/label&gt;
+                  &lt;/div&gt;
+                  &lt;div class="small-3 columns"&gt;
+                    &lt;label for="txtColor2"&gt;Farbe 2
+                      &lt;input type="text" id="txtColor2" ng-model="input.site.loader.color2"/&gt;
+                    &lt;/label&gt;
+                  &lt;/div&gt;
+                  &lt;div class="small-3 columns"&gt;
+                    &lt;label for="txtColor3"&gt;Farbe 3
+                      &lt;input type="text" id="txtColor3" ng-model="input.site.loader.color3"/&gt;
+                    &lt;/label&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class="small-1 columns"&gt;&lt;a href="" ng-click="testLoader()" class="button secondary tiny radius"&gt;&lt;i class="fa fa-play fa-margin"&gt;&lt;/i&gt;Test&lt;/a&gt;&lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/fieldset&gt;
+        &lt;/form&gt;
       &lt;/tab&gt;
       &lt;tab heading="Hintergrundbilder"&gt;
-        &lt;p&gt;Hintergrundbilder&lt;/p&gt;
+        &lt;form ng-controller="tmplHintergrundbilderController"&gt;
+          &lt;fieldset&gt;
+            &lt;div ng-show="isEditMode || isCreateMode" class="row"&gt;
+              &lt;div class="small-12 columns"&gt;
+                &lt;div class="row"&gt;
+                  &lt;div class="small-1 columns"&gt;
+                    &lt;label for="txtFrom"&gt;Von
+                      &lt;input type="text" id="txtFrom" ng-model="slot.from"/&gt;
+                    &lt;/label&gt;
+                  &lt;/div&gt;
+                  &lt;div class="small-1 columns"&gt;
+                    &lt;label for="txtTo"&gt;Bis
+                      &lt;input type="text" id="txtTo" ng-model="slot.to"/&gt;
+                    &lt;/label&gt;
+                  &lt;/div&gt;
+                  &lt;div class="small-3 columns"&gt;
+                    &lt;label&gt;Position&lt;/label&gt;&lt;a class="button tiny split"&gt;{{slot.position}} &lt;span dropdown-toggle="#dropdown-position"&gt;&lt;/span&gt;&lt;/a&gt;
+                    &lt;ul id="dropdown-position" class="f-dropdown"&gt;
+                      &lt;li ng-repeat="position in positions"&gt;&lt;a ng-click="usePosition($index)"&gt;{{position}}&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                  &lt;/div&gt;
+                  &lt;div class="small-3 columns"&gt;
+                    &lt;label&gt;Repeat&lt;/label&gt;&lt;a class="button tiny split"&gt;{{slot.repeat}} &lt;span dropdown-toggle="#dropdown-repeat"&gt;&lt;/span&gt;&lt;/a&gt;
+                    &lt;ul id="dropdown-repeat" class="f-dropdown"&gt;
+                      &lt;li ng-repeat="repeat in repeats"&gt;&lt;a ng-click="useRepeat($index)"&gt;{{repeat}}&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                  &lt;/div&gt;
+                  &lt;div class="small-2 columns"&gt;
+                    &lt;label&gt;Size&lt;/label&gt;&lt;a class="button tiny split"&gt;{{slot.size}} &lt;span dropdown-toggle="#dropdown-size"&gt;&lt;/span&gt;&lt;/a&gt;
+                    &lt;ul id="dropdown-size" class="f-dropdown"&gt;
+                      &lt;li ng-repeat="size in sizes"&gt;&lt;a ng-click="useSize($index)"&gt;{{size}}&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                  &lt;/div&gt;
+                  &lt;div class="small-2 columns"&gt;
+                    &lt;label&gt;Attachment&lt;/label&gt;&lt;a class="button tiny split"&gt;{{slot.attachment}} &lt;span dropdown-toggle="#dropdown-attachment"&gt;&lt;/span&gt;&lt;/a&gt;
+                    &lt;ul id="dropdown-attachment" class="f-dropdown"&gt;
+                      &lt;li ng-repeat="attachment in attachments"&gt;&lt;a ng-click="useAttachment($index)"&gt;{{attachment}}&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class="row"&gt;
+                  &lt;div class="small-12 columns"&gt;
+                    &lt;label for="txtHref"&gt;Von
+                      &lt;input type="text" id="txtHref" ng-model="slot.href"/&gt;
+                    &lt;/label&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class="row"&gt;
+                  &lt;div class="small-12 columns small-centered"&gt;&lt;a ng-click="save()" class="button success radius tiny"&gt;&lt;i class="fa fa-check fa-margin"&gt;&lt;/i&gt;Übernehmen&lt;/a&gt;&lt;a ng-click="cancel()" class="button alert radius tiny left10"&gt;&lt;i class="fa fa-times fa-margin"&gt;&lt;/i&gt;Abbrechen&lt;/a&gt;&lt;/div&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="row"&gt;
+              &lt;div class="small-12 columns"&gt;
+                &lt;table class="fullsize"&gt;
+                  &lt;thead&gt;
+                    &lt;tr&gt;
+                      &lt;th&gt;Aktion&lt;/th&gt;
+                      &lt;th&gt;Von (Stunde)&lt;/th&gt;
+                      &lt;th&gt;Bis (Stunde)&lt;/th&gt;
+                      &lt;th&gt;Position&lt;/th&gt;
+                      &lt;th&gt;Repeat&lt;/th&gt;
+                      &lt;th&gt;Size&lt;/th&gt;
+                      &lt;th&gt;Attachment&lt;/th&gt;
+                      &lt;th&gt;Bild&lt;/th&gt;
+                    &lt;/tr&gt;
+                  &lt;/thead&gt;
+                  &lt;tbody&gt;
+                    &lt;tr ng-repeat="slot in input.timeSlots"&gt;
+                      &lt;th&gt;
+                        &lt;ul class="button-group"&gt;
+                          &lt;li&gt;&lt;a href="" title="Eintrag bearbeiten" ng-click="edit($index)" class="button tiny radius secondary"&gt;&lt;i class="fa fa-edit"&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+                          &lt;li&gt;&lt;a href="" title="Eintrag entfernen" ng-click="delete($index)" class="button tiny radius secondary"&gt;&lt;i class="fa fa-trash-o"&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+                        &lt;/ul&gt;
+                      &lt;/th&gt;
+                      &lt;th&gt;{{slot.from}}&lt;/th&gt;
+                      &lt;th&gt;{{slot.to}}&lt;/th&gt;
+                      &lt;th&gt;{{slot.position}}&lt;/th&gt;
+                      &lt;th&gt;{{slot.repeat}}&lt;/th&gt;
+                      &lt;th&gt;{{slot.size}}&lt;/th&gt;
+                      &lt;th&gt;{{slot.attachment}}&lt;/th&gt;
+                      &lt;th&gt;&lt;a ng-href="{{slot.href}}" target="_blank" class="th"&gt;&lt;img ng-src="{{slot.href}}" width="120" alt=""/&gt;&lt;/a&gt;&lt;/th&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                      &lt;th colspan="8"&gt;
+                        &lt;button href="" ng-click="create()" class="tiny radius secondary"&gt;&lt;i class="fa fa-plus fa-margin"&gt;&lt;/i&gt;Neuen Hintergrund definieren&lt;/button&gt;
+                      &lt;/th&gt;
+                    &lt;/tr&gt;
+                  &lt;/tbody&gt;
+                &lt;/table&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/fieldset&gt;
+        &lt;/form&gt;
       &lt;/tab&gt;
       &lt;tab heading="Bloglayout"&gt;
         &lt;p&gt;Bloglayout&lt;/p&gt;
@@ -146,7 +303,7 @@
         &lt;p&gt;Eigene Menülinks&lt;/p&gt;
       &lt;/tab&gt;
     &lt;/tabset&gt;
-    &lt;p class="text-center bottom0"&gt;&lt;a ng-click="ok()" class="button success radius tiny"&gt;&lt;i class="fa fa-check fa-margin"&gt;&lt;/i&gt;Einstellungen sichern&lt;/a&gt;&lt;a id="btnCancel" ng-click="cancel()" class="button alert radius tiny"&gt;&lt;i class="fa fa-times fa-margin"&gt;&lt;/i&gt;Änderung abbrechen&lt;/a&gt;&lt;/p&gt;&lt;a ng-click="cancel()" class="close-reveal-modal"&gt;&amp;times;&lt;/a&gt;
+    &lt;p class="text-center bottom0"&gt;&lt;a ng-click="ok()" class="button success radius tiny"&gt;&lt;i class="fa fa-check fa-margin"&gt;&lt;/i&gt;Einstellungen sichern&lt;/a&gt;&lt;a ng-click="cancel()" class="button alert radius tiny left15"&gt;&lt;i class="fa fa-times fa-margin"&gt;&lt;/i&gt;Änderung abbrechen&lt;/a&gt;&lt;/p&gt;&lt;a ng-click="cancel()" class="close-reveal-modal"&gt;&amp;times;&lt;/a&gt;
   &lt;/div&gt;
 &lt;/script&gt;
 </content>
@@ -187,12 +344,12 @@
   &lt;/head&gt;
   &lt;body ng-class="[param.format.body.class]" ng-style="param.format.body.style"&gt;
     &lt;div id="loader-wrapper"&gt;
-      &lt;div id="loader"&gt;&lt;/div&gt;
+      &lt;div id="loader" ng-cloak ng-if="param.site.loader.animation"&gt;&lt;/div&gt;
     &lt;/div&gt;
     &lt;div id="f5wrap" data-offcanvas class="off-canvas-wrap"&gt;
       &lt;div class="inner-wrap"&gt;
         &lt;div ng-class="{'fixed':param.topbar.class.fixed, 'containToGrid':param.topbar.class.containToGrid, 'sticky':param.topbar.class.sticky}"&gt;
-          &lt;top-bar id="f5Topbar" ng-cloak ng-class="param.topbar.visibility" role="navigation" back-text="Eine Ebene höher"&gt;
+          &lt;top-bar id="f5Topbar" ng-cloak role="navigation" back-text="Eine Ebene höher"&gt;
             &lt;ul class="title-area"&gt;
               &lt;li class="name"&gt;
                 &lt;h1 ng-hide="param.topbar.title.length===0"&gt;&lt;a href="#"&gt;{{param.topbar.title}}&lt;/a&gt;&lt;/h1&gt;
@@ -203,7 +360,10 @@
               &lt;ul id="f5TopbarLeft" class="left"&gt;
                 &lt;li id="toolbarTwoday"&gt;&lt;a href="http://twoday.net/"&gt;&lt;i class="fa {{param.topbar.menuItems.twoday.icon}}"&gt;&lt;/i&gt;{{param.topbar.menuItems.twoday.text}}&lt;/a&gt;&lt;/li&gt;
                 &lt;li ng-hide="!param.topbar.menuItems.twoday.divider" class="divider"&gt;&lt;/li&gt;
-                &lt;li id="toolbarTopics" ng-class="param.topbar.menuItems.topics.class"&gt;&lt;a href="&lt;% site.url %&gt;"&gt;&lt;i class="fa {{param.topbar.menuItems.topics.icon}}"&gt;&lt;/i&gt;{{param.topbar.menuItems.topics.text}}&lt;/a&gt;&lt;% topiclist prefix="&lt;ul class='dropdown'&gt;" itemprefix="&lt;li&gt;" itemsuffix="&lt;/li&gt;" suffix="&lt;/ul&gt;" %&gt;&lt;/li&gt;
+                &lt;li id="toolbarTopics" has-dropdown ng-if="param.topbar.menuItems.topics.drop"&gt;&lt;a href="&lt;% site.url %&gt;"&gt;&lt;i class="fa {{param.topbar.menuItems.topics.icon}}"&gt;&lt;/i&gt;{{param.topbar.menuItems.topics.text}}&lt;/a&gt;&lt;% topiclist prefix="&lt;ul class='dropdown'&gt;" itemprefix="&lt;li&gt;" itemsuffix="&lt;/li&gt;" suffix="&lt;/ul&gt;" %&gt;
+                &lt;/li&gt;
+                &lt;li id="toolbarTopics" ng-if="!param.topbar.menuItems.topics.drop"&gt;&lt;a href="&lt;% site.url %&gt;"&gt;&lt;i class="fa {{param.topbar.menuItems.topics.icon}}"&gt;&lt;/i&gt;{{param.topbar.menuItems.topics.text}}&lt;/a&gt;&lt;% topiclist prefix="&lt;ul class='dropdown'&gt;" itemprefix="&lt;li&gt;" itemsuffix="&lt;/li&gt;" suffix="&lt;/ul&gt;" %&gt;
+                &lt;/li&gt;
                 &lt;li ng-hide="!param.topbar.menuItems.topics.divider" class="divider"&gt;&lt;/li&gt;
                 &lt;li id="toolbarImages" has-dropdown ng-hide="param.topbar.menuItems.images.items.length===0"&gt;&lt;a href="&lt;% site.url %&gt;images/topics"&gt;&lt;i class="fa {{param.topbar.menuItems.images.icon}}"&gt;&lt;/i&gt;{{param.topbar.menuItems.images.text}}&lt;/a&gt;
                   &lt;ul top-bar-dropdown&gt;
@@ -267,18 +427,6 @@
             &lt;/top-bar-section&gt;
           &lt;/top-bar&gt;
         &lt;/div&gt;
-        &lt;nav ng-class="['tab-bar', param.offcanvas.visibility]"&gt;
-          &lt;section ng-class="param.offcanvas.position+'-small'"&gt;&lt;a ng-class="[param.offcanvas.position+'-off-canvas-toggle', 'menu-icon']"&gt;&lt;span&gt;&lt;/span&gt;&lt;/a&gt;&lt;/section&gt;
-        &lt;/nav&gt;
-        &lt;aside ng-class="[param.offcanvas.position+'-off-canvas-menu', param.offcanvas.visibility]"&gt;
-          &lt;ul id="f5QuickMenu" class="off-canvas-list"&gt;
-            &lt;li&gt;
-              &lt;label&gt;{{param.offcanvas.title}}&lt;/label&gt;
-            &lt;/li&gt;
-            &lt;li&gt;&lt;a title="&lt;% root.title %&gt;" href="&lt;% root.url %&gt;"&gt;twoday&lt;/a&gt;&lt;/li&gt;
-            &lt;li&gt;&lt;a title="&lt;% site.alias %&gt;" href="&lt;% site.url %&gt;"&gt;&lt;% site.alias %&gt;&lt;/a&gt;&lt;/li&gt;
-          &lt;/ul&gt;
-        &lt;/aside&gt;
         &lt;div id="header" ng-cloak ng-class="[param.format.header.class]" ng-style="param.format.header.style"&gt;
           &lt;h1 ng-class="[param.format.title.class]" ng-style="param.format.title.style"&gt;{{param.site.title}}{{param.format.header.titledelimiter}}&lt;small ng-class="[param.format.subtitle.class]" ng-style="param.format.subtitle.style"&gt;{{param.site.subtitle}}&lt;/small&gt;&lt;/h1&gt;
         &lt;/div&gt;
@@ -307,10 +455,15 @@
 <key>Site.skinStyles</key>
 <content>
 &lt;style&gt;
+  /* Topbar overrides */
   #f5Topbar i { color: {{param.topbar.menuIconColor}}; }
   #toolbarMail:hover i { color: {{param.topbar.mailIcon.hover}}; }
   #toolbarSearch:hover i { color: {{param.topbar.searchIcon.hover}}; }
   #toolbarCustomize:hover i { color: {{param.topbar.customizeIcon.hover}}; }
+  /* Loader animation */
+  #loader { border-top-color: {{param.site.loader.color1}}; }
+  #loader:before { border-top-color: {{param.site.loader.color2}}; }
+  #loader:after { border-top-color: {{param.site.loader.color3}}; }
 &lt;/style&gt;
 </content>
 </skin>
@@ -337,10 +490,11 @@
           "subtitle": "&lt;% site.tagline %&gt;",
           "author": "&lt;% site.alias %&gt;",
           "description": "&lt;% site.title %&gt; &lt;% site.tagline %&gt;",
-          "imgFolder": "https://googledrive.com/host/0B87rILW4RVIJNlN3eUJxVWN5ZWM/"
+          "imgFolder": "https://googledrive.com/host/0B87rILW4RVIJNlN3eUJxVWN5ZWM/",
+          "loader": { "animation": true, "color1": "#3498db", "color2": "#f04124", "color3": "#f9c922" }
       },
       "timeSlots": [
-          { "from": 0, "to": 24, "repeat": "no-repeat", "position": "top center", "size": "cover",
+          { "from": 0, "to": 24, "repeat": "no-repeat", "position": "center top", "size": "cover",
             "attachment": "fixed", "href": "https://googledrive.com/host/0B87rILW4RVIJNlN3eUJxVWN5ZWM/bg/trolltunga@aramk.jpg" }
       ],
       "leftColumn": {
@@ -352,7 +506,7 @@
       "middleColumn": {
           "id": "mainContent",
           "activate": true,
-          "class": "large-9 medium-8 small-12 columns content",
+          "class": "large-9 medium-8 small-12 columns maincontent",
           "style": { "background-color": "rgba(255,255,255,.8)" }
       },
       "rightColumn": {
@@ -397,11 +551,10 @@
       "topbar": {
           "title": "",
           "class": {"fixed": true, "containToGrid": false, "sticky": false},
-          "visibility": "hide-for-small",
           "menuIconColor": "#407099",
           "menuItems": {
               "twoday": { "text": "twoday", "icon": "fa-circle-o fa-margin", "divider": false },
-              "topics": { "text": "", "icon": "fa-home fa-margin", "divider": false, "class": "" },
+              "topics": { "text": "", "icon": "fa-home fa-margin", "divider": false, "drop": false },
               "breadcrumbs": { "text": "", "icon": "fa-chevron-right", "divider": false },
               "contribute": { "text": "contribute", "icon": "fa-pencil-square-o fa-margin", "divider": false },
               "admin": { "text": "admin", "icon": "fa-cog fa-margin", "divider": false },
@@ -441,11 +594,6 @@
               "activate": true, "text": "", "icon": "fa-cogs", "divider": false, "title": "Blog anpassen",
               "href": "", "hover": "#fff"
           }
-      },
-      "offcanvas": {
-          "title": "Quickmenü",
-          "visibility": "show-for-small",
-          "position": "left"
       }
   }
 &lt;/div&gt;

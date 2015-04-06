@@ -2,12 +2,12 @@
 script#customizeBlogHtml(type="text/ng-template")
     #customizeBlog
         h5 Mein Foundation-Blog anpassen
-        p Hier stehen ein paar einführende Worte zu den Customizing-Möglichkeiten
+        p Die Einstelloptionen zu Ihrem Blog erreichen Sie über die unten angezeigten Tabs:
         tabset
             tab(heading="Grunddaten")
-                p Grunddaten
+                include partials/tmplGrunddaten
             tab(heading="Hintergrundbilder")
-                p Hintergrundbilder
+                include partials/tmplHintergrundbilder
             tab(heading="Bloglayout")
                 p Bloglayout
             tab(heading="Typographie")
@@ -18,5 +18,5 @@ script#customizeBlogHtml(type="text/ng-template")
                 p Eigene Menülinks
         p.text-center.bottom0
             a.button.success.radius.tiny(ng-click="ok()") <i class="fa fa-check fa-margin"></i>Einstellungen sichern
-            a#btnCancel.button.alert.radius.tiny(ng-click="cancel()") <i class="fa fa-times fa-margin"></i>Änderung abbrechen
+            a.button.alert.radius.tiny.left15(ng-click="cancel()") <i class="fa fa-times fa-margin"></i>Änderung abbrechen
         a.close-reveal-modal(ng-click="cancel()") &times;

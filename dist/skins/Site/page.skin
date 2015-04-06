@@ -30,12 +30,12 @@
   </head>
   <body ng-class="[param.format.body.class]" ng-style="param.format.body.style">
     <div id="loader-wrapper">
-      <div id="loader"></div>
+      <div id="loader" ng-cloak ng-if="param.site.loader.animation"></div>
     </div>
     <div id="f5wrap" data-offcanvas class="off-canvas-wrap">
       <div class="inner-wrap">
         <div ng-class="{'fixed':param.topbar.class.fixed, 'containToGrid':param.topbar.class.containToGrid, 'sticky':param.topbar.class.sticky}">
-          <top-bar id="f5Topbar" ng-cloak ng-class="param.topbar.visibility" role="navigation" back-text="Eine Ebene höher">
+          <top-bar id="f5Topbar" ng-cloak role="navigation" back-text="Eine Ebene höher">
             <ul class="title-area">
               <li class="name">
                 <h1 ng-hide="param.topbar.title.length===0"><a href="#">{{param.topbar.title}}</a></h1>
@@ -46,7 +46,10 @@
               <ul id="f5TopbarLeft" class="left">
                 <li id="toolbarTwoday"><a href="http://twoday.net/"><i class="fa {{param.topbar.menuItems.twoday.icon}}"></i>{{param.topbar.menuItems.twoday.text}}</a></li>
                 <li ng-hide="!param.topbar.menuItems.twoday.divider" class="divider"></li>
-                <li id="toolbarTopics" ng-class="param.topbar.menuItems.topics.class"><a href="<% site.url %>"><i class="fa {{param.topbar.menuItems.topics.icon}}"></i>{{param.topbar.menuItems.topics.text}}</a><% topiclist prefix="<ul class='dropdown'>" itemprefix="<li>" itemsuffix="</li>" suffix="</ul>" %></li>
+                <li id="toolbarTopics" has-dropdown ng-if="param.topbar.menuItems.topics.drop"><a href="<% site.url %>"><i class="fa {{param.topbar.menuItems.topics.icon}}"></i>{{param.topbar.menuItems.topics.text}}</a><% topiclist prefix="<ul class='dropdown'>" itemprefix="<li>" itemsuffix="</li>" suffix="</ul>" %>
+                </li>
+                <li id="toolbarTopics" ng-if="!param.topbar.menuItems.topics.drop"><a href="<% site.url %>"><i class="fa {{param.topbar.menuItems.topics.icon}}"></i>{{param.topbar.menuItems.topics.text}}</a><% topiclist prefix="<ul class='dropdown'>" itemprefix="<li>" itemsuffix="</li>" suffix="</ul>" %>
+                </li>
                 <li ng-hide="!param.topbar.menuItems.topics.divider" class="divider"></li>
                 <li id="toolbarImages" has-dropdown ng-hide="param.topbar.menuItems.images.items.length===0"><a href="<% site.url %>images/topics"><i class="fa {{param.topbar.menuItems.images.icon}}"></i>{{param.topbar.menuItems.images.text}}</a>
                   <ul top-bar-dropdown>
@@ -110,18 +113,6 @@
             </top-bar-section>
           </top-bar>
         </div>
-        <nav ng-class="['tab-bar', param.offcanvas.visibility]">
-          <section ng-class="param.offcanvas.position+'-small'"><a ng-class="[param.offcanvas.position+'-off-canvas-toggle', 'menu-icon']"><span></span></a></section>
-        </nav>
-        <aside ng-class="[param.offcanvas.position+'-off-canvas-menu', param.offcanvas.visibility]">
-          <ul id="f5QuickMenu" class="off-canvas-list">
-            <li>
-              <label>{{param.offcanvas.title}}</label>
-            </li>
-            <li><a title="<% root.title %>" href="<% root.url %>">twoday</a></li>
-            <li><a title="<% site.alias %>" href="<% site.url %>"><% site.alias %></a></li>
-          </ul>
-        </aside>
         <div id="header" ng-cloak ng-class="[param.format.header.class]" ng-style="param.format.header.style">
           <h1 ng-class="[param.format.title.class]" ng-style="param.format.title.style">{{param.site.title}}{{param.format.header.titledelimiter}}<small ng-class="[param.format.subtitle.class]" ng-style="param.format.subtitle.style">{{param.site.subtitle}}</small></h1>
         </div>

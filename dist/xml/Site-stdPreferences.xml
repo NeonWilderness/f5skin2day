@@ -10,10 +10,11 @@
           "subtitle": "&lt;% site.tagline %&gt;",
           "author": "&lt;% site.alias %&gt;",
           "description": "&lt;% site.title %&gt; &lt;% site.tagline %&gt;",
-          "imgFolder": "https://googledrive.com/host/0B87rILW4RVIJNlN3eUJxVWN5ZWM/"
+          "imgFolder": "https://googledrive.com/host/0B87rILW4RVIJNlN3eUJxVWN5ZWM/",
+          "loader": { "animation": true, "color1": "#3498db", "color2": "#f04124", "color3": "#f9c922" }
       },
       "timeSlots": [
-          { "from": 0, "to": 24, "repeat": "no-repeat", "position": "top center", "size": "cover",
+          { "from": 0, "to": 24, "repeat": "no-repeat", "position": "center top", "size": "cover",
             "attachment": "fixed", "href": "https://googledrive.com/host/0B87rILW4RVIJNlN3eUJxVWN5ZWM/bg/trolltunga@aramk.jpg" }
       ],
       "leftColumn": {
@@ -25,7 +26,7 @@
       "middleColumn": {
           "id": "mainContent",
           "activate": true,
-          "class": "large-9 medium-8 small-12 columns content",
+          "class": "large-9 medium-8 small-12 columns maincontent",
           "style": { "background-color": "rgba(255,255,255,.8)" }
       },
       "rightColumn": {
@@ -70,11 +71,10 @@
       "topbar": {
           "title": "",
           "class": {"fixed": true, "containToGrid": false, "sticky": false},
-          "visibility": "hide-for-small",
           "menuIconColor": "#407099",
           "menuItems": {
               "twoday": { "text": "twoday", "icon": "fa-circle-o fa-margin", "divider": false },
-              "topics": { "text": "", "icon": "fa-home fa-margin", "divider": false, "class": "" },
+              "topics": { "text": "", "icon": "fa-home fa-margin", "divider": false, "drop": false },
               "breadcrumbs": { "text": "", "icon": "fa-chevron-right", "divider": false },
               "contribute": { "text": "contribute", "icon": "fa-pencil-square-o fa-margin", "divider": false },
               "admin": { "text": "admin", "icon": "fa-cog fa-margin", "divider": false },
@@ -114,11 +114,6 @@
               "activate": true, "text": "", "icon": "fa-cogs", "divider": false, "title": "Blog anpassen",
               "href": "", "hover": "#fff"
           }
-      },
-      "offcanvas": {
-          "title": "Quickmenü",
-          "visibility": "show-for-small",
-          "position": "left"
       }
   }
 &lt;/div&gt;

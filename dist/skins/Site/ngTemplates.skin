@@ -1,13 +1,170 @@
 <script id="customizeBlogHtml" type="text/ng-template">
   <div id="customizeBlog">
     <h5>Mein Foundation-Blog anpassen</h5>
-    <p>Hier stehen ein paar einführende Worte zu den Customizing-Möglichkeiten</p>
+    <p>Die Einstelloptionen zu Ihrem Blog erreichen Sie über die unten angezeigten Tabs:</p>
     <tabset>
       <tab heading="Grunddaten">
-        <p>Grunddaten</p>
+        <form ng-controller="tmplGrunddatenController">
+          <fieldset>
+            <div class="row">
+              <div class="small-4 columns">
+                <label for="txtTitle">Blogtitel
+                  <input type="text" id="txtTitle" ng-model="input.site.title"/>
+                </label>
+              </div>
+              <div class="small-4 columns">
+                <label for="txtSubtitle">Bloguntertitel
+                  <input type="text" id="txtSubtitle" ng-model="input.site.subtitle"/>
+                </label>
+              </div>
+              <div class="small-4 columns">
+                <label for="txtAuthor">Autor
+                  <input type="text" id="txtAuthor" ng-model="input.site.author"/>
+                </label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="small-12 columns">
+                <label for="txtDescription">Blogbeschreibung
+                  <input type="text" id="txtDescription" ng-model="input.site.description"/>
+                </label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="small-12 columns">
+                <div class="row collapse">
+                  <label for="txtImgFolder">URL (Verzeichnis) für Bilder</label>
+                  <div class="small-11 columns">
+                    <input type="text" id="txtImgFolder" ng-model="input.site.imgFolder"/>
+                  </div>
+                  <div class="small-1 columns"><span ng-click="setStaticFolder()" class="postfix"><i class="fa fa-image"></i></span></div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="small-11 columns">
+                <div class="row">
+                  <div class="small-3 columns">
+                    <input type="checkbox" id="chkLoader" ng-model="input.site.loader.animation"/>
+                    <label for="chkLoader">Lade-Animation anzeigen?</label>
+                  </div>
+                  <div class="small-3 columns">
+                    <label for="txtColor1">Farbe 1
+                      <input type="text" id="txtColor1" ng-model="input.site.loader.color1"/>
+                    </label>
+                  </div>
+                  <div class="small-3 columns">
+                    <label for="txtColor2">Farbe 2
+                      <input type="text" id="txtColor2" ng-model="input.site.loader.color2"/>
+                    </label>
+                  </div>
+                  <div class="small-3 columns">
+                    <label for="txtColor3">Farbe 3
+                      <input type="text" id="txtColor3" ng-model="input.site.loader.color3"/>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="small-1 columns"><a href="" ng-click="testLoader()" class="button secondary tiny radius"><i class="fa fa-play fa-margin"></i>Test</a></div>
+            </div>
+          </fieldset>
+        </form>
       </tab>
       <tab heading="Hintergrundbilder">
-        <p>Hintergrundbilder</p>
+        <form ng-controller="tmplHintergrundbilderController">
+          <fieldset>
+            <div ng-show="isEditMode || isCreateMode" class="row">
+              <div class="small-12 columns">
+                <div class="row">
+                  <div class="small-1 columns">
+                    <label for="txtFrom">Von
+                      <input type="text" id="txtFrom" ng-model="slot.from"/>
+                    </label>
+                  </div>
+                  <div class="small-1 columns">
+                    <label for="txtTo">Bis
+                      <input type="text" id="txtTo" ng-model="slot.to"/>
+                    </label>
+                  </div>
+                  <div class="small-3 columns">
+                    <label>Position</label><a class="button tiny split">{{slot.position}} <span dropdown-toggle="#dropdown-position"></span></a>
+                    <ul id="dropdown-position" class="f-dropdown">
+                      <li ng-repeat="position in positions"><a ng-click="usePosition($index)">{{position}}</a></li>
+                    </ul>
+                  </div>
+                  <div class="small-3 columns">
+                    <label>Repeat</label><a class="button tiny split">{{slot.repeat}} <span dropdown-toggle="#dropdown-repeat"></span></a>
+                    <ul id="dropdown-repeat" class="f-dropdown">
+                      <li ng-repeat="repeat in repeats"><a ng-click="useRepeat($index)">{{repeat}}</a></li>
+                    </ul>
+                  </div>
+                  <div class="small-2 columns">
+                    <label>Size</label><a class="button tiny split">{{slot.size}} <span dropdown-toggle="#dropdown-size"></span></a>
+                    <ul id="dropdown-size" class="f-dropdown">
+                      <li ng-repeat="size in sizes"><a ng-click="useSize($index)">{{size}}</a></li>
+                    </ul>
+                  </div>
+                  <div class="small-2 columns">
+                    <label>Attachment</label><a class="button tiny split">{{slot.attachment}} <span dropdown-toggle="#dropdown-attachment"></span></a>
+                    <ul id="dropdown-attachment" class="f-dropdown">
+                      <li ng-repeat="attachment in attachments"><a ng-click="useAttachment($index)">{{attachment}}</a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="small-12 columns">
+                    <label for="txtHref">Von
+                      <input type="text" id="txtHref" ng-model="slot.href"/>
+                    </label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="small-12 columns small-centered"><a ng-click="save()" class="button success radius tiny"><i class="fa fa-check fa-margin"></i>Übernehmen</a><a ng-click="cancel()" class="button alert radius tiny left10"><i class="fa fa-times fa-margin"></i>Abbrechen</a></div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="small-12 columns">
+                <table class="fullsize">
+                  <thead>
+                    <tr>
+                      <th>Aktion</th>
+                      <th>Von (Stunde)</th>
+                      <th>Bis (Stunde)</th>
+                      <th>Position</th>
+                      <th>Repeat</th>
+                      <th>Size</th>
+                      <th>Attachment</th>
+                      <th>Bild</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="slot in input.timeSlots">
+                      <th>
+                        <ul class="button-group">
+                          <li><a href="" title="Eintrag bearbeiten" ng-click="edit($index)" class="button tiny radius secondary"><i class="fa fa-edit"></i></a></li>
+                          <li><a href="" title="Eintrag entfernen" ng-click="delete($index)" class="button tiny radius secondary"><i class="fa fa-trash-o"></i></a></li>
+                        </ul>
+                      </th>
+                      <th>{{slot.from}}</th>
+                      <th>{{slot.to}}</th>
+                      <th>{{slot.position}}</th>
+                      <th>{{slot.repeat}}</th>
+                      <th>{{slot.size}}</th>
+                      <th>{{slot.attachment}}</th>
+                      <th><a ng-href="{{slot.href}}" target="_blank" class="th"><img ng-src="{{slot.href}}" width="120" alt=""/></a></th>
+                    </tr>
+                    <tr>
+                      <th colspan="8">
+                        <button href="" ng-click="create()" class="tiny radius secondary"><i class="fa fa-plus fa-margin"></i>Neuen Hintergrund definieren</button>
+                      </th>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </fieldset>
+        </form>
       </tab>
       <tab heading="Bloglayout">
         <p>Bloglayout</p>
@@ -22,6 +179,6 @@
         <p>Eigene Menülinks</p>
       </tab>
     </tabset>
-    <p class="text-center bottom0"><a ng-click="ok()" class="button success radius tiny"><i class="fa fa-check fa-margin"></i>Einstellungen sichern</a><a id="btnCancel" ng-click="cancel()" class="button alert radius tiny"><i class="fa fa-times fa-margin"></i>Änderung abbrechen</a></p><a ng-click="cancel()" class="close-reveal-modal">&times;</a>
+    <p class="text-center bottom0"><a ng-click="ok()" class="button success radius tiny"><i class="fa fa-check fa-margin"></i>Einstellungen sichern</a><a ng-click="cancel()" class="button alert radius tiny left15"><i class="fa fa-times fa-margin"></i>Änderung abbrechen</a></p><a ng-click="cancel()" class="close-reveal-modal">&times;</a>
   </div>
 </script>

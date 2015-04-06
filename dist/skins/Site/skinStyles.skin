@@ -1,6 +1,11 @@
 <style>
+  /* Topbar overrides */
   #f5Topbar i { color: {{param.topbar.menuIconColor}}; }
   #toolbarMail:hover i { color: {{param.topbar.mailIcon.hover}}; }
   #toolbarSearch:hover i { color: {{param.topbar.searchIcon.hover}}; }
   #toolbarCustomize:hover i { color: {{param.topbar.customizeIcon.hover}}; }
+  /* Loader animation */
+  #loader { border-top-color: {{param.site.loader.color1}}; }
+  #loader:before { border-top-color: {{param.site.loader.color2}}; }
+  #loader:after { border-top-color: {{param.site.loader.color3}}; }
 </style>

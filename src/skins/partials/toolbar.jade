@@ -1,5 +1,8 @@
+mixin topicslist
+    a(href!="<% site.url %>") <i class="fa {{param.topbar.menuItems.topics.icon}}"></i>{{param.topbar.menuItems.topics.text}}
+    | <% topiclist prefix="<ul class='dropdown'>" itemprefix="<li>" itemsuffix="</li>" suffix="</ul>" %>
 div(ng-class="{'fixed':param.topbar.class.fixed, 'containToGrid':param.topbar.class.containToGrid, 'sticky':param.topbar.class.sticky}")
-    top-bar#f5Topbar(ng-cloak, ng-class="param.topbar.visibility", role="navigation", back-text="Eine Ebene höher")
+    top-bar#f5Topbar(ng-cloak, role="navigation", back-text="Eine Ebene höher")
         ul.title-area
             li.name: h1(ng-hide="param.topbar.title.length===0"): a(href="#") {{param.topbar.title}}
             li.menu-icon(toggle-top-bar): a(href="#"): span
@@ -8,9 +11,8 @@ div(ng-class="{'fixed':param.topbar.class.fixed, 'containToGrid':param.topbar.cl
                 li#toolbarTwoday
                     a(href="http://twoday.net/") <i class="fa {{param.topbar.menuItems.twoday.icon}}"></i>{{param.topbar.menuItems.twoday.text}}
                 li.divider(ng-hide="!param.topbar.menuItems.twoday.divider")
-                li#toolbarTopics(ng-class="param.topbar.menuItems.topics.class")
-                    a(href!="<% site.url %>") <i class="fa {{param.topbar.menuItems.topics.icon}}"></i>{{param.topbar.menuItems.topics.text}}
-                    | <% topiclist prefix="<ul class='dropdown'>" itemprefix="<li>" itemsuffix="</li>" suffix="</ul>" %>
+                li#toolbarTopics(has-dropdown, ng-if="param.topbar.menuItems.topics.drop"): +topicslist
+                li#toolbarTopics(ng-if="!param.topbar.menuItems.topics.drop"): +topicslist
                 li.divider(ng-hide="!param.topbar.menuItems.topics.divider")
                 li#toolbarImages(has-dropdown, ng-hide="param.topbar.menuItems.images.items.length===0")
                     a(href!="<% site.url %>images/topics") <i class="fa {{param.topbar.menuItems.images.icon}}"></i>{{param.topbar.menuItems.images.text}}
@@ -69,11 +71,3 @@ div(ng-class="{'fixed':param.topbar.class.fixed, 'containToGrid':param.topbar.cl
                 li#toolbarCustomize(ng-hide="!param.topbar.customizeIcon.activate || !param.isAdmin()")
                     a(href="", ng-click="customize.open()", title="{{param.topbar.customizeIcon.title}}") <i class="fa {{param.topbar.customizeIcon.icon}}"></i>{{param.topbar.customizeIcon.text}}
                 li.divider(ng-hide="!param.topbar.customizeIcon.divider")
-nav(ng-class="['tab-bar', param.offcanvas.visibility]")
-    section(ng-class="param.offcanvas.position+'-small'")
-        a(ng-class="[param.offcanvas.position+'-off-canvas-toggle', 'menu-icon']"): span
-aside(ng-class="[param.offcanvas.position+'-off-canvas-menu', param.offcanvas.visibility]")
-    ul#f5QuickMenu.off-canvas-list
-        li: label {{param.offcanvas.title}}
-        li: a(title!="<% root.title %>", href!="<% root.url %>") twoday
-        li: a(title!="<% site.alias %>", href!="<% site.url %>") <% site.alias %>
