@@ -3,7 +3,7 @@ include partials/vars.jade
 html.no-js(lang="de-DE", ng-app="f5SkinApp", ng-controller="F5SkinController")
     head
         meta(charset="UTF-8")
-        title(ng-cloak) {{param.site.title}}
+        title <% site.title %> <% site.tagline %>
         meta(http-equiv="X-UA-Compatible", content="IE=edge,chrome=1")
         meta(name="description", content="{{param.site.description}}")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")

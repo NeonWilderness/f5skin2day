@@ -18,25 +18,23 @@ form(ng-controller="tmplGrunddatenController")
         .row
             .small-12.columns
                 .row.collapse
-                    label(for="txtImgFolder") URL (Verzeichnis) für Bilder
+                    label.bottom0(for="txtImgFolder") URL (Verzeichnis) für Bilder
                     .small-11.columns
                         input(type="text", id="txtImgFolder", ng-model="input.site.imgFolder")
                     .small-1.columns
                         span.postfix(ng-click="setStaticFolder()"): i.fa.fa-image
         .row
-            .small-11.columns
-                .row
-                    .small-3.columns
-                        input(type="checkbox", id="chkLoader", ng-model="input.site.loader.animation")
-                        label(for="chkLoader") Lade-Animation anzeigen?
-                    .small-3.columns
-                        label(for="txtColor1") Farbe 1
-                            input(type="text", id="txtColor1", ng-model="input.site.loader.color1")
-                    .small-3.columns
-                        label(for="txtColor2") Farbe 2
-                            input(type="text", id="txtColor2", ng-model="input.site.loader.color2")
-                    .small-3.columns
-                        label(for="txtColor3") Farbe 3
-                            input(type="text", id="txtColor3", ng-model="input.site.loader.color3")
-            .small-1.columns
-                a.button.secondary.tiny.radius(href="", ng-click="testLoader()") <i class="fa fa-play fa-margin"></i>Test
+            .small-4.columns
+                input(type="checkbox", id="chkLoader", ng-model="input.site.loader.animation")
+                label(for="chkLoader") Lade-Animation anzeigen?
+            .small-2.columns
+                label(for="txtColor1") Farbe 1
+                    input(type="text", id="txtColor1", ng-model="input.site.loader.color1")
+            .small-2.columns
+                label(for="txtColor2") Farbe 2
+                    input(type="text", id="txtColor2", ng-model="input.site.loader.color2")
+            .small-2.columns
+                label(for="txtColor3") Farbe 3
+                    input(type="text", id="txtColor3", ng-model="input.site.loader.color3")
+            .small-2.columns
+                a.button.secondary.tiny.radius(href="", id="btnLoader", ng-click="testLoader()") <i class="fa fa-play fa-margin"></i>Test

@@ -45,11 +45,19 @@ body {
   .button { margin: 0 0 0 15px; }
 }
 span[ng-click] { cursor: pointer; }
+.green { color: #43ac6a; }
+.blue { color: #008cba; }
+.red { color: #f04124; }
+.yellow { color: #f9c922; }
 .top20 { margin-top: 20px; }
 .bottom0 { margin-bottom: 0; }
+.bottom15 { margin-bottom: 15px; }
 .left10 { margin-left: 10px; }
 .left15 { margin-left: 15px; }
+.right5 { margin-right: 5px; }
 .fullsize { width: 100%; }
+.extlink:before { font-family: "FontAwesome"; content: "\f059"; color: #ddd; margin-left: 6px; }
+.button.tiny.square { padding-left: 0.625rem; padding-right: 0.625rem; }
 
 /* ---- SCSS Mixins ---- */
 
@@ -172,8 +180,13 @@ span[ng-click] { cursor: pointer; }
 
 /* ---- Site.ngTemplates Skin CSS ---- */
 #customizeBlog {
-  p, fieldset label { font-size: 12px; }
+  p { font-size: 12px; }
+  fieldset label { font-size: 12px; cursor: default; }
   th .button, th button { margin-bottom: 0; }
+  .split.button.tiny { padding-left: .75rem; padding-right: 3rem; }
   .tabs dd>a { font-size: 12px; padding: 1em 2em; }
   .tabs dd.active>a { background-color: #008cba; color: #fff; }
+  #chkLoader { margin-top: 25px; }
+  #btnLoader { margin-top: 18px; }
+  #slotStatus { text-align: center; font-weight: normal; font-size: small; }
 }

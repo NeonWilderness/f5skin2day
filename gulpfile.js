@@ -17,10 +17,10 @@ var trim = require('gulp-trim');
 var uglify = require('gulp-uglify');
 var zip = require("gulp-zip");
 
-gulp.task( 'default', ['jade2skin', 'zip', 'xml', 'housekeeping'], function(){
+gulp.task( 'default', ['headjs', 'bodyjs', 'zip', 'deploy'], function(){
 });
 
-//-------- Convert scss files to css
+//--------- Convert scss files to css
 gulp.task( 'scss2css', function(){
 
     del([ './src/css/layout.css' ]);
@@ -30,7 +30,7 @@ gulp.task( 'scss2css', function(){
         .pipe(gulp.dest('src/css'));
 });
 
-//-------- Convert css files to site skins: i.e. "foundation.css" becomes "Site/cssFoundation.skin"
+//--------- Convert css files to site skins: i.e. "foundation.css" becomes "Site/cssFoundation.skin"
 gulp.task( 'css2skin', ['scss2css'], function(){
 
     del([ './dist/skins/Site/*' ]);
@@ -43,8 +43,10 @@ gulp.task( 'css2skin', ['scss2css'], function(){
         .pipe(gulp.dest('dist/skins/Site'));
 });
 
-//-------- Convert jade template files to skins: i.e. "Site-page.jade" becomes "Site/page.skin"
+//--------- Convert jade template files to skins: i.e. "Site-page.jade" becomes "Site/page.skin"
 gulp.task( 'jade2skin', ['css2skin'], function(){
+
+    del([ './dist/xml/*' ]); // delete all previously generated xml files
 
     gulp.src('./src/preferences.jade')
         .pipe(jade({pretty:true}))
@@ -53,7 +55,7 @@ gulp.task( 'jade2skin', ['css2skin'], function(){
 
     return gulp.src('./src/skins/*.jade')
         .pipe(jade({pretty:true})) // Site-page.jade
-        .pipe(trim()) // trim any whitespace
+        .pipe(trim()) // trim any whitespace content at the beginning/end
         .pipe(save('before-wrap')) // save current stream
         .pipe(replace({
             patterns: [
@@ -88,8 +90,6 @@ gulp.task( 'jade2skin', ['css2skin'], function(){
 //-------- Enclose all skins in a xml wrapper, concatenate with a header file and push to a releaseinfo xml
 gulp.task("xml", ['jade2skin'], function(){
 
-    del([ './dist/releaseinfo.xml' ]);
-
     gulp.src('./src/releasehead.jade')
         .pipe(jade({pretty:true}))
         .pipe(replace({
@@ -101,7 +101,7 @@ gulp.task("xml", ['jade2skin'], function(){
         .pipe(rename('releasehead.xml'))
         .pipe(gulp.dest('dist'));
 
-    return gulp.src(['./dist/releasehead.*', './dist/xml/*.xml'])
+    return gulp.src(['./dist/releasehead.xml', './dist/xml/*.xml'])
         .pipe(concat('releaseinfo.xml'))
         .pipe(tap(function(file, t){
             file.contents = Buffer.concat([
@@ -112,18 +112,18 @@ gulp.task("xml", ['jade2skin'], function(){
         .pipe(gulp.dest('dist'));
 });
 
-//-------- Zips skins and preferences.xml into the f5skin2day.zip layout file for later import on Twoday
-gulp.task("zip", ['jade2skin'], function(){
+//-------- Zips skins and preferences.xml into the f5skin2day.zip layout file for later import on Twoday's layout page
+gulp.task("zip", ['xml'], function(){
 
     del([ './dist/zip/f5skin2day.zip' ]);
 
-    return gulp.src([ './dist/skins/**/*', './dist/preferences.xml' ], {base: "dist"})
+    return gulp.src([ './dist/skins/**/*', './dist/preferences.xml' ], {base: 'dist'})
         .pipe(zip('f5skin2day.zip'))
         .pipe(gulp.dest('dist/zip'));
 });
 
-//-------- Browserifies and uglifies JS file/s to be encompassed in the head section
-gulp.task( 'headjs', function(){
+//--------- Browserifies and uglifies JS file/s to be encompassed in the head section
+gulp.task( "headjs", function(){
 
     return gulp.src([
             //'./src/js/vendor/modernizr-*.js',
@@ -135,8 +135,8 @@ gulp.task( 'headjs', function(){
         .pipe(gulp.dest('dist/js/'));
 });
 
-//-------- Browserifies and uglifies JS file/s to be encompassed at the end of the body section
-gulp.task( 'bodyjs', function(){
+//--------- Browserifies and uglifies JS file/s to be encompassed at the end of the body section
+gulp.task( "bodyjs", function(){
 
     var browserified = transform(function(filename) {
         var b = browserify({entries: filename, debug: true});
@@ -152,6 +152,18 @@ gulp.task( 'bodyjs', function(){
 });
 
 //-------- Housekeeping deletes obsolete temp files
-gulp.task("housekeeping", ['xml'], function(){
+gulp.task("housekeeping", [], function(){
     del([ './dist/releasehead.xml' ]);
+});
+
+//-------- Deploy js/map/xml to GoogleDrive folder
+gulp.task("deploy", ['headjs', 'bodyjs', 'xml'], function(){
+
+    var folderGoogleDrive = "D:/Dokumente/Google Drive/Public/";
+
+    gulp.src('dist/releaseinfo.xml')
+        .pipe(gulp.dest('site/twoday/f5skin', { cwd: folderGoogleDrive}));
+
+    return gulp.src('dist/js/*')
+        .pipe(gulp.dest('js/f5skin2day', { cwd: folderGoogleDrive}));
 });

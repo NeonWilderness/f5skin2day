@@ -7,6 +7,7 @@ script(type="text/javascript").
         userRole: function(){ return ($("#loginStatus").text().match(/\((.*)\)/) || ["","Reader"])[1]; },
         siteAlias: "<% site.alias %>",
         siteUrl: "<% site.url %>",
+        siteID: "<% site.id %>",
         layoutUrl: "<% layout.url %>",
         staticUrl: "<% staticURL %>"
     };

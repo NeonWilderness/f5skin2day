@@ -4,13 +4,14 @@ require('jquery');
  */
 module.exports = {
     setImage: function(timeSlots){
-//----- return immediately if there are no user defined time slots/images        
+        var getMinute = function(date){ return date.getHours()*60+date.getMinutes(); };
+//----- return immediately if there are no user defined time slots/images
         if (timeSlots.length===0) return;
-//----- get the current hour of the day        
-        var h = new Date().getHours();
+//----- get the current minute of the day
+        var h = getMinute(new Date());
 //----- check with each timeslot to find the appropriate entry
         $.each( timeSlots, function(){
-            if (h>=this.from && h<this.to){
+            if (h>=getMinute(this.from) && h<=getMinute(this.to)){
 //------------- once timeslot was found, preload the image
                 var self = this;
                 $('<img/>').attr('src', self.href).load( function(){

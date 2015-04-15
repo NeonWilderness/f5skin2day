@@ -30,6 +30,27 @@ module.exports = {
         return s.replace(/[a-zA-Z]/g, function(c){
             return String.fromCharCode((c <= "Z" ? 90 : 122) >= (c = c.charCodeAt(0) + 13) ? c : c - 26);
         });
+    },
+
+//- Gets minutes from a given date
+    getMinute: function(date){
+        return date.getHours()*60+date.getMinutes();
+    },
+
+//- Adds/Subtracts minutes from a given date (add: minutes>0, subtract: minutes<0)
+    addMinutes: function(date, minutes){
+        var newTime = this.getMinute(date) + minutes;
+        return new Date(1970,0,1,(newTime/60>>0),(newTime % 60),0);
+    },
+
+//- Formats time string to "hh:mm"
+    formatTime: function(date){
+        return ("0"+date.getHours()).slice(-2)+":"+("0"+date.getMinutes()).slice(-2);
+    },
+
+//- Converts string-version ("1.2.3") to a comparable int (123)
+    parseVersion: function(version){
+        return parseInt(version.replace(/\./g,""));
     }
 
 };

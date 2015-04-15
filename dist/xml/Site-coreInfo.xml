@@ -11,6 +11,7 @@
       userRole: function(){ return ($("#loginStatus").text().match(/\((.*)\)/) || ["","Reader"])[1]; },
       siteAlias: "&lt;% site.alias %&gt;",
       siteUrl: "&lt;% site.url %&gt;",
+      siteID: "&lt;% site.id %&gt;",
       layoutUrl: "&lt;% layout.url %&gt;",
       staticUrl: "&lt;% staticURL %&gt;"
   };

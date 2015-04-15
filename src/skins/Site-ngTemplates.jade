@@ -12,10 +12,10 @@ script#customizeBlogHtml(type="text/ng-template")
                 p Bloglayout
             tab(heading="Typographie")
                 p Typographie
-            tab(heading="Menüsteuerung")
+            tab(heading="Menüanzeige")
                 p Menüsteuerung
-            tab(heading="Eigene Menülinks")
-                p Eigene Menülinks
+            tab(heading="Aktualisierung")
+                include partials/tmplAktualisierung
         p.text-center.bottom0
             a.button.success.radius.tiny(ng-click="ok()") <i class="fa fa-check fa-margin"></i>Einstellungen sichern
             a.button.alert.radius.tiny.left15(ng-click="cancel()") <i class="fa fa-times fa-margin"></i>Änderung abbrechen

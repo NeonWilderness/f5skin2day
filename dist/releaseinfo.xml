@@ -1,13 +1,7 @@
-<!-- Skin: Layout.testdrive -->
-<skin>
-<key>Layout.testdrive</key>
-<content>
-&lt;div class="row"&gt;
-  &lt;div class="small-10 columns"&gt;&lt;% param.message %&gt;&lt;/div&gt;
-  &lt;div class="small-2 columns"&gt;&lt;a class="button secondary small radius" href="&lt;% layout.url action="stopTestdrive" %&gt;?stop=1"&gt;&lt;% message key="Layout.testDrive.stopTesting" %&gt;&lt;/a&gt;&lt;/div&gt;
-&lt;/div&gt;
-</content>
-</skin>
+<?xml version="1.0" encoding="utf-8" ?><layout>
+<version>0.1.0</version>
+<author>NeonWilderness (https://github.com/NeonWilderness)</author>
+<releasedate>Wed Apr 15 2015 15:22:52 GMT+0200 (Mitteleuropäische Sommerzeit)</releasedate>
 <!-- Skin: Site.browsertest -->
 <skin>
 <key>Site.browsertest</key>
@@ -77,6 +71,7 @@
       userRole: function(){ return ($("#loginStatus").text().match(/\((.*)\)/) || ["","Reader"])[1]; },
       siteAlias: "&lt;% site.alias %&gt;",
       siteUrl: "&lt;% site.url %&gt;",
+      siteID: "&lt;% site.id %&gt;",
       layoutUrl: "&lt;% layout.url %&gt;",
       staticUrl: "&lt;% staticURL %&gt;"
   };
@@ -157,7 +152,7 @@
             &lt;div class="row"&gt;
               &lt;div class="small-12 columns"&gt;
                 &lt;div class="row collapse"&gt;
-                  &lt;label for="txtImgFolder"&gt;URL (Verzeichnis) für Bilder&lt;/label&gt;
+                  &lt;label for="txtImgFolder" class="bottom0"&gt;URL (Verzeichnis) für Bilder&lt;/label&gt;
                   &lt;div class="small-11 columns"&gt;
                     &lt;input type="text" id="txtImgFolder" ng-model="input.site.imgFolder"/&gt;
                   &lt;/div&gt;
@@ -166,30 +161,26 @@
               &lt;/div&gt;
             &lt;/div&gt;
             &lt;div class="row"&gt;
-              &lt;div class="small-11 columns"&gt;
-                &lt;div class="row"&gt;
-                  &lt;div class="small-3 columns"&gt;
-                    &lt;input type="checkbox" id="chkLoader" ng-model="input.site.loader.animation"/&gt;
-                    &lt;label for="chkLoader"&gt;Lade-Animation anzeigen?&lt;/label&gt;
-                  &lt;/div&gt;
-                  &lt;div class="small-3 columns"&gt;
-                    &lt;label for="txtColor1"&gt;Farbe 1
-                      &lt;input type="text" id="txtColor1" ng-model="input.site.loader.color1"/&gt;
-                    &lt;/label&gt;
-                  &lt;/div&gt;
-                  &lt;div class="small-3 columns"&gt;
-                    &lt;label for="txtColor2"&gt;Farbe 2
-                      &lt;input type="text" id="txtColor2" ng-model="input.site.loader.color2"/&gt;
-                    &lt;/label&gt;
-                  &lt;/div&gt;
-                  &lt;div class="small-3 columns"&gt;
-                    &lt;label for="txtColor3"&gt;Farbe 3
-                      &lt;input type="text" id="txtColor3" ng-model="input.site.loader.color3"/&gt;
-                    &lt;/label&gt;
-                  &lt;/div&gt;
-                &lt;/div&gt;
+              &lt;div class="small-4 columns"&gt;
+                &lt;input type="checkbox" id="chkLoader" ng-model="input.site.loader.animation"/&gt;
+                &lt;label for="chkLoader"&gt;Lade-Animation anzeigen?&lt;/label&gt;
               &lt;/div&gt;
-              &lt;div class="small-1 columns"&gt;&lt;a href="" ng-click="testLoader()" class="button secondary tiny radius"&gt;&lt;i class="fa fa-play fa-margin"&gt;&lt;/i&gt;Test&lt;/a&gt;&lt;/div&gt;
+              &lt;div class="small-2 columns"&gt;
+                &lt;label for="txtColor1"&gt;Farbe 1
+                  &lt;input type="text" id="txtColor1" ng-model="input.site.loader.color1"/&gt;
+                &lt;/label&gt;
+              &lt;/div&gt;
+              &lt;div class="small-2 columns"&gt;
+                &lt;label for="txtColor2"&gt;Farbe 2
+                  &lt;input type="text" id="txtColor2" ng-model="input.site.loader.color2"/&gt;
+                &lt;/label&gt;
+              &lt;/div&gt;
+              &lt;div class="small-2 columns"&gt;
+                &lt;label for="txtColor3"&gt;Farbe 3
+                  &lt;input type="text" id="txtColor3" ng-model="input.site.loader.color3"/&gt;
+                &lt;/label&gt;
+              &lt;/div&gt;
+              &lt;div class="small-2 columns"&gt;&lt;a href="" id="btnLoader" ng-click="testLoader()" class="button secondary tiny radius"&gt;&lt;i class="fa fa-play fa-margin"&gt;&lt;/i&gt;Test&lt;/a&gt;&lt;/div&gt;
             &lt;/div&gt;
           &lt;/fieldset&gt;
         &lt;/form&gt;
@@ -200,36 +191,36 @@
             &lt;div ng-show="isEditMode || isCreateMode" class="row"&gt;
               &lt;div class="small-12 columns"&gt;
                 &lt;div class="row"&gt;
-                  &lt;div class="small-1 columns"&gt;
-                    &lt;label for="txtFrom"&gt;Von
-                      &lt;input type="text" id="txtFrom" ng-model="slot.from"/&gt;
+                  &lt;div class="small-2 columns"&gt;
+                    &lt;label for="timeFrom"&gt;Von &lt;i class="fa fa-clock-o"&gt;&lt;/i&gt;
+                      &lt;input type="time" ng-model="slot.from" id="timeFrom" placeholder="HH:mm" min="00:00" max="23:59" required="required"/&gt;
                     &lt;/label&gt;
                   &lt;/div&gt;
-                  &lt;div class="small-1 columns"&gt;
-                    &lt;label for="txtTo"&gt;Bis
-                      &lt;input type="text" id="txtTo" ng-model="slot.to"/&gt;
+                  &lt;div class="small-2 columns"&gt;
+                    &lt;label for="timeTo"&gt;Bis &lt;i class="fa fa-clock-o"&gt;&lt;/i&gt;
+                      &lt;input type="time" ng-model="slot.to" id="timeTo" placeholder="HH:mm" min="00:00" max="23:59" required="required"/&gt;
                     &lt;/label&gt;
                   &lt;/div&gt;
-                  &lt;div class="small-3 columns"&gt;
-                    &lt;label&gt;Position&lt;/label&gt;&lt;a class="button tiny split"&gt;{{slot.position}} &lt;span dropdown-toggle="#dropdown-position"&gt;&lt;/span&gt;&lt;/a&gt;
+                  &lt;div class="small-2 columns"&gt;
+                    &lt;label&gt;Position&lt;a href="http://www.w3schools.com/cssref/pr_background-position.asp" target="_blank" class="extlink"&gt;&lt;/a&gt;&lt;/label&gt;&lt;a class="button tiny split"&gt;{{slot.position}} &lt;span dropdown-toggle="#dropdown-position"&gt;&lt;/span&gt;&lt;/a&gt;
                     &lt;ul id="dropdown-position" class="f-dropdown"&gt;
                       &lt;li ng-repeat="position in positions"&gt;&lt;a ng-click="usePosition($index)"&gt;{{position}}&lt;/a&gt;&lt;/li&gt;
                     &lt;/ul&gt;
                   &lt;/div&gt;
-                  &lt;div class="small-3 columns"&gt;
-                    &lt;label&gt;Repeat&lt;/label&gt;&lt;a class="button tiny split"&gt;{{slot.repeat}} &lt;span dropdown-toggle="#dropdown-repeat"&gt;&lt;/span&gt;&lt;/a&gt;
+                  &lt;div class="small-2 columns"&gt;
+                    &lt;label&gt;Repeat&lt;a href="http://www.w3schools.com/cssref/pr_background-repeat.asp" target="_blank" class="extlink"&gt;&lt;/a&gt;&lt;/label&gt;&lt;a class="button tiny split"&gt;{{slot.repeat}} &lt;span dropdown-toggle="#dropdown-repeat"&gt;&lt;/span&gt;&lt;/a&gt;
                     &lt;ul id="dropdown-repeat" class="f-dropdown"&gt;
                       &lt;li ng-repeat="repeat in repeats"&gt;&lt;a ng-click="useRepeat($index)"&gt;{{repeat}}&lt;/a&gt;&lt;/li&gt;
                     &lt;/ul&gt;
                   &lt;/div&gt;
                   &lt;div class="small-2 columns"&gt;
-                    &lt;label&gt;Size&lt;/label&gt;&lt;a class="button tiny split"&gt;{{slot.size}} &lt;span dropdown-toggle="#dropdown-size"&gt;&lt;/span&gt;&lt;/a&gt;
+                    &lt;label&gt;Size&lt;a href="http://www.w3schools.com/cssref/css3_pr_background-size.asp" target="_blank" class="extlink"&gt;&lt;/a&gt;&lt;/label&gt;&lt;a class="button tiny split"&gt;{{slot.size}} &lt;span dropdown-toggle="#dropdown-size"&gt;&lt;/span&gt;&lt;/a&gt;
                     &lt;ul id="dropdown-size" class="f-dropdown"&gt;
                       &lt;li ng-repeat="size in sizes"&gt;&lt;a ng-click="useSize($index)"&gt;{{size}}&lt;/a&gt;&lt;/li&gt;
                     &lt;/ul&gt;
                   &lt;/div&gt;
                   &lt;div class="small-2 columns"&gt;
-                    &lt;label&gt;Attachment&lt;/label&gt;&lt;a class="button tiny split"&gt;{{slot.attachment}} &lt;span dropdown-toggle="#dropdown-attachment"&gt;&lt;/span&gt;&lt;/a&gt;
+                    &lt;label&gt;Attachment&lt;a href="http://www.w3schools.com/cssref/pr_background-attachment.asp" target="_blank" class="extlink"&gt;&lt;/a&gt;&lt;/label&gt;&lt;a class="button tiny split"&gt;{{slot.attachment}} &lt;span dropdown-toggle="#dropdown-attachment"&gt;&lt;/span&gt;&lt;/a&gt;
                     &lt;ul id="dropdown-attachment" class="f-dropdown"&gt;
                       &lt;li ng-repeat="attachment in attachments"&gt;&lt;a ng-click="useAttachment($index)"&gt;{{attachment}}&lt;/a&gt;&lt;/li&gt;
                     &lt;/ul&gt;
@@ -237,7 +228,7 @@
                 &lt;/div&gt;
                 &lt;div class="row"&gt;
                   &lt;div class="small-12 columns"&gt;
-                    &lt;label for="txtHref"&gt;Von
+                    &lt;label for="txtHref"&gt;Bildadresse (URL)
                       &lt;input type="text" id="txtHref" ng-model="slot.href"/&gt;
                     &lt;/label&gt;
                   &lt;/div&gt;
@@ -247,14 +238,14 @@
                 &lt;/div&gt;
               &lt;/div&gt;
             &lt;/div&gt;
-            &lt;div class="row"&gt;
+            &lt;div ng-hide="isEditMode || isCreateMode" class="row"&gt;
               &lt;div class="small-12 columns"&gt;
                 &lt;table class="fullsize"&gt;
                   &lt;thead&gt;
                     &lt;tr&gt;
-                      &lt;th&gt;Aktion&lt;/th&gt;
-                      &lt;th&gt;Von (Stunde)&lt;/th&gt;
-                      &lt;th&gt;Bis (Stunde)&lt;/th&gt;
+                      &lt;th&gt;&amp;nbsp;&lt;/th&gt;
+                      &lt;th&gt;Von &lt;i class="fa fa-clock-o"&gt;&lt;/i&gt;&lt;/th&gt;
+                      &lt;th&gt;Bis &lt;i class="fa fa-clock-o"&gt;&lt;/i&gt;&lt;/th&gt;
                       &lt;th&gt;Position&lt;/th&gt;
                       &lt;th&gt;Repeat&lt;/th&gt;
                       &lt;th&gt;Size&lt;/th&gt;
@@ -266,12 +257,12 @@
                     &lt;tr ng-repeat="slot in input.timeSlots"&gt;
                       &lt;th&gt;
                         &lt;ul class="button-group"&gt;
-                          &lt;li&gt;&lt;a href="" title="Eintrag bearbeiten" ng-click="edit($index)" class="button tiny radius secondary"&gt;&lt;i class="fa fa-edit"&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
-                          &lt;li&gt;&lt;a href="" title="Eintrag entfernen" ng-click="delete($index)" class="button tiny radius secondary"&gt;&lt;i class="fa fa-trash-o"&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+                          &lt;li&gt;&lt;a href="" title="Eintrag bearbeiten" ng-click="edit($index)" class="button tiny radius secondary square right5"&gt;&lt;i class="fa fa-edit fa-fw"&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+                          &lt;li&gt;&lt;a href="" title="Eintrag entfernen" ng-click="remove($index)" class="button tiny radius secondary square"&gt;&lt;i class="fa fa-trash-o fa-fw"&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
                         &lt;/ul&gt;
                       &lt;/th&gt;
-                      &lt;th&gt;{{slot.from}}&lt;/th&gt;
-                      &lt;th&gt;{{slot.to}}&lt;/th&gt;
+                      &lt;th&gt;{{slot.from | date:'HH:mm'}}&lt;/th&gt;
+                      &lt;th&gt;{{slot.to| date:'HH:mm'}}&lt;/th&gt;
                       &lt;th&gt;{{slot.position}}&lt;/th&gt;
                       &lt;th&gt;{{slot.repeat}}&lt;/th&gt;
                       &lt;th&gt;{{slot.size}}&lt;/th&gt;
@@ -279,8 +270,13 @@
                       &lt;th&gt;&lt;a ng-href="{{slot.href}}" target="_blank" class="th"&gt;&lt;img ng-src="{{slot.href}}" width="120" alt=""/&gt;&lt;/a&gt;&lt;/th&gt;
                     &lt;/tr&gt;
                     &lt;tr&gt;
+                      &lt;th colspan="8" id="slotStatus" ng-class="{'red': !slotStatusOK, 'green': slotStatusOK}"&gt;&lt;i class="fa fa-margin" ng-class="{'fa-info-circle': !slotStatusOK, 'fa-check': slotStatusOK}"&gt;&lt;/i&gt;{{slotStatus}}&lt;/th&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
                       &lt;th colspan="8"&gt;
-                        &lt;button href="" ng-click="create()" class="tiny radius secondary"&gt;&lt;i class="fa fa-plus fa-margin"&gt;&lt;/i&gt;Neuen Hintergrund definieren&lt;/button&gt;
+                        &lt;ul class="button-group"&gt;
+                          &lt;li&gt;&lt;a href="" ng-click="create()" ng-disabled="isEditMode || isCreateMode" class="button tiny radius secondary"&gt;&lt;i class="fa fa-plus fa-margin"&gt;&lt;/i&gt;Neuen Hintergrund definieren&lt;/a&gt;&lt;/li&gt;
+                        &lt;/ul&gt;
                       &lt;/th&gt;
                     &lt;/tr&gt;
                   &lt;/tbody&gt;
@@ -296,11 +292,39 @@
       &lt;tab heading="Typographie"&gt;
         &lt;p&gt;Typographie&lt;/p&gt;
       &lt;/tab&gt;
-      &lt;tab heading="Menüsteuerung"&gt;
+      &lt;tab heading="Menüanzeige"&gt;
         &lt;p&gt;Menüsteuerung&lt;/p&gt;
       &lt;/tab&gt;
-      &lt;tab heading="Eigene Menülinks"&gt;
-        &lt;p&gt;Eigene Menülinks&lt;/p&gt;
+      &lt;tab heading="Aktualisierung"&gt;
+        &lt;form ng-controller="tmplAktualisierung"&gt;
+          &lt;fieldset&gt;
+            &lt;div class="row"&gt;
+              &lt;div class="small-12 columns bottom15"&gt;Ihre derzeitige Layout-Version ist &lt;strong&gt;{{input.update.version}}&lt;/strong&gt;.&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="row"&gt;
+              &lt;div class="small-4 columns"&gt;
+                &lt;label&gt;Aktualisierungsprüfung&lt;/label&gt;&lt;a class="button tiny split"&gt;{{input.update.check}} &lt;span dropdown-toggle="#dropdown-updatecheck"&gt;&lt;/span&gt;&lt;/a&gt;
+                &lt;ul id="dropdown-updatecheck" class="f-dropdown"&gt;
+                  &lt;li ng-repeat="frequency in updateChecks"&gt;&lt;a ng-click="useFrequency($index)"&gt;{{frequency.check}}&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+              &lt;/div&gt;
+              &lt;div class="small-4 columns"&gt;
+                &lt;label&gt;Datum der letzten Prüfung&lt;/label&gt;
+                &lt;div id="dtLastCheck"&gt;{{input.update.lastCheck | date: 'dd.MM.yyyy hh:mm'}}&lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class="small-4 columns"&gt;
+                &lt;label&gt;Datum der nächsten Prüfung&lt;/label&gt;
+                &lt;div id="dtNextCheck"&gt;{{dateNextCheck()}}&lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="row"&gt;
+              &lt;div class="small-12 columns"&gt;&lt;a href="" ng-show="msgClose" ng-click="checkForUpdate()" class="button small radius secondary"&gt;&lt;i class="fa fa-cloud-download fa-margin"&gt;&lt;/i&gt;Jetzt auf mögliche Aktualisierung prüfen&lt;/a&gt;
+                &lt;alert ng-if="newVersion" ng-hide="msgClose" close="$parent.msgClose=true" class="warning radius"&gt;&lt;i class="fa fa-info-circle fa-margin"&gt;&lt;/i&gt;Es existiert eine neuere Version {{version}} vom {{releaseDate | date: "dd.MM.yyyy"}}.&lt;a href="" ng-click="$parent.$parent.downloadRelease()" class="button tiny radius secondary left15 bottom0"&gt;&lt;i class="fa fa-cloud-download fa-margin"&gt;&lt;/i&gt;Jetzt installieren...&lt;/a&gt;&lt;/alert&gt;
+                &lt;alert ng-if="!newVersion" ng-hide="msgClose" close="$parent.msgClose=true" class="info radius"&gt;&lt;i class="fa fa-check fa-margin"&gt;&lt;/i&gt;Sie verfügen bereits über die neueste Version.&lt;/alert&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/fieldset&gt;
+        &lt;/form&gt;
       &lt;/tab&gt;
     &lt;/tabset&gt;
     &lt;p class="text-center bottom0"&gt;&lt;a ng-click="ok()" class="button success radius tiny"&gt;&lt;i class="fa fa-check fa-margin"&gt;&lt;/i&gt;Einstellungen sichern&lt;/a&gt;&lt;a ng-click="cancel()" class="button alert radius tiny left15"&gt;&lt;i class="fa fa-times fa-margin"&gt;&lt;/i&gt;Änderung abbrechen&lt;/a&gt;&lt;/p&gt;&lt;a ng-click="cancel()" class="close-reveal-modal"&gt;&amp;times;&lt;/a&gt;
@@ -316,7 +340,7 @@
 &lt;html lang="de-DE" ng-app="f5SkinApp" ng-controller="F5SkinController" class="no-js"&gt;
   &lt;head&gt;
     &lt;meta charset="UTF-8"&gt;
-    &lt;title ng-cloak&gt;{{param.site.title}}&lt;/title&gt;
+    &lt;title&gt;&lt;% site.title %&gt; &lt;% site.tagline %&gt;&lt;/title&gt;
     &lt;meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"&gt;
     &lt;meta name="description" content="{{param.site.description}}"&gt;
     &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
@@ -461,21 +485,11 @@
   #toolbarSearch:hover i { color: {{param.topbar.searchIcon.hover}}; }
   #toolbarCustomize:hover i { color: {{param.topbar.customizeIcon.hover}}; }
   /* Loader animation */
+  #loader-wrapper { background-color: {{param.site.loader.wrapper}}; }
   #loader { border-top-color: {{param.site.loader.color1}}; }
   #loader:before { border-top-color: {{param.site.loader.color2}}; }
   #loader:after { border-top-color: {{param.site.loader.color3}}; }
 &lt;/style&gt;
-</content>
-</skin>
-<!-- Skin: Site.specialMenuItems -->
-<skin>
-<key>Site.specialMenuItems</key>
-<content>
-&lt;div id="specialMenuItems" style="display:none"&gt;
-  &lt;div id="breadcrumbsMenu"&gt;&lt;% site.modToolbarNavigationpath %&gt;&lt;/div&gt;
-  &lt;div id="imageMenu"&gt;&lt;% site.modToolbarImagetopicMenu prefix="&lt;ul class='dropdown'&gt;" suffix="&lt;/ul&gt;" %&gt;&lt;/div&gt;
-  &lt;div id="aboMenu"&gt;&lt;% site.modToolbarAboMenu prefix="&lt;ul class='dropdown'&gt;" suffix="&lt;/ul&gt;" %&gt;&lt;/div&gt;
-&lt;/div&gt;
 </content>
 </skin>
 <!-- Skin: Site.stdPreferences -->
@@ -484,17 +498,23 @@
 <content>
 &lt;div id="stdPreferences" style="display:none"&gt;
   {
-      "version": "0.1",
       "site": {
           "title": "&lt;% site.title %&gt;",
           "subtitle": "&lt;% site.tagline %&gt;",
           "author": "&lt;% site.alias %&gt;",
           "description": "&lt;% site.title %&gt; &lt;% site.tagline %&gt;",
           "imgFolder": "https://googledrive.com/host/0B87rILW4RVIJNlN3eUJxVWN5ZWM/",
-          "loader": { "animation": true, "color1": "#3498db", "color2": "#f04124", "color3": "#f9c922" }
+          "loader": { "animation": true, "wrapper": "rgba(0,0,0,.9)", "color1": "#3498db", "color2": "#f04124", "color3": "#f9c922" }
+      },
+      "update": {
+          "version": "0.1.0",
+          "check": "täglich",
+          "gap": 86400000,
+          "lastCheck": "2015-04-11T11:13:00.000Z",
+          "releaseUrl": "https://googledrive.com/host/0B87rILW4RVIJfnVEa2hDMDM2cnlOR0NDdTd5Y3ZUSlBpQVJFbkJTNmUtRERicWFuZmNzbmc/"
       },
       "timeSlots": [
-          { "from": 0, "to": 24, "repeat": "no-repeat", "position": "center top", "size": "cover",
+          { "from": 0, "to": 1439, "repeat": "no-repeat", "position": "center top", "size": "cover",
             "attachment": "fixed", "href": "https://googledrive.com/host/0B87rILW4RVIJNlN3eUJxVWN5ZWM/bg/trolltunga@aramk.jpg" }
       ],
       "leftColumn": {

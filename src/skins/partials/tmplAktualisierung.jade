@@ -1,0 +1,23 @@
+//- template: Einstelloptionen - Aktualisierung
+form(ng-controller="tmplAktualisierung")
+    fieldset
+        .row
+            .small-12.columns.bottom15 Ihre derzeitige Layout-Version ist <strong>{{input.update.version}}</strong>.
+        .row
+            .small-4.columns
+                label Aktualisierungsprüfung
+                a.button.tiny.split {{input.update.check}} <span dropdown-toggle="#dropdown-updatecheck"></span>
+                ul#dropdown-updatecheck.f-dropdown
+                    li(ng-repeat="frequency in updateChecks"): a(ng-click="useFrequency($index)") {{frequency.check}}
+            .small-4.columns
+                label Datum der letzten Prüfung
+                #dtLastCheck {{input.update.lastCheck | date: 'dd.MM.yyyy hh:mm'}}
+            .small-4.columns
+                label Datum der nächsten Prüfung
+                #dtNextCheck {{dateNextCheck()}}
+        .row
+            .small-12.columns
+                a.button.small.radius.secondary(href="", ng-show="msgClose", ng-click="checkForUpdate()") <i class="fa fa-cloud-download fa-margin"></i>Jetzt auf mögliche Aktualisierung prüfen
+                alert.warning.radius(ng-if="newVersion", ng-hide="msgClose" close="$parent.msgClose=true") <i class="fa fa-info-circle fa-margin"></i>Es existiert eine neuere Version {{version}} vom {{releaseDate | date: "dd.MM.yyyy"}}.
+                    a.button.tiny.radius.secondary.left15.bottom0(href="", ng-click="$parent.$parent.downloadRelease()") <i class="fa fa-cloud-download fa-margin"></i>Jetzt installieren...
+                alert.info.radius(ng-if="!newVersion", ng-hide="msgClose" close="$parent.msgClose=true") <i class="fa fa-check fa-margin"></i>Sie verfügen bereits über die neueste Version.

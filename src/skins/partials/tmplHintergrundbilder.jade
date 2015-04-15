@@ -4,48 +4,52 @@ form(ng-controller="tmplHintergrundbilderController")
         .row(ng-show="isEditMode || isCreateMode")
             .small-12.columns
                 .row
-                    .small-1.columns
-                        label(for="txtFrom") Von
-                            input(type="text", id="txtFrom", ng-model="slot.from")
-                    .small-1.columns
-                        label(for="txtTo") Bis
-                            input(type="text", id="txtTo", ng-model="slot.to")
-                    .small-3.columns
+                    .small-2.columns
+                        label(for="timeFrom") Von <i class="fa fa-clock-o"></i>
+                            input(type="time", ng-model="slot.from", id="timeFrom", placeholder="HH:mm", min="00:00", max="23:59", required)
+                    .small-2.columns
+                        label(for="timeTo") Bis <i class="fa fa-clock-o"></i>
+                            input(type="time", ng-model="slot.to", id="timeTo", placeholder="HH:mm", min="00:00", max="23:59", required)
+                    .small-2.columns
                         label Position
+                            a.extlink(href="http://www.w3schools.com/cssref/pr_background-position.asp" target="_blank")
                         a.button.tiny.split {{slot.position}} <span dropdown-toggle="#dropdown-position"></span>
                         ul#dropdown-position.f-dropdown
                             li(ng-repeat="position in positions"): a(ng-click="usePosition($index)") {{position}}
-                    .small-3.columns
+                    .small-2.columns
                         label Repeat
+                            a.extlink(href="http://www.w3schools.com/cssref/pr_background-repeat.asp", target="_blank")
                         a.button.tiny.split {{slot.repeat}} <span dropdown-toggle="#dropdown-repeat"></span>
                         ul#dropdown-repeat.f-dropdown
                             li(ng-repeat="repeat in repeats"): a(ng-click="useRepeat($index)") {{repeat}}
                     .small-2.columns
                         label Size
+                            a.extlink(href="http://www.w3schools.com/cssref/css3_pr_background-size.asp", target="_blank")
                         a.button.tiny.split {{slot.size}} <span dropdown-toggle="#dropdown-size"></span>
                         ul#dropdown-size.f-dropdown
                             li(ng-repeat="size in sizes"): a(ng-click="useSize($index)") {{size}}
                     .small-2.columns
                         label Attachment
+                            a.extlink(href="http://www.w3schools.com/cssref/pr_background-attachment.asp", target="_blank")
                         a.button.tiny.split {{slot.attachment}} <span dropdown-toggle="#dropdown-attachment"></span>
                         ul#dropdown-attachment.f-dropdown
                             li(ng-repeat="attachment in attachments"): a(ng-click="useAttachment($index)") {{attachment}}
                 .row
                     .small-12.columns
-                        label(for="txtHref") Von
+                        label(for="txtHref") Bildadresse (URL)
                             input(type="text", id="txtHref", ng-model="slot.href")
                 .row
                     .small-12.columns.small-centered
                         a.button.success.radius.tiny(ng-click="save()") <i class="fa fa-check fa-margin"></i>Übernehmen
                         a.button.alert.radius.tiny.left10(ng-click="cancel()") <i class="fa fa-times fa-margin"></i>Abbrechen
-        .row
+        .row(ng-hide="isEditMode || isCreateMode")
             .small-12.columns
                 table.fullsize
                     thead
                         tr
-                            th Aktion
-                            th Von (Stunde)
-                            th Bis (Stunde)
+                            th &nbsp;
+                            th Von <i class="fa fa-clock-o"></i>
+                            th Bis <i class="fa fa-clock-o"></i>
                             th Position
                             th Repeat
                             th Size
@@ -55,14 +59,18 @@ form(ng-controller="tmplHintergrundbilderController")
                         tr(ng-repeat="slot in input.timeSlots")
                             th
                                 ul.button-group
-                                    li: a.button.tiny.radius.secondary(href="", title="Eintrag bearbeiten", ng-click="edit($index)"): i.fa.fa-edit
-                                    li: a.button.tiny.radius.secondary(href="", title="Eintrag entfernen", ng-click="delete($index)"): i.fa.fa-trash-o
-                            th {{slot.from}}
-                            th {{slot.to}}
+                                    li: a.button.tiny.radius.secondary.square.right5(href="", title="Eintrag bearbeiten", ng-click="edit($index)"): i.fa.fa-edit.fa-fw
+                                    li: a.button.tiny.radius.secondary.square(href="", title="Eintrag entfernen", ng-click="remove($index)"): i.fa.fa-trash-o.fa-fw
+                            th {{slot.from | date:'HH:mm'}}
+                            th {{slot.to| date:'HH:mm'}}
                             th {{slot.position}}
                             th {{slot.repeat}}
                             th {{slot.size}}
                             th {{slot.attachment}}
                             th: a(ng-href="{{slot.href}}", class="th", target="_blank"): img(ng-src="{{slot.href}}", width="120", alt="")
                         tr
-                            th(colspan="8"): button.tiny.radius.secondary(href="", ng-click="create()") <i class="fa fa-plus fa-margin"></i>Neuen Hintergrund definieren
+                            th(colspan="8", id="slotStatus", ng-class="{'red': !slotStatusOK, 'green': slotStatusOK}") <i class="fa fa-margin" ng-class="{'fa-info-circle': !slotStatusOK, 'fa-check': slotStatusOK}"></i>{{slotStatus}}
+                        tr
+                            th(colspan="8")
+                                ul.button-group
+                                    li: a.button.tiny.radius.secondary(href="", ng-click="create()", ng-disabled="isEditMode || isCreateMode") <i class="fa fa-plus fa-margin"></i>Neuen Hintergrund definieren

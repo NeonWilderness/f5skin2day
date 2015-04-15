@@ -5,7 +5,7 @@
 - var createDateStr = ('0' + d.getDate()).slice(-2) + '.' + ('0' + (d.getMonth()+1)).slice(-2) + '.' + d.getFullYear() + " " + d.toLocaleTimeString()+ " CET"
 doctype xml
 | <?xml-stylesheet type="text/xsl" href="helma.xsl"?>
-xmlroot(xmlns:hop="http://helma.org/documentation")
+xmlroot(xmlns:hop="http://www.helma.org/docs/guide/features/database")
     hopobject(id="t83890658", name="HopObject", prototype="HopObject", created="#{createTime}", lastModified="#{createTime}")
         exporter #{skinAuthor}
         creator #{skinAuthor}
@@ -34,8 +34,8 @@ xmlroot(xmlns:hop="http://helma.org/documentation")
             smallsize 11px
             textcolor 333333
         createtime(type="date") #{createDateStr}
-        title foundation5skin
         exporttime(type="date") #{createDateStr}
+        title foundation5skin
         locale de
         modifytime(type="date") #{createDateStr}
         description Responsives Twoday-Skin basierend auf Foundation 5 von Zurb. (C) 2015 #{skinAuthor}

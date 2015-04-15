@@ -9,6 +9,7 @@
   #toolbarSearch:hover i { color: {{param.topbar.searchIcon.hover}}; }
   #toolbarCustomize:hover i { color: {{param.topbar.customizeIcon.hover}}; }
   /* Loader animation */
+  #loader-wrapper { background-color: {{param.site.loader.wrapper}}; }
   #loader { border-top-color: {{param.site.loader.color1}}; }
   #loader:before { border-top-color: {{param.site.loader.color2}}; }
   #loader:after { border-top-color: {{param.site.loader.color3}}; }
