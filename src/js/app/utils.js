@@ -50,7 +50,38 @@ module.exports = {
 
 //- Converts string-version ("1.2.3") to a comparable int (123)
     parseVersion: function(version){
-        return parseInt(version.replace(/\./g,""));
+        return parseInt(version.replace(/\./g,""), 10);
+    },
+
+//- Parse CRC32 value from the skin's top line
+    parseCRC: function(chars){
+        var crc32 = chars.match(/CRC32:.(.*)[ ]/);
+        return (crc32 !== null ? parseInt(crc32[1], 10) : -1);
+    },
+
+//- Extract header data and skin information from releaseinfo.xml
+    getRelease: function($data){
+        var release = {
+            version: $data.find("version").text(),
+            author: $data.find("author").text(),
+            releasedate: new Date(Date.parse($data.find("releasedate").text())),
+            skins: []
+        };
+        $data.find("skin").each( function(){
+            var self = $(this),
+                skinName = self.attr("key"),
+                dateSourceWasUpdated = new Date(Date.parse(self.attr("lastupdate"))),
+                skinCRC = self.attr("crc"),
+                skinContent = self.find("content");
+            release.skins.push({
+                name: skinName,
+                update: dateSourceWasUpdated,
+                crc32: skinCRC,
+                content: skinContent,
+                status: null
+            });
+        });
+        return release;
     }
 
 };

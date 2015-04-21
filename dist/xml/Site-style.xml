@@ -1,6 +1,5 @@
 <!-- Skin: Site.style -->
-<skin>
-<key>Site.style</key>
+<skin key="Site.style" lastupdate="2015-03-20T09:03:41.054Z" crc="3058733963">
 <content>
 /* Integrated CSS file (will be compiled to main.css by the Twoday application) */
 &lt;% site.skin name="cssNormalize" %&gt;

@@ -1,6 +1,5 @@
 <!-- Skin: Site.genMenuItems -->
-<skin>
-<key>Site.genMenuItems</key>
+<skin key="Site.genMenuItems" lastupdate="2015-03-26T15:52:48.195Z" crc="3274556909">
 <content>
 &lt;div id="genMenuItems" style="display:none"&gt;
   &lt;div id="breadcrumbsMenu"&gt;&lt;% site.modToolbarNavigationpath %&gt;&lt;/div&gt;

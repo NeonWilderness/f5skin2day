@@ -1,6 +1,5 @@
 <!-- Skin: Site.modReading -->
-<skin>
-<key>Site.modReading</key>
+<skin key="Site.modReading" lastupdate="2015-03-31T17:25:09.801Z" crc="3276984382">
 <content>
 &lt;div class="sbBookContainer"&gt;&lt;% param.Reading %&gt;&lt;/div&gt;
 </content>

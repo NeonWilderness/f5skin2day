@@ -1,6 +1,5 @@
 <!-- Skin: Site.modReadingItem -->
-<skin>
-<key>Site.modReadingItem</key>
+<skin key="Site.modReadingItem" lastupdate="2015-03-31T17:20:34.658Z" crc="990839467">
 <content>
 &lt;div class="sbBookItem"&gt;&lt;% param.ReadingImage %&gt;
   &lt;div class="sbBookAuthor"&gt;&lt;% param.ReadingAuthor %&gt;&lt;/div&gt;

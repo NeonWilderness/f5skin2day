@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?><layout>
-<version>0.1.0</version>
+<version>0.1.1</version>
 <author>NeonWilderness (https://github.com/NeonWilderness)</author>
-<releasedate>Wed Apr 15 2015 15:22:52 GMT+0200 (Mitteleuropäische Sommerzeit)</releasedate>
+<releasedate>Tue Apr 21 2015 16:27:36 GMT+0200 (Mitteleuropäische Sommerzeit)</releasedate>
 <!-- Skin: Site.browsertest -->
-<skin>
-<key>Site.browsertest</key>
+<skin key="Site.browsertest" lastupdate="2015-03-20T15:15:09.354Z" crc="2581352634">
 <content>
 &lt;script type="text/javascript"&gt;
   var $buoop = {c:2};
@@ -19,8 +18,7 @@
 </content>
 </skin>
 <!-- Skin: Site.commentIcon -->
-<skin>
-<key>Site.commentIcon</key>
+<skin key="Site.commentIcon" lastupdate="2015-03-16T09:35:50.842Z" crc="115287528">
 <content>
 &lt;script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/md5.js"&gt;&lt;/script&gt;
 &lt;script type="text/javascript"&gt;
@@ -59,8 +57,7 @@
 </content>
 </skin>
 <!-- Skin: Site.coreInfo -->
-<skin>
-<key>Site.coreInfo</key>
+<skin key="Site.coreInfo" lastupdate="2015-04-15T14:01:26.117Z" crc="584613826">
 <content>
 &lt;div id="loginStatus" class="hide"&gt;&lt;% site.loginstatus %&gt;&lt;/div&gt;
 &lt;script type="text/javascript"&gt;
@@ -79,8 +76,7 @@
 </content>
 </skin>
 <!-- Skin: Site.genMenuItems -->
-<skin>
-<key>Site.genMenuItems</key>
+<skin key="Site.genMenuItems" lastupdate="2015-03-26T15:52:48.195Z" crc="3274556909">
 <content>
 &lt;div id="genMenuItems" style="display:none"&gt;
   &lt;div id="breadcrumbsMenu"&gt;&lt;% site.modToolbarNavigationpath %&gt;&lt;/div&gt;
@@ -90,22 +86,19 @@
 </content>
 </skin>
 <!-- Skin: Site.modReading -->
-<skin>
-<key>Site.modReading</key>
+<skin key="Site.modReading" lastupdate="2015-03-31T17:25:09.801Z" crc="3276984382">
 <content>
 &lt;div class="sbBookContainer"&gt;&lt;% param.Reading %&gt;&lt;/div&gt;
 </content>
 </skin>
 <!-- Skin: Site.modReadingDivider -->
-<skin>
-<key>Site.modReadingDivider</key>
+<skin key="Site.modReadingDivider" lastupdate="2015-03-31T17:22:01.337Z" crc="0">
 <content>
 
 </content>
 </skin>
 <!-- Skin: Site.modReadingItem -->
-<skin>
-<key>Site.modReadingItem</key>
+<skin key="Site.modReadingItem" lastupdate="2015-03-31T17:20:34.658Z" crc="990839467">
 <content>
 &lt;div class="sbBookItem"&gt;&lt;% param.ReadingImage %&gt;
   &lt;div class="sbBookAuthor"&gt;&lt;% param.ReadingAuthor %&gt;&lt;/div&gt;
@@ -114,8 +107,7 @@
 </content>
 </skin>
 <!-- Skin: Site.ngTemplates -->
-<skin>
-<key>Site.ngTemplates</key>
+<skin key="Site.ngTemplates" lastupdate="2015-04-12T11:52:51.718Z" crc="2187210970">
 <content>
 &lt;script id="customizeBlogHtml" type="text/ng-template"&gt;
   &lt;div id="customizeBlog"&gt;
@@ -310,7 +302,7 @@
               &lt;/div&gt;
               &lt;div class="small-4 columns"&gt;
                 &lt;label&gt;Datum der letzten Prüfung&lt;/label&gt;
-                &lt;div id="dtLastCheck"&gt;{{input.update.lastCheck | date: 'dd.MM.yyyy hh:mm'}}&lt;/div&gt;
+                &lt;div id="dtLastCheck"&gt;{{input.update.lastCheck | date: 'dd.MM.yyyy HH:mm'}}&lt;/div&gt;
               &lt;/div&gt;
               &lt;div class="small-4 columns"&gt;
                 &lt;label&gt;Datum der nächsten Prüfung&lt;/label&gt;
@@ -318,10 +310,20 @@
               &lt;/div&gt;
             &lt;/div&gt;
             &lt;div class="row"&gt;
-              &lt;div class="small-12 columns"&gt;&lt;a href="" ng-show="msgClose" ng-click="checkForUpdate()" class="button small radius secondary"&gt;&lt;i class="fa fa-cloud-download fa-margin"&gt;&lt;/i&gt;Jetzt auf mögliche Aktualisierung prüfen&lt;/a&gt;
-                &lt;alert ng-if="newVersion" ng-hide="msgClose" close="$parent.msgClose=true" class="warning radius"&gt;&lt;i class="fa fa-info-circle fa-margin"&gt;&lt;/i&gt;Es existiert eine neuere Version {{version}} vom {{releaseDate | date: "dd.MM.yyyy"}}.&lt;a href="" ng-click="$parent.$parent.downloadRelease()" class="button tiny radius secondary left15 bottom0"&gt;&lt;i class="fa fa-cloud-download fa-margin"&gt;&lt;/i&gt;Jetzt installieren...&lt;/a&gt;&lt;/alert&gt;
+              &lt;div class="small-12 columns"&gt;&lt;a href="" ng-show="msgClose" ng-click="checkForUpdate()" class="button small radius secondary"&gt;&lt;i class="fa fa-refresh fa-margin" ng-class="{'fa-spin':isChecking}"&gt;&lt;/i&gt;Jetzt auf mögliche Aktualisierung prüfen&lt;/a&gt;
+                &lt;alert ng-if="newVersion" ng-hide="msgClose" close="$parent.msgClose=true" class="warning radius"&gt;&lt;i class="fa fa-info-circle fa-margin"&gt;&lt;/i&gt;Es existiert eine neuere Version {{release.version}} vom {{release.releasedate | date: "dd.MM.yyyy"}}.&lt;a href="" ng-click="$parent.$parent.downloadRelease()" class="button tiny radius secondary left15 bottom0"&gt;&lt;i class="fa fa-cloud-download fa-margin"&gt;&lt;/i&gt;Jetzt installieren...&lt;/a&gt;&lt;/alert&gt;
                 &lt;alert ng-if="!newVersion" ng-hide="msgClose" close="$parent.msgClose=true" class="info radius"&gt;&lt;i class="fa fa-check fa-margin"&gt;&lt;/i&gt;Sie verfügen bereits über die neueste Version.&lt;/alert&gt;
               &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div ng-if="newVersion" class="row"&gt;
+              &lt;div class="small-4 columns"&gt;&lt;strong&gt;Name des Skins&lt;/strong&gt;&lt;/div&gt;
+              &lt;div class="small-4 columns"&gt;&lt;strong&gt;Änderungsdatum&lt;/strong&gt;&lt;/div&gt;
+              &lt;div class="small-4 columns"&gt;&lt;strong&gt;Aktualisierungsstatus&lt;/strong&gt;&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div ng-if="newVersion" ng-repeat="skin in release.skins" class="row"&gt;
+              &lt;div class="small-4 columns"&gt;{{skin.name}}&lt;/div&gt;
+              &lt;div class="small-4 columns"&gt;{{skin.update | date: 'dd.MM.yyyy HH:mm'}}&lt;/div&gt;
+              &lt;div class="small-4 columns"&gt;{{updateStatus(skin.status)}}&lt;/div&gt;
             &lt;/div&gt;
           &lt;/fieldset&gt;
         &lt;/form&gt;
@@ -333,8 +335,7 @@
 </content>
 </skin>
 <!-- Skin: Site.page -->
-<skin>
-<key>Site.page</key>
+<skin key="Site.page" lastupdate="2015-04-17T11:52:41.959Z" crc="3057618345">
 <content>
 &lt;!DOCTYPE html&gt;
 &lt;html lang="de-DE" ng-app="f5SkinApp" ng-controller="F5SkinController" class="no-js"&gt;
@@ -363,7 +364,7 @@
     &lt;link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"&gt;
     &lt;script src="http://static.twoday.net/cdn/files/modernizr-custom-min-js.js"&gt;&lt;/script&gt;
     &lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"&gt;&lt;/script&gt;
-    &lt;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"&gt;&lt;/script&gt;
+    &lt;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"&gt;&lt;/script&gt;
     &lt;script src="https://googledrive.com/host/0B87rILW4RVIJdzJiMW5WRUdfalE/f5skin2day/head.js"&gt;&lt;/script&gt;&lt;% site.skin name="skinStyles" %&gt;&lt;% site.skin name="coreInfo" %&gt;
   &lt;/head&gt;
   &lt;body ng-class="[param.format.body.class]" ng-style="param.format.body.style"&gt;
@@ -475,8 +476,7 @@
 </content>
 </skin>
 <!-- Skin: Site.skinStyles -->
-<skin>
-<key>Site.skinStyles</key>
+<skin key="Site.skinStyles" lastupdate="2015-04-09T11:25:09.223Z" crc="2847975326">
 <content>
 &lt;style&gt;
   /* Topbar overrides */
@@ -493,8 +493,7 @@
 </content>
 </skin>
 <!-- Skin: Site.stdPreferences -->
-<skin>
-<key>Site.stdPreferences</key>
+<skin key="Site.stdPreferences" lastupdate="2015-04-13T13:33:25.634Z" crc="4136627646">
 <content>
 &lt;div id="stdPreferences" style="display:none"&gt;
   {
@@ -620,8 +619,7 @@
 </content>
 </skin>
 <!-- Skin: Site.style -->
-<skin>
-<key>Site.style</key>
+<skin key="Site.style" lastupdate="2015-03-20T09:03:41.054Z" crc="3058733963">
 <content>
 /* Integrated CSS file (will be compiled to main.css by the Twoday application) */
 &lt;% site.skin name="cssNormalize" %&gt;
@@ -631,8 +629,7 @@
 </content>
 </skin>
 <!-- Skin: Site.usrPreferences -->
-<skin>
-<key>Site.usrPreferences</key>
+<skin key="Site.usrPreferences" lastupdate="2015-03-28T15:48:17.371Z" crc="1111306195">
 <content>
 &lt;!--
 This skin will hold the user preferences based on the user's layout customization.

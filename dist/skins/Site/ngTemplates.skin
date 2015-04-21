@@ -191,7 +191,7 @@
               </div>
               <div class="small-4 columns">
                 <label>Datum der letzten Prüfung</label>
-                <div id="dtLastCheck">{{input.update.lastCheck | date: 'dd.MM.yyyy hh:mm'}}</div>
+                <div id="dtLastCheck">{{input.update.lastCheck | date: 'dd.MM.yyyy HH:mm'}}</div>
               </div>
               <div class="small-4 columns">
                 <label>Datum der nächsten Prüfung</label>
@@ -199,10 +199,20 @@
               </div>
             </div>
             <div class="row">
-              <div class="small-12 columns"><a href="" ng-show="msgClose" ng-click="checkForUpdate()" class="button small radius secondary"><i class="fa fa-cloud-download fa-margin"></i>Jetzt auf mögliche Aktualisierung prüfen</a>
-                <alert ng-if="newVersion" ng-hide="msgClose" close="$parent.msgClose=true" class="warning radius"><i class="fa fa-info-circle fa-margin"></i>Es existiert eine neuere Version {{version}} vom {{releaseDate | date: "dd.MM.yyyy"}}.<a href="" ng-click="$parent.$parent.downloadRelease()" class="button tiny radius secondary left15 bottom0"><i class="fa fa-cloud-download fa-margin"></i>Jetzt installieren...</a></alert>
+              <div class="small-12 columns"><a href="" ng-show="msgClose" ng-click="checkForUpdate()" class="button small radius secondary"><i class="fa fa-refresh fa-margin" ng-class="{'fa-spin':isChecking}"></i>Jetzt auf mögliche Aktualisierung prüfen</a>
+                <alert ng-if="newVersion" ng-hide="msgClose" close="$parent.msgClose=true" class="warning radius"><i class="fa fa-info-circle fa-margin"></i>Es existiert eine neuere Version {{release.version}} vom {{release.releasedate | date: "dd.MM.yyyy"}}.<a href="" ng-click="$parent.$parent.downloadRelease()" class="button tiny radius secondary left15 bottom0"><i class="fa fa-cloud-download fa-margin"></i>Jetzt installieren...</a></alert>
                 <alert ng-if="!newVersion" ng-hide="msgClose" close="$parent.msgClose=true" class="info radius"><i class="fa fa-check fa-margin"></i>Sie verfügen bereits über die neueste Version.</alert>
               </div>
+            </div>
+            <div ng-if="newVersion" class="row">
+              <div class="small-4 columns"><strong>Name des Skins</strong></div>
+              <div class="small-4 columns"><strong>Änderungsdatum</strong></div>
+              <div class="small-4 columns"><strong>Aktualisierungsstatus</strong></div>
+            </div>
+            <div ng-if="newVersion" ng-repeat="skin in release.skins" class="row">
+              <div class="small-4 columns">{{skin.name}}</div>
+              <div class="small-4 columns">{{skin.update | date: 'dd.MM.yyyy HH:mm'}}</div>
+              <div class="small-4 columns">{{updateStatus(skin.status)}}</div>
             </div>
           </fieldset>
         </form>

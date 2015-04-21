@@ -10,8 +10,10 @@ bodyclass();
 //--- Pimp old Twoday classes, e.g. button in a .message
 utils.pimpClasses();
 
-//--- Set up the Angular app and controller
-var f5SkinApp = angular.module("f5SkinApp", ['mm.foundation']);
+//--- Set up the Angular app, Modernizr constant and run the FastClick js
+var f5SkinApp = angular.module("f5SkinApp", ['mm.foundation'])
+    .constant('Modernizr', window.Modernizr)
+    .run( function(){ window.FastClick.attach(document.body); });
 
 f5SkinApp.factory("Preferences", function(){
 //- Consolidate standardPreferences, userPreferences and generic core info from Twoday macros
@@ -264,11 +266,12 @@ f5SkinApp.controller("tmplAktualisierung", ["$scope", "$filter", "$http", "Prefe
     $scope.input = preferences;
 
     $scope.msgClose = true;
+    $scope.isChecking = false;
 
     $scope.dateNextCheck = function(){
         return ($scope.input.update.gap<0
             ? "Keine Prüfung"
-            : $filter('date')(new Date($scope.input.update.lastCheck.getTime()+$scope.input.update.gap), "dd.MM.yyyy hh:mm"));
+            : $filter('date')(new Date($scope.input.update.lastCheck.getTime()+$scope.input.update.gap), "dd.MM.yyyy HH:mm"));
     };
 
     $scope.updateChecks = [
@@ -285,19 +288,26 @@ f5SkinApp.controller("tmplAktualisierung", ["$scope", "$filter", "$http", "Prefe
     };
 
     $scope.checkForUpdate = function(){
+        $scope.isChecking = true;
         $http.get($scope.input.update.releaseUrl+"releaseinfo.xml")
           .success(function(data, status, headers, config){
-                var $data = $(data);
-                $scope.version = $data.find("version").text();
-                $scope.releaseDate = new Date(Date.parse($data.find("releasedate").text()));
-                $scope.newVersion = (utils.parseVersion($scope.version)>utils.parseVersion($scope.input.update.version));
+                $scope.release = utils.getRelease($(data));
+                $scope.newVersion = (utils.parseVersion($scope.release.version)>utils.parseVersion($scope.input.update.version));
                 $scope.msgClose = false;
+                $scope.input.update.lastCheck = new Date();
+                $scope.isChecking = false;
           })
           .error(function(data, status, headers, config){
+                $scope.isChecking = false;
           });
     };
 
+    $scope.updateStatus = function(skinStatus){
+        var updStatus = ["nicht geprüft", "bleibt unverändert", "wird aktualisiert", "erfolgreich aktualisiert"];
+        return updStatus[skinStatus || 0];
+    };
+
     $scope.downloadRelease = function(){
-        alert("Download started!");
-    }
+    };
+
 }]);

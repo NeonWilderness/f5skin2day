@@ -1,6 +1,5 @@
 <!-- Skin: Site.stdPreferences -->
-<skin>
-<key>Site.stdPreferences</key>
+<skin key="Site.stdPreferences" lastupdate="2015-04-13T13:33:25.634Z" crc="4136627646">
 <content>
 &lt;div id="stdPreferences" style="display:none"&gt;
   {

@@ -11,13 +11,21 @@ form(ng-controller="tmplAktualisierung")
                     li(ng-repeat="frequency in updateChecks"): a(ng-click="useFrequency($index)") {{frequency.check}}
             .small-4.columns
                 label Datum der letzten Prüfung
-                #dtLastCheck {{input.update.lastCheck | date: 'dd.MM.yyyy hh:mm'}}
+                #dtLastCheck {{input.update.lastCheck | date: 'dd.MM.yyyy HH:mm'}}
             .small-4.columns
                 label Datum der nächsten Prüfung
                 #dtNextCheck {{dateNextCheck()}}
         .row
             .small-12.columns
-                a.button.small.radius.secondary(href="", ng-show="msgClose", ng-click="checkForUpdate()") <i class="fa fa-cloud-download fa-margin"></i>Jetzt auf mögliche Aktualisierung prüfen
-                alert.warning.radius(ng-if="newVersion", ng-hide="msgClose" close="$parent.msgClose=true") <i class="fa fa-info-circle fa-margin"></i>Es existiert eine neuere Version {{version}} vom {{releaseDate | date: "dd.MM.yyyy"}}.
+                a.button.small.radius.secondary(href="", ng-show="msgClose", ng-click="checkForUpdate()") <i class="fa fa-refresh fa-margin" ng-class="{'fa-spin':isChecking}"></i>Jetzt auf mögliche Aktualisierung prüfen
+                alert.warning.radius(ng-if="newVersion", ng-hide="msgClose" close="$parent.msgClose=true") <i class="fa fa-info-circle fa-margin"></i>Es existiert eine neuere Version {{release.version}} vom {{release.releasedate | date: "dd.MM.yyyy"}}.
                     a.button.tiny.radius.secondary.left15.bottom0(href="", ng-click="$parent.$parent.downloadRelease()") <i class="fa fa-cloud-download fa-margin"></i>Jetzt installieren...
                 alert.info.radius(ng-if="!newVersion", ng-hide="msgClose" close="$parent.msgClose=true") <i class="fa fa-check fa-margin"></i>Sie verfügen bereits über die neueste Version.
+        .row(ng-if="newVersion")
+            .small-4.columns: strong Name des Skins
+            .small-4.columns: strong Änderungsdatum
+            .small-4.columns: strong Aktualisierungsstatus
+        .row(ng-if="newVersion", ng-repeat="skin in release.skins")
+            .small-4.columns {{skin.name}}
+            .small-4.columns {{skin.update | date: 'dd.MM.yyyy HH:mm'}}
+            .small-4.columns {{updateStatus(skin.status)}}

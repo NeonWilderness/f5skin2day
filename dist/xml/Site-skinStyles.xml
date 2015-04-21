@@ -1,6 +1,5 @@
 <!-- Skin: Site.skinStyles -->
-<skin>
-<key>Site.skinStyles</key>
+<skin key="Site.skinStyles" lastupdate="2015-04-09T11:25:09.223Z" crc="2847975326">
 <content>
 &lt;style&gt;
   /* Topbar overrides */
