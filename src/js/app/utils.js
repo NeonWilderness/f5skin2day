@@ -1,3 +1,4 @@
+"use strict";
 require('jquery');
 module.exports = {
 
@@ -72,7 +73,10 @@ module.exports = {
                 skinName = self.attr("key"),
                 dateSourceWasUpdated = new Date(Date.parse(self.attr("lastupdate"))),
                 skinCRC = self.attr("crc"),
-                skinContent = self.find("content");
+                skinContent = self.find("content").text()
+                    .replace(/&amp;/g, "&")
+                    .replace(/&lt;/g, "<")
+                    .replace(/&gt;/g, ">");
             release.skins.push({
                 name: skinName,
                 update: dateSourceWasUpdated,

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?><layout>
 <version>0.1.1</version>
 <author>NeonWilderness (https://github.com/NeonWilderness)</author>
-<releasedate>Tue Apr 21 2015 16:27:36 GMT+0200 (Mitteleuropäische Sommerzeit)</releasedate>
+<releasedate>Wed Apr 22 2015 04:21:05 GMT+0200 (Mitteleuropäische Sommerzeit)</releasedate>
 <!-- Skin: Site.browsertest -->
 <skin key="Site.browsertest" lastupdate="2015-03-20T15:15:09.354Z" crc="2581352634">
 <content>
@@ -107,7 +107,7 @@
 </content>
 </skin>
 <!-- Skin: Site.ngTemplates -->
-<skin key="Site.ngTemplates" lastupdate="2015-04-12T11:52:51.718Z" crc="2187210970">
+<skin key="Site.ngTemplates" lastupdate="2015-04-12T11:52:51.718Z" crc="3338328937">
 <content>
 &lt;script id="customizeBlogHtml" type="text/ng-template"&gt;
   &lt;div id="customizeBlog"&gt;
@@ -311,8 +311,20 @@
             &lt;/div&gt;
             &lt;div class="row"&gt;
               &lt;div class="small-12 columns"&gt;&lt;a href="" ng-show="msgClose" ng-click="checkForUpdate()" class="button small radius secondary"&gt;&lt;i class="fa fa-refresh fa-margin" ng-class="{'fa-spin':isChecking}"&gt;&lt;/i&gt;Jetzt auf mögliche Aktualisierung prüfen&lt;/a&gt;
-                &lt;alert ng-if="newVersion" ng-hide="msgClose" close="$parent.msgClose=true" class="warning radius"&gt;&lt;i class="fa fa-info-circle fa-margin"&gt;&lt;/i&gt;Es existiert eine neuere Version {{release.version}} vom {{release.releasedate | date: "dd.MM.yyyy"}}.&lt;a href="" ng-click="$parent.$parent.downloadRelease()" class="button tiny radius secondary left15 bottom0"&gt;&lt;i class="fa fa-cloud-download fa-margin"&gt;&lt;/i&gt;Jetzt installieren...&lt;/a&gt;&lt;/alert&gt;
-                &lt;alert ng-if="!newVersion" ng-hide="msgClose" close="$parent.msgClose=true" class="info radius"&gt;&lt;i class="fa fa-check fa-margin"&gt;&lt;/i&gt;Sie verfügen bereits über die neueste Version.&lt;/alert&gt;
+                &lt;alert ng-if="releaseLoaded &amp;amp;&amp;amp; newVersion" ng-hide="msgClose" close="$parent.msgClose=true" class="warning radius"&gt;&lt;i class="fa fa-info-circle fa-margin"&gt;&lt;/i&gt;Es existiert eine neuere Version {{release.version}} vom {{release.releasedate | date: "dd.MM.yyyy"}}.&lt;a href="" ng-click="$parent.$parent.installRelease()" class="button tiny radius secondary left15 bottom0"&gt;&lt;i class="fa fa-cloud-download fa-margin"&gt;&lt;/i&gt;Jetzt installieren...&lt;/a&gt;&lt;/alert&gt;
+                &lt;alert ng-if="releaseLoaded &amp;amp;&amp;amp; !newVersion" ng-hide="msgClose" close="$parent.msgClose=true" class="info radius"&gt;&lt;i class="fa fa-check fa-margin"&gt;&lt;/i&gt;Sie verfügen bereits über die neueste Version.&lt;/alert&gt;
+                &lt;alert ng-if="!releaseLoaded" ng-hide="msgClose" close="$parent.msgClose=true" class="error radius"&gt;&lt;i class="fa fa-exclamation-triangle fa-margin"&gt;&lt;/i&gt;Die Releasedaten konnten nicht geladen werden.&lt;/alert&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div ng-if="newVersion" class="row"&gt;
+              &lt;div class="small-4 columns lightgrey"&gt;
+                &lt;label&gt;Version&lt;/label&gt;{{release.version}}
+              &lt;/div&gt;
+              &lt;div class="small-4 columns lightgrey"&gt;
+                &lt;label&gt;Freigegeben am&lt;/label&gt;{{release.releasedate | date: 'dd.MM.yyyy HH:mm'}}
+              &lt;/div&gt;
+              &lt;div class="small-4 columns lightgrey"&gt;
+                &lt;label&gt;Autor&lt;/label&gt;{{release.author}}
               &lt;/div&gt;
             &lt;/div&gt;
             &lt;div ng-if="newVersion" class="row"&gt;

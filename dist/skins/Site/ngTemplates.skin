@@ -200,8 +200,20 @@
             </div>
             <div class="row">
               <div class="small-12 columns"><a href="" ng-show="msgClose" ng-click="checkForUpdate()" class="button small radius secondary"><i class="fa fa-refresh fa-margin" ng-class="{'fa-spin':isChecking}"></i>Jetzt auf mögliche Aktualisierung prüfen</a>
-                <alert ng-if="newVersion" ng-hide="msgClose" close="$parent.msgClose=true" class="warning radius"><i class="fa fa-info-circle fa-margin"></i>Es existiert eine neuere Version {{release.version}} vom {{release.releasedate | date: "dd.MM.yyyy"}}.<a href="" ng-click="$parent.$parent.downloadRelease()" class="button tiny radius secondary left15 bottom0"><i class="fa fa-cloud-download fa-margin"></i>Jetzt installieren...</a></alert>
-                <alert ng-if="!newVersion" ng-hide="msgClose" close="$parent.msgClose=true" class="info radius"><i class="fa fa-check fa-margin"></i>Sie verfügen bereits über die neueste Version.</alert>
+                <alert ng-if="releaseLoaded &amp;&amp; newVersion" ng-hide="msgClose" close="$parent.msgClose=true" class="warning radius"><i class="fa fa-info-circle fa-margin"></i>Es existiert eine neuere Version {{release.version}} vom {{release.releasedate | date: "dd.MM.yyyy"}}.<a href="" ng-click="$parent.$parent.installRelease()" class="button tiny radius secondary left15 bottom0"><i class="fa fa-cloud-download fa-margin"></i>Jetzt installieren...</a></alert>
+                <alert ng-if="releaseLoaded &amp;&amp; !newVersion" ng-hide="msgClose" close="$parent.msgClose=true" class="info radius"><i class="fa fa-check fa-margin"></i>Sie verfügen bereits über die neueste Version.</alert>
+                <alert ng-if="!releaseLoaded" ng-hide="msgClose" close="$parent.msgClose=true" class="error radius"><i class="fa fa-exclamation-triangle fa-margin"></i>Die Releasedaten konnten nicht geladen werden.</alert>
+              </div>
+            </div>
+            <div ng-if="newVersion" class="row">
+              <div class="small-4 columns lightgrey">
+                <label>Version</label>{{release.version}}
+              </div>
+              <div class="small-4 columns lightgrey">
+                <label>Freigegeben am</label>{{release.releasedate | date: 'dd.MM.yyyy HH:mm'}}
+              </div>
+              <div class="small-4 columns lightgrey">
+                <label>Autor</label>{{release.author}}
               </div>
             </div>
             <div ng-if="newVersion" class="row">

@@ -1,6 +1,8 @@
 require('jquery');
 var angular = require('angular'),
     background = require('./background.js'),
+    buffer = require('buffer'),
+    crc32 = require('buffer-crc32'),
     bodyclass = require('./bodyclass.js'),
     utils = require('./utils.js');
 
@@ -289,6 +291,7 @@ f5SkinApp.controller("tmplAktualisierung", ["$scope", "$filter", "$http", "Prefe
 
     $scope.checkForUpdate = function(){
         $scope.isChecking = true;
+        $scope.releaseLoaded = true;
         $http.get($scope.input.update.releaseUrl+"releaseinfo.xml")
           .success(function(data, status, headers, config){
                 $scope.release = utils.getRelease($(data));
@@ -298,16 +301,57 @@ f5SkinApp.controller("tmplAktualisierung", ["$scope", "$filter", "$http", "Prefe
                 $scope.isChecking = false;
           })
           .error(function(data, status, headers, config){
-                $scope.isChecking = false;
+                $scope.isChecking = $scope.releaseLoaded = $scope.msgClose = false;
           });
     };
 
     $scope.updateStatus = function(skinStatus){
-        var updStatus = ["nicht geprüft", "bleibt unverändert", "wird aktualisiert", "erfolgreich aktualisiert"];
+        var updStatus = ["nicht geprüft", "bleibt unverändert", "wird aktualisiert",
+                         "wurde erfolgreich aktualisiert", "Aktualisierung fehlgeschlagen"];
         return updStatus[skinStatus || 0];
     };
 
-    $scope.downloadRelease = function(){
+    $scope.installRelease = function(){
+        var skinEditUrl = $scope.input.layoutUrl+"skins/edit?key=";
+        $.each( $scope.release.skins, function(){
+            var skin = this;
+            $http.get( skinEditUrl+skin.name )
+                .success(function(data, status, headers, config){
+                    var $form = $(data).find("form").eq(0);
+                    var skinCode = $form.find("textarea[name=skin]").html();
+                    var skinCRC = crc32.unsigned(buffer.Buffer(skinCode)).toString();
+                    skin.status = (skin.crc32===skinCRC ? 1 : 2);
+                    console.log(skin.name, "rel:", skin.crc32, "skn:", skinCRC, "status:", skin.status);
+                    if (skin.status===2){
+                        $http({
+                            method: $form.attr("method"),
+                            url: $form.attr("action"),
+                            headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'},
+                            data: $.param({
+                                secretKey: $form.find("input[name=secretKey]").val(),
+                                action: $form.find("input[name=action]").val(),
+                                key: $form.find("input[name=key]").val(),
+                                skinset: $form.find("input[name=skinset]").val(),
+                                module: $form.find("input[name=module]").val(),
+                                title: $form.find("input[name=title]").val(),
+                                description: $form.find("textarea[name=description]").html(),
+                                skin: skin.content,
+                                save: $form.find("input[name=save]").val()
+                            })
+                        })
+                        .success(function(data, status, headers, config){
+                            skin.status = 3;
+                        })
+                        .error(function(data, status, headers, config){
+                            skin.status = 4;
+                        });
+                    }
+                })
+                .error(function(data, status, headers, config){
+                    skin.status = 4;
+                });
+
+        });
     };
 
 }]);

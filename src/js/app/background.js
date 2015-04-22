@@ -1,3 +1,4 @@
+"use strict";
 require('jquery');
 /**
  * Sets the appropriate background image based on the actual hour of the day and user defined image items/slots

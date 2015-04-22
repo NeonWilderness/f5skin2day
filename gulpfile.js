@@ -5,8 +5,10 @@ var crc32 = require('buffer-crc32');
 var del = require('del');
 var fs = require('fs');
 var gulp = require('gulp');
+var gulpif = require('gulp-if');
 var gutil = require('gulp-util');
 var jade = require('gulp-jade');
+var jshint = require('gulp-jshint');
 var path = require('path');
 var pkg = require('./package.json');
 var rename = require('gulp-rename');
@@ -15,10 +17,13 @@ var sass = require('gulp-sass');
 var save = require('gulp-save');
 var source = require('vinyl-source-stream');
 var sourcemaps = require('gulp-sourcemaps');
+var stylish = require('jshint-stylish');
 var tap = require('gulp-tap');
 var trim = require('gulp-trim');
 var uglify = require('gulp-uglify');
 var zip = require("gulp-zip");
+
+var production = false;
 
 gulp.task( 'default', ['headjs', 'bodyjs', 'zip', 'deploy'], function(){
 });
@@ -161,15 +166,20 @@ gulp.task( "bodyjs", function(){
 
     var b = browserify({
         entries: './src/js/app/app.js',
-        debug: true
+        debug: !production,
+        cache: {}
     });
+
+    gulp.src(['./src/js/app/*.js'])
+        .pipe(jshint('.jshintrc'))
+        .pipe(jshint.reporter(stylish));
 
     return b.bundle()
         .pipe(source('app.js'))
-        .pipe(buffer())
-        .pipe(sourcemaps.init({loadMaps: true}))
-        .pipe(uglify()).on('error', gutil.log)
-        .pipe(sourcemaps.write('./'))
+        .pipe(gulpif(production, buffer()))
+        .pipe(gulpif(production, sourcemaps.init({loadMaps: true})))
+        .pipe(gulpif(production, uglify())).on('error', gutil.log)
+        .pipe(gulpif(production, sourcemaps.write('./')))
         .pipe(gulp.dest('dist/js/'));
 });
 

@@ -18,9 +18,20 @@ form(ng-controller="tmplAktualisierung")
         .row
             .small-12.columns
                 a.button.small.radius.secondary(href="", ng-show="msgClose", ng-click="checkForUpdate()") <i class="fa fa-refresh fa-margin" ng-class="{'fa-spin':isChecking}"></i>Jetzt auf mögliche Aktualisierung prüfen
-                alert.warning.radius(ng-if="newVersion", ng-hide="msgClose" close="$parent.msgClose=true") <i class="fa fa-info-circle fa-margin"></i>Es existiert eine neuere Version {{release.version}} vom {{release.releasedate | date: "dd.MM.yyyy"}}.
-                    a.button.tiny.radius.secondary.left15.bottom0(href="", ng-click="$parent.$parent.downloadRelease()") <i class="fa fa-cloud-download fa-margin"></i>Jetzt installieren...
-                alert.info.radius(ng-if="!newVersion", ng-hide="msgClose" close="$parent.msgClose=true") <i class="fa fa-check fa-margin"></i>Sie verfügen bereits über die neueste Version.
+                alert.warning.radius(ng-if="releaseLoaded && newVersion", ng-hide="msgClose" close="$parent.msgClose=true") <i class="fa fa-info-circle fa-margin"></i>Es existiert eine neuere Version {{release.version}} vom {{release.releasedate | date: "dd.MM.yyyy"}}.
+                    a.button.tiny.radius.secondary.left15.bottom0(href="", ng-click="$parent.$parent.installRelease()") <i class="fa fa-cloud-download fa-margin"></i>Jetzt installieren...
+                alert.info.radius(ng-if="releaseLoaded && !newVersion", ng-hide="msgClose" close="$parent.msgClose=true") <i class="fa fa-check fa-margin"></i>Sie verfügen bereits über die neueste Version.
+                alert.error.radius(ng-if="!releaseLoaded", ng-hide="msgClose" close="$parent.msgClose=true") <i class="fa fa-exclamation-triangle fa-margin"></i>Die Releasedaten konnten nicht geladen werden.
+        .row(ng-if="newVersion")
+            .small-4.columns.lightgrey
+                label Version
+                | {{release.version}}
+            .small-4.columns.lightgrey
+                label Freigegeben am
+                | {{release.releasedate | date: 'dd.MM.yyyy HH:mm'}}
+            .small-4.columns.lightgrey
+                label Autor
+                | {{release.author}}
         .row(ng-if="newVersion")
             .small-4.columns: strong Name des Skins
             .small-4.columns: strong Änderungsdatum
