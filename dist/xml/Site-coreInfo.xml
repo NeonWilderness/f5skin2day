@@ -1,5 +1,5 @@
 <!-- Skin: Site.coreInfo -->
-<skin key="Site.coreInfo" lastupdate="2015-04-15T14:01:26.117Z" crc="584613826">
+<skin key="Site.coreInfo" lastupdate="2015-04-15T14:01:26.117Z" crc="2043959699">
 <content>
 &lt;div id="loginStatus" class="hide"&gt;&lt;% site.loginstatus %&gt;&lt;/div&gt;
 &lt;script type="text/javascript"&gt;

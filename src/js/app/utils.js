@@ -73,16 +73,17 @@ module.exports = {
                 skinName = self.attr("key"),
                 dateSourceWasUpdated = new Date(Date.parse(self.attr("lastupdate"))),
                 skinCRC = self.attr("crc"),
-                skinContent = self.find("content").text()
+                skinContent = self.find("content").text();
+/*              skinContent = self.find("content").text()
                     .replace(/&amp;/g, "&")
                     .replace(/&lt;/g, "<")
-                    .replace(/&gt;/g, ">");
+                    .replace(/&gt;/g, ">"); */
             release.skins.push({
                 name: skinName,
                 update: dateSourceWasUpdated,
                 crc32: skinCRC,
-                content: skinContent,
-                status: null
+                content: $.trim(skinContent),
+                status: "unchecked"
             });
         });
         return release;

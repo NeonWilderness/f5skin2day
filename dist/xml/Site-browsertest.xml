@@ -1,5 +1,5 @@
 <!-- Skin: Site.browsertest -->
-<skin key="Site.browsertest" lastupdate="2015-03-20T15:15:09.354Z" crc="2581352634">
+<skin key="Site.browsertest" lastupdate="2015-03-20T15:15:09.354Z" crc="1403166455">
 <content>
 &lt;script type="text/javascript"&gt;
   var $buoop = {c:2};

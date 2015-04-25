@@ -1,5 +1,6 @@
 var browserify = require('browserify');
 var buffer = require('vinyl-buffer');
+var changed = require('gulp-changed');
 var concat = require('gulp-concat');
 var crc32 = require('buffer-crc32');
 var del = require('del');
@@ -31,9 +32,8 @@ gulp.task( 'default', ['headjs', 'bodyjs', 'zip', 'deploy'], function(){
 //--------- Convert scss files to css
 gulp.task( 'scss2css', function(){
 
-    del([ './src/css/layout.css' ]);
-
     return gulp.src('./src/scss/*.scss')
+        .pipe(changed('src/css', {extension: '.css'}))
         .pipe(sass({ outputStyle: 'compressed' }).on('error', gutil.log))
         .pipe(gulp.dest('src/css'));
 });
@@ -41,25 +41,35 @@ gulp.task( 'scss2css', function(){
 //--------- Convert css files to site skins: i.e. "foundation.css" becomes "Site/cssFoundation.skin"
 gulp.task( 'css2skin', ['scss2css'], function(){
 
-    del([ './dist/skins/Site/*' ]);
+    del([ './dist/skins/Site/*', './dist/xml/*' ]);
 
     return gulp.src('./src/css/*.css')
-        .pipe(tap(function(file, t){
-            file.contents = Buffer.concat([
-                new Buffer('/* CRC32: '+crc32.unsigned(file.contents)+' */\n'), file.contents
-            ]);
-        }))
         .pipe(rename(function(path){ // e.g. "foundation.css"
             path.basename = "css"+path.basename.substr(0,1).toUpperCase()+path.basename.substr(1); // cssFoundation
             path.extname = ".skin";
         }))
-        .pipe(gulp.dest('dist/skins/Site'));
+        .pipe(gulp.dest('dist/skins/Site'))
+        .pipe(tap(function(file, t){
+            var parsedPath = path.parse(file.path),
+                fileCRC = crc32.unsigned(file.contents).toString();
+            parsedPath.name = "Site-"+parsedPath.name;
+            parsedPath.ext = ".xml";
+            file.path = path.join(file.base, parsedPath.name+parsedPath.ext);
+            fileName = parsedPath.name.replace("-",".");
+            file.contents = Buffer.concat([
+                new Buffer('<!-- Skin: '+fileName+' -->\n<skin key="'+
+                    fileName+'" lastupdate="'+file.stat.mtime.toJSON()+'" crc="'+fileCRC+'">\n<content>\n'),
+                    file.contents, new Buffer('\n</content>\n</skin>')
+            ]);
+
+        }))
+        .pipe(gulp.dest('dist/xml'));
 });
 
 //--------- Convert jade template files to skins: i.e. "Site-page.jade" becomes "Site/page.skin"
 gulp.task( 'jade2skin', ['css2skin'], function(){
 
-    del([ './dist/xml/*' ]); // delete all previously generated xml files
+    pkgVersion = pkg.version; // global var package.version will be injected into stdPreferences.jade
 
     gulp.src('./src/preferences.jade')
         .pipe(jade({pretty:true}))
@@ -67,15 +77,12 @@ gulp.task( 'jade2skin', ['css2skin'], function(){
         .pipe(gulp.dest('dist'));
 
     return gulp.src('./src/skins/*.jade')
-        .pipe(tap(function(file, t){
-            var fileStat = fs.statSync(file.path),
-                fileLastModified = fileStat.mtime.toJSON().replace(/:/g, "#"),
-                parsedPath = path.parse(file.path);
-            file.path = path.join(file.base, fileLastModified+parsedPath.base);
-        }))
-        .pipe(jade({pretty:true})) // Site-page.jade
+        .pipe(jade({pretty:true, globals:['pkgVersion']})) // Site-page.jade
         .pipe(trim()) // trim any whitespace content at the beginning/end
         .pipe(save('before-wrap')) // save current stream
+        .pipe(tap(function(file, t){
+            file.crc32 = crc32.unsigned(file.contents).toString();
+        }))
         .pipe(replace({
             patterns: [
                 { match: '&', replacement: '&amp;' },
@@ -86,19 +93,15 @@ gulp.task( 'jade2skin', ['css2skin'], function(){
         }))
         .pipe(tap(function(file, t){
 
-            var parsedPath = path.parse(file.path),
-                fileLastModified = parsedPath.name.substr(0,24).replace(/#/g, ":"),
-                fileName = parsedPath.name.substr(24),
-                fileCRC = crc32.unsigned(file.contents).toString();
-            parsedPath.name = fileName;
+            var parsedPath = path.parse(file.path);
             parsedPath.ext = ".xml";
 
             file.path = path.join(file.base, parsedPath.name+parsedPath.ext);
 
-            fileName = fileName.replace("-",".");
+            fileName = parsedPath.name.replace("-",".");
             file.contents = Buffer.concat([
                 new Buffer('<!-- Skin: '+fileName+' -->\n<skin key="'+
-                    fileName+'" lastupdate="'+fileLastModified+'" crc="'+fileCRC+'">\n<content>\n'),
+                    fileName+'" lastupdate="'+file.stat.mtime.toJSON()+'" crc="'+file.crc32+'">\n<content>\n'),
                     file.contents, new Buffer('\n</content>\n</skin>')
             ]);
 
@@ -122,7 +125,7 @@ gulp.task("xml", ['jade2skin'], function(){
         .pipe(replace({
             patterns: [
                 { match: 'version', replacement: pkg.version },
-                { match: 'author',  replacement: pkg.author }
+                { match: 'author',  replacement: pkg.author.split(" ")[0] }
             ]
         }))
         .pipe(rename('releasehead.xml'))

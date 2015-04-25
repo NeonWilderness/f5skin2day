@@ -17,19 +17,19 @@ form(ng-controller="tmplAktualisierung")
                 #dtNextCheck {{dateNextCheck()}}
         .row
             .small-12.columns
-                a.button.small.radius.secondary(href="", ng-show="msgClose", ng-click="checkForUpdate()") <i class="fa fa-refresh fa-margin" ng-class="{'fa-spin':isChecking}"></i>Jetzt auf mögliche Aktualisierung prüfen
-                alert.warning.radius(ng-if="releaseLoaded && newVersion", ng-hide="msgClose" close="$parent.msgClose=true") <i class="fa fa-info-circle fa-margin"></i>Es existiert eine neuere Version {{release.version}} vom {{release.releasedate | date: "dd.MM.yyyy"}}.
-                    a.button.tiny.radius.secondary.left15.bottom0(href="", ng-click="$parent.$parent.installRelease()") <i class="fa fa-cloud-download fa-margin"></i>Jetzt installieren...
-                alert.info.radius(ng-if="releaseLoaded && !newVersion", ng-hide="msgClose" close="$parent.msgClose=true") <i class="fa fa-check fa-margin"></i>Sie verfügen bereits über die neueste Version.
+                a.button.small.radius.secondary(href="", ng-show="msgClose", ng-click="checkReleaseUpdate()") <i class="fa fa-refresh fa-margin" ng-class="{'fa-spin':isChecking}"></i>Jetzt auf mögliche Aktualisierung prüfen...
+                alert.warning.radius(ng-if!="releaseLoaded && newVersion", ng-hide="msgClose" close="$parent.msgClose=true") <i class="fa fa-info-circle fa-margin"></i>Es existiert eine neuere Version {{release.version}} vom {{release.releasedate | date: "dd.MM.yyyy"}}!
+                    a.button.tiny.radius.secondary.left15.bottom0(href="", ng-disabled="!$parent.$parent.releaseChecked", ng-click="$parent.$parent.installRelease()") <i class="fa fa-cloud-download fa-margin"></i>Jetzt installieren...
+                alert.info.radius(ng-if!="releaseLoaded && !newVersion", ng-hide="msgClose" close="$parent.msgClose=true") <i class="fa fa-check fa-margin"></i>Sie verfügen bereits über die neueste Version.
                 alert.error.radius(ng-if="!releaseLoaded", ng-hide="msgClose" close="$parent.msgClose=true") <i class="fa fa-exclamation-triangle fa-margin"></i>Die Releasedaten konnten nicht geladen werden.
-        .row(ng-if="newVersion")
-            .small-4.columns.lightgrey
+        .row.releaseheader(ng-if="newVersion")
+            .small-4.columns
                 label Version
                 | {{release.version}}
-            .small-4.columns.lightgrey
+            .small-4.columns
                 label Freigegeben am
                 | {{release.releasedate | date: 'dd.MM.yyyy HH:mm'}}
-            .small-4.columns.lightgrey
+            .small-4.columns
                 label Autor
                 | {{release.author}}
         .row(ng-if="newVersion")
@@ -40,3 +40,5 @@ form(ng-controller="tmplAktualisierung")
             .small-4.columns {{skin.name}}
             .small-4.columns {{skin.update | date: 'dd.MM.yyyy HH:mm'}}
             .small-4.columns {{updateStatus(skin.status)}}
+                i.fa.fa-check.left10.green(ng-if="skin.status==='updated'")
+                i.fa.fa-times.left10.red(ng-if="skin.status.substr(0,5)==='error'")

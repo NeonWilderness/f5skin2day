@@ -49,7 +49,6 @@ span[ng-click] { cursor: pointer; }
 .blue { color: #008cba; }
 .red { color: #f04124; }
 .yellow { color: #f9c922; }
-.greybg { background-color: #e7e7e7; }
 .top20 { margin-top: 20px; }
 .bottom0 { margin-bottom: 0; }
 .bottom15 { margin-bottom: 15px; }
@@ -190,4 +189,5 @@ span[ng-click] { cursor: pointer; }
   #chkLoader { margin-top: 25px; }
   #btnLoader { margin-top: 18px; }
   #slotStatus { text-align: center; font-weight: normal; font-size: small; }
+  .releaseheader { border-top: 2px solid #eee; border-bottom: 2px solid #eee; margin: 10px 0; padding: 4px 0; }
 }

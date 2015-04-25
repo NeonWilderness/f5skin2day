@@ -1,5 +1,5 @@
 <!-- Skin: Site.page -->
-<skin key="Site.page" lastupdate="2015-04-17T11:52:41.959Z" crc="3057618345">
+<skin key="Site.page" lastupdate="2015-04-17T11:52:41.959Z" crc="2120197555">
 <content>
 &lt;!DOCTYPE html&gt;
 &lt;html lang="de-DE" ng-app="f5SkinApp" ng-controller="F5SkinController" class="no-js"&gt;

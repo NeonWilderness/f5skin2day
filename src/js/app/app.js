@@ -264,7 +264,7 @@ f5SkinApp.controller("tmplHintergrundbilderController", ["$scope", "Preferences"
 
 }]);
 
-f5SkinApp.controller("tmplAktualisierung", ["$scope", "$filter", "$http", "Preferences", function($scope, $filter, $http, preferences){
+f5SkinApp.controller("tmplAktualisierung", ["$scope", "$filter", "$http", "$q", "Preferences", function($scope, $filter, $http, $q, preferences){
     $scope.input = preferences;
 
     $scope.msgClose = true;
@@ -289,9 +289,76 @@ f5SkinApp.controller("tmplAktualisierung", ["$scope", "$filter", "$http", "Prefe
         $scope.input.update.gap = frequency.gap;
     };
 
-    $scope.checkForUpdate = function(){
+    $scope.synchronousSkinUpdate = function(index){
+        do { ++index; }
+        while (index<$scope.release.skins.length && $scope.release.skins[index].status !== "needsupdate");
+        if (index>=$scope.release.skins.length) return;
+        var skin = $scope.release.skins[index];
+        console.log("Index:", index, skin.name, skin.status);
+        $http.get( $scope.input.layoutUrl+"skins/edit?key="+skin.name )
+            .success(function(data){
+                var $form = $(data).find("form").eq(0);
+                $http({
+                    method: $form.attr("method"),
+                    url: $form.attr("action"),
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'},
+                    data: $.param({
+                        secretKey: $form.find("input[name=secretKey]").val(),
+                        action: $form.find("input[name=action]").val(),
+                        key: $form.find("input[name=key]").val(),
+                        skinset: $form.find("input[name=skinset]").val(),
+                        module: $form.find("input[name=module]").val(),
+                        title: $form.find("input[name=title]").val(),
+                        description: $form.find("textarea[name=description]").html(),
+                        skin: skin.content,
+                        save: $form.find("input[name=save]").val()
+                    })
+                })
+                .success(function(data){
+                    skin.status = "updated";
+                    $scope.synchronousSkinUpdate(index);
+                })
+                .error(function(data, status){
+                    skin.status = "error~"+status;
+                });
+            })
+            .error(function(data, status){
+                skin.status = "error~"+status;
+            });
+    };
+
+    $scope.checkSkinUpdate = function(){
+        var skinEditUrl = $scope.input.layoutUrl+"skins/edit?key=",
+            promises = [];
+        $.each( $scope.release.skins, function(){ promises.push( $http.get(skinEditUrl+this.name) ); });
+        $q.all(promises).then( function(results){ // success: all skins read
+            $.each( results, function(index, response){ // response = {config, data, headers, status, statusText}
+                var skin = $scope.release.skins[index];
+                var $form = $(response.data).find("form").eq(0);
+                var skinCode = $.trim($form.find("textarea[name=skin]").val());
+                var isSkinInitial = (skinCode.length === 0);
+                if (typeof $scope.input.update.overwrite[skin.name] !== "undefined"){
+                    switch($scope.input.update.overwrite[skin.name]){ // always, never
+                        case "always": skin.status = "needsupdate"; break;
+                        case "never":  skin.status = (isSkinInitial ? "needsupdate" : "skipped"); break;
+                    }
+                } else {
+                    var skinCRC = crc32.unsigned(buffer.Buffer(skinCode)).toString();
+                    skin.status = (skin.crc32 === skinCRC ? "isequal" : "needsupdate");
+                }
+                console.log("Index:", index, skin.name, isSkinInitial, "Rlse:", skin.content.length, "Blog:", skinCode.length,
+                    "R-crc:", skin.crc32, "B-crc:", skinCRC, skin.status);
+            });
+            $scope.releaseChecked = true;
+        }, function(results){ // error: at least one skin read failed
+            console.error("Error reading skins:", results);
+        });
+    };
+
+    $scope.checkReleaseUpdate = function(){
         $scope.isChecking = true;
         $scope.releaseLoaded = true;
+        $scope.releaseChecked = false;
         $http.get($scope.input.update.releaseUrl+"releaseinfo.xml")
           .success(function(data, status, headers, config){
                 $scope.release = utils.getRelease($(data));
@@ -299,6 +366,7 @@ f5SkinApp.controller("tmplAktualisierung", ["$scope", "$filter", "$http", "Prefe
                 $scope.msgClose = false;
                 $scope.input.update.lastCheck = new Date();
                 $scope.isChecking = false;
+                if ($scope.newVersion) $scope.checkSkinUpdate();
           })
           .error(function(data, status, headers, config){
                 $scope.isChecking = $scope.releaseLoaded = $scope.msgClose = false;
@@ -306,52 +374,20 @@ f5SkinApp.controller("tmplAktualisierung", ["$scope", "$filter", "$http", "Prefe
     };
 
     $scope.updateStatus = function(skinStatus){
-        var updStatus = ["nicht geprüft", "bleibt unverändert", "wird aktualisiert",
-                         "wurde erfolgreich aktualisiert", "Aktualisierung fehlgeschlagen"];
-        return updStatus[skinStatus || 0];
+        var updStatus = {
+                "unchecked":    "noch nicht geprüft",
+                "isequal":      "ist bereits aktuell",
+                "needsupdate":  "wird aktualisiert",
+                "updated":      "wurde erfolgreich aktualisiert",
+                "error":        "Aktualisierung fehlgeschlagen",
+                "skipped":      "Benutzerskin bleibt unverändert"
+            },
+            statParts = skinStatus.split("~");
+        return updStatus[statParts[0]]+(statParts.length>1 ? "->"+statParts[1] : "");
     };
 
     $scope.installRelease = function(){
-        var skinEditUrl = $scope.input.layoutUrl+"skins/edit?key=";
-        $.each( $scope.release.skins, function(){
-            var skin = this;
-            $http.get( skinEditUrl+skin.name )
-                .success(function(data, status, headers, config){
-                    var $form = $(data).find("form").eq(0);
-                    var skinCode = $form.find("textarea[name=skin]").html();
-                    var skinCRC = crc32.unsigned(buffer.Buffer(skinCode)).toString();
-                    skin.status = (skin.crc32===skinCRC ? 1 : 2);
-                    console.log(skin.name, "rel:", skin.crc32, "skn:", skinCRC, "status:", skin.status);
-                    if (skin.status===2){
-                        $http({
-                            method: $form.attr("method"),
-                            url: $form.attr("action"),
-                            headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'},
-                            data: $.param({
-                                secretKey: $form.find("input[name=secretKey]").val(),
-                                action: $form.find("input[name=action]").val(),
-                                key: $form.find("input[name=key]").val(),
-                                skinset: $form.find("input[name=skinset]").val(),
-                                module: $form.find("input[name=module]").val(),
-                                title: $form.find("input[name=title]").val(),
-                                description: $form.find("textarea[name=description]").html(),
-                                skin: skin.content,
-                                save: $form.find("input[name=save]").val()
-                            })
-                        })
-                        .success(function(data, status, headers, config){
-                            skin.status = 3;
-                        })
-                        .error(function(data, status, headers, config){
-                            skin.status = 4;
-                        });
-                    }
-                })
-                .error(function(data, status, headers, config){
-                    skin.status = 4;
-                });
-
-        });
+        $scope.synchronousSkinUpdate(-1);
     };
 
 }]);

@@ -1,5 +1,5 @@
 <!-- Skin: Site.ngTemplates -->
-<skin key="Site.ngTemplates" lastupdate="2015-04-12T11:52:51.718Z" crc="3338328937">
+<skin key="Site.ngTemplates" lastupdate="2015-04-25T14:20:16.795Z" crc="3947245004">
 <content>
 &lt;script id="customizeBlogHtml" type="text/ng-template"&gt;
   &lt;div id="customizeBlog"&gt;
@@ -202,20 +202,20 @@
               &lt;/div&gt;
             &lt;/div&gt;
             &lt;div class="row"&gt;
-              &lt;div class="small-12 columns"&gt;&lt;a href="" ng-show="msgClose" ng-click="checkForUpdate()" class="button small radius secondary"&gt;&lt;i class="fa fa-refresh fa-margin" ng-class="{'fa-spin':isChecking}"&gt;&lt;/i&gt;Jetzt auf mögliche Aktualisierung prüfen&lt;/a&gt;
-                &lt;alert ng-if="releaseLoaded &amp;amp;&amp;amp; newVersion" ng-hide="msgClose" close="$parent.msgClose=true" class="warning radius"&gt;&lt;i class="fa fa-info-circle fa-margin"&gt;&lt;/i&gt;Es existiert eine neuere Version {{release.version}} vom {{release.releasedate | date: "dd.MM.yyyy"}}.&lt;a href="" ng-click="$parent.$parent.installRelease()" class="button tiny radius secondary left15 bottom0"&gt;&lt;i class="fa fa-cloud-download fa-margin"&gt;&lt;/i&gt;Jetzt installieren...&lt;/a&gt;&lt;/alert&gt;
-                &lt;alert ng-if="releaseLoaded &amp;amp;&amp;amp; !newVersion" ng-hide="msgClose" close="$parent.msgClose=true" class="info radius"&gt;&lt;i class="fa fa-check fa-margin"&gt;&lt;/i&gt;Sie verfügen bereits über die neueste Version.&lt;/alert&gt;
+              &lt;div class="small-12 columns"&gt;&lt;a href="" ng-show="msgClose" ng-click="checkReleaseUpdate()" class="button small radius secondary"&gt;&lt;i class="fa fa-refresh fa-margin" ng-class="{'fa-spin':isChecking}"&gt;&lt;/i&gt;Jetzt auf mögliche Aktualisierung prüfen...&lt;/a&gt;
+                &lt;alert ng-if="releaseLoaded &amp;&amp; newVersion" ng-hide="msgClose" close="$parent.msgClose=true" class="warning radius"&gt;&lt;i class="fa fa-info-circle fa-margin"&gt;&lt;/i&gt;Es existiert eine neuere Version {{release.version}} vom {{release.releasedate | date: "dd.MM.yyyy"}}!&lt;a href="" ng-disabled="!$parent.$parent.releaseChecked" ng-click="$parent.$parent.installRelease()" class="button tiny radius secondary left15 bottom0"&gt;&lt;i class="fa fa-cloud-download fa-margin"&gt;&lt;/i&gt;Jetzt installieren...&lt;/a&gt;&lt;/alert&gt;
+                &lt;alert ng-if="releaseLoaded &amp;&amp; !newVersion" ng-hide="msgClose" close="$parent.msgClose=true" class="info radius"&gt;&lt;i class="fa fa-check fa-margin"&gt;&lt;/i&gt;Sie verfügen bereits über die neueste Version.&lt;/alert&gt;
                 &lt;alert ng-if="!releaseLoaded" ng-hide="msgClose" close="$parent.msgClose=true" class="error radius"&gt;&lt;i class="fa fa-exclamation-triangle fa-margin"&gt;&lt;/i&gt;Die Releasedaten konnten nicht geladen werden.&lt;/alert&gt;
               &lt;/div&gt;
             &lt;/div&gt;
-            &lt;div ng-if="newVersion" class="row"&gt;
-              &lt;div class="small-4 columns lightgrey"&gt;
+            &lt;div ng-if="newVersion" class="row releaseheader"&gt;
+              &lt;div class="small-4 columns"&gt;
                 &lt;label&gt;Version&lt;/label&gt;{{release.version}}
               &lt;/div&gt;
-              &lt;div class="small-4 columns lightgrey"&gt;
+              &lt;div class="small-4 columns"&gt;
                 &lt;label&gt;Freigegeben am&lt;/label&gt;{{release.releasedate | date: 'dd.MM.yyyy HH:mm'}}
               &lt;/div&gt;
-              &lt;div class="small-4 columns lightgrey"&gt;
+              &lt;div class="small-4 columns"&gt;
                 &lt;label&gt;Autor&lt;/label&gt;{{release.author}}
               &lt;/div&gt;
             &lt;/div&gt;
@@ -227,7 +227,7 @@
             &lt;div ng-if="newVersion" ng-repeat="skin in release.skins" class="row"&gt;
               &lt;div class="small-4 columns"&gt;{{skin.name}}&lt;/div&gt;
               &lt;div class="small-4 columns"&gt;{{skin.update | date: 'dd.MM.yyyy HH:mm'}}&lt;/div&gt;
-              &lt;div class="small-4 columns"&gt;{{updateStatus(skin.status)}}&lt;/div&gt;
+              &lt;div class="small-4 columns"&gt;{{updateStatus(skin.status)}}&lt;i ng-if="skin.status==='updated'" class="fa fa-check left10 green"&gt;&lt;/i&gt;&lt;i ng-if="skin.status.substr(0,5)==='error'" class="fa fa-times left10 red"&gt;&lt;/i&gt;&lt;/div&gt;
             &lt;/div&gt;
           &lt;/fieldset&gt;
         &lt;/form&gt;
