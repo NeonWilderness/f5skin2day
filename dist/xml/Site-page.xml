@@ -1,8 +1,8 @@
 <!-- Skin: Site.page -->
-<skin key="Site.page" lastupdate="2015-04-17T11:52:41.959Z" crc="2120197555">
+<skin key="Site.page" lastupdate="2015-05-02T13:58:27.895Z" crc="959278601">
 <content>
 &lt;!DOCTYPE html&gt;
-&lt;html lang="de-DE" ng-app="f5SkinApp" ng-controller="F5SkinController" class="no-js"&gt;
+&lt;html lang="de-DE" ng-app="f5SkinApp" ng-controller="F5SkinCtrl" class="no-js"&gt;
   &lt;head&gt;
     &lt;meta charset="UTF-8"&gt;
     &lt;title&gt;&lt;% site.title %&gt; &lt;% site.tagline %&gt;&lt;/title&gt;

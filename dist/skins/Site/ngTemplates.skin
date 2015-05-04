@@ -4,7 +4,7 @@
     <p>Die Einstelloptionen zu Ihrem Blog erreichen Sie über die unten angezeigten Tabs:</p>
     <tabset>
       <tab heading="Grunddaten">
-        <form ng-controller="tmplGrunddatenController">
+        <form ng-controller="TmplGrunddatenCtrl">
           <fieldset>
             <div class="row">
               <div class="small-4 columns">
@@ -67,7 +67,7 @@
         </form>
       </tab>
       <tab heading="Hintergrundbilder">
-        <form ng-controller="tmplHintergrundbilderController">
+        <form ng-controller="TmplHintergrundbilderCtrl">
           <fieldset>
             <div ng-show="isEditMode || isCreateMode" class="row">
               <div class="small-12 columns">
@@ -177,7 +177,7 @@
         <p>Menüsteuerung</p>
       </tab>
       <tab heading="Aktualisierung">
-        <form ng-controller="tmplAktualisierung">
+        <form ng-controller="TmplAktualisierungCtrl">
           <fieldset>
             <div class="row">
               <div class="small-12 columns bottom15">Ihre derzeitige Layout-Version ist <strong>{{input.update.version}}</strong>.</div>
@@ -224,7 +224,7 @@
             <div ng-if="newVersion" ng-repeat="skin in release.skins" class="row">
               <div class="small-4 columns">{{skin.name}}</div>
               <div class="small-4 columns">{{skin.update | date: 'dd.MM.yyyy HH:mm'}}</div>
-              <div class="small-4 columns">{{updateStatus(skin.status)}}<i ng-if="skin.status==='updated'" class="fa fa-check left10 green"></i><i ng-if="skin.status.substr(0,5)==='error'" class="fa fa-times left10 red"></i></div>
+              <div class="small-4 columns">{{updateStatus(skin.status)}}<i ng-if="skin.status==='updated'" class="fa fa-check-circle fa-lg left10 green"></i><i ng-if="skin.status.substr(0,5)==='error'" class="fa fa-times-circle fa-lg left10 red"></i></div>
             </div>
           </fieldset>
         </form>

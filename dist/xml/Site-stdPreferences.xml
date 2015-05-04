@@ -1,5 +1,5 @@
 <!-- Skin: Site.stdPreferences -->
-<skin key="Site.stdPreferences" lastupdate="2015-04-25T11:14:29.034Z" crc="3154653419">
+<skin key="Site.stdPreferences" lastupdate="2015-04-25T11:14:29.034Z" crc="2115908053">
 <content>
 &lt;div id="stdPreferences" style="display:none"&gt;
   {
@@ -12,7 +12,7 @@
           "loader": { "animation": true, "wrapper": "rgba(0,0,0,.9)", "color1": "#3498db", "color2": "#f04124", "color3": "#f9c922" }
       },
       "update": {
-          "version": "0.1.1",
+          "version": "0.1.3",
           "check": "täglich",
           "gap": 86400000,
           "lastCheck": "2015-04-11T11:13:00.000Z",

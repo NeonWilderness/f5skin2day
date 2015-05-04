@@ -1,9 +1,10 @@
 <!-- Skin: Site.style -->
-<skin key="Site.style" lastupdate="2015-03-20T09:03:41.054Z" crc="2824581356">
+<skin key="Site.style" lastupdate="2015-05-03T17:22:20.411Z" crc="1478038539">
 <content>
 /* Integrated CSS file (will be compiled to main.css by the Twoday application) */
 &lt;% site.skin name="cssNormalize" %&gt;
 &lt;% site.skin name="cssFoundation" %&gt;
+&lt;% site.skin name="cssToastr" %&gt;
 &lt;% site.skin name="cssLayout" %&gt;
 &lt;% site.skin name="cssUser" %&gt;
 </content>

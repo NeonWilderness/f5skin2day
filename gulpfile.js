@@ -156,8 +156,9 @@ gulp.task("zip", ['xml'], function(){
 gulp.task( "headjs", function(){
 
     return gulp.src([
-            './src/js/vendor/fastclick-*.js',
-            './src/js/vendor/mm-foundation-*.js',
+            './src/js/vendor/fastclick*.js',
+            './src/js/vendor/mm-foundation*.js',
+            './src/js/vendor/angular-toastr*.js',
             './src/js/vendor/ga.js'
         ])
         .pipe(concat('head.js'))

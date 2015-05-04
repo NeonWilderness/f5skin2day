@@ -1,6 +1,6 @@
 {
   "name": "f5skin2day",
-  "version": "0.1.1",
+  "version": "0.1.3",
   "description": "A customizable responsive Foundation 5 Layout for the Twoday Blogger Platform.",
   "main": "f5skin2day.zip",
   "scripts": {
@@ -58,6 +58,7 @@
     "gulp-util": "^3.0.4",
     "gulp-zip": "^2.0.3",
     "jshint-stylish": "^1.0.1",
+    "rfc6902-json-diff": "^0.1.2",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
   }

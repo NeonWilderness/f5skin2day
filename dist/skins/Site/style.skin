@@ -1,5 +1,6 @@
 /* Integrated CSS file (will be compiled to main.css by the Twoday application) */
 <% site.skin name="cssNormalize" %>
 <% site.skin name="cssFoundation" %>
+<% site.skin name="cssToastr" %>
 <% site.skin name="cssLayout" %>
 <% site.skin name="cssUser" %>

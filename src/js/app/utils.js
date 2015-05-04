@@ -1,5 +1,11 @@
 "use strict";
 require('jquery');
+
+/**
+ * Provides a set of utility functions
+ *
+ */
+
 module.exports = {
 
 //- Converts selected DOM links to an array of link objects (href,text)

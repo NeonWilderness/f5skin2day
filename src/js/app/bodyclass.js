@@ -1,5 +1,6 @@
-"use strict";
+'use strict';
 require('jquery');
+
 /**
  * Adds additional classes to the BODY element
  * onHome ~ if the homepage is displayed
@@ -14,9 +15,11 @@ require('jquery');
  * pathname="/stories/is-it-me-youre-looking-for/" ==> bodyclasses="onStory story-is-it-me-youre-looking-for"
  *
  */
+
 module.exports = function(){
+
     var bodyclass = "";
-    if (location.pathname==="/") bodyclass = "onHome";
+    if (location.pathname === "/") bodyclass = "onHome";
     else {
         var path = location.pathname.replace(/\//g, " ").trim().split(" ");
         switch (path[0]) {
@@ -25,4 +28,5 @@ module.exports = function(){
         }
     }
     if (bodyclass.length>0) $("body").addClass(bodyclass);
+
 };

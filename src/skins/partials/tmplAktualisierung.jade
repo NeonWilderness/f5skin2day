@@ -1,5 +1,5 @@
 //- template: Einstelloptionen - Aktualisierung
-form(ng-controller="tmplAktualisierung")
+form(ng-controller="TmplAktualisierungCtrl")
     fieldset
         .row
             .small-12.columns.bottom15 Ihre derzeitige Layout-Version ist <strong>{{input.update.version}}</strong>.
@@ -40,5 +40,5 @@ form(ng-controller="tmplAktualisierung")
             .small-4.columns {{skin.name}}
             .small-4.columns {{skin.update | date: 'dd.MM.yyyy HH:mm'}}
             .small-4.columns {{updateStatus(skin.status)}}
-                i.fa.fa-check.left10.green(ng-if="skin.status==='updated'")
-                i.fa.fa-times.left10.red(ng-if="skin.status.substr(0,5)==='error'")
+                i.fa.fa-check-circle.fa-lg.left10.green(ng-if="skin.status==='updated'")
+                i.fa.fa-times-circle.fa-lg.left10.red(ng-if="skin.status.substr(0,5)==='error'")

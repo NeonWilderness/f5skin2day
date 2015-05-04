@@ -1,0 +1,7 @@
+<!-- Skin: Site.cssUser -->
+<skin key="Site.cssUser" lastupdate="2015-04-22T20:07:37.096Z" crc="2215316977">
+<content>
+/* Im Skin Site.cssUser können Sie Ihre eigenen Layout-/Formatanweisungen (CSS-Styles) ergänzen */
+.meinroterhintergund { background-color: #f04124; opacity: .6; }
+</content>
+</skin>

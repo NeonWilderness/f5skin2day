@@ -1,9 +1,13 @@
-"use strict";
+'use strict';
 require('jquery');
+
 /**
  * Sets the appropriate background image based on the actual hour of the day and user defined image items/slots
+ *
  */
+
 module.exports = {
+
     setImage: function(timeSlots){
         var getMinute = function(date){ return date.getHours()*60+date.getMinutes(); };
 //----- return immediately if there are no user defined time slots/images
@@ -35,4 +39,5 @@ module.exports = {
             }
         });
     }
+
 };
