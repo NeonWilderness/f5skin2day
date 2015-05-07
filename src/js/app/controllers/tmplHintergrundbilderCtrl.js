@@ -4,7 +4,7 @@ var utils = require('../utils.js');
 
 module.exports = function($scope, Preferences){
 
-    $scope.input = Preferences.get();
+    $scope.input = Preferences.get("consolidated");
 
     $scope.positions = [
         "left top", "left center", "left bottom",

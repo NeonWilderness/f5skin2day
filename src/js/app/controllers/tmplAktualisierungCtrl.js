@@ -2,9 +2,9 @@
 require('jquery');
 var utils = require('../utils.js');
 
-module.exports = function($scope, $filter, $http, $q, Preferences, UpdateCheck){
+module.exports = function($scope, $filter, $http, $q, Preferences, UpdateCheck, toastr){
 
-    $scope.input = Preferences.get();
+    $scope.input = Preferences.get("consolidated");
 
     $scope.msgClose = true;
     $scope.isChecking = false;
@@ -29,14 +29,20 @@ module.exports = function($scope, $filter, $http, $q, Preferences, UpdateCheck){
     };
 
     $scope.synchronousSkinUpdate = function(index){
+
         do { ++index; }
         while (index<$scope.release.skins.length && $scope.release.skins[index].status !== "needsupdate");
+
         if (index>=$scope.release.skins.length) return;
+
         var skin = $scope.release.skins[index];
         console.log("Index:", index, skin.name, skin.status);
+
         $http.get( $scope.input.layoutUrl+"skins/edit?key="+skin.name )
+
             .success(function(data){
                 var $form = $(data).find("form").eq(0);
+
                 $http({
                     method: $form.attr("method"),
                     url: $form.attr("action"),
@@ -53,25 +59,36 @@ module.exports = function($scope, $filter, $http, $q, Preferences, UpdateCheck){
                         save: $form.find("input[name=save]").val()
                     })
                 })
-                .success(function(data){
+
+                .success(function(){
                     skin.status = "updated";
                     $scope.synchronousSkinUpdate(index);
                 })
+
                 .error(function(data, status){
                     skin.status = "error~"+status;
                 });
             })
+
             .error(function(data, status){
                 skin.status = "error~"+status;
             });
+
     };
 
     $scope.checkSkinUpdate = function(){
+
         var skinEditUrl = $scope.input.layoutUrl+"skins/edit?key=",
             promises = [];
-        $.each( $scope.release.skins, function(){ promises.push( $http.get(skinEditUrl+this.name) ); });
+
+        $.each( $scope.release.skins, function(){
+            promises.push( $http.get(skinEditUrl+this.name) );
+        });
+
         $q.all(promises).then( function(results){ // success: all skins read
+
             $.each( results, function(index, response){ // response = {config, data, headers, status, statusText}
+
                 var skin = $scope.release.skins[index];
                 var $form = $(response.data).find("form").eq(0);
                 var skinCode = $.trim($form.find("textarea[name=skin]").val());
@@ -86,16 +103,19 @@ module.exports = function($scope, $filter, $http, $q, Preferences, UpdateCheck){
                 }
                 console.log("Index:", index, skin.name, isSkinInitial, "Rlse:", skin.content.length, "Blog:", skinCode.length, skin.status);
             });
+
             $scope.releaseChecked = true;
         }, function(results){ // error: at least one skin read failed
-            console.error("Error reading skins:", results);
+            toastr.error("Mindestens ein Skin konnte nicht fehlerfrei gelesen werden!", $scope.input.msgHeader);
         });
     };
 
     $scope.checkReleaseUpdate = function(){
+
         $scope.isChecking = true;
         $scope.releaseLoaded = true;
         $scope.releaseChecked = false;
+
         UpdateCheck.verify($scope.input).then(
             function(release){
                 $scope.release = release.data;
@@ -108,9 +128,11 @@ module.exports = function($scope, $filter, $http, $q, Preferences, UpdateCheck){
             function(status){
                 $scope.isChecking = $scope.releaseLoaded = $scope.msgClose = false;
             });
+
     };
 
     $scope.updateStatus = function(skinStatus){
+
         var updStatus = {
                 "unchecked":    "noch nicht geprüft",
                 "isequal":      "ist bereits aktuell",
@@ -120,11 +142,15 @@ module.exports = function($scope, $filter, $http, $q, Preferences, UpdateCheck){
                 "skipped":      "Benutzerskin bleibt unverändert"
             },
             statParts = skinStatus.split("~");
+
         return updStatus[statParts[0]]+(statParts.length>1 ? "->"+statParts[1] : "");
+
     };
 
     $scope.installRelease = function(){
+
         $scope.synchronousSkinUpdate(-1);
+
     };
 
 };

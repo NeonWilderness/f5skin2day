@@ -1,5 +1,5 @@
 <!-- Skin: Site.stdPreferences -->
-<skin key="Site.stdPreferences" lastupdate="2015-04-25T11:14:29.034Z" crc="2115908053">
+<skin key="Site.stdPreferences" lastupdate="2015-05-04T11:08:43.605Z" crc="3245028661">
 <content>
 &lt;div id="stdPreferences" style="display:none"&gt;
   {
@@ -9,7 +9,8 @@
           "author": "&lt;% site.alias %&gt;",
           "description": "&lt;% site.title %&gt; &lt;% site.tagline %&gt;",
           "imgFolder": "https://googledrive.com/host/0B87rILW4RVIJNlN3eUJxVWN5ZWM/",
-          "loader": { "animation": true, "wrapper": "rgba(0,0,0,.9)", "color1": "#3498db", "color2": "#f04124", "color3": "#f9c922" }
+          "loader": { "animation": true, "wrapper": "rgba(0,0,0,.9)", "color1": "#3498db", "color2": "#f04124", "color3": "#f9c922" },
+          "debug": true
       },
       "update": {
           "version": "0.1.3",

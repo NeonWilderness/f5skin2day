@@ -5,7 +5,7 @@ var background = require('../background.js'),
 module.exports = function ($scope, Preferences, UpdateCheck, $modal){
 
 //- Get the consolidated preferences data
-    $scope.param = Preferences.get();
+    $scope.param = Preferences.get("consolidated");
 
 //- Set background image based on hour of the day and user defined image items/slots
     background.setImage($scope.param.timeSlots);
@@ -42,9 +42,9 @@ module.exports = function ($scope, Preferences, UpdateCheck, $modal){
 
     $scope.customize = {
 
-        hide: function(){ $('#f5container').hide(400); },
+        hide: function(){ $('#f5container').fadeOut(); },
 
-        show: function(){ $('#f5container').show(400); },
+        show: function(){ $('#f5container').fadeIn(); },
 
         open: function(){
             var self = this;
@@ -72,8 +72,8 @@ module.exports = function ($scope, Preferences, UpdateCheck, $modal){
         }
     };
 
-//- Check for available updates if user is admin and time is due
-    if ($scope.param.isAdmin()){
+//- Check for available updates if user is admin and check frequency is not "never"
+    if ($scope.param.isAdmin() && $scope.param.update.gap>0){
         UpdateCheck.onLoad($scope.param);
     }
 };

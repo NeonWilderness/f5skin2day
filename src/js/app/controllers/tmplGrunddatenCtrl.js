@@ -3,7 +3,7 @@ require('jquery');
 
 module.exports = function($scope, Preferences){
 
-    $scope.input = Preferences.get();
+    $scope.input = Preferences.get("consolidated");
 
     $scope.setStaticFolder = function(){
         $scope.input.site.imgFolder = $scope.input.staticUrl + $scope.input.userName + "/images/";

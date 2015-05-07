@@ -203,3 +203,46 @@ gulp.task("deploy", ['headjs', 'bodyjs', 'xml'], function(){
     return gulp.src('dist/js/*')
         .pipe(gulp.dest('js/f5skin2day', { cwd: folderGoogleDrive}));
 });
+
+//-------- Add unsplash.com img origin url to unsplashIt json data
+gulp.task("unsplash", [], function(){
+
+    var getJSON = require('get-json-plz'),
+        csvParse = require('fast-csv'),
+        unsplashIt, unsplashImgix={}, i=-1, key, url;
+
+    getJSON('http://unsplash.it/list', function(err, data){
+        if (err){
+            console.error('Error reading unsplash.it image json data:', err.status);
+            return false;
+        } else {
+
+            unsplashIt = data;
+
+            fs.createReadStream('./src/csv/unsplash.csv')
+                .pipe(csvParse())
+                .on("data", function(data){
+                    if (++i > 0){
+                        key = data[1].replace('/download', '');
+                        url = data[2].split("?")[0];
+                        unsplashImgix[key] = url;
+                    }
+                })
+                .on("end", function(){
+                    unsplashIt.forEach( function(value, index){
+                        if (typeof unsplashImgix[value.post_url] !== 'undefined'){
+                            value['imgix_url'] = unsplashImgix[value.post_url];
+                        } else {
+                            console.log('imgix url for key:', value.post_url, 'not found!');
+                        }
+                    });
+                    var folderGoogleDrive = "D:/Dokumente/Google Drive/Public";
+                    fs.writeFile(folderGoogleDrive+'/site/twoday/f5skin/unsplash.json', JSON.stringify(unsplashIt), function(err){
+                        if (err) throw err;
+                        console.log('*** unsplash.json successfully created/saved to GoogleDrive.');
+                    });
+                });
+        }
+    });
+
+});

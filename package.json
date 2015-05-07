@@ -41,6 +41,8 @@
     "buffer": "^3.2.0",
     "buffer-crc32": "^0.2.5",
     "del": "^1.1.1",
+    "fast-csv": "^0.6.0",
+    "get-json-plz": "0.0.2",
     "gulp": "^3.8.11",
     "gulp-changed": "^1.2.1",
     "gulp-concat": "^2.5.2",

@@ -2,23 +2,25 @@
 require('jquery');
 var utils = require('../utils.js');
 
-module.exports = function($http, $q, toastr){
+module.exports = function($http, $q, Preferences, toastr){
 
     return {
 
         onLoad: function(param){
 
             if (param.update.lastCheck.getTime()+param.update.gap < Date.now()){
+                param.update.lastCheck = new Date();
+                Preferences.save(param);
                 this.verify(param).then(
                     function(release){
                         if (release.newVersion){
-                            toastr.info('Es ist eine neuere Version der Blog App verfügbar! Sie können diese über '+
+                            toastr.info('Es ist eine neuere Version der Blog-App verfügbar! Sie können diese über '+
                                 '<i class="fa fa-cogs"></i> und <strong>Aktualisierung</strong> herunterladen.',
                                 param.msgHeader);
                         }
                     },
                     function(status){
-                        toastr.error('Fehler bei der Prüfung auf eine neue App-Version: '+status,
+                        toastr.error('Fehler während der Überprüfung auf eine neuere App-Version: '+status,
                                 param.msgHeader);
                     }
                 );

@@ -6,7 +6,8 @@
           "author": "<% site.alias %>",
           "description": "<% site.title %> <% site.tagline %>",
           "imgFolder": "https://googledrive.com/host/0B87rILW4RVIJNlN3eUJxVWN5ZWM/",
-          "loader": { "animation": true, "wrapper": "rgba(0,0,0,.9)", "color1": "#3498db", "color2": "#f04124", "color3": "#f9c922" }
+          "loader": { "animation": true, "wrapper": "rgba(0,0,0,.9)", "color1": "#3498db", "color2": "#f04124", "color3": "#f9c922" },
+          "debug": true
       },
       "update": {
           "version": "0.1.3",
