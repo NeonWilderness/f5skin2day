@@ -40,7 +40,9 @@ html.no-js(lang="de-DE", ng-app="f5SkinApp", ng-controller="F5SkinCtrl")
                             | <% site.sidebar01 %><% site.sidebar02 %>
                 a.exit-off-canvas(href="#")
         | #{lineBreak}
-        | <% site.skin name="stdPreferences" %><% site.skin name="usrPreferences" %>
+        | <% site.skin name="stdPreferences" %>
+        #usrPreferences(style="display:none") <% site.skin name="usrPreferences" %>
+        | #{lineBreak}
         | <% site.skin name="genMenuItems" %>
         | <% site.skin name="ngTemplates" %>
         script(src="#{jsFolder}/f5skin2day/app.js")

@@ -2,7 +2,7 @@
 require('jquery');
 var utils = require('../utils.js');
 
-module.exports = function($scope, $filter, $http, $q, Preferences, UpdateCheck, toastr){
+module.exports = function($scope, $filter, $q, Preferences, UpdateCheck, TwodaySkin, toastr){
 
     $scope.input = Preferences.get("consolidated");
 
@@ -28,61 +28,13 @@ module.exports = function($scope, $filter, $http, $q, Preferences, UpdateCheck, 
         $scope.input.update.gap = frequency.gap;
     };
 
-    $scope.synchronousSkinUpdate = function(index){
-
-        do { ++index; }
-        while (index<$scope.release.skins.length && $scope.release.skins[index].status !== "needsupdate");
-
-        if (index>=$scope.release.skins.length) return;
-
-        var skin = $scope.release.skins[index];
-        console.log("Index:", index, skin.name, skin.status);
-
-        $http.get( $scope.input.layoutUrl+"skins/edit?key="+skin.name )
-
-            .success(function(data){
-                var $form = $(data).find("form").eq(0);
-
-                $http({
-                    method: $form.attr("method"),
-                    url: $form.attr("action"),
-                    headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'},
-                    data: $.param({
-                        secretKey: $form.find("input[name=secretKey]").val(),
-                        action: $form.find("input[name=action]").val(),
-                        key: $form.find("input[name=key]").val(),
-                        skinset: $form.find("input[name=skinset]").val(),
-                        module: $form.find("input[name=module]").val(),
-                        title: $form.find("input[name=title]").val(),
-                        description: $form.find("textarea[name=description]").html(),
-                        skin: skin.content,
-                        save: $form.find("input[name=save]").val()
-                    })
-                })
-
-                .success(function(){
-                    skin.status = "updated";
-                    $scope.synchronousSkinUpdate(index);
-                })
-
-                .error(function(data, status){
-                    skin.status = "error~"+status;
-                });
-            })
-
-            .error(function(data, status){
-                skin.status = "error~"+status;
-            });
-
-    };
-
     $scope.checkSkinUpdate = function(){
 
         var skinEditUrl = $scope.input.layoutUrl+"skins/edit?key=",
             promises = [];
 
         $.each( $scope.release.skins, function(){
-            promises.push( $http.get(skinEditUrl+this.name) );
+            promises.push( TwodaySkin.get(skinEditUrl+this.name) );
         });
 
         $q.all(promises).then( function(results){ // success: all skins read
@@ -149,7 +101,16 @@ module.exports = function($scope, $filter, $http, $q, Preferences, UpdateCheck, 
 
     $scope.installRelease = function(){
 
-        $scope.synchronousSkinUpdate(-1);
+        $.each( $scope.release.skins, function(){
+            var skin = this;
+            if (skin.status === "needsupdate"){
+                TwodaySkin.update(skin, $scope.input).then(function(skin){
+                    // success: skin.status already updated
+                }, function(status, skin){
+                    // error: skin.status already updated
+                });
+            }
+        });
 
     };
 

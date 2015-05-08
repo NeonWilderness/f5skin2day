@@ -11,4 +11,4 @@ require('angular')
     .controller('CustomizeBlogCtrl', ['$scope', '$modalInstance', require('./CustomizeBlogCtrl')])
     .controller('TmplGrunddatenCtrl', ['$scope', 'Preferences', require('./TmplGrunddatenCtrl')])
     .controller('TmplHintergrundbilderCtrl', ['$scope', 'Preferences', require('./TmplHintergrundbilderCtrl')])
-    .controller('TmplAktualisierungCtrl', ['$scope', '$filter', '$http', '$q', 'Preferences', 'UpdateCheck', require('./TmplAktualisierungCtrl')]);
+    .controller('TmplAktualisierungCtrl', ['$scope', '$filter', '$q', 'Preferences', 'UpdateCheck', 'TwodaySkin', 'toastr', require('./TmplAktualisierungCtrl')]);

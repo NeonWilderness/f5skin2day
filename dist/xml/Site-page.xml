@@ -1,5 +1,5 @@
 <!-- Skin: Site.page -->
-<skin key="Site.page" lastupdate="2015-05-06T09:28:00.277Z" crc="818264050">
+<skin key="Site.page" lastupdate="2015-05-08T13:17:43.289Z" crc="732898838">
 <content>
 &lt;!DOCTYPE html&gt;
 &lt;html lang="de-DE" ng-app="f5SkinApp" ng-controller="F5SkinCtrl" class="no-js"&gt;
@@ -131,7 +131,8 @@
         &lt;/div&gt;&lt;a href="#" class="exit-off-canvas"&gt;&lt;/a&gt;
       &lt;/div&gt;
     &lt;/div&gt; 
-    &lt;% site.skin name="stdPreferences" %&gt;&lt;% site.skin name="usrPreferences" %&gt;
+    &lt;% site.skin name="stdPreferences" %&gt;
+    &lt;div id="usrPreferences" style="display:none"&gt;&lt;% site.skin name="usrPreferences" %&gt;&lt;/div&gt; 
     &lt;% site.skin name="genMenuItems" %&gt;
     &lt;% site.skin name="ngTemplates" %&gt;
     &lt;script src="https://googledrive.com/host/0B87rILW4RVIJdzJiMW5WRUdfalE/f5skin2day/app.js"&gt;&lt;/script&gt;

@@ -1,5 +1,5 @@
 <!-- Skin: Site.stdPreferences -->
-<skin key="Site.stdPreferences" lastupdate="2015-05-04T11:08:43.605Z" crc="3245028661">
+<skin key="Site.stdPreferences" lastupdate="2015-05-04T11:08:43.605Z" crc="1026240681">
 <content>
 &lt;div id="stdPreferences" style="display:none"&gt;
   {
@@ -13,7 +13,7 @@
           "debug": true
       },
       "update": {
-          "version": "0.1.3",
+          "version": "0.1.4",
           "check": "täglich",
           "gap": 86400000,
           "lastCheck": "2015-04-11T11:13:00.000Z",

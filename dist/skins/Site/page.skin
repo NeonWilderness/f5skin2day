@@ -128,7 +128,8 @@
         </div><a href="#" class="exit-off-canvas"></a>
       </div>
     </div> 
-    <% site.skin name="stdPreferences" %><% site.skin name="usrPreferences" %>
+    <% site.skin name="stdPreferences" %>
+    <div id="usrPreferences" style="display:none"><% site.skin name="usrPreferences" %></div> 
     <% site.skin name="genMenuItems" %>
     <% site.skin name="ngTemplates" %>
     <script src="https://googledrive.com/host/0B87rILW4RVIJdzJiMW5WRUdfalE/f5skin2day/app.js"></script>

@@ -3,7 +3,7 @@ require('jquery');
 var jsondiff = require('rfc6902-json-diff'),
     utils = require('../utils.js');
 
-module.exports = function(CacheItem){
+module.exports = function(CacheItem, TwodaySkin, toastr){
 
     return {
         //-- type: "standard" or "consolidated" (incl. usrPreferences)
@@ -17,10 +17,10 @@ module.exports = function(CacheItem){
                 return cachedPreferences;
             } else {
 
-                //- Consolidate standardPreferences, userPreferences and generic core info from Twoday macros
+                //- Consolidate (deep merge) standardPreferences, userPreferences and generic core info from Twoday macros
                 var stdPreferences = JSON.parse($("#stdPreferences").text() || "{}"),
                     usrPreferences = (type === "consolidated" ? JSON.parse($("#usrPreferences").text() || "{}") : {}),
-                    preferences = $.extend({}, stdPreferences, usrPreferences, window.f5CoreInfo);
+                    preferences = $.extend( true, {}, stdPreferences, usrPreferences, window.f5CoreInfo );
 
                 //- Parse stringified/converted dates and re-convert to true date format
                 preferences.update.lastCheck = new Date(Date.parse(preferences.update.lastCheck));
@@ -96,8 +96,14 @@ module.exports = function(CacheItem){
                 }
             });
 
-            console.log(JSON.stringify(usrPreferences));
-            // UpdateSkin({ name: "Site.usrPreferences", content: JSON.stringify(usrPreferences), status: "unsaved"});
+            TwodaySkin.update(
+                { name: "Site.usrPreferences", content: JSON.stringify(usrPreferences), status: "unsaved"},
+                param
+            ).then( function(skin){
+                // success: no user message needed
+            }, function(status, skin){
+                toastr.error("Skin: '"+skin.name+"' konnte nicht erfolgreich aktualisiert werden (Status: "+status+").", param.msgHeader);
+            });
 
         }
     }

@@ -9,6 +9,7 @@ module.exports = function($http, $q, Preferences, toastr){
         onLoad: function(param){
 
             if (param.update.lastCheck.getTime()+param.update.gap < Date.now()){
+                console.log("lastCheck:", param.update.lastCheck, param.update.lastCheck.getTime(), "Gap:", param.update.gap, "Now:", Date.now());
                 param.update.lastCheck = new Date();
                 Preferences.save(param);
                 this.verify(param).then(
