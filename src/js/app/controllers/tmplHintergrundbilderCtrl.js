@@ -2,7 +2,7 @@
 require('jquery');
 var utils = require('../utils.js');
 
-module.exports = function($scope, Preferences){
+module.exports = function($scope, Preferences, ImageProvider, toastr){
 
     $scope.input = Preferences.get("consolidated");
 
@@ -18,7 +18,7 @@ module.exports = function($scope, Preferences){
 
     $scope.attachments = [ "fixed", "local", "scroll" ];
 
-    $scope.isEditMode = $scope.isCreateMode = false;
+    $scope.isEditMode = $scope.isCreateMode = $scope.isQueryImage = false;
 
     $scope.slotCheck = function(){
         var slots=$scope.input.timeSlots, slotEnd=-1, status=(slots.length>0 ? "" : "Keine Hintergrund-Zeitfenster vorhanden!");
@@ -141,6 +141,61 @@ module.exports = function($scope, Preferences){
 
     $scope.useAttachment = function(index){
         $scope.slot.attachment = $scope.attachments[index];
+    };
+
+    $scope.navImagePool = {
+        providers: [
+            { name: 'Unsplash', file: 'unsplash.json', append: '?fm=jpg&q=75&w=300&h=200&fit=crop' },
+            { name: "Picjumbo", file: 'picjumbo.json', append: '' }
+        ],
+        provider: {},
+        images: [],
+        page: -1,
+        lastPage: 0,
+        pageSize: 24,
+        pageImages: [],
+        isLoadingImages: false,
+        isFirstPage: function(){ return this.page === 0; },
+        isLastPage: function(){ return this.page === this.lastPage; },
+        useProvider: function(index){ this.provider = this.providers[index]; this.loadImages(); },
+        nextPage: function(){ ++this.page; this.showImages(); },
+        prevPage: function(){ --this.page; this.showImages(); },
+        showImages: function(){
+            var i = this.page*this.pageSize,
+                j = Math.min(i+this.pageSize, this.images.length);
+            this.pageImages.length = 0;
+            while (i<j){
+                this.pageImages.push(this.images[i][this.provider.img_url]+this.provider.append);
+                ++i;
+            }
+        },
+        loadImages: function(){
+            var self = this;
+            self.isLoadingImages = true;
+            self.images.length = 0;
+            self.page = 0;
+            ImageProvider.load($scope.input.update.releaseUrl+self.provider.file).then(
+                function(data){
+                    self.images = data || [];
+                    self.lastPage = (self.images.length===0 ? 0 : Math.floor((self.images.length-1)/self.pageSize));
+                    self.isLoadingImages = false;
+                },
+                function(data, status){
+                    toastr.error("Fehler beim Lesen der Bilddaten von "+self.provider+", Status: "+status, $scope.input.msgHeader);
+                    self.lastPage = 0;
+                    self.isLoadingImages = false;
+                }
+            );
+        }
+    };
+
+    $scope.queryImage = function(){
+        $scope.isQueryImage = true;
+        if ($scope.navImagePool.page<0){
+            $scope.navImgPool.useProvider(0);
+            $scope.navImagePool.loadImages();
+        }
+        $scope.navImagePool.showImages();
     };
 
     $scope.slotCheck();

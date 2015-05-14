@@ -1,5 +1,5 @@
 <!-- Skin: Site.ngTemplates -->
-<skin key="Site.ngTemplates" lastupdate="2015-04-25T14:20:16.795Z" crc="1436036914">
+<skin key="Site.ngTemplates" lastupdate="2015-04-25T14:20:16.795Z" crc="718776728">
 <content>
 &lt;script id="customizeBlogHtml" type="text/ng-template"&gt;
   &lt;div id="customizeBlog"&gt;
@@ -72,7 +72,30 @@
       &lt;tab heading="Hintergrundbilder"&gt;
         &lt;form ng-controller="TmplHintergrundbilderCtrl"&gt;
           &lt;fieldset&gt;
-            &lt;div ng-show="isEditMode || isCreateMode" class="row"&gt;
+            &lt;div ng-show="isQueryImage" class="row"&gt;
+              &lt;div class="small-12 columns"&gt;
+                &lt;div class="row"&gt;
+                  &lt;div class="small-2 columns"&gt;
+                    &lt;label&gt;Bildquelle&lt;/label&gt;&lt;a class="button tiny split"&gt;{{navImagePool.provider.name}} &lt;span dropdown-toggle="#dropdown-imgprovider"&gt;&lt;/span&gt;&lt;/a&gt;
+                    &lt;ul id="dropdown-imgprovider" class="f-dropdown"&gt;
+                      &lt;li ng-repeat="provider.name in navImagePool.providers"&gt;&lt;a ng-click="navImagePool.useProvider($index)"&gt;{{provider}}&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                  &lt;/div&gt;
+                  &lt;div class="small-2 columns"&gt;
+                    &lt;label&gt;Seite {{navImagePool.page+1}} von {{navImagePool.lastPage+1}}&lt;/label&gt;&lt;a title="Vorhergehende Bildseite" ng-enabled="!navImagePool.isFirstPage" ng-click="navImagePool.prevPage()" class="button button tiny radius secondary square right5"&gt;&lt;i class="fa fa-chevron-left fa-fw"&gt;&lt;/i&gt;&lt;/a&gt;&lt;a title="Nächste Bildseite" ng-enabled="!navImagePool.isLastPage" ng-click="navImagePool.nextPage()" class="button button tiny radius secondary square"&gt;&lt;i class="fa fa-chevron-right fa-fw"&gt;&lt;/i&gt;&lt;/a&gt;
+                  &lt;/div&gt;
+                  &lt;div class="small-2 columns end"&gt;
+                    &lt;label&gt;&amp;nbsp;&lt;/label&gt;&lt;a title="Schließen" class="button button tiny radius secondary"&gt;&lt;i class="fa fa-times fa-margin"&gt;&lt;/i&gt;Schließen&lt;/a&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class="small-12 columns"&gt;
+                &lt;div class="row"&gt;
+                  &lt;div ng-repeat="image in navImagePool.pageImages track by $index" class="small-4 medium-3 large-2 columns"&gt;&lt;img ng-src="{{image}}" alt="" class="photo"/&gt;&lt;/div&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div ng-show="!isQueryImage &amp;amp;&amp;amp; (isEditMode || isCreateMode)" class="row"&gt;
               &lt;div class="small-12 columns"&gt;
                 &lt;div class="row"&gt;
                   &lt;div class="small-2 columns"&gt;
@@ -111,10 +134,13 @@
                   &lt;/div&gt;
                 &lt;/div&gt;
                 &lt;div class="row"&gt;
-                  &lt;div class="small-12 columns"&gt;
+                  &lt;div class="small-10 columns"&gt;
                     &lt;label for="txtHref"&gt;Bildadresse (URL)
                       &lt;input type="text" id="txtHref" ng-model="slot.href"/&gt;
                     &lt;/label&gt;
+                  &lt;/div&gt;
+                  &lt;div class="small-2 columns"&gt;
+                    &lt;label&gt;Unsplash Fotos&lt;a ng-click="queryImage()" class="button secondary tiny radius"&gt;&lt;i class="fa fa-camera fa-margin"&gt;&lt;/i&gt;Bild wählen&lt;/a&gt;&lt;/label&gt;
                   &lt;/div&gt;
                 &lt;/div&gt;
                 &lt;div class="row"&gt;
@@ -122,7 +148,7 @@
                 &lt;/div&gt;
               &lt;/div&gt;
             &lt;/div&gt;
-            &lt;div ng-hide="isEditMode || isCreateMode" class="row"&gt;
+            &lt;div ng-hide="isQueryImage || isEditMode || isCreateMode" class="row"&gt;
               &lt;div class="small-12 columns"&gt;
                 &lt;table class="fullsize"&gt;
                   &lt;thead&gt;

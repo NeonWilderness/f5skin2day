@@ -231,7 +231,7 @@ gulp.task("unsplash", [], function(){
                 .on("end", function(){
                     unsplashIt.forEach( function(value, index){
                         if (typeof unsplashImgix[value.post_url] !== 'undefined'){
-                            value['imgix_url'] = unsplashImgix[value.post_url];
+                            value['img_url'] = unsplashImgix[value.post_url];
                         } else {
                             console.log('imgix url for key:', value.post_url, 'not found!');
                         }
@@ -244,5 +244,28 @@ gulp.task("unsplash", [], function(){
                 });
         }
     });
+
+});
+
+//-------- Convert picjumbo.csv to json data
+gulp.task("picjumbo", [], function(){
+
+    var csvParse = require('fast-csv'),
+        picjumbo=[], i=-1;
+
+    fs.createReadStream('./src/csv/picjumbo.csv')
+        .pipe(csvParse())
+        .on("data", function(data){
+            if (++i > 0){
+                picjumbo.push({ img_url: data[0], img_title: data[1].replace('Free image: ', ''), img_tags: data[2] });
+            }
+        })
+        .on("end", function(){
+            var folderGoogleDrive = "D:/Dokumente/Google Drive/Public";
+            fs.writeFile(folderGoogleDrive+'/site/twoday/f5skin/picjumbo.json', JSON.stringify(picjumbo), function(err){
+                if (err) throw err;
+                console.log('*** picjumbo.json successfully created/saved to GoogleDrive.');
+            });
+        });
 
 });

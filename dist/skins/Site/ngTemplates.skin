@@ -69,7 +69,30 @@
       <tab heading="Hintergrundbilder">
         <form ng-controller="TmplHintergrundbilderCtrl">
           <fieldset>
-            <div ng-show="isEditMode || isCreateMode" class="row">
+            <div ng-show="isQueryImage" class="row">
+              <div class="small-12 columns">
+                <div class="row">
+                  <div class="small-2 columns">
+                    <label>Bildquelle</label><a class="button tiny split">{{navImagePool.provider.name}} <span dropdown-toggle="#dropdown-imgprovider"></span></a>
+                    <ul id="dropdown-imgprovider" class="f-dropdown">
+                      <li ng-repeat="provider.name in navImagePool.providers"><a ng-click="navImagePool.useProvider($index)">{{provider}}</a></li>
+                    </ul>
+                  </div>
+                  <div class="small-2 columns">
+                    <label>Seite {{navImagePool.page+1}} von {{navImagePool.lastPage+1}}</label><a title="Vorhergehende Bildseite" ng-enabled="!navImagePool.isFirstPage" ng-click="navImagePool.prevPage()" class="button button tiny radius secondary square right5"><i class="fa fa-chevron-left fa-fw"></i></a><a title="Nächste Bildseite" ng-enabled="!navImagePool.isLastPage" ng-click="navImagePool.nextPage()" class="button button tiny radius secondary square"><i class="fa fa-chevron-right fa-fw"></i></a>
+                  </div>
+                  <div class="small-2 columns end">
+                    <label>&nbsp;</label><a title="Schließen" class="button button tiny radius secondary"><i class="fa fa-times fa-margin"></i>Schließen</a>
+                  </div>
+                </div>
+              </div>
+              <div class="small-12 columns">
+                <div class="row">
+                  <div ng-repeat="image in navImagePool.pageImages track by $index" class="small-4 medium-3 large-2 columns"><img ng-src="{{image}}" alt="" class="photo"/></div>
+                </div>
+              </div>
+            </div>
+            <div ng-show="!isQueryImage &amp;&amp; (isEditMode || isCreateMode)" class="row">
               <div class="small-12 columns">
                 <div class="row">
                   <div class="small-2 columns">
@@ -108,10 +131,13 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="small-12 columns">
+                  <div class="small-10 columns">
                     <label for="txtHref">Bildadresse (URL)
                       <input type="text" id="txtHref" ng-model="slot.href"/>
                     </label>
+                  </div>
+                  <div class="small-2 columns">
+                    <label>Unsplash Fotos<a ng-click="queryImage()" class="button secondary tiny radius"><i class="fa fa-camera fa-margin"></i>Bild wählen</a></label>
                   </div>
                 </div>
                 <div class="row">
@@ -119,7 +145,7 @@
                 </div>
               </div>
             </div>
-            <div ng-hide="isEditMode || isCreateMode" class="row">
+            <div ng-hide="isQueryImage || isEditMode || isCreateMode" class="row">
               <div class="small-12 columns">
                 <table class="fullsize">
                   <thead>
