@@ -1,5 +1,5 @@
 <!-- Skin: Site.ngTemplates -->
-<skin key="Site.ngTemplates" lastupdate="2015-04-25T14:20:16.795Z" crc="718776728">
+<skin key="Site.ngTemplates" lastupdate="2015-04-25T14:20:16.795Z" crc="3647984106">
 <content>
 &lt;script id="customizeBlogHtml" type="text/ng-template"&gt;
   &lt;div id="customizeBlog"&gt;
@@ -75,23 +75,24 @@
             &lt;div ng-show="isQueryImage" class="row"&gt;
               &lt;div class="small-12 columns"&gt;
                 &lt;div class="row"&gt;
-                  &lt;div class="small-2 columns"&gt;
+                  &lt;div class="small-4 medium-3 large-2 columns"&gt;
                     &lt;label&gt;Bildquelle&lt;/label&gt;&lt;a class="button tiny split"&gt;{{navImagePool.provider.name}} &lt;span dropdown-toggle="#dropdown-imgprovider"&gt;&lt;/span&gt;&lt;/a&gt;
                     &lt;ul id="dropdown-imgprovider" class="f-dropdown"&gt;
-                      &lt;li ng-repeat="provider.name in navImagePool.providers"&gt;&lt;a ng-click="navImagePool.useProvider($index)"&gt;{{provider}}&lt;/a&gt;&lt;/li&gt;
+                      &lt;li ng-repeat="provider in navImagePool.providers"&gt;&lt;a ng-click="navImagePool.useProvider($index)"&gt;{{provider.name}}&lt;/a&gt;&lt;/li&gt;
                     &lt;/ul&gt;
                   &lt;/div&gt;
-                  &lt;div class="small-2 columns"&gt;
-                    &lt;label&gt;Seite {{navImagePool.page+1}} von {{navImagePool.lastPage+1}}&lt;/label&gt;&lt;a title="Vorhergehende Bildseite" ng-enabled="!navImagePool.isFirstPage" ng-click="navImagePool.prevPage()" class="button button tiny radius secondary square right5"&gt;&lt;i class="fa fa-chevron-left fa-fw"&gt;&lt;/i&gt;&lt;/a&gt;&lt;a title="Nächste Bildseite" ng-enabled="!navImagePool.isLastPage" ng-click="navImagePool.nextPage()" class="button button tiny radius secondary square"&gt;&lt;i class="fa fa-chevron-right fa-fw"&gt;&lt;/i&gt;&lt;/a&gt;
-                  &lt;/div&gt;
-                  &lt;div class="small-2 columns end"&gt;
-                    &lt;label&gt;&amp;nbsp;&lt;/label&gt;&lt;a title="Schließen" class="button button tiny radius secondary"&gt;&lt;i class="fa fa-times fa-margin"&gt;&lt;/i&gt;Schließen&lt;/a&gt;
+                  &lt;div class="small-8 medium-9 large-10 columns"&gt;
+                    &lt;label&gt;Seite {{navImagePool.page+1}} von {{navImagePool.lastPage+1}}&lt;/label&gt;&lt;a title="Erste Bildseite" ng-enabled="!navImagePool.isFirstPage" ng-click="navImagePool.toFirstPage()" class="button button tiny radius secondary square right5"&gt;&lt;i class="fa fa-fast-backward fa-fw"&gt;&lt;/i&gt;&lt;/a&gt;&lt;a title="Vorhergehende Bildseite" ng-enabled="!navImagePool.isFirstPage" ng-click="navImagePool.prevPage()" class="button button tiny radius secondary square right5"&gt;&lt;i class="fa fa-backward fa-fw"&gt;&lt;/i&gt;&lt;/a&gt;&lt;a title="Nächste Bildseite" ng-enabled="!navImagePool.isLastPage" ng-click="navImagePool.nextPage()" class="button button tiny radius secondary square right5"&gt;&lt;i class="fa fa-forward fa-fw"&gt;&lt;/i&gt;&lt;/a&gt;&lt;a title="Letzte Bildseite" ng-enabled="!navImagePool.isLastPage" ng-click="navImagePool.toLastPage()" class="button button tiny radius secondary square"&gt;&lt;i class="fa fa-fast-forward fa-fw"&gt;&lt;/i&gt;&lt;/a&gt;&lt;a title="Schließen" ng-click="isQueryImage=false" class="button button tiny radius secondary left10"&gt;&lt;i class="fa fa-times fa-margin"&gt;&lt;/i&gt;Schließen&lt;/a&gt;
                   &lt;/div&gt;
                 &lt;/div&gt;
               &lt;/div&gt;
               &lt;div class="small-12 columns"&gt;
                 &lt;div class="row"&gt;
-                  &lt;div ng-repeat="image in navImagePool.pageImages track by $index" class="small-4 medium-3 large-2 columns"&gt;&lt;img ng-src="{{image}}" alt="" class="photo"/&gt;&lt;/div&gt;
+                  &lt;div ng-repeat="image in navImagePool.pageImages track by $index" class="small-4 medium-3 large-2 columns"&gt;
+                    &lt;div ng-style="image" resizable="" alt="" class="photo"&gt;
+                      &lt;div class="photo-overlay"&gt;&lt;i title="Bild ansehen" ng-click="navImagePool.viewImage($index)" class="fa fa-search-plus fa-fw"&gt;&lt;/i&gt;&lt;i title="Als Hintergrund auswählen" ng-click="navImagePool.selectImage($index)" class="fa fa-check fa-fw left10"&gt;&lt;/i&gt;&lt;/div&gt;
+                    &lt;/div&gt;
+                  &lt;/div&gt;
                 &lt;/div&gt;
               &lt;/div&gt;
             &lt;/div&gt;

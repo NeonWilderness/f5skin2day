@@ -25,6 +25,7 @@ angular
     .constant('Modernizr', window.Modernizr)
     .run( function(){ window.FastClick.attach(document.body); });
 
-//--- Require all services and controllers through their folder's index.js
+//--- Require all services, controllers and directives through their folder's index.js
 require('./services');
 require('./controllers');
+require('./directives');

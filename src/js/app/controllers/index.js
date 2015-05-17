@@ -10,5 +10,5 @@ require('angular')
     .controller('F5SkinCtrl', ['$scope', 'Preferences', 'UpdateCheck', '$modal', require('./F5SkinCtrl')])
     .controller('CustomizeBlogCtrl', ['$scope', '$modalInstance', require('./CustomizeBlogCtrl')])
     .controller('TmplGrunddatenCtrl', ['$scope', 'Preferences', require('./TmplGrunddatenCtrl')])
-    .controller('TmplHintergrundbilderCtrl', ['$scope', 'Preferences', 'ImageProvider', 'toastr', require('./TmplHintergrundbilderCtrl')])
+    .controller('TmplHintergrundbilderCtrl', ['$scope', 'Preferences', 'ImageProvider', '$window', 'toastr', require('./TmplHintergrundbilderCtrl')])
     .controller('TmplAktualisierungCtrl', ['$scope', '$filter', '$q', 'Preferences', 'UpdateCheck', 'TwodaySkin', 'toastr', require('./TmplAktualisierungCtrl')]);

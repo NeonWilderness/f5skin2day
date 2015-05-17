@@ -1,4 +1,4 @@
-/* Layout Modifications/Enhancements to the Foundation5 CSS */
+/*! Layout Modifications/Enhancements to the Foundation5 CSS | NeonWilderness | MIT License */
 /* ---- Fonts ---- */
 // Google OpenSans and Oswald
 /*source: @import url("http://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,700|Oswald:400");*/
@@ -188,7 +188,32 @@ span[ng-click] { cursor: pointer; }
   .tabs dd.active>a { background-color: #008cba; color: #fff; }
   #chkLoader { margin-top: 25px; }
   #btnLoader { margin-top: 18px; }
-  .photo { position: relative; margin-bottom: 10px; }
+  .photo {
+    position: relative;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    margin-bottom: 10px;
+    &:hover .photo-overlay { opacity: 1; }
+  }
+  .photo-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 5px 0;
+    text-align: center;
+    background-color: rgba(0,0,0,0.5);
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+    opacity: 0;
+    i {
+      color: rgba(255,255,255,0.6);
+      cursor: pointer;
+      &:hover { color: #f9c922; }
+    }
+  }
   #slotStatus { text-align: center; font-weight: normal; font-size: small; }
   .releaseheader { border-top: 2px solid #eee; border-bottom: 2px solid #eee; margin: 10px 0; padding: 4px 0; }
 }

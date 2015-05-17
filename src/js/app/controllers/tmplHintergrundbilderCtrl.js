@@ -2,7 +2,7 @@
 require('jquery');
 var utils = require('../utils.js');
 
-module.exports = function($scope, Preferences, ImageProvider, toastr){
+module.exports = function($scope, Preferences, ImageProvider, $window, toastr){
 
     $scope.input = Preferences.get("consolidated");
 
@@ -145,8 +145,26 @@ module.exports = function($scope, Preferences, ImageProvider, toastr){
 
     $scope.navImagePool = {
         providers: [
-            { name: 'Unsplash', file: 'unsplash.json', append: '?fm=jpg&q=75&w=300&h=200&fit=crop' },
-            { name: "Picjumbo", file: 'picjumbo.json', append: '' }
+            {
+                name: 'Unsplash',
+                file: 'unsplash.json',
+                append: function(target, srcRatio){
+                    var w, h;
+                    switch (target){
+                        case 'gallery': w=300; h=200; break;
+                        case 'fullscreen': w=$window.screen.width; h=$window.screen.height; break;
+                        case 'background': w=1920; h=Math.round(1920/srcRatio); break;
+                    }
+                    return '?fm=jpg&q=75&w='+w+'&h='+h+'&fit=crop';
+                }
+            },
+            {
+                name: "Picjumbo",
+                file: 'picjumbo.json',
+                append: function(target, srcRatio){
+                    return '';
+                }
+            }
         ],
         provider: {},
         images: [],
@@ -160,12 +178,32 @@ module.exports = function($scope, Preferences, ImageProvider, toastr){
         useProvider: function(index){ this.provider = this.providers[index]; this.loadImages(); },
         nextPage: function(){ ++this.page; this.showImages(); },
         prevPage: function(){ --this.page; this.showImages(); },
+        toFirstPage: function(){ this.page=0; this.showImages(); },
+        toLastPage: function(){ this.page=this.lastPage; this.showImages(); },
+        viewImage: function(index){
+            var i = this.page*this.pageSize,
+                j = Math.min(i+this.pageSize, this.images.length),
+                swipeImages = [];
+            while (i<j){
+                swipeImages.push({ href: this.images[i]['img_url']+this.provider.append('fullscreen') });
+                ++i;
+            }
+            $.swipebox( swipeImages, {useSVG: false, initialIndexOnArray: index} );
+        },
+        selectImage: function(index){
+            var i = this.page*this.pageSize+index,
+                ratio = (typeof this.images[i].ratio !== 'undefined' ? this.images[i].ratio : 1.5);
+            $scope.slot.href = this.images[i]['img_url']+this.provider.append('background', ratio);
+            $scope.isQueryImage = false;
+        },
         showImages: function(){
             var i = this.page*this.pageSize,
                 j = Math.min(i+this.pageSize, this.images.length);
             this.pageImages.length = 0;
             while (i<j){
-                this.pageImages.push(this.images[i][this.provider.img_url]+this.provider.append);
+                this.pageImages.push({
+                    'background-image': 'url('+this.images[i]['img_url']+this.provider.append('gallery')+')'
+                });
                 ++i;
             }
         },
@@ -173,11 +211,13 @@ module.exports = function($scope, Preferences, ImageProvider, toastr){
             var self = this;
             self.isLoadingImages = true;
             self.images.length = 0;
+            self.pageImages.length = 0;
             self.page = 0;
             ImageProvider.load($scope.input.update.releaseUrl+self.provider.file).then(
                 function(data){
                     self.images = data || [];
                     self.lastPage = (self.images.length===0 ? 0 : Math.floor((self.images.length-1)/self.pageSize));
+                    self.showImages();
                     self.isLoadingImages = false;
                 },
                 function(data, status){
@@ -191,11 +231,7 @@ module.exports = function($scope, Preferences, ImageProvider, toastr){
 
     $scope.queryImage = function(){
         $scope.isQueryImage = true;
-        if ($scope.navImagePool.page<0){
-            $scope.navImgPool.useProvider(0);
-            $scope.navImagePool.loadImages();
-        }
-        $scope.navImagePool.showImages();
+        if ($scope.navImagePool.page<0) $scope.navImagePool.useProvider(0);
     };
 
     $scope.slotCheck();

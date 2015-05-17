@@ -152,13 +152,14 @@ gulp.task("zip", ['xml'], function(){
         .pipe(gulp.dest('dist/zip'));
 });
 
-//--------- Browserifies and uglifies JS file/s to be encompassed in the head section
+//--------- Concats vendor JS file/s to be encompassed in the head section
 gulp.task( "headjs", function(){
 
     return gulp.src([
             './src/js/vendor/fastclick*.js',
             './src/js/vendor/mm-foundation*.js',
             './src/js/vendor/angular-toastr*.js',
+            './src/js/vendor/swipebox.min.js',
             './src/js/vendor/ga.js'
         ])
         .pipe(concat('head.js'))
@@ -234,6 +235,9 @@ gulp.task("unsplash", [], function(){
                             value['img_url'] = unsplashImgix[value.post_url];
                         } else {
                             console.log('imgix url for key:', value.post_url, 'not found!');
+                        }
+                        if (typeof value.width !== 'undefined' && typeof value.height !== 'undefined'){
+                            value.ratio = parseInt(value.width, 10) / parseInt(value.height, 10);
                         }
                     });
                     var folderGoogleDrive = "D:/Dokumente/Google Drive/Public";

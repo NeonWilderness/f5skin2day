@@ -4,22 +4,25 @@ form(ng-controller="TmplHintergrundbilderCtrl")
         .row(ng-show="isQueryImage")
             .small-12.columns
                 .row
-                    .small-2.columns
+                    .small-4.medium-3.large-2.columns
                         label Bildquelle
                         a.button.tiny.split {{navImagePool.provider.name}} <span dropdown-toggle="#dropdown-imgprovider"></span>
                         ul#dropdown-imgprovider.f-dropdown
-                            li(ng-repeat="provider.name in navImagePool.providers"): a(ng-click="navImagePool.useProvider($index)") {{provider}}
-                    .small-2.columns
+                            li(ng-repeat="provider in navImagePool.providers"): a(ng-click="navImagePool.useProvider($index)") {{provider.name}}
+                    .small-8.medium-9.large-10.columns
                         label Seite {{navImagePool.page+1}} von {{navImagePool.lastPage+1}}
-                        a.button.button.tiny.radius.secondary.square.right5(title="Vorhergehende Bildseite", ng-enabled="!navImagePool.isFirstPage", ng-click="navImagePool.prevPage()"): i.fa.fa-chevron-left.fa-fw
-                        a.button.button.tiny.radius.secondary.square(title="Nächste Bildseite", ng-enabled="!navImagePool.isLastPage", ng-click="navImagePool.nextPage()"): i.fa.fa-chevron-right.fa-fw
-                    .small-2.columns.end
-                        label &nbsp;
-                        a.button.button.tiny.radius.secondary(title="Schließen") <i class="fa fa-times fa-margin"></i>Schließen
+                        a.button.button.tiny.radius.secondary.square.right5(title="Erste Bildseite", ng-enabled="!navImagePool.isFirstPage", ng-click="navImagePool.toFirstPage()"): i.fa.fa-fast-backward.fa-fw
+                        a.button.button.tiny.radius.secondary.square.right5(title="Vorhergehende Bildseite", ng-enabled="!navImagePool.isFirstPage", ng-click="navImagePool.prevPage()"): i.fa.fa-backward.fa-fw
+                        a.button.button.tiny.radius.secondary.square.right5(title="Nächste Bildseite", ng-enabled="!navImagePool.isLastPage", ng-click="navImagePool.nextPage()"): i.fa.fa-forward.fa-fw
+                        a.button.button.tiny.radius.secondary.square(title="Letzte Bildseite", ng-enabled="!navImagePool.isLastPage", ng-click="navImagePool.toLastPage()"): i.fa.fa-fast-forward.fa-fw
+                        a.button.button.tiny.radius.secondary.left10(title="Schließen", ng-click="isQueryImage=false") <i class="fa fa-times fa-margin"></i>Schließen
             .small-12.columns
                 .row
                     .small-4.medium-3.large-2.columns(ng-repeat="image in navImagePool.pageImages track by $index")
-                        img.photo(ng-src="{{image}}", alt="")
+                        div.photo(ng-style="image", resizable="", alt="")
+                            div.photo-overlay
+                                i.fa.fa-search-plus.fa-fw(title="Bild ansehen", ng-click="navImagePool.viewImage($index)")
+                                i.fa.fa-check.fa-fw.left10(title="Als Hintergrund auswählen", ng-click="navImagePool.selectImage($index)")
         .row(ng-show="!isQueryImage && (isEditMode || isCreateMode)")
             .small-12.columns
                 .row
