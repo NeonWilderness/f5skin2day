@@ -1,13 +1,13 @@
 //- Holds ng-templates to be used with templateUrl
 script#customizeBlogHtml(type="text/ng-template")
     #customizeBlog
-        h5 Mein Foundation-Blog anpassen
+        h5 Mein Foundation-Blog {{customize.param.siteAlias}} anpassen
         p Die Einstelloptionen zu Ihrem Blog erreichen Sie über die unten angezeigten Tabs:
         tabset
             tab(heading="Grunddaten")
-                include partials/tmplGrunddaten
+                include partials/custCoreData
             tab(heading="Hintergrundbilder")
-                include partials/tmplHintergrundbilder
+                include partials/custBackgrounds
             tab(heading="Bloglayout")
                 p Bloglayout
             tab(heading="Typographie")
@@ -15,8 +15,8 @@ script#customizeBlogHtml(type="text/ng-template")
             tab(heading="Menüanzeige")
                 p Menüsteuerung
             tab(heading="Aktualisierung")
-                include partials/tmplAktualisierung
+                include partials/custAppUpdate
         p.text-center.bottom0
-            a.button.success.radius.tiny(ng-click="ok()") <i class="fa fa-check fa-margin"></i>Einstellungen sichern
-            a.button.alert.radius.tiny.left15(ng-click="cancel()") <i class="fa fa-times fa-margin"></i>Änderung abbrechen
-        a.close-reveal-modal(ng-click="cancel()") &times;
+            a.button.success.radius.tiny(ng-click="customize.ok()") <i class="fa fa-check fa-margin"></i>Einstellungen sichern
+            a.button.alert.radius.tiny.left15(ng-click="customize.cancel()") <i class="fa fa-times fa-margin"></i>Änderung abbrechen
+        a.close-reveal-modal(ng-click="customize.cancel()") &times;

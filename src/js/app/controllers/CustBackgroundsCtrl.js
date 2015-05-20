@@ -1,28 +1,31 @@
 'use strict';
-require('jquery');
-var utils = require('../utils.js');
 
-module.exports = function($scope, Preferences, ImageProvider, $window, toastr){
+var background = require('../background.js'),
+    utils = require('../utils.js');
 
-    $scope.input = Preferences.get("consolidated");
+module.exports = function($rootScope, ImageProvider, $window, toastr){
+    
+    var vm = this;
+    
+    vm.param = $rootScope.param;
 
-    $scope.positions = [
+    vm.positions = [
         "left top", "left center", "left bottom",
         "right top", "right center", "right bottom",
         "center top", "center center", "center bottom"
     ];
 
-    $scope.repeats = [ "repeat", "repeat-x", "repeat-y", "no-repeat" ];
+    vm.repeats = [ "repeat", "repeat-x", "repeat-y", "no-repeat" ];
 
-    $scope.sizes = [ "auto", "cover", "contain" ];
+    vm.sizes = [ "auto", "cover", "contain" ];
 
-    $scope.attachments = [ "fixed", "local", "scroll" ];
+    vm.attachments = [ "fixed", "local", "scroll" ];
 
-    $scope.isEditMode = $scope.isCreateMode = $scope.isQueryImage = false;
+    vm.isEditMode = vm.isCreateMode = vm.isQueryImage = false;
 
-    $scope.slotCheck = function(){
-        var slots=$scope.input.timeSlots, slotEnd=-1, status=(slots.length>0 ? "" : "Keine Hintergrund-Zeitfenster vorhanden!");
-        $.each( $scope.input.timeSlots, function(){
+    vm.slotCheck = function(){
+        var slots=vm.param.timeSlots, slotEnd=-1, status=(slots.length>0 ? "" : "Keine Hintergrund-Zeitfenster vorhanden!");
+        $.each( vm.param.timeSlots, function(){
             //console.log("from: "+utils.getMinute(this.from)+" slotEnd: "+slotEnd+" ("+(slotEnd+1)+")");
             if (utils.getMinute(this.from)!==slotEnd+1){
                 status = (slotEnd<0
@@ -32,33 +35,34 @@ module.exports = function($scope, Preferences, ImageProvider, $window, toastr){
             } else slotEnd = utils.getMinute(this.to);
         });
         if (status.length===0 && slotEnd!==23*60+59) status = "Die Zeitangabe endet nicht bei 23:59 Uhr!";
-        $scope.slotStatusOK = (status.length===0);
-        $scope.slotStatus = ($scope.slotStatusOK ? "Alle Hintergrund-Zeitfenster vollständig definiert." : status);
+        vm.slotStatusOK = (status.length===0);
+        vm.slotStatus = (vm.slotStatusOK ? "Alle Hintergrund-Zeitfenster vollständig definiert." : status);
     };
 
-    $scope.edit = function(index){
-        $scope.slot = angular.copy($scope.input.timeSlots[index]);
-        $scope.index = index;
-        $scope.isEditMode = true;
+    vm.edit = function(index){
+        vm.slot = angular.copy(vm.param.timeSlots[index]);
+        vm.index = index;
+        vm.isEditMode = true;
     };
 
-    $scope.cancel = function(){
-        if ($scope.isCreateMode) delete $scope.slot;
-        $scope.isEditMode = $scope.isCreateMode = false;
+    vm.cancel = function(){
+        if (vm.isCreateMode) delete vm.slot;
+        vm.isEditMode = vm.isCreateMode = false;
     };
 
-    $scope.save = function(){
-        if ($scope.isCreateMode) $scope.insert(); else $scope.update();
-        $scope.slotCheck();
-        $scope.isEditMode = $scope.isCreateMode = false;
+    vm.save = function(){
+        if (vm.isCreateMode) vm.insert(); else vm.update();
+        background.setImage(vm.param.timeSlots);
+        vm.slotCheck();
+        vm.isEditMode = vm.isCreateMode = false;
     };
 
-    $scope.sort = function(){
-        $scope.input.timeSlots.sort( function(a,b){ return utils.getMinute(a.from) - utils.getMinute(b.from); });
+    vm.sort = function(){
+        vm.param.timeSlots.sort( function(a,b){ return utils.getMinute(a.from) - utils.getMinute(b.from); });
     };
 
-    $scope.findFirst = function(cbSelectCondition){
-        var slots = $scope.input.timeSlots, selectedIndex = -1;
+    vm.findFirst = function(cbSelectCondition){
+        var slots = vm.param.timeSlots, selectedIndex = -1;
         $.each( slots, function(index, slot){
             if (cbSelectCondition(slot)){
                 selectedIndex = index;
@@ -68,47 +72,47 @@ module.exports = function($scope, Preferences, ImageProvider, $window, toastr){
         return selectedIndex;
     };
 
-    $scope.insert = function(){
+    vm.insert = function(){
 //----- Get the currently defined timeslots
-        var slots = $scope.input.timeSlots, slot, sIdx = 0, clone = null;
+        var slots = vm.param.timeSlots, slot, sIdx = 0, clone = null;
 //----- Delete all old slots that are encompassed/embedded by the new slot
         while (sIdx<slots.length){
             slot = slots[sIdx];
-            if (slot.from>=$scope.slot.from && slot.to<=$scope.slot.to)
-                $scope.remove(sIdx, false);
+            if (slot.from>=vm.slot.from && slot.to<=vm.slot.to)
+                vm.remove(sIdx, "nocheck");
             else
                 sIdx++;
         }
 //----- Find the first slot where new-fromTime is included
-        sIdx = $scope.findFirst(function(thisSlot){ return ($scope.slot.from<thisSlot.to); });
+        sIdx = vm.findFirst(function(thisSlot){ return (vm.slot.from<thisSlot.to); });
         if (sIdx>=0){
-            if ($scope.slot.from>slots[sIdx].from && $scope.slot.to<slots[sIdx].to){
+            if (vm.slot.from>slots[sIdx].from && vm.slot.to<slots[sIdx].to){
                 clone = angular.copy(slots[sIdx]);
-                clone.from = utils.addMinutes($scope.slot.to, +1);
-                slots[sIdx].to = utils.addMinutes($scope.slot.from, -1);
-            } else if ($scope.slot.from<=slots[sIdx].from && $scope.slot.to<slots[sIdx].to){
-                slots[sIdx].from = utils.addMinutes($scope.slot.to, +1);
-            } else if ($scope.slot.to>=slots[sIdx].to){
-                slots[sIdx].to = utils.addMinutes($scope.slot.from, -1);
-                if (slots.length>sIdx+1) slots[sIdx+1].from = utils.addMinutes($scope.slot.to, +1);
+                clone.from = utils.addMinutes(vm.slot.to, +1);
+                slots[sIdx].to = utils.addMinutes(vm.slot.from, -1);
+            } else if (vm.slot.from<=slots[sIdx].from && vm.slot.to<slots[sIdx].to){
+                slots[sIdx].from = utils.addMinutes(vm.slot.to, +1);
+            } else if (vm.slot.to>=slots[sIdx].to){
+                slots[sIdx].to = utils.addMinutes(vm.slot.from, -1);
+                if (slots.length>sIdx+1) slots[sIdx+1].from = utils.addMinutes(vm.slot.to, +1);
             }
         }
 //----- Push the new slot to the array
-        slots.push($scope.slot);
+        slots.push(vm.slot);
 //----- Push the clone slot to the array if there is one
         if (clone!==null) slots.push(clone);
 //----- and re-sort
-        $scope.sort();
+        vm.sort();
     };
 
-    $scope.update = function(){
-        $scope.input.timeSlots[$scope.index] = $scope.slot;
-        $scope.sort();
+    vm.update = function(){
+        vm.param.timeSlots[vm.index] = vm.slot;
+        vm.sort();
     };
 
-    $scope.remove = function(index, nocheck){
+    vm.remove = function(index, nocheck){
 //----- Get the currently defined timeslots
-        var slots = $scope.input.timeSlots;
+        var slots = vm.param.timeSlots;
 //----- If index to delete is not the first, then consolidate times with preceeding timeslot
         if (index>0) slots[index-1].to = slots[index].to;
 //----- If index is the first and there is a succeeding timeslot, consolidate with succeeding timeslot
@@ -116,34 +120,34 @@ module.exports = function($scope, Preferences, ImageProvider, $window, toastr){
 //----- anyway delete this index now
         slots.splice(index, 1);
 //----- and re-check the slots status unless internal call from insert function
-        if (nocheck || true) $scope.slotCheck();
+        if (nocheck || '' !== 'nocheck') vm.slotCheck();
     };
 
-    $scope.create = function(){
-        $scope.slot = {
+    vm.create = function(){
+        vm.slot = {
               "from": new Date(1970,0,1,0,0,0), "to": new Date(1970,0,1,23,59,0),
               "repeat": "no-repeat", "position": "center top", "size": "cover",
-              "attachment": "fixed", "href": $scope.input.site.imgFolder };
-        $scope.isCreateMode = true;
+              "attachment": "fixed", "href": vm.param.site.imgFolder };
+        vm.isCreateMode = true;
     };
 
-    $scope.usePosition = function(index){
-        $scope.slot.position = $scope.positions[index];
+    vm.usePosition = function(index){
+        vm.slot.position = vm.positions[index];
     };
 
-    $scope.useRepeat = function(index){
-        $scope.slot.repeat = $scope.repeats[index];
+    vm.useRepeat = function(index){
+        vm.slot.repeat = vm.repeats[index];
     };
 
-    $scope.useSize = function(index){
-        $scope.slot.size = $scope.sizes[index];
+    vm.useSize = function(index){
+        vm.slot.size = vm.sizes[index];
     };
 
-    $scope.useAttachment = function(index){
-        $scope.slot.attachment = $scope.attachments[index];
+    vm.useAttachment = function(index){
+        vm.slot.attachment = vm.attachments[index];
     };
 
-    $scope.navImagePool = {
+    vm.navImagePool = {
         providers: [
             {
                 name: 'Unsplash',
@@ -193,8 +197,8 @@ module.exports = function($scope, Preferences, ImageProvider, $window, toastr){
         selectImage: function(index){
             var i = this.page*this.pageSize+index,
                 ratio = (typeof this.images[i].ratio !== 'undefined' ? this.images[i].ratio : 1.5);
-            $scope.slot.href = this.images[i]['img_url']+this.provider.append('background', ratio);
-            $scope.isQueryImage = false;
+            vm.slot.href = this.images[i]['img_url']+this.provider.append('background', ratio);
+            vm.isQueryImage = false;
         },
         showImages: function(){
             var i = this.page*this.pageSize,
@@ -213,7 +217,7 @@ module.exports = function($scope, Preferences, ImageProvider, $window, toastr){
             self.images.length = 0;
             self.pageImages.length = 0;
             self.page = 0;
-            ImageProvider.load($scope.input.update.releaseUrl+self.provider.file).then(
+            ImageProvider.load(vm.param.update.releaseUrl+self.provider.file).then(
                 function(data){
                     self.images = data || [];
                     self.lastPage = (self.images.length===0 ? 0 : Math.floor((self.images.length-1)/self.pageSize));
@@ -221,7 +225,7 @@ module.exports = function($scope, Preferences, ImageProvider, $window, toastr){
                     self.isLoadingImages = false;
                 },
                 function(data, status){
-                    toastr.error("Fehler beim Lesen der Bilddaten von "+self.provider+", Status: "+status, $scope.input.msgHeader);
+                    toastr.error("Fehler beim Lesen der Bilddaten von "+self.provider+", Status: "+status, vm.param.msgHeader);
                     self.lastPage = 0;
                     self.isLoadingImages = false;
                 }
@@ -229,11 +233,11 @@ module.exports = function($scope, Preferences, ImageProvider, $window, toastr){
         }
     };
 
-    $scope.queryImage = function(){
-        $scope.isQueryImage = true;
-        if ($scope.navImagePool.page<0) $scope.navImagePool.useProvider(0);
+    vm.queryImage = function(){
+        vm.isQueryImage = true;
+        if (vm.navImagePool.page<0) vm.navImagePool.useProvider(0);
     };
 
-    $scope.slotCheck();
+    vm.slotCheck();
 
 };

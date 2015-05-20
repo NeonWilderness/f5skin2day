@@ -1,5 +1,4 @@
 "use strict";
-require('jquery');
 
 /**
  * Provides a set of utility functions

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?><layout>
-<version>0.1.4</version>
+<version>0.1.5</version>
 <author>NeonWilderness</author>
-<releasedate>Sat May 16 2015 18:16:06 GMT+0200 (Mitteleuropäische Sommerzeit)</releasedate>
+<releasedate>Wed May 20 2015 22:12:26 GMT+0200 (Mitteleuropäische Sommerzeit)</releasedate>
 <!-- Skin: Site.browsertest -->
 <skin key="Site.browsertest" lastupdate="2015-03-20T15:15:09.354Z" crc="1403166455">
 <content>
@@ -151,37 +151,37 @@
 </content>
 </skin>
 <!-- Skin: Site.ngTemplates -->
-<skin key="Site.ngTemplates" lastupdate="2015-04-25T14:20:16.795Z" crc="3647984106">
+<skin key="Site.ngTemplates" lastupdate="2015-05-20T18:52:50.207Z" crc="1066465954">
 <content>
 &lt;script id="customizeBlogHtml" type="text/ng-template"&gt;
   &lt;div id="customizeBlog"&gt;
-    &lt;h5&gt;Mein Foundation-Blog anpassen&lt;/h5&gt;
+    &lt;h5&gt;Mein Foundation-Blog {{customize.param.siteAlias}} anpassen&lt;/h5&gt;
     &lt;p&gt;Die Einstelloptionen zu Ihrem Blog erreichen Sie über die unten angezeigten Tabs:&lt;/p&gt;
     &lt;tabset&gt;
       &lt;tab heading="Grunddaten"&gt;
-        &lt;form ng-controller="TmplGrunddatenCtrl"&gt;
+        &lt;form ng-controller="CustCoreDataCtrl as coredata"&gt;
           &lt;fieldset&gt;
             &lt;div class="row"&gt;
               &lt;div class="small-4 columns"&gt;
                 &lt;label for="txtTitle"&gt;Blogtitel
-                  &lt;input type="text" id="txtTitle" ng-model="input.site.title"/&gt;
+                  &lt;input type="text" id="txtTitle" ng-model="customize.param.site.title"/&gt;
                 &lt;/label&gt;
               &lt;/div&gt;
               &lt;div class="small-4 columns"&gt;
                 &lt;label for="txtSubtitle"&gt;Bloguntertitel
-                  &lt;input type="text" id="txtSubtitle" ng-model="input.site.subtitle"/&gt;
+                  &lt;input type="text" id="txtSubtitle" ng-model="customize.param.site.subtitle"/&gt;
                 &lt;/label&gt;
               &lt;/div&gt;
               &lt;div class="small-4 columns"&gt;
                 &lt;label for="txtAuthor"&gt;Autor
-                  &lt;input type="text" id="txtAuthor" ng-model="input.site.author"/&gt;
+                  &lt;input type="text" id="txtAuthor" ng-model="customize.param.site.author"/&gt;
                 &lt;/label&gt;
               &lt;/div&gt;
             &lt;/div&gt;
             &lt;div class="row"&gt;
               &lt;div class="small-12 columns"&gt;
                 &lt;label for="txtDescription"&gt;Blogbeschreibung
-                  &lt;input type="text" id="txtDescription" ng-model="input.site.description"/&gt;
+                  &lt;input type="text" id="txtDescription" ng-model="customize.param.site.description"/&gt;
                 &lt;/label&gt;
               &lt;/div&gt;
             &lt;/div&gt;
@@ -190,118 +190,118 @@
                 &lt;div class="row collapse"&gt;
                   &lt;label for="txtImgFolder" class="bottom0"&gt;URL (Verzeichnis) für Bilder&lt;/label&gt;
                   &lt;div class="small-11 columns"&gt;
-                    &lt;input type="text" id="txtImgFolder" ng-model="input.site.imgFolder"/&gt;
+                    &lt;input type="text" id="txtImgFolder" ng-model="customize.param.site.imgFolder"/&gt;
                   &lt;/div&gt;
-                  &lt;div class="small-1 columns"&gt;&lt;span ng-click="setStaticFolder()" class="postfix"&gt;&lt;i class="fa fa-image"&gt;&lt;/i&gt;&lt;/span&gt;&lt;/div&gt;
+                  &lt;div class="small-1 columns"&gt;&lt;span ng-click="coredata.setStaticFolder()" class="postfix"&gt;&lt;i class="fa fa-image"&gt;&lt;/i&gt;&lt;/span&gt;&lt;/div&gt;
                 &lt;/div&gt;
               &lt;/div&gt;
             &lt;/div&gt;
             &lt;div class="row"&gt;
               &lt;div class="small-4 columns"&gt;
-                &lt;input type="checkbox" id="chkLoader" ng-model="input.site.loader.animation"/&gt;
+                &lt;input type="checkbox" id="chkLoader" ng-model="customize.param.site.loader.animation"/&gt;
                 &lt;label for="chkLoader"&gt;Lade-Animation anzeigen?&lt;/label&gt;
               &lt;/div&gt;
               &lt;div class="small-2 columns"&gt;
                 &lt;label for="txtColor1"&gt;Farbe 1
-                  &lt;input type="text" id="txtColor1" ng-model="input.site.loader.color1"/&gt;
+                  &lt;input type="text" id="txtColor1" ng-model="customize.param.site.loader.color1"/&gt;
                 &lt;/label&gt;
               &lt;/div&gt;
               &lt;div class="small-2 columns"&gt;
                 &lt;label for="txtColor2"&gt;Farbe 2
-                  &lt;input type="text" id="txtColor2" ng-model="input.site.loader.color2"/&gt;
+                  &lt;input type="text" id="txtColor2" ng-model="customize.param.site.loader.color2"/&gt;
                 &lt;/label&gt;
               &lt;/div&gt;
               &lt;div class="small-2 columns"&gt;
                 &lt;label for="txtColor3"&gt;Farbe 3
-                  &lt;input type="text" id="txtColor3" ng-model="input.site.loader.color3"/&gt;
+                  &lt;input type="text" id="txtColor3" ng-model="customize.param.site.loader.color3"/&gt;
                 &lt;/label&gt;
               &lt;/div&gt;
-              &lt;div class="small-2 columns"&gt;&lt;a href="" id="btnLoader" ng-click="testLoader()" class="button secondary tiny radius"&gt;&lt;i class="fa fa-play fa-margin"&gt;&lt;/i&gt;Test&lt;/a&gt;&lt;/div&gt;
+              &lt;div class="small-2 columns"&gt;&lt;a href="" id="btnLoader" ng-click="coredata.testLoader()" class="button secondary tiny radius"&gt;&lt;i class="fa fa-play fa-margin"&gt;&lt;/i&gt;Test&lt;/a&gt;&lt;/div&gt;
             &lt;/div&gt;
           &lt;/fieldset&gt;
         &lt;/form&gt;
       &lt;/tab&gt;
       &lt;tab heading="Hintergrundbilder"&gt;
-        &lt;form ng-controller="TmplHintergrundbilderCtrl"&gt;
+        &lt;form ng-controller="CustBackgroundsCtrl as backgrounds"&gt;
           &lt;fieldset&gt;
-            &lt;div ng-show="isQueryImage" class="row"&gt;
+            &lt;div ng-show="backgrounds.isQueryImage" class="row"&gt;
               &lt;div class="small-12 columns"&gt;
                 &lt;div class="row"&gt;
                   &lt;div class="small-4 medium-3 large-2 columns"&gt;
-                    &lt;label&gt;Bildquelle&lt;/label&gt;&lt;a class="button tiny split"&gt;{{navImagePool.provider.name}} &lt;span dropdown-toggle="#dropdown-imgprovider"&gt;&lt;/span&gt;&lt;/a&gt;
+                    &lt;label&gt;Bildquelle&lt;/label&gt;&lt;a class="button tiny split"&gt;{{backgrounds.navImagePool.provider.name}} &lt;span dropdown-toggle="#dropdown-imgprovider"&gt;&lt;/span&gt;&lt;/a&gt;
                     &lt;ul id="dropdown-imgprovider" class="f-dropdown"&gt;
-                      &lt;li ng-repeat="provider in navImagePool.providers"&gt;&lt;a ng-click="navImagePool.useProvider($index)"&gt;{{provider.name}}&lt;/a&gt;&lt;/li&gt;
+                      &lt;li ng-repeat="provider in backgrounds.navImagePool.providers"&gt;&lt;a ng-click="backgrounds.navImagePool.useProvider($index)"&gt;{{provider.name}}&lt;/a&gt;&lt;/li&gt;
                     &lt;/ul&gt;
                   &lt;/div&gt;
                   &lt;div class="small-8 medium-9 large-10 columns"&gt;
-                    &lt;label&gt;Seite {{navImagePool.page+1}} von {{navImagePool.lastPage+1}}&lt;/label&gt;&lt;a title="Erste Bildseite" ng-enabled="!navImagePool.isFirstPage" ng-click="navImagePool.toFirstPage()" class="button button tiny radius secondary square right5"&gt;&lt;i class="fa fa-fast-backward fa-fw"&gt;&lt;/i&gt;&lt;/a&gt;&lt;a title="Vorhergehende Bildseite" ng-enabled="!navImagePool.isFirstPage" ng-click="navImagePool.prevPage()" class="button button tiny radius secondary square right5"&gt;&lt;i class="fa fa-backward fa-fw"&gt;&lt;/i&gt;&lt;/a&gt;&lt;a title="Nächste Bildseite" ng-enabled="!navImagePool.isLastPage" ng-click="navImagePool.nextPage()" class="button button tiny radius secondary square right5"&gt;&lt;i class="fa fa-forward fa-fw"&gt;&lt;/i&gt;&lt;/a&gt;&lt;a title="Letzte Bildseite" ng-enabled="!navImagePool.isLastPage" ng-click="navImagePool.toLastPage()" class="button button tiny radius secondary square"&gt;&lt;i class="fa fa-fast-forward fa-fw"&gt;&lt;/i&gt;&lt;/a&gt;&lt;a title="Schließen" ng-click="isQueryImage=false" class="button button tiny radius secondary left10"&gt;&lt;i class="fa fa-times fa-margin"&gt;&lt;/i&gt;Schließen&lt;/a&gt;
+                    &lt;label&gt;Seite {{backgrounds.navImagePool.page+1}} von {{backgrounds.navImagePool.lastPage+1}}&lt;/label&gt;&lt;a title="Erste Bildseite" ng-enabled="!backgrounds.navImagePool.isFirstPage" ng-click="backgrounds.navImagePool.toFirstPage()" class="button button tiny radius secondary square right5"&gt;&lt;i class="fa fa-fast-backward fa-fw"&gt;&lt;/i&gt;&lt;/a&gt;&lt;a title="Vorhergehende Bildseite" ng-enabled="!backgrounds.navImagePool.isFirstPage" ng-click="backgrounds.navImagePool.prevPage()" class="button button tiny radius secondary square right5"&gt;&lt;i class="fa fa-backward fa-fw"&gt;&lt;/i&gt;&lt;/a&gt;&lt;a title="Nächste Bildseite" ng-enabled="!backgrounds.navImagePool.isLastPage" ng-click="backgrounds.navImagePool.nextPage()" class="button button tiny radius secondary square right5"&gt;&lt;i class="fa fa-forward fa-fw"&gt;&lt;/i&gt;&lt;/a&gt;&lt;a title="Letzte Bildseite" ng-enabled="!backgrounds.navImagePool.isLastPage" ng-click="backgrounds.navImagePool.toLastPage()" class="button button tiny radius secondary square"&gt;&lt;i class="fa fa-fast-forward fa-fw"&gt;&lt;/i&gt;&lt;/a&gt;&lt;a title="Schließen" ng-click="backgrounds.isQueryImage=false" class="button button tiny radius secondary left10"&gt;&lt;i class="fa fa-times fa-margin"&gt;&lt;/i&gt;Schließen&lt;/a&gt;
                   &lt;/div&gt;
                 &lt;/div&gt;
               &lt;/div&gt;
               &lt;div class="small-12 columns"&gt;
                 &lt;div class="row"&gt;
-                  &lt;div ng-repeat="image in navImagePool.pageImages track by $index" class="small-4 medium-3 large-2 columns"&gt;
+                  &lt;div ng-repeat="image in backgrounds.navImagePool.pageImages track by $index" class="small-4 medium-3 large-2 columns"&gt;
                     &lt;div ng-style="image" resizable="" alt="" class="photo"&gt;
-                      &lt;div class="photo-overlay"&gt;&lt;i title="Bild ansehen" ng-click="navImagePool.viewImage($index)" class="fa fa-search-plus fa-fw"&gt;&lt;/i&gt;&lt;i title="Als Hintergrund auswählen" ng-click="navImagePool.selectImage($index)" class="fa fa-check fa-fw left10"&gt;&lt;/i&gt;&lt;/div&gt;
+                      &lt;div class="photo-overlay"&gt;&lt;i title="Bild ansehen" ng-click="backgrounds.navImagePool.viewImage($index)" class="fa fa-search-plus fa-fw"&gt;&lt;/i&gt;&lt;i title="Als Hintergrund auswählen" ng-click="backgrounds.navImagePool.selectImage($index)" class="fa fa-check fa-fw left10"&gt;&lt;/i&gt;&lt;/div&gt;
                     &lt;/div&gt;
                   &lt;/div&gt;
                 &lt;/div&gt;
               &lt;/div&gt;
             &lt;/div&gt;
-            &lt;div ng-show="!isQueryImage &amp;amp;&amp;amp; (isEditMode || isCreateMode)" class="row"&gt;
+            &lt;div ng-show="!backgrounds.isQueryImage &amp;amp;&amp;amp; (backgrounds.isEditMode || backgrounds.isCreateMode)" class="row"&gt;
               &lt;div class="small-12 columns"&gt;
                 &lt;div class="row"&gt;
                   &lt;div class="small-2 columns"&gt;
                     &lt;label for="timeFrom"&gt;Von &lt;i class="fa fa-clock-o"&gt;&lt;/i&gt;
-                      &lt;input type="time" ng-model="slot.from" id="timeFrom" placeholder="HH:mm" min="00:00" max="23:59" required="required"/&gt;
+                      &lt;input type="time" ng-model="backgrounds.slot.from" id="timeFrom" placeholder="HH:mm" min="00:00" max="23:59" required="required"/&gt;
                     &lt;/label&gt;
                   &lt;/div&gt;
                   &lt;div class="small-2 columns"&gt;
                     &lt;label for="timeTo"&gt;Bis &lt;i class="fa fa-clock-o"&gt;&lt;/i&gt;
-                      &lt;input type="time" ng-model="slot.to" id="timeTo" placeholder="HH:mm" min="00:00" max="23:59" required="required"/&gt;
+                      &lt;input type="time" ng-model="backgrounds.slot.to" id="timeTo" placeholder="HH:mm" min="00:00" max="23:59" required="required"/&gt;
                     &lt;/label&gt;
                   &lt;/div&gt;
                   &lt;div class="small-2 columns"&gt;
-                    &lt;label&gt;Position&lt;a href="http://www.w3schools.com/cssref/pr_background-position.asp" target="_blank" class="extlink"&gt;&lt;/a&gt;&lt;/label&gt;&lt;a class="button tiny split"&gt;{{slot.position}} &lt;span dropdown-toggle="#dropdown-position"&gt;&lt;/span&gt;&lt;/a&gt;
+                    &lt;label&gt;Position&lt;a href="http://www.w3schools.com/cssref/pr_background-position.asp" target="_blank" class="extlink"&gt;&lt;/a&gt;&lt;/label&gt;&lt;a class="button tiny split"&gt;{{backgrounds.slot.position}} &lt;span dropdown-toggle="#dropdown-position"&gt;&lt;/span&gt;&lt;/a&gt;
                     &lt;ul id="dropdown-position" class="f-dropdown"&gt;
-                      &lt;li ng-repeat="position in positions"&gt;&lt;a ng-click="usePosition($index)"&gt;{{position}}&lt;/a&gt;&lt;/li&gt;
+                      &lt;li ng-repeat="position in backgrounds.positions"&gt;&lt;a ng-click="backgrounds.usePosition($index)"&gt;{{position}}&lt;/a&gt;&lt;/li&gt;
                     &lt;/ul&gt;
                   &lt;/div&gt;
                   &lt;div class="small-2 columns"&gt;
-                    &lt;label&gt;Repeat&lt;a href="http://www.w3schools.com/cssref/pr_background-repeat.asp" target="_blank" class="extlink"&gt;&lt;/a&gt;&lt;/label&gt;&lt;a class="button tiny split"&gt;{{slot.repeat}} &lt;span dropdown-toggle="#dropdown-repeat"&gt;&lt;/span&gt;&lt;/a&gt;
+                    &lt;label&gt;Repeat&lt;a href="http://www.w3schools.com/cssref/pr_background-repeat.asp" target="_blank" class="extlink"&gt;&lt;/a&gt;&lt;/label&gt;&lt;a class="button tiny split"&gt;{{backgrounds.slot.repeat}} &lt;span dropdown-toggle="#dropdown-repeat"&gt;&lt;/span&gt;&lt;/a&gt;
                     &lt;ul id="dropdown-repeat" class="f-dropdown"&gt;
-                      &lt;li ng-repeat="repeat in repeats"&gt;&lt;a ng-click="useRepeat($index)"&gt;{{repeat}}&lt;/a&gt;&lt;/li&gt;
+                      &lt;li ng-repeat="repeat in backgrounds.repeats"&gt;&lt;a ng-click="backgrounds.useRepeat($index)"&gt;{{repeat}}&lt;/a&gt;&lt;/li&gt;
                     &lt;/ul&gt;
                   &lt;/div&gt;
                   &lt;div class="small-2 columns"&gt;
-                    &lt;label&gt;Size&lt;a href="http://www.w3schools.com/cssref/css3_pr_background-size.asp" target="_blank" class="extlink"&gt;&lt;/a&gt;&lt;/label&gt;&lt;a class="button tiny split"&gt;{{slot.size}} &lt;span dropdown-toggle="#dropdown-size"&gt;&lt;/span&gt;&lt;/a&gt;
+                    &lt;label&gt;Size&lt;a href="http://www.w3schools.com/cssref/css3_pr_background-size.asp" target="_blank" class="extlink"&gt;&lt;/a&gt;&lt;/label&gt;&lt;a class="button tiny split"&gt;{{backgrounds.slot.size}} &lt;span dropdown-toggle="#dropdown-size"&gt;&lt;/span&gt;&lt;/a&gt;
                     &lt;ul id="dropdown-size" class="f-dropdown"&gt;
-                      &lt;li ng-repeat="size in sizes"&gt;&lt;a ng-click="useSize($index)"&gt;{{size}}&lt;/a&gt;&lt;/li&gt;
+                      &lt;li ng-repeat="size in backgrounds.sizes"&gt;&lt;a ng-click="backgrounds.useSize($index)"&gt;{{size}}&lt;/a&gt;&lt;/li&gt;
                     &lt;/ul&gt;
                   &lt;/div&gt;
                   &lt;div class="small-2 columns"&gt;
-                    &lt;label&gt;Attachment&lt;a href="http://www.w3schools.com/cssref/pr_background-attachment.asp" target="_blank" class="extlink"&gt;&lt;/a&gt;&lt;/label&gt;&lt;a class="button tiny split"&gt;{{slot.attachment}} &lt;span dropdown-toggle="#dropdown-attachment"&gt;&lt;/span&gt;&lt;/a&gt;
+                    &lt;label&gt;Attachment&lt;a href="http://www.w3schools.com/cssref/pr_background-attachment.asp" target="_blank" class="extlink"&gt;&lt;/a&gt;&lt;/label&gt;&lt;a class="button tiny split"&gt;{{backgrounds.slot.attachment}} &lt;span dropdown-toggle="#dropdown-attachment"&gt;&lt;/span&gt;&lt;/a&gt;
                     &lt;ul id="dropdown-attachment" class="f-dropdown"&gt;
-                      &lt;li ng-repeat="attachment in attachments"&gt;&lt;a ng-click="useAttachment($index)"&gt;{{attachment}}&lt;/a&gt;&lt;/li&gt;
+                      &lt;li ng-repeat="attachment in backgrounds.attachments"&gt;&lt;a ng-click="backgrounds.useAttachment($index)"&gt;{{attachment}}&lt;/a&gt;&lt;/li&gt;
                     &lt;/ul&gt;
                   &lt;/div&gt;
                 &lt;/div&gt;
                 &lt;div class="row"&gt;
                   &lt;div class="small-10 columns"&gt;
                     &lt;label for="txtHref"&gt;Bildadresse (URL)
-                      &lt;input type="text" id="txtHref" ng-model="slot.href"/&gt;
+                      &lt;input type="text" id="txtHref" ng-model="backgrounds.slot.href"/&gt;
                     &lt;/label&gt;
                   &lt;/div&gt;
                   &lt;div class="small-2 columns"&gt;
-                    &lt;label&gt;Unsplash Fotos&lt;a ng-click="queryImage()" class="button secondary tiny radius"&gt;&lt;i class="fa fa-camera fa-margin"&gt;&lt;/i&gt;Bild wählen&lt;/a&gt;&lt;/label&gt;
+                    &lt;label&gt;Bildanbieter&lt;a ng-click="backgrounds.queryImage()" class="button secondary tiny radius"&gt;&lt;i class="fa fa-camera fa-margin"&gt;&lt;/i&gt;Foto wählen&lt;/a&gt;&lt;/label&gt;
                   &lt;/div&gt;
                 &lt;/div&gt;
                 &lt;div class="row"&gt;
-                  &lt;div class="small-12 columns small-centered"&gt;&lt;a ng-click="save()" class="button success radius tiny"&gt;&lt;i class="fa fa-check fa-margin"&gt;&lt;/i&gt;Übernehmen&lt;/a&gt;&lt;a ng-click="cancel()" class="button alert radius tiny left10"&gt;&lt;i class="fa fa-times fa-margin"&gt;&lt;/i&gt;Abbrechen&lt;/a&gt;&lt;/div&gt;
+                  &lt;div class="small-12 columns small-centered"&gt;&lt;a ng-click="backgrounds.save()" class="button success radius tiny"&gt;&lt;i class="fa fa-check fa-margin"&gt;&lt;/i&gt;Übernehmen&lt;/a&gt;&lt;a ng-click="backgrounds.cancel()" class="button alert radius tiny left10"&gt;&lt;i class="fa fa-times fa-margin"&gt;&lt;/i&gt;Abbrechen&lt;/a&gt;&lt;/div&gt;
                 &lt;/div&gt;
               &lt;/div&gt;
             &lt;/div&gt;
-            &lt;div ng-hide="isQueryImage || isEditMode || isCreateMode" class="row"&gt;
+            &lt;div ng-hide="backgrounds.isQueryImage || backgrounds.isEditMode || backgrounds.isCreateMode" class="row"&gt;
               &lt;div class="small-12 columns"&gt;
                 &lt;table class="fullsize"&gt;
                   &lt;thead&gt;
@@ -317,11 +317,11 @@
                     &lt;/tr&gt;
                   &lt;/thead&gt;
                   &lt;tbody&gt;
-                    &lt;tr ng-repeat="slot in input.timeSlots"&gt;
+                    &lt;tr ng-repeat="slot in customize.param.timeSlots"&gt;
                       &lt;th&gt;
                         &lt;ul class="button-group"&gt;
-                          &lt;li&gt;&lt;a href="" title="Eintrag bearbeiten" ng-click="edit($index)" class="button tiny radius secondary square right5"&gt;&lt;i class="fa fa-edit fa-fw"&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
-                          &lt;li&gt;&lt;a href="" title="Eintrag entfernen" ng-click="remove($index)" class="button tiny radius secondary square"&gt;&lt;i class="fa fa-trash-o fa-fw"&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+                          &lt;li&gt;&lt;a href="" title="Eintrag bearbeiten" ng-click="backgrounds.edit($index)" class="button tiny radius secondary square right5"&gt;&lt;i class="fa fa-edit fa-fw"&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+                          &lt;li&gt;&lt;a href="" title="Eintrag entfernen" ng-click="backgrounds.remove($index)" class="button tiny radius secondary square"&gt;&lt;i class="fa fa-trash-o fa-fw"&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
                         &lt;/ul&gt;
                       &lt;/th&gt;
                       &lt;th&gt;{{slot.from | date:'HH:mm'}}&lt;/th&gt;
@@ -333,12 +333,12 @@
                       &lt;th&gt;&lt;a ng-href="{{slot.href}}" target="_blank" class="th"&gt;&lt;img ng-src="{{slot.href}}" width="120" alt=""/&gt;&lt;/a&gt;&lt;/th&gt;
                     &lt;/tr&gt;
                     &lt;tr&gt;
-                      &lt;th colspan="8" id="slotStatus" ng-class="{'red': !slotStatusOK, 'green': slotStatusOK}"&gt;&lt;i class="fa fa-margin" ng-class="{'fa-info-circle': !slotStatusOK, 'fa-check': slotStatusOK}"&gt;&lt;/i&gt;{{slotStatus}}&lt;/th&gt;
+                      &lt;th colspan="8" id="slotStatus" ng-class="{'red': !backgrounds.slotStatusOK, 'green': backgrounds.slotStatusOK}"&gt;&lt;i ng-class="{'fa-info-circle': !backgrounds.slotStatusOK, 'fa-check': backgrounds.slotStatusOK}" class="fa fa-margin"&gt;&lt;/i&gt;{{backgrounds.slotStatus}}&lt;/th&gt;
                     &lt;/tr&gt;
                     &lt;tr&gt;
                       &lt;th colspan="8"&gt;
                         &lt;ul class="button-group"&gt;
-                          &lt;li&gt;&lt;a href="" ng-click="create()" ng-disabled="isEditMode || isCreateMode" class="button tiny radius secondary"&gt;&lt;i class="fa fa-plus fa-margin"&gt;&lt;/i&gt;Neuen Hintergrund definieren&lt;/a&gt;&lt;/li&gt;
+                          &lt;li&gt;&lt;a href="" ng-click="backgrounds.create()" ng-disabled="backgrounds.isEditMode || backgrounds.isCreateMode" class="button tiny radius secondary"&gt;&lt;i class="fa fa-plus fa-margin"&gt;&lt;/i&gt;Neuen Hintergrund definieren&lt;/a&gt;&lt;/li&gt;
                         &lt;/ul&gt;
                       &lt;/th&gt;
                     &lt;/tr&gt;
@@ -359,76 +359,76 @@
         &lt;p&gt;Menüsteuerung&lt;/p&gt;
       &lt;/tab&gt;
       &lt;tab heading="Aktualisierung"&gt;
-        &lt;form ng-controller="TmplAktualisierungCtrl"&gt;
+        &lt;form ng-controller="CustAppUpdateCtrl as appupdate"&gt;
           &lt;fieldset&gt;
             &lt;div class="row"&gt;
-              &lt;div class="small-12 columns bottom15"&gt;Ihre derzeitige Layout-Version ist &lt;strong&gt;{{input.update.version}}&lt;/strong&gt;.&lt;/div&gt;
+              &lt;div class="small-12 columns bottom15"&gt;Ihre derzeitige Layout-Version ist &lt;strong&gt;{{customize.param.update.version}}&lt;/strong&gt;.&lt;/div&gt;
             &lt;/div&gt;
             &lt;div class="row"&gt;
               &lt;div class="small-4 columns"&gt;
-                &lt;label&gt;Aktualisierungsprüfung&lt;/label&gt;&lt;a class="button tiny split"&gt;{{input.update.check}} &lt;span dropdown-toggle="#dropdown-updatecheck"&gt;&lt;/span&gt;&lt;/a&gt;
+                &lt;label&gt;Aktualisierungsprüfung&lt;/label&gt;&lt;a class="button tiny split"&gt;{{customize.param.update.check}} &lt;span dropdown-toggle="#dropdown-updatecheck"&gt;&lt;/span&gt;&lt;/a&gt;
                 &lt;ul id="dropdown-updatecheck" class="f-dropdown"&gt;
-                  &lt;li ng-repeat="frequency in updateChecks"&gt;&lt;a ng-click="useFrequency($index)"&gt;{{frequency.check}}&lt;/a&gt;&lt;/li&gt;
+                  &lt;li ng-repeat="frequency in appupdate.updateChecks"&gt;&lt;a ng-click="appupdate.useFrequency($index)"&gt;{{frequency.check}}&lt;/a&gt;&lt;/li&gt;
                 &lt;/ul&gt;
               &lt;/div&gt;
               &lt;div class="small-4 columns"&gt;
                 &lt;label&gt;Datum der letzten Prüfung&lt;/label&gt;
-                &lt;div id="dtLastCheck"&gt;{{input.update.lastCheck | date: 'dd.MM.yyyy HH:mm'}}&lt;/div&gt;
+                &lt;div id="dtLastCheck"&gt;{{customize.param.update.lastCheck | date: 'dd.MM.yyyy HH:mm'}}&lt;/div&gt;
               &lt;/div&gt;
               &lt;div class="small-4 columns"&gt;
                 &lt;label&gt;Datum der nächsten Prüfung&lt;/label&gt;
-                &lt;div id="dtNextCheck"&gt;{{dateNextCheck()}}&lt;/div&gt;
+                &lt;div id="dtNextCheck"&gt;{{appupdate.dateNextCheck()}}&lt;/div&gt;
               &lt;/div&gt;
             &lt;/div&gt;
             &lt;div class="row"&gt;
-              &lt;div class="small-12 columns"&gt;&lt;a href="" ng-show="msgClose" ng-click="checkReleaseUpdate()" class="button small radius secondary"&gt;&lt;i class="fa fa-refresh fa-margin" ng-class="{'fa-spin':isChecking}"&gt;&lt;/i&gt;Jetzt auf mögliche Aktualisierung prüfen...&lt;/a&gt;
-                &lt;alert ng-if="releaseLoaded &amp;&amp; newVersion" ng-hide="msgClose" close="$parent.msgClose=true" class="warning radius"&gt;&lt;i class="fa fa-info-circle fa-margin"&gt;&lt;/i&gt;Es existiert eine neuere Version {{release.version}} vom {{release.releasedate | date: "dd.MM.yyyy"}}!&lt;a href="" ng-disabled="!$parent.$parent.releaseChecked" ng-click="$parent.$parent.installRelease()" class="button tiny radius secondary left15 bottom0"&gt;&lt;i class="fa fa-cloud-download fa-margin"&gt;&lt;/i&gt;Jetzt installieren...&lt;/a&gt;&lt;/alert&gt;
-                &lt;alert ng-if="releaseLoaded &amp;&amp; !newVersion" ng-hide="msgClose" close="$parent.msgClose=true" class="info radius"&gt;&lt;i class="fa fa-check fa-margin"&gt;&lt;/i&gt;Sie verfügen bereits über die neueste Version.&lt;/alert&gt;
-                &lt;alert ng-if="!releaseLoaded" ng-hide="msgClose" close="$parent.msgClose=true" class="error radius"&gt;&lt;i class="fa fa-exclamation-triangle fa-margin"&gt;&lt;/i&gt;Die Releasedaten konnten nicht geladen werden.&lt;/alert&gt;
+              &lt;div class="small-12 columns"&gt;&lt;a href="" ng-show="appupdate.msgClose" ng-click="appupdate.checkReleaseUpdate()" class="button small radius secondary"&gt;&lt;i class="fa fa-refresh fa-margin" ng-class="{'fa-spin':appupdate.isChecking}"&gt;&lt;/i&gt;Jetzt auf mögliche Aktualisierung prüfen...&lt;/a&gt;
+                &lt;alert ng-if="appupdate.releaseLoaded &amp;&amp; appupdate.newVersion" ng-hide="appupdate.msgClose" close="appupdate.msgClose=true" class="warning radius"&gt;&lt;i class="fa fa-info-circle fa-margin"&gt;&lt;/i&gt;Es existiert eine neuere Version {{appupdate.release.version}} vom {{appupdate.release.releasedate | date: "dd.MM.yyyy"}}!&lt;a href="" ng-disabled="!appupdate.releaseChecked" ng-click="appupdate.installRelease()" class="button tiny radius secondary left15 bottom0"&gt;&lt;i class="fa fa-cloud-download fa-margin"&gt;&lt;/i&gt;Jetzt installieren...&lt;/a&gt;&lt;/alert&gt;
+                &lt;alert ng-if="appupdate.releaseLoaded &amp;&amp; !appupdate.newVersion" ng-hide="appupdate.msgClose" close="appupdate.msgClose=true" class="info radius"&gt;&lt;i class="fa fa-check fa-margin"&gt;&lt;/i&gt;Sie verfügen bereits über die neueste Version.&lt;/alert&gt;
+                &lt;alert ng-if="!appupdate.releaseLoaded" ng-hide="appupdate.msgClose" close="appupdate.msgClose=true" class="error radius"&gt;&lt;i class="fa fa-exclamation-triangle fa-margin"&gt;&lt;/i&gt;Die Releasedaten konnten nicht geladen werden.&lt;/alert&gt;
               &lt;/div&gt;
             &lt;/div&gt;
-            &lt;div ng-if="newVersion" class="row releaseheader"&gt;
+            &lt;div ng-if="appupdate.newVersion" class="row releaseheader"&gt;
               &lt;div class="small-4 columns"&gt;
-                &lt;label&gt;Version&lt;/label&gt;{{release.version}}
+                &lt;label&gt;Version&lt;/label&gt;{{appupdate.release.version}}
               &lt;/div&gt;
               &lt;div class="small-4 columns"&gt;
-                &lt;label&gt;Freigegeben am&lt;/label&gt;{{release.releasedate | date: 'dd.MM.yyyy HH:mm'}}
+                &lt;label&gt;Freigegeben am&lt;/label&gt;{{appupdate.release.releasedate | date: 'dd.MM.yyyy HH:mm'}}
               &lt;/div&gt;
               &lt;div class="small-4 columns"&gt;
-                &lt;label&gt;Autor&lt;/label&gt;{{release.author}}
+                &lt;label&gt;Autor&lt;/label&gt;{{appupdate.release.author}}
               &lt;/div&gt;
             &lt;/div&gt;
-            &lt;div ng-if="newVersion" class="row"&gt;
+            &lt;div ng-if="appupdate.newVersion" class="row"&gt;
               &lt;div class="small-4 columns"&gt;&lt;strong&gt;Name des Skins&lt;/strong&gt;&lt;/div&gt;
               &lt;div class="small-4 columns"&gt;&lt;strong&gt;Änderungsdatum&lt;/strong&gt;&lt;/div&gt;
               &lt;div class="small-4 columns"&gt;&lt;strong&gt;Aktualisierungsstatus&lt;/strong&gt;&lt;/div&gt;
             &lt;/div&gt;
-            &lt;div ng-if="newVersion" ng-repeat="skin in release.skins" class="row"&gt;
+            &lt;div ng-if="appupdate.newVersion" ng-repeat="skin in appupdate.release.skins" class="row"&gt;
               &lt;div class="small-4 columns"&gt;{{skin.name}}&lt;/div&gt;
               &lt;div class="small-4 columns"&gt;{{skin.update | date: 'dd.MM.yyyy HH:mm'}}&lt;/div&gt;
-              &lt;div class="small-4 columns"&gt;{{updateStatus(skin.status)}}&lt;i ng-if="skin.status==='updated'" class="fa fa-check-circle fa-lg left10 green"&gt;&lt;/i&gt;&lt;i ng-if="skin.status.substr(0,5)==='error'" class="fa fa-times-circle fa-lg left10 red"&gt;&lt;/i&gt;&lt;/div&gt;
+              &lt;div class="small-4 columns"&gt;{{appupdate.updateStatus(skin.status)}}&lt;i ng-if="skin.status==='updated'" class="fa fa-check-circle fa-lg left10 green"&gt;&lt;/i&gt;&lt;i ng-if="skin.status.substr(0,5)==='error'" class="fa fa-times-circle fa-lg left10 red"&gt;&lt;/i&gt;&lt;/div&gt;
             &lt;/div&gt;
           &lt;/fieldset&gt;
         &lt;/form&gt;
       &lt;/tab&gt;
     &lt;/tabset&gt;
-    &lt;p class="text-center bottom0"&gt;&lt;a ng-click="ok()" class="button success radius tiny"&gt;&lt;i class="fa fa-check fa-margin"&gt;&lt;/i&gt;Einstellungen sichern&lt;/a&gt;&lt;a ng-click="cancel()" class="button alert radius tiny left15"&gt;&lt;i class="fa fa-times fa-margin"&gt;&lt;/i&gt;Änderung abbrechen&lt;/a&gt;&lt;/p&gt;&lt;a ng-click="cancel()" class="close-reveal-modal"&gt;&amp;times;&lt;/a&gt;
+    &lt;p class="text-center bottom0"&gt;&lt;a ng-click="customize.ok()" class="button success radius tiny"&gt;&lt;i class="fa fa-check fa-margin"&gt;&lt;/i&gt;Einstellungen sichern&lt;/a&gt;&lt;a ng-click="customize.cancel()" class="button alert radius tiny left15"&gt;&lt;i class="fa fa-times fa-margin"&gt;&lt;/i&gt;Änderung abbrechen&lt;/a&gt;&lt;/p&gt;&lt;a ng-click="customize.cancel()" class="close-reveal-modal"&gt;&amp;times;&lt;/a&gt;
   &lt;/div&gt;
 &lt;/script&gt;
 </content>
 </skin>
 <!-- Skin: Site.page -->
-<skin key="Site.page" lastupdate="2015-05-08T13:17:43.289Z" crc="732898838">
+<skin key="Site.page" lastupdate="2015-05-19T13:42:49.349Z" crc="2043857631">
 <content>
 &lt;!DOCTYPE html&gt;
-&lt;html lang="de-DE" ng-app="f5SkinApp" ng-controller="F5SkinCtrl" class="no-js"&gt;
+&lt;html lang="de-DE" ng-app="f5SkinApp" ng-controller="F5MainCtrl as f5main" class="no-js"&gt;
   &lt;head&gt;
     &lt;meta charset="UTF-8"&gt;
     &lt;title&gt;&lt;% site.title %&gt; &lt;% site.tagline %&gt;&lt;/title&gt;
     &lt;meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"&gt;
-    &lt;meta name="description" content="{{param.site.description}}"&gt;
+    &lt;meta name="description" content="{{f5main.param.site.description}}"&gt;
     &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-    &lt;meta name="author" content="{{param.site.author}}"&gt; 
+    &lt;meta name="author" content="{{f5main.param.site.author}}"&gt; 
     &lt;% site.metaRobots %&gt;
     &lt;% site.metaAlternate %&gt;
     &lt;meta property="og:url" content="&lt;% site.href %&gt;"&gt;
@@ -447,39 +447,39 @@
     &lt;link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"&gt;
     &lt;script src="http://static.twoday.net/cdn/files/modernizr-custom-min-js.js"&gt;&lt;/script&gt;
     &lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"&gt;&lt;/script&gt;
-    &lt;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"&gt;&lt;/script&gt;
+    &lt;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-rc.2/angular.min.js"&gt;&lt;/script&gt;
     &lt;script src="https://googledrive.com/host/0B87rILW4RVIJdzJiMW5WRUdfalE/f5skin2day/head.js"&gt;&lt;/script&gt;&lt;% site.skin name="skinStyles" %&gt;&lt;% site.skin name="coreInfo" %&gt;
   &lt;/head&gt;
-  &lt;body ng-class="[param.format.body.class]" ng-style="param.format.body.style"&gt;
+  &lt;body ng-class="[f5main.param.format.body.class]" ng-style="f5main.param.format.body.style"&gt;
     &lt;div id="loader-wrapper"&gt;
-      &lt;div id="loader" ng-cloak ng-if="param.site.loader.animation"&gt;&lt;/div&gt;
+      &lt;div id="loader" ng-cloak ng-if="f5main.param.site.loader.animation"&gt;&lt;/div&gt;
     &lt;/div&gt;
     &lt;div id="f5wrap" data-offcanvas class="off-canvas-wrap"&gt;
       &lt;div class="inner-wrap"&gt;
-        &lt;div ng-class="{'fixed':param.topbar.class.fixed, 'containToGrid':param.topbar.class.containToGrid, 'sticky':param.topbar.class.sticky}"&gt;
+        &lt;div ng-class="{'fixed': f5main.param.topbar.class.fixed, 'containToGrid': f5main.param.topbar.class.containToGrid, 'sticky': f5main.param.topbar.class.sticky}"&gt;
           &lt;top-bar id="f5Topbar" ng-cloak role="navigation" back-text="Eine Ebene höher"&gt;
             &lt;ul class="title-area"&gt;
               &lt;li class="name"&gt;
-                &lt;h1 ng-hide="param.topbar.title.length===0"&gt;&lt;a href="#"&gt;{{param.topbar.title}}&lt;/a&gt;&lt;/h1&gt;
+                &lt;h1 ng-hide="f5main.param.topbar.title.length===0"&gt;&lt;a href="#"&gt;{{f5main.param.topbar.title}}&lt;/a&gt;&lt;/h1&gt;
               &lt;/li&gt;
               &lt;li toggle-top-bar class="menu-icon"&gt;&lt;a href="#"&gt;&lt;span&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
             &lt;/ul&gt;
             &lt;top-bar-section&gt;
               &lt;ul id="f5TopbarLeft" class="left"&gt;
-                &lt;li id="toolbarTwoday"&gt;&lt;a href="http://twoday.net/"&gt;&lt;i class="fa {{param.topbar.menuItems.twoday.icon}}"&gt;&lt;/i&gt;{{param.topbar.menuItems.twoday.text}}&lt;/a&gt;&lt;/li&gt;
-                &lt;li ng-hide="!param.topbar.menuItems.twoday.divider" class="divider"&gt;&lt;/li&gt;
-                &lt;li id="toolbarTopics" has-dropdown ng-if="param.topbar.menuItems.topics.drop"&gt;&lt;a href="&lt;% site.url %&gt;"&gt;&lt;i class="fa {{param.topbar.menuItems.topics.icon}}"&gt;&lt;/i&gt;{{param.topbar.menuItems.topics.text}}&lt;/a&gt;&lt;% topiclist prefix="&lt;ul class='dropdown'&gt;" itemprefix="&lt;li&gt;" itemsuffix="&lt;/li&gt;" suffix="&lt;/ul&gt;" %&gt;
+                &lt;li id="toolbarTwoday"&gt;&lt;a href="http://twoday.net/"&gt;&lt;i class="fa {{f5main.param.topbar.menuItems.twoday.icon}}"&gt;&lt;/i&gt;{{f5main.param.topbar.menuItems.twoday.text}}&lt;/a&gt;&lt;/li&gt;
+                &lt;li ng-hide="!f5main.param.topbar.menuItems.twoday.divider" class="divider"&gt;&lt;/li&gt;
+                &lt;li id="toolbarTopics" has-dropdown ng-if="f5main.param.topbar.menuItems.topics.drop"&gt;&lt;a href="&lt;% site.url %&gt;"&gt;&lt;i class="fa {{f5main.param.topbar.menuItems.topics.icon}}"&gt;&lt;/i&gt;{{f5main.param.topbar.menuItems.topics.text}}&lt;/a&gt;&lt;% topiclist prefix="&lt;ul class='dropdown'&gt;" itemprefix="&lt;li&gt;" itemsuffix="&lt;/li&gt;" suffix="&lt;/ul&gt;" %&gt;
                 &lt;/li&gt;
-                &lt;li id="toolbarTopics" ng-if="!param.topbar.menuItems.topics.drop"&gt;&lt;a href="&lt;% site.url %&gt;"&gt;&lt;i class="fa {{param.topbar.menuItems.topics.icon}}"&gt;&lt;/i&gt;{{param.topbar.menuItems.topics.text}}&lt;/a&gt;&lt;% topiclist prefix="&lt;ul class='dropdown'&gt;" itemprefix="&lt;li&gt;" itemsuffix="&lt;/li&gt;" suffix="&lt;/ul&gt;" %&gt;
+                &lt;li id="toolbarTopics" ng-if="!f5main.param.topbar.menuItems.topics.drop"&gt;&lt;a href="&lt;% site.url %&gt;"&gt;&lt;i class="fa {{f5main.param.topbar.menuItems.topics.icon}}"&gt;&lt;/i&gt;{{f5main.param.topbar.menuItems.topics.text}}&lt;/a&gt;&lt;% topiclist prefix="&lt;ul class='dropdown'&gt;" itemprefix="&lt;li&gt;" itemsuffix="&lt;/li&gt;" suffix="&lt;/ul&gt;" %&gt;
                 &lt;/li&gt;
-                &lt;li ng-hide="!param.topbar.menuItems.topics.divider" class="divider"&gt;&lt;/li&gt;
-                &lt;li id="toolbarImages" has-dropdown ng-hide="param.topbar.menuItems.images.items.length===0"&gt;&lt;a href="&lt;% site.url %&gt;images/topics"&gt;&lt;i class="fa {{param.topbar.menuItems.images.icon}}"&gt;&lt;/i&gt;{{param.topbar.menuItems.images.text}}&lt;/a&gt;
+                &lt;li ng-hide="!f5main.param.topbar.menuItems.topics.divider" class="divider"&gt;&lt;/li&gt;
+                &lt;li id="toolbarImages" has-dropdown ng-hide="f5main.param.topbar.menuItems.images.items.length===0"&gt;&lt;a href="&lt;% site.url %&gt;images/topics"&gt;&lt;i class="fa {{f5main.param.topbar.menuItems.images.icon}}"&gt;&lt;/i&gt;{{f5main.param.topbar.menuItems.images.text}}&lt;/a&gt;
                   &lt;ul top-bar-dropdown&gt;
-                    &lt;li ng-repeat="item in param.topbar.menuItems.images.items"&gt;&lt;a href="{{item.href}}" target="_blank"&gt;{{item.text}}&lt;/a&gt;&lt;/li&gt;
+                    &lt;li ng-repeat="item in f5main.param.topbar.menuItems.images.items"&gt;&lt;a href="{{item.href}}" target="_blank"&gt;{{item.text}}&lt;/a&gt;&lt;/li&gt;
                   &lt;/ul&gt;
                 &lt;/li&gt;
-                &lt;li ng-hide="!param.topbar.menuItems.images.divider || param.topbar.menuItems.images.items.length===0" class="divider"&gt;&lt;/li&gt;
-                &lt;li id="toolbarContributor" has-dropdown ng-hide="!param.isContributor()"&gt;&lt;a href="&lt;% site.url %&gt;contribute"&gt;&lt;i class="fa {{param.topbar.menuItems.contribute.icon}}"&gt;&lt;/i&gt;{{param.topbar.menuItems.contribute.text}}&lt;/a&gt;
+                &lt;li ng-hide="!f5main.param.topbar.menuItems.images.divider || f5main.param.topbar.menuItems.images.items.length===0" class="divider"&gt;&lt;/li&gt;
+                &lt;li id="toolbarContributor" has-dropdown ng-hide="!f5main.param.isContributor()"&gt;&lt;a href="&lt;% site.url %&gt;contribute"&gt;&lt;i class="fa {{f5main.param.topbar.menuItems.contribute.icon}}"&gt;&lt;/i&gt;{{f5main.param.topbar.menuItems.contribute.text}}&lt;/a&gt;
                   &lt;ul top-bar-dropdown&gt;
                     &lt;li&gt;&lt;a href="&lt;% site.url %&gt;stories/create"&gt;beitrag verfassen&lt;/a&gt;&lt;/li&gt;
                     &lt;li&gt;&lt;a href="&lt;% site.url %&gt;stories/main"&gt;beiträge&lt;/a&gt;&lt;/li&gt;
@@ -488,8 +488,8 @@
                     &lt;li&gt;&lt;a href="&lt;% site.url %&gt;polls/main"&gt;umfragen&lt;/a&gt;&lt;/li&gt;
                   &lt;/ul&gt;
                 &lt;/li&gt;
-                &lt;li ng-hide="!param.topbar.menuItems.contribute.divider" class="divider"&gt;&lt;/li&gt;
-                &lt;li id="toolbarAdmin" has-dropdown ng-hide="!param.isAdmin()"&gt;&lt;a href="&lt;% site.url %&gt;manage"&gt;&lt;i class="fa {{param.topbar.menuItems.admin.icon}}"&gt;&lt;/i&gt;{{param.topbar.menuItems.admin.text}}&lt;/a&gt;
+                &lt;li ng-hide="!f5main.param.topbar.menuItems.contribute.divider" class="divider"&gt;&lt;/li&gt;
+                &lt;li id="toolbarAdmin" has-dropdown ng-hide="!f5main.param.isAdmin()"&gt;&lt;a href="&lt;% site.url %&gt;manage"&gt;&lt;i class="fa {{f5main.param.topbar.menuItems.admin.icon}}"&gt;&lt;/i&gt;{{f5main.param.topbar.menuItems.admin.text}}&lt;/a&gt;
                   &lt;ul top-bar-dropdown&gt;
                     &lt;li&gt;&lt;a href="&lt;% site.url %&gt;manage"&gt;weblog&lt;/a&gt;&lt;/li&gt;
                     &lt;li&gt;&lt;a href="&lt;% layout.url %&gt;main"&gt;layout&lt;/a&gt;&lt;/li&gt;
@@ -498,54 +498,54 @@
                     &lt;li&gt;&lt;a href="&lt;% site.url %&gt;tdyBillingOverview"&gt;bezahlung&lt;/a&gt;&lt;/li&gt;
                   &lt;/ul&gt;
                 &lt;/li&gt;
-                &lt;li ng-hide="!param.topbar.menuItems.admin.divider" class="divider"&gt;&lt;/li&gt;
-                &lt;li id="toolbarCustom" has-dropdown ng-hide="!param.topbar.addCustomMenu.activate"&gt;&lt;a href=""&gt;&lt;i class="fa {{param.topbar.addCustomMenu.icon}}"&gt;&lt;/i&gt;{{param.topbar.addCustomMenu.text}}&lt;/a&gt;
+                &lt;li ng-hide="!f5main.param.topbar.menuItems.admin.divider" class="divider"&gt;&lt;/li&gt;
+                &lt;li id="toolbarCustom" has-dropdown ng-hide="!f5main.param.topbar.addCustomMenu.activate"&gt;&lt;a href=""&gt;&lt;i class="fa {{f5main.param.topbar.addCustomMenu.icon}}"&gt;&lt;/i&gt;{{f5main.param.topbar.addCustomMenu.text}}&lt;/a&gt;
                   &lt;ul top-bar-dropdown&gt;
-                    &lt;li ng-repeat="item in param.topbar.addCustomMenu.items"&gt;
+                    &lt;li ng-repeat="item in f5main.param.topbar.addCustomMenu.items"&gt;
                       &lt;label ng-if="!item.link"&gt;{{item.text}}&lt;/label&gt;&lt;a ng-if="item.link" href="{{item.href}}" target="_blank"&gt;{{item.text}}&lt;/a&gt;
                     &lt;/li&gt;
                   &lt;/ul&gt;
                 &lt;/li&gt;
-                &lt;li ng-hide="!param.topbar.addCustomMenu.divider" class="divider"&gt;&lt;/li&gt;
+                &lt;li ng-hide="!f5main.param.topbar.addCustomMenu.divider" class="divider"&gt;&lt;/li&gt;
               &lt;/ul&gt;
               &lt;ul id="f5TopbarRight" class="right"&gt;
-                &lt;li id="toolbarLogin" ng-hide="param.isLoggedIn()"&gt;&lt;a href="&lt;% site.url %&gt;members/login"&gt;&lt;i class="fa {{param.topbar.menuItems.login.icon}}"&gt;&lt;/i&gt;{{param.topbar.menuItems.login.text}}&lt;/a&gt;&lt;/li&gt;
-                &lt;li ng-hide="!param.topbar.menuItems.login.divider" class="divider"&gt;&lt;/li&gt;
-                &lt;li id="toolbarAccount" has-dropdown ng-hide="!param.isLoggedIn()"&gt;&lt;a href="&lt;% site.url %&gt;members/account"&gt;&lt;i class="fa {{param.topbar.menuItems.account.icon}}"&gt;&lt;/i&gt;{{param.topbar.menuItems.account.text}}&lt;/a&gt;
+                &lt;li id="toolbarLogin" ng-hide="f5main.param.isLoggedIn()"&gt;&lt;a href="&lt;% site.url %&gt;members/login"&gt;&lt;i class="fa {{f5main.param.topbar.menuItems.login.icon}}"&gt;&lt;/i&gt;{{f5main.param.topbar.menuItems.login.text}}&lt;/a&gt;&lt;/li&gt;
+                &lt;li ng-hide="!f5main.param.topbar.menuItems.login.divider" class="divider"&gt;&lt;/li&gt;
+                &lt;li id="toolbarAccount" has-dropdown ng-hide="!f5main.param.isLoggedIn()"&gt;&lt;a href="&lt;% site.url %&gt;members/account"&gt;&lt;i class="fa {{f5main.param.topbar.menuItems.account.icon}}"&gt;&lt;/i&gt;{{f5main.param.topbar.menuItems.account.text}}&lt;/a&gt;
                   &lt;ul top-bar-dropdown&gt;
                     &lt;li&gt;&lt;a href="&lt;% username as='url' %&gt;"&gt;home&lt;/a&gt;&lt;/li&gt;
                     &lt;li&gt;&lt;a href="&lt;% site.url %&gt;members/edit"&gt;profil&lt;/a&gt;&lt;/li&gt;
                     &lt;li&gt;&lt;a href="&lt;% site.url %&gt;members/logout"&gt;abmelden&lt;/a&gt;&lt;/li&gt;
                   &lt;/ul&gt;
                 &lt;/li&gt;
-                &lt;li ng-hide="!param.topbar.menuItems.account.divider" class="divider"&gt;&lt;/li&gt;
-                &lt;li id="toolbarAbo" has-dropdown ng-hide="!param.isLoggedIn()"&gt;&lt;a href="&lt;% site.url %&gt;members/updated"&gt;&lt;i class="fa {{param.topbar.menuItems.abo.icon}}"&gt;&lt;/i&gt;{{param.topbar.menuItems.abo.text}}&lt;/a&gt;
+                &lt;li ng-hide="!f5main.param.topbar.menuItems.account.divider" class="divider"&gt;&lt;/li&gt;
+                &lt;li id="toolbarAbo" has-dropdown ng-hide="!f5main.param.isLoggedIn()"&gt;&lt;a href="&lt;% site.url %&gt;members/updated"&gt;&lt;i class="fa {{f5main.param.topbar.menuItems.abo.icon}}"&gt;&lt;/i&gt;{{f5main.param.topbar.menuItems.abo.text}}&lt;/a&gt;
                   &lt;ul top-bar-dropdown&gt;
-                    &lt;li ng-repeat="item in param.topbar.menuItems.abo.items"&gt;&lt;a href="{{item.href}}" target="_blank"&gt;{{item.text}}&lt;/a&gt;&lt;/li&gt;
+                    &lt;li ng-repeat="item in f5main.param.topbar.menuItems.abo.items"&gt;&lt;a href="{{item.href}}" target="_blank"&gt;{{item.text}}&lt;/a&gt;&lt;/li&gt;
                   &lt;/ul&gt;
                 &lt;/li&gt;
-                &lt;li ng-hide="!param.topbar.menuItems.abo.divider" class="divider"&gt;&lt;/li&gt;
-                &lt;li id="toolbarMail" ng-hide="!param.topbar.mailIcon.activate"&gt;&lt;a href="" title="{{param.topbar.mailIcon.title}}" ng-click="param.sendMail()"&gt;&lt;i class="fa {{param.topbar.mailIcon.icon}}"&gt;&lt;/i&gt;{{param.topbar.mailIcon.text}}&lt;/a&gt;&lt;/li&gt;
-                &lt;li ng-hide="!param.topbar.mailIcon.divider" class="divider"&gt;&lt;/li&gt;
-                &lt;li id="toolbarSearch" ng-hide="!param.topbar.searchIcon.activate"&gt;&lt;a href="{{param.topbar.searchIcon.href}}" title="{{param.topbar.searchIcon.title}}"&gt;&lt;i class="fa {{param.topbar.searchIcon.icon}}"&gt;&lt;/i&gt;{{param.topbar.searchIcon.text}}&lt;/a&gt;&lt;/li&gt;
-                &lt;li ng-hide="!param.topbar.searchIcon.divider" class="divider"&gt;&lt;/li&gt;
-                &lt;li id="toolbarCustomize" ng-hide="!param.topbar.customizeIcon.activate || !param.isAdmin()"&gt;&lt;a href="" ng-click="customize.open()" title="{{param.topbar.customizeIcon.title}}"&gt;&lt;i class="fa {{param.topbar.customizeIcon.icon}}"&gt;&lt;/i&gt;{{param.topbar.customizeIcon.text}}&lt;/a&gt;&lt;/li&gt;
-                &lt;li ng-hide="!param.topbar.customizeIcon.divider" class="divider"&gt;&lt;/li&gt;
+                &lt;li ng-hide="!f5main.param.topbar.menuItems.abo.divider" class="divider"&gt;&lt;/li&gt;
+                &lt;li id="toolbarMail" ng-hide="!f5main.param.topbar.mailIcon.activate"&gt;&lt;a href="" title="{{f5main.param.topbar.mailIcon.title}}" ng-click="f5main.param.sendMail()"&gt;&lt;i class="fa {{f5main.param.topbar.mailIcon.icon}}"&gt;&lt;/i&gt;{{f5main.param.topbar.mailIcon.text}}&lt;/a&gt;&lt;/li&gt;
+                &lt;li ng-hide="!f5main.param.topbar.mailIcon.divider" class="divider"&gt;&lt;/li&gt;
+                &lt;li id="toolbarSearch" ng-hide="!f5main.param.topbar.searchIcon.activate"&gt;&lt;a href="{{f5main.param.topbar.searchIcon.href}}" title="{{f5main.param.topbar.searchIcon.title}}"&gt;&lt;i class="fa {{f5main.param.topbar.searchIcon.icon}}"&gt;&lt;/i&gt;{{f5main.param.topbar.searchIcon.text}}&lt;/a&gt;&lt;/li&gt;
+                &lt;li ng-hide="!f5main.param.topbar.searchIcon.divider" class="divider"&gt;&lt;/li&gt;
+                &lt;li id="toolbarCustomize" ng-hide="!f5main.param.topbar.customizeIcon.activate || !f5main.param.isAdmin()"&gt;&lt;a href="" ng-click="f5main.customize.open()" title="{{f5main.param.topbar.customizeIcon.title}}"&gt;&lt;i class="fa {{f5main.param.topbar.customizeIcon.icon}}"&gt;&lt;/i&gt;{{f5main.param.topbar.customizeIcon.text}}&lt;/a&gt;&lt;/li&gt;
+                &lt;li ng-hide="!f5main.param.topbar.customizeIcon.divider" class="divider"&gt;&lt;/li&gt;
               &lt;/ul&gt;
             &lt;/top-bar-section&gt;
           &lt;/top-bar&gt;
         &lt;/div&gt;
-        &lt;div id="header" ng-cloak ng-class="[param.format.header.class]" ng-style="param.format.header.style"&gt;
-          &lt;h1 ng-class="[param.format.title.class]" ng-style="param.format.title.style"&gt;{{param.site.title}}{{param.format.header.titledelimiter}}&lt;small ng-class="[param.format.subtitle.class]" ng-style="param.format.subtitle.style"&gt;{{param.site.subtitle}}&lt;/small&gt;&lt;/h1&gt;
+        &lt;div id="header" ng-cloak ng-class="[f5main.param.format.header.class]" ng-style="f5main.param.format.header.style"&gt;
+          &lt;h1 ng-class="[f5main.param.format.title.class]" ng-style="f5main.param.format.title.style"&gt;{{f5main.param.site.title}}{{f5main.param.format.header.titledelimiter}}&lt;small ng-class="[f5main.param.format.subtitle.class]" ng-style="f5main.param.format.subtitle.style"&gt;{{f5main.param.site.subtitle}}&lt;/small&gt;&lt;/h1&gt;
         &lt;/div&gt;
         &lt;div id="f5container" ng-cloak class="container"&gt;
           &lt;div class="row"&gt;
-            &lt;div id="{{param.leftColumn.id}}" ng-hide="!param.leftColumn.activate" ng-class="param.leftColumn.class" ng-style="param.leftColumn.style"&gt;&lt;/div&gt;
-            &lt;div id="{{param.middleColumn.id}}" ng-hide="!param.middleColumn.activate" ng-class="param.middleColumn.class" ng-style="param.middleColumn.style"&gt;
+            &lt;div id="{{f5main.param.leftColumn.id}}" ng-hide="!f5main.param.leftColumn.activate" ng-class="f5main.param.leftColumn.class" ng-style="f5main.param.leftColumn.style"&gt;&lt;/div&gt;
+            &lt;div id="{{f5main.param.middleColumn.id}}" ng-hide="!f5main.param.middleColumn.activate" ng-class="f5main.param.middleColumn.class" ng-style="f5main.param.middleColumn.style"&gt;
               &lt;% response.message prefix="&lt;alert ng-hide='msgClose' class='message radius' close='msgClose=true'&gt;" suffix="&lt;/alert&gt;" %&gt;
               &lt;% response.body %&gt;
             &lt;/div&gt;
-            &lt;div id="{{param.rightColumn.id}}" ng-hide="!param.rightColumn.activate" ng-class="param.rightColumn.class" ng-style="param.rightColumn.style"&gt;&lt;% site.sidebar01 %&gt;&lt;% site.sidebar02 %&gt;&lt;/div&gt;
+            &lt;div id="{{f5main.param.rightColumn.id}}" ng-hide="!f5main.param.rightColumn.activate" ng-class="f5main.param.rightColumn.class" ng-style="f5main.param.rightColumn.style"&gt;&lt;% site.sidebar01 %&gt;&lt;% site.sidebar02 %&gt;&lt;/div&gt;
           &lt;/div&gt;
         &lt;/div&gt;&lt;a href="#" class="exit-off-canvas"&gt;&lt;/a&gt;
       &lt;/div&gt;
@@ -560,24 +560,24 @@
 </content>
 </skin>
 <!-- Skin: Site.skinStyles -->
-<skin key="Site.skinStyles" lastupdate="2015-04-09T11:25:09.223Z" crc="2644571368">
+<skin key="Site.skinStyles" lastupdate="2015-05-19T16:06:01.896Z" crc="3769135222">
 <content>
 &lt;style&gt;
   /* Topbar overrides */
-  #f5Topbar i { color: {{param.topbar.menuIconColor}}; }
-  #toolbarMail:hover i { color: {{param.topbar.mailIcon.hover}}; }
-  #toolbarSearch:hover i { color: {{param.topbar.searchIcon.hover}}; }
-  #toolbarCustomize:hover i { color: {{param.topbar.customizeIcon.hover}}; }
+  #f5Topbar i { color: {{f5main.param.topbar.menuIconColor}}; }
+  #toolbarMail:hover i { color: {{f5main.param.topbar.mailIcon.hover}}; }
+  #toolbarSearch:hover i { color: {{f5main.param.topbar.searchIcon.hover}}; }
+  #toolbarCustomize:hover i { color: {{f5main.param.topbar.customizeIcon.hover}}; }
   /* Loader animation */
-  #loader-wrapper { background-color: {{param.site.loader.wrapper}}; }
-  #loader { border-top-color: {{param.site.loader.color1}}; }
-  #loader:before { border-top-color: {{param.site.loader.color2}}; }
-  #loader:after { border-top-color: {{param.site.loader.color3}}; }
+  #loader-wrapper { background-color: {{f5main.param.site.loader.wrapper}}; }
+  #loader { border-top-color: {{f5main.param.site.loader.color1}}; }
+  #loader:before { border-top-color: {{f5main.param.site.loader.color2}}; }
+  #loader:after { border-top-color: {{f5main.param.site.loader.color3}}; }
 &lt;/style&gt;
 </content>
 </skin>
 <!-- Skin: Site.stdPreferences -->
-<skin key="Site.stdPreferences" lastupdate="2015-05-04T11:08:43.605Z" crc="1026240681">
+<skin key="Site.stdPreferences" lastupdate="2015-05-04T11:08:43.605Z" crc="1545613366">
 <content>
 &lt;div id="stdPreferences" style="display:none"&gt;
   {
@@ -591,7 +591,7 @@
           "debug": true
       },
       "update": {
-          "version": "0.1.4",
+          "version": "0.1.5",
           "check": "täglich",
           "gap": 86400000,
           "lastCheck": "2015-04-11T11:13:00.000Z",

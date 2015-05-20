@@ -7,8 +7,8 @@
 
 require('angular')
     .module('f5SkinApp')
-    .controller('F5SkinCtrl', ['$scope', 'Preferences', 'UpdateCheck', '$modal', require('./F5SkinCtrl')])
-    .controller('CustomizeBlogCtrl', ['$scope', '$modalInstance', require('./CustomizeBlogCtrl')])
-    .controller('TmplGrunddatenCtrl', ['$scope', 'Preferences', require('./TmplGrunddatenCtrl')])
-    .controller('TmplHintergrundbilderCtrl', ['$scope', 'Preferences', 'ImageProvider', '$window', 'toastr', require('./TmplHintergrundbilderCtrl')])
-    .controller('TmplAktualisierungCtrl', ['$scope', '$filter', '$q', 'Preferences', 'UpdateCheck', 'TwodaySkin', 'toastr', require('./TmplAktualisierungCtrl')]);
+    .controller('F5MainCtrl', ['$scope', '$rootScope', 'Preferences', 'UpdateCheck', '$window', '$interval', '$modal', require('./F5MainCtrl')])
+    .controller('CustomizeCtrl', ['$rootScope', '$modalInstance', require('./CustomizeCtrl')])
+    .controller('CustCoreDataCtrl', ['$rootScope', require('./CustCoreDataCtrl')])
+    .controller('CustBackgroundsCtrl', ['$rootScope', 'ImageProvider', '$window', 'toastr', require('./CustBackgroundsCtrl')])
+    .controller('CustAppUpdateCtrl', ['$rootScope', '$filter', '$q', 'UpdateCheck', 'TwodaySkin', 'toastr', require('./CustAppUpdateCtrl')]);

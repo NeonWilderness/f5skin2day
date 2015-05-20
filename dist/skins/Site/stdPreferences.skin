@@ -10,7 +10,7 @@
           "debug": true
       },
       "update": {
-          "version": "0.1.4",
+          "version": "0.1.5",
           "check": "täglich",
           "gap": 86400000,
           "lastCheck": "2015-04-11T11:13:00.000Z",

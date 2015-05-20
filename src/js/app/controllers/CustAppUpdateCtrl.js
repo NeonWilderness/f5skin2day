@@ -1,39 +1,39 @@
 'use strict';
-require('jquery');
-var utils = require('../utils.js');
 
-module.exports = function($scope, $filter, $q, Preferences, UpdateCheck, TwodaySkin, toastr){
+module.exports = function($rootScope, $filter, $q, UpdateCheck, TwodaySkin, toastr){
+    
+    var vm = this;
+    
+    vm.param = $rootScope.param;
 
-    $scope.input = Preferences.get("consolidated");
+    vm.msgClose = true;
+    vm.isChecking = false;
 
-    $scope.msgClose = true;
-    $scope.isChecking = false;
-
-    $scope.dateNextCheck = function(){
-        return ($scope.input.update.gap<0
+    vm.dateNextCheck = function(){
+        return (vm.param.update.gap<0
             ? "Keine Prüfung"
-            : $filter('date')(new Date($scope.input.update.lastCheck.getTime()+$scope.input.update.gap), "dd.MM.yyyy HH:mm"));
+            : $filter('date')(new Date(vm.param.update.lastCheck.getTime()+vm.param.update.gap), "dd.MM.yyyy HH:mm"));
     };
 
-    $scope.updateChecks = [
+    vm.updateChecks = [
         { check: "täglich", gap: 24*60*60*1000 },
         { check: "wöchentlich", gap: 7*24*60*60*1000 },
         { check: "monatlich", gap: 30*24*60*60*1000 },
         { check: "niemals", gap: -1 }
     ];
 
-    $scope.useFrequency = function(index){
-        var frequency = $scope.updateChecks[index];
-        $scope.input.update.check = frequency.check;
-        $scope.input.update.gap = frequency.gap;
+    vm.useFrequency = function(index){
+        var frequency = vm.updateChecks[index];
+        vm.param.update.check = frequency.check;
+        vm.param.update.gap = frequency.gap;
     };
 
-    $scope.checkSkinUpdate = function(){
+    vm.checkSkinUpdate = function(){
 
-        var skinEditUrl = $scope.input.layoutUrl+"skins/edit?key=",
+        var skinEditUrl = vm.param.layoutUrl+"skins/edit?key=",
             promises = [];
 
-        $.each( $scope.release.skins, function(){
+        $.each( vm.release.skins, function(){
             promises.push( TwodaySkin.get(skinEditUrl+this.name) );
         });
 
@@ -41,12 +41,12 @@ module.exports = function($scope, $filter, $q, Preferences, UpdateCheck, TwodayS
 
             $.each( results, function(index, response){ // response = {config, data, headers, status, statusText}
 
-                var skin = $scope.release.skins[index];
+                var skin = vm.release.skins[index];
                 var $form = $(response.data).find("form").eq(0);
                 var skinCode = $.trim($form.find("textarea[name=skin]").val());
                 var isSkinInitial = (skinCode.length === 0);
-                if (typeof $scope.input.update.overwrite[skin.name] !== "undefined"){
-                    switch($scope.input.update.overwrite[skin.name]){ // always, never
+                if (typeof vm.param.update.overwrite[skin.name] !== "undefined"){
+                    switch(vm.param.update.overwrite[skin.name]){ // always, never
                         case "always": skin.status = "needsupdate"; break;
                         case "never":  skin.status = (isSkinInitial ? "needsupdate" : "skipped"); break;
                     }
@@ -56,34 +56,34 @@ module.exports = function($scope, $filter, $q, Preferences, UpdateCheck, TwodayS
                 console.log("Index:", index, skin.name, isSkinInitial, "Rlse:", skin.content.length, "Blog:", skinCode.length, skin.status);
             });
 
-            $scope.releaseChecked = true;
-        }, function(results){ // error: at least one skin read failed
-            toastr.error("Mindestens ein Skin konnte nicht fehlerfrei gelesen werden!", $scope.input.msgHeader);
+            vm.releaseChecked = true;
+        }, function(){ // error: at least one skin read failed
+            toastr.error("Mindestens ein Skin konnte nicht fehlerfrei gelesen werden!", vm.param.msgHeader);
         });
     };
 
-    $scope.checkReleaseUpdate = function(){
+    vm.checkReleaseUpdate = function(){
 
-        $scope.isChecking = true;
-        $scope.releaseLoaded = true;
-        $scope.releaseChecked = false;
+        vm.isChecking = true;
+        vm.releaseLoaded = true;
+        vm.releaseChecked = false;
 
-        UpdateCheck.verify($scope.input).then(
+        UpdateCheck.verify(vm.param).then(
             function(release){
-                $scope.release = release.data;
-                $scope.newVersion = release.newVersion;
-                $scope.msgClose = false;
-                $scope.input.update.lastCheck = new Date();
-                $scope.isChecking = false;
-                if ($scope.newVersion) $scope.checkSkinUpdate();
+                vm.release = release.data;
+                vm.newVersion = release.newVersion;
+                vm.msgClose = false;
+                vm.param.update.lastCheck = new Date();
+                vm.isChecking = false;
+                if (vm.newVersion) vm.checkSkinUpdate();
             },
             function(status){
-                $scope.isChecking = $scope.releaseLoaded = $scope.msgClose = false;
+                vm.isChecking = vm.releaseLoaded = vm.msgClose = false;
             });
 
     };
 
-    $scope.updateStatus = function(skinStatus){
+    vm.updateStatus = function(skinStatus){
 
         var updStatus = {
                 "unchecked":    "noch nicht geprüft",
@@ -99,12 +99,12 @@ module.exports = function($scope, $filter, $q, Preferences, UpdateCheck, TwodayS
 
     };
 
-    $scope.installRelease = function(){
+    vm.installRelease = function(){
 
-        $.each( $scope.release.skins, function(){
+        $.each( vm.release.skins, function(){
             var skin = this;
             if (skin.status === "needsupdate"){
-                TwodaySkin.update(skin, $scope.input).then(function(skin){
+                TwodaySkin.update(skin, vm.param).then(function(skin){
                     // success: skin.status already updated
                 }, function(status, skin){
                     // error: skin.status already updated

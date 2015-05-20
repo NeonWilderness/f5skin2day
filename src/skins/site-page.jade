@@ -1,13 +1,13 @@
 doctype html
 include partials/vars.jade
-html.no-js(lang="de-DE", ng-app="f5SkinApp", ng-controller="F5SkinCtrl")
+html.no-js(lang="de-DE", ng-app="f5SkinApp", ng-controller="F5MainCtrl as f5main")
     head
         meta(charset="UTF-8")
         title <% site.title %> <% site.tagline %>
         meta(http-equiv="X-UA-Compatible", content="IE=edge,chrome=1")
-        meta(name="description", content="{{param.site.description}}")
+        meta(name="description", content="{{f5main.param.site.description}}")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        meta(name="author", content="{{param.site.author}}")
+        meta(name="author", content="{{f5main.param.site.author}}")
         | #{lineBreak}
         | <% site.metaRobots %>
         | <% site.metaAlternate %>
@@ -18,25 +18,25 @@ html.no-js(lang="de-DE", ng-app="f5SkinApp", ng-controller="F5SkinCtrl")
         link(rel="stylesheet", href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css")
         script(src="http://static.twoday.net/cdn/files/modernizr-custom-min-js.js")
         script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js")
-        script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js")
+        script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-rc.2/angular.min.js")
         script(src="#{jsFolder}/f5skin2day/head.js")
         | <% site.skin name="skinStyles" %><% site.skin name="coreInfo" %>
 
-    body(ng-class="[param.format.body.class]", ng-style="param.format.body.style")
-        #loader-wrapper: #loader(ng-cloak, ng-if="param.site.loader.animation")
+    body(ng-class="[f5main.param.format.body.class]", ng-style="f5main.param.format.body.style")
+        #loader-wrapper: #loader(ng-cloak, ng-if="f5main.param.site.loader.animation")
         #f5wrap.off-canvas-wrap(data-offcanvas)
             .inner-wrap
                 include partials/toolbar
-                #header(ng-cloak, ng-class="[param.format.header.class]", ng-style="param.format.header.style")
-                    h1(ng-class="[param.format.title.class]", ng-style="param.format.title.style") {{param.site.title}}{{param.format.header.titledelimiter}}
-                        small(ng-class="[param.format.subtitle.class]", ng-style="param.format.subtitle.style") {{param.site.subtitle}}
+                #header(ng-cloak, ng-class="[f5main.param.format.header.class]", ng-style="f5main.param.format.header.style")
+                    h1(ng-class="[f5main.param.format.title.class]", ng-style="f5main.param.format.title.style") {{f5main.param.site.title}}{{f5main.param.format.header.titledelimiter}}
+                        small(ng-class="[f5main.param.format.subtitle.class]", ng-style="f5main.param.format.subtitle.style") {{f5main.param.site.subtitle}}
                 #f5container.container(ng-cloak)
                     .row
-                        div(id="{{param.leftColumn.id}}", ng-hide="!param.leftColumn.activate", ng-class="param.leftColumn.class", ng-style="param.leftColumn.style")
-                        div(id="{{param.middleColumn.id}}", ng-hide="!param.middleColumn.activate", ng-class="param.middleColumn.class", ng-style="param.middleColumn.style")
+                        div(id="{{f5main.param.leftColumn.id}}", ng-hide="!f5main.param.leftColumn.activate", ng-class="f5main.param.leftColumn.class", ng-style="f5main.param.leftColumn.style")
+                        div(id="{{f5main.param.middleColumn.id}}", ng-hide="!f5main.param.middleColumn.activate", ng-class="f5main.param.middleColumn.class", ng-style="f5main.param.middleColumn.style")
                             | <% response.message prefix="<alert ng-hide='msgClose' class='message radius' close='msgClose=true'>" suffix="</alert>" %>
                             | <% response.body %>
-                        div(id="{{param.rightColumn.id}}", ng-hide="!param.rightColumn.activate", ng-class="param.rightColumn.class", ng-style="param.rightColumn.style")
+                        div(id="{{f5main.param.rightColumn.id}}", ng-hide="!f5main.param.rightColumn.activate", ng-class="f5main.param.rightColumn.class", ng-style="f5main.param.rightColumn.style")
                             | <% site.sidebar01 %><% site.sidebar02 %>
                 a.exit-off-canvas(href="#")
         | #{lineBreak}

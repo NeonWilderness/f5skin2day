@@ -1,5 +1,5 @@
 'use strict';
-require('jquery');
+
 var utils = require('../utils.js');
 
 module.exports = function($http, $q, Preferences, toastr){

@@ -1,5 +1,5 @@
 'use strict';
-require('jquery');
+
 var jsondiff = require('rfc6902-json-diff'),
     utils = require('../utils.js');
 
@@ -61,6 +61,9 @@ module.exports = function(CacheItem, TwodaySkin, toastr){
                 excludes = '$$|topics/drop|breadcrumbs/items|images/items|abo/items'.split('|'),
                 i, len, names, objPath, arrayCheck;
 
+            //- save consolidated param as well to the cache
+            CacheItem.put('consolidatedPreferences', param);
+
             //console.dir(patch);
             $.each( patch, function(){
 
@@ -97,7 +100,7 @@ module.exports = function(CacheItem, TwodaySkin, toastr){
             });
 
             TwodaySkin.update(
-                { name: "Site.usrPreferences", content: JSON.stringify(usrPreferences), status: "unsaved"},
+                { name: "Site.usrPreferences", content: angular.toJson(usrPreferences, true), status: "unsaved"},
                 param
             ).then( function(skin){
                 // success: no user message needed

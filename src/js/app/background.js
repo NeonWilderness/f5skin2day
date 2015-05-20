@@ -1,5 +1,4 @@
 'use strict';
-require('jquery');
 
 /**
  * Sets the appropriate background image based on the actual hour of the day and user defined image items/slots
@@ -17,19 +16,23 @@ module.exports = {
 //----- check with each timeslot to find the appropriate entry
         $.each( timeSlots, function(){
             if (h>=getMinute(this.from) && h<=getMinute(this.to)){
+                var $body = $('body');
+//------------- do nothing if this background image has already been installed before
+                if ($body.data('url')===this.href) return false;
 //------------- once timeslot was found, preload the image
                 var self = this;
                 $('<img/>').attr('src', self.href).load( function(){
 //----------------- remove the temp img to prevent memory leaks
                     $(this).remove();
 //----------------- now set the background-image with all params
-                    $('body').css({
-                        'background-image': 'url("'+self.href+'")',
-                        'background-repeat': self.repeat,
-                        'background-position': self.position,
-                        'background-attachment': self.attachment,
-                        'background-size': self.size,
-                        'height': '100%'
+                    $body.data('url', self.href)
+                         .css({
+                            'background-image': 'url('+self.href+')',
+                            'background-repeat': self.repeat,
+                            'background-position': self.position,
+                            'background-attachment': self.attachment,
+                            'background-size': self.size,
+                            'height': '100%'
                     });
 //----------------- and fade the preloading animation
                     $("#loader-wrapper").fadeOut("slow");

@@ -1,5 +1,4 @@
 'use strict';
-require('jquery');
 
 /**
  * Adds additional classes to the BODY element
@@ -10,9 +9,9 @@ require('jquery');
  * story-{storyID} ~ ID of the story (lowercase ID)
  *
  * Examples:
- * pathname="/" ===> bodyclasses="onHome"
- * pathname="/topics/Testthema/" ==> bodyclasses="onTopic topic-testthema"
- * pathname="/stories/is-it-me-youre-looking-for/" ==> bodyclasses="onStory story-is-it-me-youre-looking-for"
+ * pathname="/" ===> bodyclass="onHome"
+ * pathname="/topics/Testthema/" ==> bodyclass="onTopic topic-testthema"
+ * pathname="/stories/is-it-me-youre-looking-for/" ==> bodyclass="onStory story-is-it-me-youre-looking-for"
  *
  */
 
