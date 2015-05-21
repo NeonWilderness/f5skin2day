@@ -206,7 +206,7 @@ module.exports = function($rootScope, ImageProvider, $window, toastr){
             this.pageImages.length = 0;
             while (i<j){
                 this.pageImages.push({
-                    'background-image': 'url('+this.images[i]['img_url']+this.provider.append('gallery')+')'
+                    'background-image': 'url("'+this.images[i]['img_url']+this.provider.append('gallery')+'")'
                 });
                 ++i;
             }

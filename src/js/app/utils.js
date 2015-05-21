@@ -79,10 +79,6 @@ module.exports = {
                 dateSourceWasUpdated = new Date(Date.parse(self.attr("lastupdate"))),
                 skinCRC = self.attr("crc"),
                 skinContent = self.find("content").text();
-/*              skinContent = self.find("content").text()
-                    .replace(/&amp;/g, "&")
-                    .replace(/&lt;/g, "<")
-                    .replace(/&gt;/g, ">"); */
             release.skins.push({
                 name: skinName,
                 update: dateSourceWasUpdated,

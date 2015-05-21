@@ -14,8 +14,7 @@ module.exports = function ($scope, $rootScope, Preferences, UpdateCheck, $window
 //- Set background image based on time of the day and user defined image items/slots
     var UpdateBackgroundImage = function(){
         background.setImage(vm.param.timeSlots);
-    };
-    UpdateBackgroundImage();
+    };  UpdateBackgroundImage();
 
 //- Install background image check routine to be called every 5 seconds
     var checkBackgroundTimer = $interval( UpdateBackgroundImage, 5000 );

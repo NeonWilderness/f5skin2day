@@ -27,7 +27,7 @@ module.exports = {
 //----------------- now set the background-image with all params
                     $body.data('url', self.href)
                          .css({
-                            'background-image': 'url('+self.href+')',
+                            'background-image': 'url("'+self.href+'")',
                             'background-repeat': self.repeat,
                             'background-position': self.position,
                             'background-attachment': self.attachment,

@@ -21,8 +21,8 @@ form(ng-controller="CustBackgroundsCtrl as backgrounds")
                     .small-4.medium-3.large-2.columns(ng-repeat="image in backgrounds.navImagePool.pageImages track by $index")
                         div.photo(ng-style="image", resizable="", alt="")
                             div.photo-overlay
-                                i.fa.fa-search-plus.fa-fw(title="Bild ansehen", ng-click="backgrounds.navImagePool.viewImage($index)")
-                                i.fa.fa-check.fa-fw.left10(title="Als Hintergrund auswählen", ng-click="backgrounds.navImagePool.selectImage($index)")
+                                i.fa.fa-search-plus.fa-2x.fa-fw(title="Bild ansehen", ng-click="backgrounds.navImagePool.viewImage($index)")
+                                i.fa.fa-check.fa-2x.fa-fw.left10(title="Als Hintergrund auswählen", ng-click="backgrounds.navImagePool.selectImage($index)")
         .row(ng-show="!backgrounds.isQueryImage && (backgrounds.isEditMode || backgrounds.isCreateMode)")
             .small-12.columns
                 .row

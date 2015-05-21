@@ -1,5 +1,5 @@
 <!-- Skin: Site.ngTemplates -->
-<skin key="Site.ngTemplates" lastupdate="2015-05-20T18:52:50.207Z" crc="1066465954">
+<skin key="Site.ngTemplates" lastupdate="2015-05-20T18:52:50.207Z" crc="1032110020">
 <content>
 &lt;script id="customizeBlogHtml" type="text/ng-template"&gt;
   &lt;div id="customizeBlog"&gt;
@@ -90,7 +90,7 @@
                 &lt;div class="row"&gt;
                   &lt;div ng-repeat="image in backgrounds.navImagePool.pageImages track by $index" class="small-4 medium-3 large-2 columns"&gt;
                     &lt;div ng-style="image" resizable="" alt="" class="photo"&gt;
-                      &lt;div class="photo-overlay"&gt;&lt;i title="Bild ansehen" ng-click="backgrounds.navImagePool.viewImage($index)" class="fa fa-search-plus fa-fw"&gt;&lt;/i&gt;&lt;i title="Als Hintergrund auswählen" ng-click="backgrounds.navImagePool.selectImage($index)" class="fa fa-check fa-fw left10"&gt;&lt;/i&gt;&lt;/div&gt;
+                      &lt;div class="photo-overlay"&gt;&lt;i title="Bild ansehen" ng-click="backgrounds.navImagePool.viewImage($index)" class="fa fa-search-plus fa-2x fa-fw"&gt;&lt;/i&gt;&lt;i title="Als Hintergrund auswählen" ng-click="backgrounds.navImagePool.selectImage($index)" class="fa fa-check fa-2x fa-fw left10"&gt;&lt;/i&gt;&lt;/div&gt;
                     &lt;/div&gt;
                   &lt;/div&gt;
                 &lt;/div&gt;

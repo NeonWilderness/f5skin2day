@@ -87,7 +87,7 @@
                 <div class="row">
                   <div ng-repeat="image in backgrounds.navImagePool.pageImages track by $index" class="small-4 medium-3 large-2 columns">
                     <div ng-style="image" resizable="" alt="" class="photo">
-                      <div class="photo-overlay"><i title="Bild ansehen" ng-click="backgrounds.navImagePool.viewImage($index)" class="fa fa-search-plus fa-fw"></i><i title="Als Hintergrund auswählen" ng-click="backgrounds.navImagePool.selectImage($index)" class="fa fa-check fa-fw left10"></i></div>
+                      <div class="photo-overlay"><i title="Bild ansehen" ng-click="backgrounds.navImagePool.viewImage($index)" class="fa fa-search-plus fa-2x fa-fw"></i><i title="Als Hintergrund auswählen" ng-click="backgrounds.navImagePool.selectImage($index)" class="fa fa-check fa-2x fa-fw left10"></i></div>
                     </div>
                   </div>
                 </div>
