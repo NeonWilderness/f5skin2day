@@ -55,9 +55,14 @@ span[ng-click] { cursor: pointer; }
 .left10 { margin-left: 10px; }
 .left15 { margin-left: 15px; }
 .right5 { margin-right: 5px; }
+.right10 { margin-right: 10px; }
 .fullsize { width: 100%; }
 .extlink:before { font-family: "FontAwesome"; content: "\f059"; color: #ddd; margin-left: 6px; }
-.button.tiny.square { padding-left: 0.625rem; padding-right: 0.625rem; }
+.tiny.square {
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
+  &:focus { outline: none; }
+}
 
 /* ---- SCSS Mixins ---- */
 
@@ -181,7 +186,10 @@ span[ng-click] { cursor: pointer; }
 /* ---- Site.ngTemplates Skin CSS ---- */
 #customizeBlog {
   p { font-size: 12px; }
-  fieldset label { font-size: 12px; cursor: default; }
+  fieldset {
+    margin-top: 0;
+    label { font-size: 12px; cursor: default; }
+  }
   th .button, th button { margin-bottom: 0; }
   .split.button.tiny { padding-left: .75rem; padding-right: 3rem; }
   .tabs dd>a { font-size: 12px; padding: 1em 2em; }
@@ -196,12 +204,11 @@ span[ng-click] { cursor: pointer; }
     background-position: center center;
     margin-bottom: 10px;
     &:hover .photo-overlay { opacity: 1; }
+    &:hover .folder-overlay { color: #fff; }
   }
   .photo-overlay {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    left: 0; right: 0; bottom: 0;
     padding: 8px 0;
     text-align: center;
     background-color: rgba(0,0,0,0.5);
@@ -211,8 +218,36 @@ span[ng-click] { cursor: pointer; }
     i {
       color: rgba(255,255,255,0.6);
       cursor: pointer;
-      &:hover { color: #f9c922; }
+      &:hover { color: #6bccf9; } /* #f9c922 */
     }
+  }
+  .folder-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    font-size: 13px;
+    text-align: center;
+    cursor: pointer;
+    color: rgba(255,255,255,0.6);
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+    span { position: absolute; left: 0; right: 0; bottom: 30%;
+      &.folder-levelup { content: "nach oben";
+        &:after { font-family: "FontAwesome"; content: "\f148"; margin-left: 4px; }
+      }
+    }
+  }
+  .subFolder {
+    position: absolute;
+    top: 0; right: 8px;
+    font-weight: bold;
+    color: #008cba;
+  }
+  .loadstatus {
+    font-size: 12px;
+    margin-left: 10px;
+    background-color: #008cba;
+    color: #fff;
+    padding: 10px 15px;
   }
   #slotStatus { text-align: center; font-weight: normal; font-size: small; }
   .releaseheader { border-top: 2px solid #eee; border-bottom: 2px solid #eee; margin: 10px 0; padding: 4px 0; }

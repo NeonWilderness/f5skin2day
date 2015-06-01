@@ -10,17 +10,26 @@ form(ng-controller="CustBackgroundsCtrl as backgrounds")
                         ul#dropdown-imgprovider.f-dropdown
                             li(ng-repeat="provider in backgrounds.navImagePool.providers"): a(ng-click="backgrounds.navImagePool.useProvider($index)") {{provider.name}}
                     .small-8.medium-9.large-10.columns
-                        label Seite {{backgrounds.navImagePool.page+1}} von {{backgrounds.navImagePool.lastPage+1}}
-                        a.button.button.tiny.radius.secondary.square.right5(title="Erste Bildseite", ng-enabled="!backgrounds.navImagePool.isFirstPage", ng-click="backgrounds.navImagePool.toFirstPage()"): i.fa.fa-fast-backward.fa-fw
-                        a.button.button.tiny.radius.secondary.square.right5(title="Vorhergehende Bildseite", ng-enabled="!backgrounds.navImagePool.isFirstPage", ng-click="backgrounds.navImagePool.prevPage()"): i.fa.fa-backward.fa-fw
-                        a.button.button.tiny.radius.secondary.square.right5(title="Nächste Bildseite", ng-enabled="!backgrounds.navImagePool.isLastPage", ng-click="backgrounds.navImagePool.nextPage()"): i.fa.fa-forward.fa-fw
-                        a.button.button.tiny.radius.secondary.square(title="Letzte Bildseite", ng-enabled="!backgrounds.navImagePool.isLastPage", ng-click="backgrounds.navImagePool.toLastPage()"): i.fa.fa-fast-forward.fa-fw
-                        a.button.button.tiny.radius.secondary.left10(title="Schließen", ng-click="backgrounds.isQueryImage=false") <i class="fa fa-times fa-margin"></i>Schließen
+                        label
+                            span(ng-hide="backgrounds.navImagePool.isLoadingImages")
+                                | Seite&ensp;{{backgrounds.navImagePool.page+1}}&ensp;von&ensp;{{backgrounds.navImagePool.lastPage+1}}&ensp;({{backgrounds.navImagePool.images.length}}&ensp;Bilder)
+                                span.subFolder {{backgrounds.navImagePool.subFolder}}
+                            | &nbsp;
+                        button.tiny.radius.secondary.square.right5(title="Erste Bildseite", ng-disabled="backgrounds.navImagePool.isFirstPage()", ng-click="backgrounds.navImagePool.toFirstPage()"): i.fa.fa-fast-backward.fa-fw
+                        button.tiny.radius.secondary.square.right5(title="Vorhergehende Bildseite", ng-disabled="backgrounds.navImagePool.isFirstPage()", ng-click="backgrounds.navImagePool.prevPage()"): i.fa.fa-backward.fa-fw
+                        button.tiny.radius.secondary.square.right5(title="Nächste Bildseite", ng-disabled="backgrounds.navImagePool.isLastPage()", ng-click="backgrounds.navImagePool.nextPage()"): i.fa.fa-forward.fa-fw
+                        button.tiny.radius.secondary.square(title="Letzte Bildseite", ng-disabled="backgrounds.navImagePool.isLastPage()", ng-click="backgrounds.navImagePool.toLastPage()"): i.fa.fa-fast-forward.fa-fw
+                        button.tiny.radius.secondary.square.left10(title="Schließen", ng-click="backgrounds.isQueryImage=false") <i class="fa fa-times fa-margin"></i>Schließen
+                        span.loadstatus(ng-show="backgrounds.navImagePool.isLoadingImages")
+                            i.fa.fa-spinner.fa-pulse.fa-margin
+                            | Lade Inhalte...
             .small-12.columns
                 .row
-                    .small-4.medium-3.large-2.columns(ng-repeat="image in backgrounds.navImagePool.pageImages track by $index")
-                        div.photo(ng-style="image", resizable="", alt="")
-                            div.photo-overlay
+                    .small-4.medium-3.large-2.columns.end(ng-repeat="image in backgrounds.navImagePool.pageImages track by $index")
+                        div.photo(ng-style="image.style", resizable="", alt="")
+                            div.folder-overlay(ng-if="!image.isImage", ng-click="backgrounds.navImagePool.selectFolder($index)")
+                                span(ng-class="{'folder-levelup': image.fName==='zurück'}") {{image.fName}}
+                            div.photo-overlay(ng-if="image.isImage")
                                 i.fa.fa-search-plus.fa-2x.fa-fw(title="Bild ansehen", ng-click="backgrounds.navImagePool.viewImage($index)")
                                 i.fa.fa-check.fa-2x.fa-fw.left10(title="Als Hintergrund auswählen", ng-click="backgrounds.navImagePool.selectImage($index)")
         .row(ng-show="!backgrounds.isQueryImage && (backgrounds.isEditMode || backgrounds.isCreateMode)")

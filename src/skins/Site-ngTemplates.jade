@@ -13,7 +13,19 @@ script#customizeBlogHtml(type="text/ng-template")
             tab(heading="Typographie")
                 p Typographie
             tab(heading="Menüanzeige")
-                p Menüsteuerung
+                tabset(vertical="true")
+                    tab
+                        tab-heading <i class="fa fa-cog fa-fw fa-margin"></i>Basisoptionen
+                        include partials/menuBasicOptions
+                    tab
+                        tab-heading <i class="fa fa-bars fa-fw fa-margin"></i>Standardmenü
+                        include partials/menuStandardItems
+                    tab
+                        tab-heading <i class="fa fa-rocket fa-fw fa-margin"></i>Individualmenü
+                        include partials/menuCustomItems
+                    tab
+                        tab-heading <i class="fa fa-envelope fa-fw fa-margin"></i>Spezialmenü
+                        include partials/menuSpecialItems
             tab(heading="Aktualisierung")
                 include partials/custAppUpdate
         p.text-center.bottom0

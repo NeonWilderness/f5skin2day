@@ -1,6 +1,6 @@
 <script id="customizeBlogHtml" type="text/ng-template">
   <div id="customizeBlog">
-    <h5>Mein Foundation-Blog {{customize.param.siteAlias}} anpassen</h5>
+    <h5>Mein Foundation-Blog anpassen</h5>
     <p>Die Einstelloptionen zu Ihrem Blog erreichen Sie über die unten angezeigten Tabs:</p>
     <tabset>
       <tab heading="Grunddaten">
@@ -33,7 +33,7 @@
             <div class="row">
               <div class="small-12 columns">
                 <div class="row collapse">
-                  <label for="txtImgFolder" class="bottom0">URL (Verzeichnis) für Bilder</label>
+                  <label for="txtImgFolder" class="bottom0">GoogleDrive-Verzeichnis für öffentliche Bilder</label>
                   <div class="small-11 columns">
                     <input type="text" id="txtImgFolder" ng-model="customize.param.site.imgFolder"/>
                   </div>
@@ -79,15 +79,21 @@
                     </ul>
                   </div>
                   <div class="small-8 medium-9 large-10 columns">
-                    <label>Seite {{backgrounds.navImagePool.page+1}} von {{backgrounds.navImagePool.lastPage+1}}</label><a title="Erste Bildseite" ng-enabled="!backgrounds.navImagePool.isFirstPage" ng-click="backgrounds.navImagePool.toFirstPage()" class="button button tiny radius secondary square right5"><i class="fa fa-fast-backward fa-fw"></i></a><a title="Vorhergehende Bildseite" ng-enabled="!backgrounds.navImagePool.isFirstPage" ng-click="backgrounds.navImagePool.prevPage()" class="button button tiny radius secondary square right5"><i class="fa fa-backward fa-fw"></i></a><a title="Nächste Bildseite" ng-enabled="!backgrounds.navImagePool.isLastPage" ng-click="backgrounds.navImagePool.nextPage()" class="button button tiny radius secondary square right5"><i class="fa fa-forward fa-fw"></i></a><a title="Letzte Bildseite" ng-enabled="!backgrounds.navImagePool.isLastPage" ng-click="backgrounds.navImagePool.toLastPage()" class="button button tiny radius secondary square"><i class="fa fa-fast-forward fa-fw"></i></a><a title="Schließen" ng-click="backgrounds.isQueryImage=false" class="button button tiny radius secondary left10"><i class="fa fa-times fa-margin"></i>Schließen</a>
+                    <label><span ng-hide="backgrounds.navImagePool.isLoadingImages">Seite&ensp;{{backgrounds.navImagePool.page+1}}&ensp;von&ensp;{{backgrounds.navImagePool.lastPage+1}}&ensp;({{backgrounds.navImagePool.images.length}}&ensp;Bilder)<span class="subFolder">{{backgrounds.navImagePool.subFolder}}</span></span>&nbsp;</label>
+                    <button title="Erste Bildseite" ng-disabled="backgrounds.navImagePool.isFirstPage()" ng-click="backgrounds.navImagePool.toFirstPage()" class="tiny radius secondary square right5"><i class="fa fa-fast-backward fa-fw"></i></button>
+                    <button title="Vorhergehende Bildseite" ng-disabled="backgrounds.navImagePool.isFirstPage()" ng-click="backgrounds.navImagePool.prevPage()" class="tiny radius secondary square right5"><i class="fa fa-backward fa-fw"></i></button>
+                    <button title="Nächste Bildseite" ng-disabled="backgrounds.navImagePool.isLastPage()" ng-click="backgrounds.navImagePool.nextPage()" class="tiny radius secondary square right5"><i class="fa fa-forward fa-fw"></i></button>
+                    <button title="Letzte Bildseite" ng-disabled="backgrounds.navImagePool.isLastPage()" ng-click="backgrounds.navImagePool.toLastPage()" class="tiny radius secondary square"><i class="fa fa-fast-forward fa-fw"></i></button>
+                    <button title="Schließen" ng-click="backgrounds.isQueryImage=false" class="tiny radius secondary square left10"><i class="fa fa-times fa-margin"></i>Schließen</button><span ng-show="backgrounds.navImagePool.isLoadingImages" class="loadstatus"><i class="fa fa-spinner fa-pulse fa-margin"></i>Lade Inhalte...</span>
                   </div>
                 </div>
               </div>
               <div class="small-12 columns">
                 <div class="row">
-                  <div ng-repeat="image in backgrounds.navImagePool.pageImages track by $index" class="small-4 medium-3 large-2 columns">
-                    <div ng-style="image" resizable="" alt="" class="photo">
-                      <div class="photo-overlay"><i title="Bild ansehen" ng-click="backgrounds.navImagePool.viewImage($index)" class="fa fa-search-plus fa-2x fa-fw"></i><i title="Als Hintergrund auswählen" ng-click="backgrounds.navImagePool.selectImage($index)" class="fa fa-check fa-2x fa-fw left10"></i></div>
+                  <div ng-repeat="image in backgrounds.navImagePool.pageImages track by $index" class="small-4 medium-3 large-2 columns end">
+                    <div ng-style="image.style" resizable="" alt="" class="photo">
+                      <div ng-if="!image.isImage" ng-click="backgrounds.navImagePool.selectFolder($index)" class="folder-overlay"><span ng-class="{'folder-levelup': image.fName==='zurück'}">{{image.fName}}</span></div>
+                      <div ng-if="image.isImage" class="photo-overlay"><i title="Bild ansehen" ng-click="backgrounds.navImagePool.viewImage($index)" class="fa fa-search-plus fa-2x fa-fw"></i><i title="Als Hintergrund auswählen" ng-click="backgrounds.navImagePool.selectImage($index)" class="fa fa-check fa-2x fa-fw left10"></i></div>
                     </div>
                   </div>
                 </div>
@@ -201,7 +207,55 @@
         <p>Typographie</p>
       </tab>
       <tab heading="Menüanzeige">
-        <p>Menüsteuerung</p>
+        <tabset vertical="true">
+          <tab>
+            <tab-heading><i class="fa fa-cog fa-fw fa-margin"></i>Basisoptionen</tab-heading>
+            <form ng-controller="MenuBasicOptionsCtrl as menuBasic">
+              <fieldset>
+                <div class="row">
+                  <div class="small-3 columns">
+                    <label for="txtMenuTitle">Menütext
+                      <input type="text" id="txtMenuTitle" ng-model="customize.param.topbar.title"/>
+                    </label>
+                  </div>
+                  <div class="small-3 columns">
+                    <label>Fixed</label>
+                    <div class="switch round">
+                      <input type="checkbox" id="chkFixed" ng-model="customize.param.topbar.class.fixed"/>
+                      <label for="chkFixed"></label>
+                    </div>
+                  </div>
+                  <div class="small-3 columns">
+                    <label>ContainToGrid</label>
+                    <div class="switch round">
+                      <input type="checkbox" id="chkContainToGrid" ng-model="customize.param.topbar.class.containToGrid"/>
+                      <label for="chkContainToGrid"></label>
+                    </div>
+                  </div>
+                  <div class="small-3 columns">
+                    <label>Sticky</label>
+                    <div class="switch round">
+                      <input type="checkbox" id="chkSticky" ng-model="customize.param.topbar.class.sticky"/>
+                      <label for="chkSticky"></label>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </form>
+          </tab>
+          <tab>
+            <tab-heading><i class="fa fa-bars fa-fw fa-margin"></i>Standardmenü</tab-heading>
+            <p>menuStandardItems...</p>
+          </tab>
+          <tab>
+            <tab-heading><i class="fa fa-rocket fa-fw fa-margin"></i>Individualmenü</tab-heading>
+            <p>menuCustomItems...</p>
+          </tab>
+          <tab>
+            <tab-heading><i class="fa fa-envelope fa-fw fa-margin"></i>Spezialmenü</tab-heading>
+            <p>menuSpecialItems...</p>
+          </tab>
+        </tabset>
       </tab>
       <tab heading="Aktualisierung">
         <form ng-controller="CustAppUpdateCtrl as appupdate">
@@ -226,7 +280,7 @@
               </div>
             </div>
             <div class="row">
-              <div class="small-12 columns"><a href="" ng-show="appupdate.msgClose" ng-click="appupdate.checkReleaseUpdate()" class="button small radius secondary"><i class="fa fa-refresh fa-margin" ng-class="{'fa-spin':appupdate.isChecking}"></i>Jetzt auf mögliche Aktualisierung prüfen...</a>
+              <div class="small-12 columns"><a href="" ng-show="appupdate.msgClose" ng-click="appupdate.checkReleaseUpdate($event)" class="button small radius secondary"><i class="fa fa-refresh fa-margin" ng-class="{'fa-spin':appupdate.isChecking}"></i>Jetzt auf mögliche Aktualisierung prüfen...</a>
                 <alert ng-if="appupdate.releaseLoaded && appupdate.newVersion" ng-hide="appupdate.msgClose" close="appupdate.msgClose=true" class="warning radius"><i class="fa fa-info-circle fa-margin"></i>Es existiert eine neuere Version {{appupdate.release.version}} vom {{appupdate.release.releasedate | date: "dd.MM.yyyy"}}!<a href="" ng-disabled="!appupdate.releaseChecked" ng-click="appupdate.installRelease()" class="button tiny radius secondary left15 bottom0"><i class="fa fa-cloud-download fa-margin"></i>Jetzt installieren...</a></alert>
                 <alert ng-if="appupdate.releaseLoaded && !appupdate.newVersion" ng-hide="appupdate.msgClose" close="appupdate.msgClose=true" class="info radius"><i class="fa fa-check fa-margin"></i>Sie verfügen bereits über die neueste Version.</alert>
                 <alert ng-if="!appupdate.releaseLoaded" ng-hide="appupdate.msgClose" close="appupdate.msgClose=true" class="error radius"><i class="fa fa-exclamation-triangle fa-margin"></i>Die Releasedaten konnten nicht geladen werden.</alert>

@@ -58,7 +58,7 @@ module.exports = function(CacheItem, TwodaySkin, toastr){
                 usrPreferences = {},
                 cleanParam = this.refactor(param),
                 patch = jsondiff(stdPreferences, param),
-                excludes = '$$|topics/drop|breadcrumbs/items|images/items|abo/items'.split('|'),
+                excludes = '$$|update/version|topics/drop|breadcrumbs/items|images/items|abo/items'.split('|'),
                 i, len, names, objPath, arrayCheck;
 
             //- save consolidated param as well to the cache

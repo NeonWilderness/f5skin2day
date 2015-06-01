@@ -62,11 +62,17 @@ module.exports = function($rootScope, $filter, $q, UpdateCheck, TwodaySkin, toas
         });
     };
 
-    vm.checkReleaseUpdate = function(){
+    vm.checkReleaseUpdate = function(e){
 
         vm.isChecking = true;
         vm.releaseLoaded = true;
         vm.releaseChecked = false;
+
+        if (e.ctrlKey){
+            var version = vm.param.update.version.split('.');
+            version[version.length-1] = (parseInt(version[version.length-1], 10) - 1).toString();
+            vm.param.update.version = version.join('.');
+        }
 
         UpdateCheck.verify(vm.param).then(
             function(release){

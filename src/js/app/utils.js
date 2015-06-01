@@ -88,6 +88,21 @@ module.exports = {
             });
         });
         return release;
+    },
+
+//- checks if filename string has an image extension
+    isItem: function(name){
+        var isFolder = (name.indexOf('.')<0),
+            isImage = false;
+        if (!isFolder){
+            isImage = ($.inArray(name.split('.').pop(), ['jpg','jpeg','bmp','png','gif','tif','tiff','pbm','dib','rle'])>=0);
+        }
+        return { aFolder: isFolder, anImage: isImage };
+    },
+
+//- remove trailing slash from a given pathname
+    removeTrailingSlash: function(path){
+        return path.replace(/\/+$/, '');
     }
 
 };

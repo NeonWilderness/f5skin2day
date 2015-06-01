@@ -33,7 +33,7 @@ module.exports = function($http, $q, Preferences, toastr){
 
             var q = $q.defer();
 
-            $http.get(param.update.releaseUrl + "releaseinfo.xml")
+            $http.get(param.update.releaseUrl + "releaseinfo.xml?nocache="+ $.now())
             .success(function (data){
                 var release = utils.getRelease($(data)),
                     newVersion = (utils.parseVersion(release.version) > utils.parseVersion(param.update.version));

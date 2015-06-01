@@ -151,7 +151,8 @@ module.exports = function($rootScope, ImageProvider, $window, toastr){
         providers: [
             {
                 name: 'Unsplash',
-                file: 'unsplash.json',
+                url: function(){ return vm.param.update.releaseUrl+'unsplash.json'; },
+                load: function(data){ return data || []; },
                 append: function(target, srcRatio){
                     var w, h;
                     switch (target){
@@ -163,8 +164,48 @@ module.exports = function($rootScope, ImageProvider, $window, toastr){
                 }
             },
             {
-                name: "Picjumbo",
-                file: 'picjumbo.json',
+                name: 'Picjumbo',
+                load: function(data){ return data || []; },
+                url: function(){ return vm.param.update.releaseUrl+'picjumbo.json'; },
+                append: function(target, srcRatio){
+                    return '';
+                }
+            },
+            {
+                name: 'GoogleDrive',
+                domain: 'https://googledrive.com',
+                load: function(data){
+                    var items = [], href, item, objectIs, self=this,
+                        folderImgUrl = vm.param.update.releaseUrl+'folder.jpg';
+                    $(data).find(".folder-cell>a").each( function(){
+                        href = $(this).attr("href"); // suppress domain insertion
+                        item = decodeURI(href).split('/').pop();
+                        objectIs = utils.isItem(item);
+                        if (!objectIs.aFolder && !objectIs.anImage) return true;
+                        if (objectIs.aFolder) item = item  || 'zurück';
+                        items.push({
+                            'isImage': objectIs.anImage,
+                            'href': href,
+                            'fname': item,
+                            'img_url': (objectIs.aFolder ? folderImgUrl : self.domain+href)
+                        });
+                    });
+                    return items;
+                },
+                url: function() {
+                    var gd = utils.removeTrailingSlash(vm.param.site.imgFolder);
+                    if (gd.length===0){
+                        toastr.warning('Bitte geben Sie zuerst Ihr GoogleDrive-Bildverzeichnis im Tab "Grunddaten" ein!', vm.param.msgHeader);
+                        return '';
+                    }
+                    if (gd.indexOf('drive.google.com')>=0){
+                        gd = vm.param.site.imgFolder = 'https://googledrive.com/host/' + gd.split('/').pop();
+                    } else if (gd.indexOf('googledrive.com/host')<0){
+                        toastr.error('Das angegebene Bildverzeichnis ist keine gültige GoogleDrive-URL!', vm.param.msgHeader);
+                        return '';
+                    }
+                    return gd;
+                },
                 append: function(target, srcRatio){
                     return '';
                 }
@@ -177,13 +218,24 @@ module.exports = function($rootScope, ImageProvider, $window, toastr){
         pageSize: 24,
         pageImages: [],
         isLoadingImages: false,
-        isFirstPage: function(){ return this.page === 0; },
-        isLastPage: function(){ return this.page === this.lastPage; },
-        useProvider: function(index){ this.provider = this.providers[index]; this.loadImages(); },
+        subFolder: '',
+        isFirstPage: function(){ return (this.page===0); },
+        isLastPage: function(){ return (this.page===this.lastPage); },
+        useProvider: function(index){
+            this.provider = this.providers[index];
+            this.subFolder = '';
+            this.loadImages('');
+        },
         nextPage: function(){ ++this.page; this.showImages(); },
         prevPage: function(){ --this.page; this.showImages(); },
         toFirstPage: function(){ this.page=0; this.showImages(); },
         toLastPage: function(){ this.page=this.lastPage; this.showImages(); },
+        selectFolder: function(index){
+            var i = this.page*this.pageSize+index;
+            this.subFolder = (this.provider.domain+utils.removeTrailingSlash(this.images[i].href))
+                .replace(this.provider.url(), '');
+            this.loadImages(this.subFolder);
+        },
         viewImage: function(index){
             var i = this.page*this.pageSize,
                 j = Math.min(i+this.pageSize, this.images.length),
@@ -202,24 +254,34 @@ module.exports = function($rootScope, ImageProvider, $window, toastr){
         },
         showImages: function(){
             var i = this.page*this.pageSize,
-                j = Math.min(i+this.pageSize, this.images.length);
+                j = Math.min(i+this.pageSize, this.images.length),
+                item, isImage, fName, bgUrl,
+                suffix = this.provider.append('gallery');
             this.pageImages.length = 0;
             while (i<j){
+                item = this.images[i];
+                isImage = (item.hasOwnProperty('isImage') ? item.isImage : true);
+                fName = (item.hasOwnProperty('fname') ? item.fname : '');
+                bgUrl = 'url("'+item['img_url']+suffix+'")';
                 this.pageImages.push({
-                    'background-image': 'url("'+this.images[i]['img_url']+this.provider.append('gallery')+'")'
+                    isImage: isImage,
+                    fName: fName,
+                    style: {'background-image': bgUrl}
                 });
                 ++i;
             }
         },
-        loadImages: function(){
+        loadImages: function(subFolder){
             var self = this;
-            self.isLoadingImages = true;
             self.images.length = 0;
+            self.isLoadingImages = true;
             self.pageImages.length = 0;
             self.page = 0;
-            ImageProvider.load(vm.param.update.releaseUrl+self.provider.file).then(
+            var url = self.provider.url();
+            if (url.length===0) return;
+            ImageProvider.load( url+subFolder ).then(
                 function(data){
-                    self.images = data || [];
+                    self.images = self.provider.load(data);
                     self.lastPage = (self.images.length===0 ? 0 : Math.floor((self.images.length-1)/self.pageSize));
                     self.showImages();
                     self.isLoadingImages = false;

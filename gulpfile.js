@@ -230,7 +230,7 @@ gulp.task("unsplash", [], function(){
                     }
                 })
                 .on("end", function(){
-                    unsplashIt.forEach( function(value, index){
+                    unsplashIt.reverse().forEach( function(value, index){
                         if (typeof unsplashImgix[value.post_url] !== 'undefined'){
                             value['img_url'] = unsplashImgix[value.post_url];
                         } else {
