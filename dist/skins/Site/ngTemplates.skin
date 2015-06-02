@@ -1,203 +1,201 @@
 <script id="customizeBlogHtml" type="text/ng-template">
   <div id="customizeBlog">
     <h5>Mein Foundation-Blog anpassen</h5>
-    <p>Die Einstelloptionen zu Ihrem Blog erreichen Sie über die unten angezeigten Tabs:</p>
     <tabset>
       <tab heading="Grunddaten">
         <form ng-controller="CustCoreDataCtrl as coredata">
-          <fieldset>
-            <div class="row">
-              <div class="small-4 columns">
-                <label for="txtTitle">Blogtitel
-                  <input type="text" id="txtTitle" ng-model="customize.param.site.title"/>
-                </label>
-              </div>
-              <div class="small-4 columns">
-                <label for="txtSubtitle">Bloguntertitel
-                  <input type="text" id="txtSubtitle" ng-model="customize.param.site.subtitle"/>
-                </label>
-              </div>
-              <div class="small-4 columns">
-                <label for="txtAuthor">Autor
-                  <input type="text" id="txtAuthor" ng-model="customize.param.site.author"/>
-                </label>
-              </div>
+          <div class="row">
+            <div class="small-4 columns">
+              <label for="txtTitle">Blogtitel
+                <input type="text" id="txtTitle" ng-model="customize.param.site.title"/>
+              </label>
             </div>
-            <div class="row">
-              <div class="small-12 columns">
-                <label for="txtDescription">Blogbeschreibung
-                  <input type="text" id="txtDescription" ng-model="customize.param.site.description"/>
-                </label>
-              </div>
+            <div class="small-4 columns">
+              <label for="txtSubtitle">Bloguntertitel
+                <input type="text" id="txtSubtitle" ng-model="customize.param.site.subtitle"/>
+              </label>
             </div>
-            <div class="row">
-              <div class="small-12 columns">
-                <div class="row collapse">
-                  <label for="txtImgFolder" class="bottom0">GoogleDrive-Verzeichnis für öffentliche Bilder</label>
-                  <div class="small-11 columns">
-                    <input type="text" id="txtImgFolder" ng-model="customize.param.site.imgFolder"/>
-                  </div>
-                  <div class="small-1 columns"><span ng-click="coredata.setStaticFolder()" class="postfix"><i class="fa fa-image"></i></span></div>
+            <div class="small-4 columns">
+              <label for="txtAuthor">Autor
+                <input type="text" id="txtAuthor" ng-model="customize.param.site.author"/>
+              </label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 columns">
+              <label for="txtDescription">Blogbeschreibung
+                <input type="text" id="txtDescription" ng-model="customize.param.site.description"/>
+              </label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 columns">
+              <div class="row collapse">
+                <label for="txtImgFolder" class="bottom0">GoogleDrive-Verzeichnis für öffentliche Bilder</label>
+                <div class="small-11 columns">
+                  <input type="text" id="txtImgFolder" ng-model="customize.param.site.imgFolder"/>
                 </div>
+                <div class="small-1 columns"><span ng-click="coredata.setStaticFolder()" class="postfix"><i class="fa fa-image"></i></span></div>
               </div>
             </div>
-            <div class="row">
-              <div class="small-4 columns">
+          </div>
+          <div class="row">
+            <div class="small-4 columns text-center">
+              <label>Lade-Animation anzeigen?</label>
+              <div class="switch round">
                 <input type="checkbox" id="chkLoader" ng-model="customize.param.site.loader.animation"/>
-                <label for="chkLoader">Lade-Animation anzeigen?</label>
+                <label for="chkLoader"></label>
               </div>
-              <div class="small-2 columns">
-                <label for="txtColor1">Farbe 1
-                  <input type="text" id="txtColor1" ng-model="customize.param.site.loader.color1"/>
-                </label>
-              </div>
-              <div class="small-2 columns">
-                <label for="txtColor2">Farbe 2
-                  <input type="text" id="txtColor2" ng-model="customize.param.site.loader.color2"/>
-                </label>
-              </div>
-              <div class="small-2 columns">
-                <label for="txtColor3">Farbe 3
-                  <input type="text" id="txtColor3" ng-model="customize.param.site.loader.color3"/>
-                </label>
-              </div>
-              <div class="small-2 columns"><a href="" id="btnLoader" ng-click="coredata.testLoader()" class="button secondary tiny radius"><i class="fa fa-play fa-margin"></i>Test</a></div>
             </div>
-          </fieldset>
+            <div class="small-2 columns">
+              <label for="txtColor1">Farbe 1
+                <input type="text" id="txtColor1" ng-model="customize.param.site.loader.color1"/>
+              </label>
+            </div>
+            <div class="small-2 columns">
+              <label for="txtColor2">Farbe 2
+                <input type="text" id="txtColor2" ng-model="customize.param.site.loader.color2"/>
+              </label>
+            </div>
+            <div class="small-2 columns">
+              <label for="txtColor3">Farbe 3
+                <input type="text" id="txtColor3" ng-model="customize.param.site.loader.color3"/>
+              </label>
+            </div>
+            <div class="small-2 columns"><a href="" id="btnLoader" ng-click="coredata.testLoader()" class="button secondary tiny radius"><i class="fa fa-play fa-margin"></i>Test</a></div>
+          </div>
         </form>
       </tab>
       <tab heading="Hintergrundbilder">
         <form ng-controller="CustBackgroundsCtrl as backgrounds">
-          <fieldset>
-            <div ng-show="backgrounds.isQueryImage" class="row">
-              <div class="small-12 columns">
-                <div class="row">
-                  <div class="small-4 medium-3 large-2 columns">
-                    <label>Bildquelle</label><a class="button tiny split">{{backgrounds.navImagePool.provider.name}} <span dropdown-toggle="#dropdown-imgprovider"></span></a>
-                    <ul id="dropdown-imgprovider" class="f-dropdown">
-                      <li ng-repeat="provider in backgrounds.navImagePool.providers"><a ng-click="backgrounds.navImagePool.useProvider($index)">{{provider.name}}</a></li>
-                    </ul>
-                  </div>
-                  <div class="small-8 medium-9 large-10 columns">
-                    <label><span ng-hide="backgrounds.navImagePool.isLoadingImages">Seite&ensp;{{backgrounds.navImagePool.page+1}}&ensp;von&ensp;{{backgrounds.navImagePool.lastPage+1}}&ensp;({{backgrounds.navImagePool.images.length}}&ensp;Bilder)<span class="subFolder">{{backgrounds.navImagePool.subFolder}}</span></span>&nbsp;</label>
-                    <button title="Erste Bildseite" ng-disabled="backgrounds.navImagePool.isFirstPage()" ng-click="backgrounds.navImagePool.toFirstPage()" class="tiny radius secondary square right5"><i class="fa fa-fast-backward fa-fw"></i></button>
-                    <button title="Vorhergehende Bildseite" ng-disabled="backgrounds.navImagePool.isFirstPage()" ng-click="backgrounds.navImagePool.prevPage()" class="tiny radius secondary square right5"><i class="fa fa-backward fa-fw"></i></button>
-                    <button title="Nächste Bildseite" ng-disabled="backgrounds.navImagePool.isLastPage()" ng-click="backgrounds.navImagePool.nextPage()" class="tiny radius secondary square right5"><i class="fa fa-forward fa-fw"></i></button>
-                    <button title="Letzte Bildseite" ng-disabled="backgrounds.navImagePool.isLastPage()" ng-click="backgrounds.navImagePool.toLastPage()" class="tiny radius secondary square"><i class="fa fa-fast-forward fa-fw"></i></button>
-                    <button title="Schließen" ng-click="backgrounds.isQueryImage=false" class="tiny radius secondary square left10"><i class="fa fa-times fa-margin"></i>Schließen</button><span ng-show="backgrounds.navImagePool.isLoadingImages" class="loadstatus"><i class="fa fa-spinner fa-pulse fa-margin"></i>Lade Inhalte...</span>
-                  </div>
+          <div ng-show="backgrounds.isQueryImage" class="row collapse">
+            <div class="small-12 columns">
+              <div class="row">
+                <div class="small-4 medium-3 large-2 columns">
+                  <label>Bildquelle</label><a class="button tiny split">{{backgrounds.navImagePool.provider.name}} <span dropdown-toggle="#dropdown-imgprovider"></span></a>
+                  <ul id="dropdown-imgprovider" class="f-dropdown">
+                    <li ng-repeat="provider in backgrounds.navImagePool.providers"><a ng-click="backgrounds.navImagePool.useProvider($index)">{{provider.name}}</a></li>
+                  </ul>
+                </div>
+                <div class="small-8 medium-9 large-10 columns">
+                  <label><span ng-hide="backgrounds.navImagePool.isLoadingImages">Seite&ensp;{{backgrounds.navImagePool.page+1}}&ensp;von&ensp;{{backgrounds.navImagePool.lastPage+1}}&ensp;({{backgrounds.navImagePool.images.length}}&ensp;Bilder)<span class="subFolder">{{backgrounds.navImagePool.subFolder}}</span></span>&nbsp;</label>
+                  <button title="Erste Bildseite" ng-disabled="backgrounds.navImagePool.isFirstPage()" ng-click="backgrounds.navImagePool.toFirstPage()" class="tiny radius secondary square right5"><i class="fa fa-fast-backward fa-fw"></i></button>
+                  <button title="Vorhergehende Bildseite" ng-disabled="backgrounds.navImagePool.isFirstPage()" ng-click="backgrounds.navImagePool.prevPage()" class="tiny radius secondary square right5"><i class="fa fa-backward fa-fw"></i></button>
+                  <button title="Nächste Bildseite" ng-disabled="backgrounds.navImagePool.isLastPage()" ng-click="backgrounds.navImagePool.nextPage()" class="tiny radius secondary square right5"><i class="fa fa-forward fa-fw"></i></button>
+                  <button title="Letzte Bildseite" ng-disabled="backgrounds.navImagePool.isLastPage()" ng-click="backgrounds.navImagePool.toLastPage()" class="tiny radius secondary square"><i class="fa fa-fast-forward fa-fw"></i></button>
+                  <button title="Schließen" ng-click="backgrounds.isQueryImage=false" class="tiny radius secondary square left10"><i class="fa fa-times fa-margin"></i>Schließen</button><span ng-show="backgrounds.navImagePool.isLoadingImages" class="loadstatus"><i class="fa fa-spinner fa-pulse fa-margin"></i>Lade Inhalte...</span>
                 </div>
               </div>
-              <div class="small-12 columns">
-                <div class="row">
-                  <div ng-repeat="image in backgrounds.navImagePool.pageImages track by $index" class="small-4 medium-3 large-2 columns end">
-                    <div ng-style="image.style" resizable="" alt="" class="photo">
-                      <div ng-if="!image.isImage" ng-click="backgrounds.navImagePool.selectFolder($index)" class="folder-overlay"><span ng-class="{'folder-levelup': image.fName==='zurück'}">{{image.fName}}</span></div>
-                      <div ng-if="image.isImage" class="photo-overlay"><i title="Bild ansehen" ng-click="backgrounds.navImagePool.viewImage($index)" class="fa fa-search-plus fa-2x fa-fw"></i><i title="Als Hintergrund auswählen" ng-click="backgrounds.navImagePool.selectImage($index)" class="fa fa-check fa-2x fa-fw left10"></i></div>
-                    </div>
+            </div>
+            <div class="small-12 columns">
+              <div class="row">
+                <div ng-repeat="image in backgrounds.navImagePool.pageImages track by $index" class="small-4 medium-3 large-2 columns end">
+                  <div ng-style="image.style" resizable="" alt="" class="photo">
+                    <div ng-if="!image.isImage" ng-click="backgrounds.navImagePool.selectFolder($index)" class="folder-overlay"><span ng-class="{'folder-levelup': image.fName==='zurück'}">{{image.fName}}</span></div>
+                    <div ng-if="image.isImage" class="photo-overlay"><i title="Bild ansehen" ng-click="backgrounds.navImagePool.viewImage($index)" class="fa fa-search-plus fa-2x fa-fw"></i><i title="Als Hintergrund auswählen" ng-click="backgrounds.navImagePool.selectImage($index)" class="fa fa-check fa-2x fa-fw left10"></i></div>
                   </div>
                 </div>
               </div>
             </div>
-            <div ng-show="!backgrounds.isQueryImage &amp;&amp; (backgrounds.isEditMode || backgrounds.isCreateMode)" class="row">
-              <div class="small-12 columns">
-                <div class="row">
-                  <div class="small-2 columns">
-                    <label for="timeFrom">Von <i class="fa fa-clock-o"></i>
-                      <input type="time" ng-model="backgrounds.slot.from" id="timeFrom" placeholder="HH:mm" min="00:00" max="23:59" required="required"/>
-                    </label>
-                  </div>
-                  <div class="small-2 columns">
-                    <label for="timeTo">Bis <i class="fa fa-clock-o"></i>
-                      <input type="time" ng-model="backgrounds.slot.to" id="timeTo" placeholder="HH:mm" min="00:00" max="23:59" required="required"/>
-                    </label>
-                  </div>
-                  <div class="small-2 columns">
-                    <label>Position<a href="http://www.w3schools.com/cssref/pr_background-position.asp" target="_blank" class="extlink"></a></label><a class="button tiny split">{{backgrounds.slot.position}} <span dropdown-toggle="#dropdown-position"></span></a>
-                    <ul id="dropdown-position" class="f-dropdown">
-                      <li ng-repeat="position in backgrounds.positions"><a ng-click="backgrounds.usePosition($index)">{{position}}</a></li>
-                    </ul>
-                  </div>
-                  <div class="small-2 columns">
-                    <label>Repeat<a href="http://www.w3schools.com/cssref/pr_background-repeat.asp" target="_blank" class="extlink"></a></label><a class="button tiny split">{{backgrounds.slot.repeat}} <span dropdown-toggle="#dropdown-repeat"></span></a>
-                    <ul id="dropdown-repeat" class="f-dropdown">
-                      <li ng-repeat="repeat in backgrounds.repeats"><a ng-click="backgrounds.useRepeat($index)">{{repeat}}</a></li>
-                    </ul>
-                  </div>
-                  <div class="small-2 columns">
-                    <label>Size<a href="http://www.w3schools.com/cssref/css3_pr_background-size.asp" target="_blank" class="extlink"></a></label><a class="button tiny split">{{backgrounds.slot.size}} <span dropdown-toggle="#dropdown-size"></span></a>
-                    <ul id="dropdown-size" class="f-dropdown">
-                      <li ng-repeat="size in backgrounds.sizes"><a ng-click="backgrounds.useSize($index)">{{size}}</a></li>
-                    </ul>
-                  </div>
-                  <div class="small-2 columns">
-                    <label>Attachment<a href="http://www.w3schools.com/cssref/pr_background-attachment.asp" target="_blank" class="extlink"></a></label><a class="button tiny split">{{backgrounds.slot.attachment}} <span dropdown-toggle="#dropdown-attachment"></span></a>
-                    <ul id="dropdown-attachment" class="f-dropdown">
-                      <li ng-repeat="attachment in backgrounds.attachments"><a ng-click="backgrounds.useAttachment($index)">{{attachment}}</a></li>
-                    </ul>
-                  </div>
+          </div>
+          <div ng-show="!backgrounds.isQueryImage &amp;&amp; (backgrounds.isEditMode || backgrounds.isCreateMode)" class="row collapse">
+            <div class="small-12 columns">
+              <div class="row">
+                <div class="small-2 columns">
+                  <label for="timeFrom">Von <i class="fa fa-clock-o"></i>
+                    <input type="time" ng-model="backgrounds.slot.from" id="timeFrom" placeholder="HH:mm" min="00:00" max="23:59" required="required"/>
+                  </label>
                 </div>
-                <div class="row">
-                  <div class="small-10 columns">
-                    <label for="txtHref">Bildadresse (URL)
-                      <input type="text" id="txtHref" ng-model="backgrounds.slot.href"/>
-                    </label>
-                  </div>
-                  <div class="small-2 columns">
-                    <label>Bildanbieter<a ng-click="backgrounds.queryImage()" class="button secondary tiny radius"><i class="fa fa-camera fa-margin"></i>Foto wählen</a></label>
-                  </div>
+                <div class="small-2 columns">
+                  <label for="timeTo">Bis <i class="fa fa-clock-o"></i>
+                    <input type="time" ng-model="backgrounds.slot.to" id="timeTo" placeholder="HH:mm" min="00:00" max="23:59" required="required"/>
+                  </label>
                 </div>
-                <div class="row">
-                  <div class="small-12 columns small-centered"><a ng-click="backgrounds.save()" class="button success radius tiny"><i class="fa fa-check fa-margin"></i>Übernehmen</a><a ng-click="backgrounds.cancel()" class="button alert radius tiny left10"><i class="fa fa-times fa-margin"></i>Abbrechen</a></div>
+                <div class="small-2 columns">
+                  <label>Position<a href="http://www.w3schools.com/cssref/pr_background-position.asp" target="_blank" class="extlink"></a></label><a class="button tiny split">{{backgrounds.slot.position}} <span dropdown-toggle="#dropdown-position"></span></a>
+                  <ul id="dropdown-position" class="f-dropdown">
+                    <li ng-repeat="position in backgrounds.positions"><a ng-click="backgrounds.usePosition($index)">{{position}}</a></li>
+                  </ul>
+                </div>
+                <div class="small-2 columns">
+                  <label>Repeat<a href="http://www.w3schools.com/cssref/pr_background-repeat.asp" target="_blank" class="extlink"></a></label><a class="button tiny split">{{backgrounds.slot.repeat}} <span dropdown-toggle="#dropdown-repeat"></span></a>
+                  <ul id="dropdown-repeat" class="f-dropdown">
+                    <li ng-repeat="repeat in backgrounds.repeats"><a ng-click="backgrounds.useRepeat($index)">{{repeat}}</a></li>
+                  </ul>
+                </div>
+                <div class="small-2 columns">
+                  <label>Size<a href="http://www.w3schools.com/cssref/css3_pr_background-size.asp" target="_blank" class="extlink"></a></label><a class="button tiny split">{{backgrounds.slot.size}} <span dropdown-toggle="#dropdown-size"></span></a>
+                  <ul id="dropdown-size" class="f-dropdown">
+                    <li ng-repeat="size in backgrounds.sizes"><a ng-click="backgrounds.useSize($index)">{{size}}</a></li>
+                  </ul>
+                </div>
+                <div class="small-2 columns">
+                  <label>Attachment<a href="http://www.w3schools.com/cssref/pr_background-attachment.asp" target="_blank" class="extlink"></a></label><a class="button tiny split">{{backgrounds.slot.attachment}} <span dropdown-toggle="#dropdown-attachment"></span></a>
+                  <ul id="dropdown-attachment" class="f-dropdown">
+                    <li ng-repeat="attachment in backgrounds.attachments"><a ng-click="backgrounds.useAttachment($index)">{{attachment}}</a></li>
+                  </ul>
                 </div>
               </div>
-            </div>
-            <div ng-hide="backgrounds.isQueryImage || backgrounds.isEditMode || backgrounds.isCreateMode" class="row">
-              <div class="small-12 columns">
-                <table class="fullsize">
-                  <thead>
-                    <tr>
-                      <th>&nbsp;</th>
-                      <th>Von <i class="fa fa-clock-o"></i></th>
-                      <th>Bis <i class="fa fa-clock-o"></i></th>
-                      <th>Position</th>
-                      <th>Repeat</th>
-                      <th>Size</th>
-                      <th>Attachment</th>
-                      <th>Bild</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr ng-repeat="slot in customize.param.timeSlots">
-                      <th>
-                        <ul class="button-group">
-                          <li><a href="" title="Eintrag bearbeiten" ng-click="backgrounds.edit($index)" class="button tiny radius secondary square right5"><i class="fa fa-edit fa-fw"></i></a></li>
-                          <li><a href="" title="Eintrag entfernen" ng-click="backgrounds.remove($index)" class="button tiny radius secondary square"><i class="fa fa-trash-o fa-fw"></i></a></li>
-                        </ul>
-                      </th>
-                      <th>{{slot.from | date:'HH:mm'}}</th>
-                      <th>{{slot.to| date:'HH:mm'}}</th>
-                      <th>{{slot.position}}</th>
-                      <th>{{slot.repeat}}</th>
-                      <th>{{slot.size}}</th>
-                      <th>{{slot.attachment}}</th>
-                      <th><a ng-href="{{slot.href}}" target="_blank" class="th"><img ng-src="{{slot.href}}" width="120" alt=""/></a></th>
-                    </tr>
-                    <tr>
-                      <th colspan="8" id="slotStatus" ng-class="{'red': !backgrounds.slotStatusOK, 'green': backgrounds.slotStatusOK}"><i ng-class="{'fa-info-circle': !backgrounds.slotStatusOK, 'fa-check': backgrounds.slotStatusOK}" class="fa fa-margin"></i>{{backgrounds.slotStatus}}</th>
-                    </tr>
-                    <tr>
-                      <th colspan="8">
-                        <ul class="button-group">
-                          <li><a href="" ng-click="backgrounds.create()" ng-disabled="backgrounds.isEditMode || backgrounds.isCreateMode" class="button tiny radius secondary"><i class="fa fa-plus fa-margin"></i>Neuen Hintergrund definieren</a></li>
-                        </ul>
-                      </th>
-                    </tr>
-                  </tbody>
-                </table>
+              <div class="row">
+                <div class="small-10 columns">
+                  <label for="txtHref">Bildadresse (URL)
+                    <input type="text" id="txtHref" ng-model="backgrounds.slot.href"/>
+                  </label>
+                </div>
+                <div class="small-2 columns">
+                  <label>Bildanbieter<a ng-click="backgrounds.queryImage()" class="button secondary tiny radius"><i class="fa fa-camera fa-margin"></i>Foto wählen</a></label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="small-12 columns small-centered"><a ng-click="backgrounds.save()" class="button success radius tiny"><i class="fa fa-check fa-margin"></i>Übernehmen</a><a ng-click="backgrounds.cancel()" class="button alert radius tiny left10"><i class="fa fa-times fa-margin"></i>Abbrechen</a></div>
               </div>
             </div>
-          </fieldset>
+          </div>
+          <div ng-hide="backgrounds.isQueryImage || backgrounds.isEditMode || backgrounds.isCreateMode" class="row collapse">
+            <div class="small-12 columns">
+              <table class="fullsize">
+                <thead>
+                  <tr>
+                    <th>&nbsp;</th>
+                    <th>Von <i class="fa fa-clock-o"></i></th>
+                    <th>Bis <i class="fa fa-clock-o"></i></th>
+                    <th>Position</th>
+                    <th>Repeat</th>
+                    <th>Size</th>
+                    <th>Attachment</th>
+                    <th>Bild</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="slot in customize.param.timeSlots">
+                    <th>
+                      <ul class="button-group">
+                        <li><a href="" title="Eintrag bearbeiten" ng-click="backgrounds.edit($index)" class="button tiny radius secondary square right5"><i class="fa fa-edit fa-fw"></i></a></li>
+                        <li><a href="" title="Eintrag entfernen" ng-click="backgrounds.remove($index)" class="button tiny radius secondary square"><i class="fa fa-trash-o fa-fw"></i></a></li>
+                      </ul>
+                    </th>
+                    <th>{{slot.from | date:'HH:mm'}}</th>
+                    <th>{{slot.to| date:'HH:mm'}}</th>
+                    <th>{{slot.position}}</th>
+                    <th>{{slot.repeat}}</th>
+                    <th>{{slot.size}}</th>
+                    <th>{{slot.attachment}}</th>
+                    <th><a ng-href="{{slot.href}}" target="_blank" class="th"><img ng-src="{{slot.href}}" width="120" alt=""/></a></th>
+                  </tr>
+                  <tr>
+                    <th colspan="8" id="slotStatus" ng-class="{'red': !backgrounds.slotStatusOK, 'green': backgrounds.slotStatusOK}"><i ng-class="{'fa-info-circle': !backgrounds.slotStatusOK, 'fa-check': backgrounds.slotStatusOK}" class="fa fa-margin"></i>{{backgrounds.slotStatus}}</th>
+                  </tr>
+                  <tr>
+                    <th colspan="8">
+                      <ul class="button-group">
+                        <li><a href="" ng-click="backgrounds.create()" ng-disabled="backgrounds.isEditMode || backgrounds.isCreateMode" class="button tiny radius secondary"><i class="fa fa-plus fa-margin"></i>Neuen Hintergrund definieren</a></li>
+                      </ul>
+                    </th>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </form>
       </tab>
       <tab heading="Bloglayout">
@@ -209,46 +207,44 @@
       <tab heading="Menüanzeige">
         <tabset vertical="true">
           <tab>
-            <tab-heading><i class="fa fa-cog fa-fw fa-margin"></i>Basisoptionen</tab-heading>
+            <tab-heading><i class="fa fa-cog fa-fw fa-margin"></i>Menüleiste</tab-heading>
             <form ng-controller="MenuBasicOptionsCtrl as menuBasic">
-              <fieldset>
-                <div class="row">
-                  <div class="small-3 columns">
-                    <label for="txtMenuTitle">Menütext
-                      <input type="text" id="txtMenuTitle" ng-model="customize.param.topbar.title"/>
-                    </label>
-                  </div>
-                  <div class="small-3 columns">
-                    <label>Fixed</label>
-                    <div class="switch round">
-                      <input type="checkbox" id="chkFixed" ng-model="customize.param.topbar.class.fixed"/>
-                      <label for="chkFixed"></label>
-                    </div>
-                  </div>
-                  <div class="small-3 columns">
-                    <label>ContainToGrid</label>
-                    <div class="switch round">
-                      <input type="checkbox" id="chkContainToGrid" ng-model="customize.param.topbar.class.containToGrid"/>
-                      <label for="chkContainToGrid"></label>
-                    </div>
-                  </div>
-                  <div class="small-3 columns">
-                    <label>Sticky</label>
-                    <div class="switch round">
-                      <input type="checkbox" id="chkSticky" ng-model="customize.param.topbar.class.sticky"/>
-                      <label for="chkSticky"></label>
-                    </div>
+              <div class="row">
+                <div class="small-3 columns">
+                  <label for="txtMenuTitle">Menütext
+                    <input type="text" id="txtMenuTitle" ng-model="customize.param.topbar.title"/>
+                  </label>
+                </div>
+                <div class="small-3 columns">
+                  <label>Fixed</label>
+                  <div class="switch round">
+                    <input type="checkbox" id="chkFixed" ng-model="customize.param.topbar.class.fixed"/>
+                    <label for="chkFixed"></label>
                   </div>
                 </div>
-              </fieldset>
+                <div class="small-3 columns">
+                  <label>ContainToGrid</label>
+                  <div class="switch round">
+                    <input type="checkbox" id="chkContainToGrid" ng-model="customize.param.topbar.class.containToGrid"/>
+                    <label for="chkContainToGrid"></label>
+                  </div>
+                </div>
+                <div class="small-3 columns">
+                  <label>Sticky</label>
+                  <div class="switch round">
+                    <input type="checkbox" id="chkSticky" ng-model="customize.param.topbar.class.sticky"/>
+                    <label for="chkSticky"></label>
+                  </div>
+                </div>
+              </div>
             </form>
           </tab>
           <tab>
-            <tab-heading><i class="fa fa-bars fa-fw fa-margin"></i>Standardmenü</tab-heading>
+            <tab-heading><i class="fa fa-bars fa-fw fa-margin"></i>Menüeinträge</tab-heading>
             <p>menuStandardItems...</p>
           </tab>
           <tab>
-            <tab-heading><i class="fa fa-rocket fa-fw fa-margin"></i>Individualmenü</tab-heading>
+            <tab-heading><i class="fa fa-rocket fa-fw fa-margin"></i>Schnellmenü</tab-heading>
             <p>menuCustomItems...</p>
           </tab>
           <tab>
@@ -259,55 +255,53 @@
       </tab>
       <tab heading="Aktualisierung">
         <form ng-controller="CustAppUpdateCtrl as appupdate">
-          <fieldset>
-            <div class="row">
-              <div class="small-12 columns bottom15">Ihre derzeitige Layout-Version ist <strong>{{customize.param.update.version}}</strong>.</div>
+          <div class="row">
+            <div class="small-12 columns bottom15">Ihre derzeitige Layout-Version ist <strong>{{customize.param.update.version}}</strong>.</div>
+          </div>
+          <div class="row">
+            <div class="small-4 columns">
+              <label>Aktualisierungsprüfung</label><a class="button tiny split">{{customize.param.update.check}} <span dropdown-toggle="#dropdown-updatecheck"></span></a>
+              <ul id="dropdown-updatecheck" class="f-dropdown">
+                <li ng-repeat="frequency in appupdate.updateChecks"><a ng-click="appupdate.useFrequency($index)">{{frequency.check}}</a></li>
+              </ul>
             </div>
-            <div class="row">
-              <div class="small-4 columns">
-                <label>Aktualisierungsprüfung</label><a class="button tiny split">{{customize.param.update.check}} <span dropdown-toggle="#dropdown-updatecheck"></span></a>
-                <ul id="dropdown-updatecheck" class="f-dropdown">
-                  <li ng-repeat="frequency in appupdate.updateChecks"><a ng-click="appupdate.useFrequency($index)">{{frequency.check}}</a></li>
-                </ul>
-              </div>
-              <div class="small-4 columns">
-                <label>Datum der letzten Prüfung</label>
-                <div id="dtLastCheck">{{customize.param.update.lastCheck | date: 'dd.MM.yyyy HH:mm'}}</div>
-              </div>
-              <div class="small-4 columns">
-                <label>Datum der nächsten Prüfung</label>
-                <div id="dtNextCheck">{{appupdate.dateNextCheck()}}</div>
-              </div>
+            <div class="small-4 columns">
+              <label>Datum der letzten Prüfung</label>
+              <div id="dtLastCheck">{{customize.param.update.lastCheck | date: 'dd.MM.yyyy HH:mm'}}</div>
             </div>
-            <div class="row">
-              <div class="small-12 columns"><a href="" ng-show="appupdate.msgClose" ng-click="appupdate.checkReleaseUpdate($event)" class="button small radius secondary"><i class="fa fa-refresh fa-margin" ng-class="{'fa-spin':appupdate.isChecking}"></i>Jetzt auf mögliche Aktualisierung prüfen...</a>
-                <alert ng-if="appupdate.releaseLoaded && appupdate.newVersion" ng-hide="appupdate.msgClose" close="appupdate.msgClose=true" class="warning radius"><i class="fa fa-info-circle fa-margin"></i>Es existiert eine neuere Version {{appupdate.release.version}} vom {{appupdate.release.releasedate | date: "dd.MM.yyyy"}}!<a href="" ng-disabled="!appupdate.releaseChecked" ng-click="appupdate.installRelease()" class="button tiny radius secondary left15 bottom0"><i class="fa fa-cloud-download fa-margin"></i>Jetzt installieren...</a></alert>
-                <alert ng-if="appupdate.releaseLoaded && !appupdate.newVersion" ng-hide="appupdate.msgClose" close="appupdate.msgClose=true" class="info radius"><i class="fa fa-check fa-margin"></i>Sie verfügen bereits über die neueste Version.</alert>
-                <alert ng-if="!appupdate.releaseLoaded" ng-hide="appupdate.msgClose" close="appupdate.msgClose=true" class="error radius"><i class="fa fa-exclamation-triangle fa-margin"></i>Die Releasedaten konnten nicht geladen werden.</alert>
-              </div>
+            <div class="small-4 columns">
+              <label>Datum der nächsten Prüfung</label>
+              <div id="dtNextCheck">{{appupdate.dateNextCheck()}}</div>
             </div>
-            <div ng-if="appupdate.newVersion" class="row releaseheader">
-              <div class="small-4 columns">
-                <label>Version</label>{{appupdate.release.version}}
-              </div>
-              <div class="small-4 columns">
-                <label>Freigegeben am</label>{{appupdate.release.releasedate | date: 'dd.MM.yyyy HH:mm'}}
-              </div>
-              <div class="small-4 columns">
-                <label>Autor</label>{{appupdate.release.author}}
-              </div>
+          </div>
+          <div class="row">
+            <div class="small-12 columns"><a href="" ng-show="appupdate.msgClose" ng-click="appupdate.checkReleaseUpdate($event)" class="button small radius secondary"><i class="fa fa-refresh fa-margin" ng-class="{'fa-spin':appupdate.isChecking}"></i>Jetzt auf mögliche Aktualisierung prüfen...</a>
+              <alert ng-if="appupdate.releaseLoaded && appupdate.newVersion" ng-hide="appupdate.msgClose" close="appupdate.msgClose=true" class="warning radius"><i class="fa fa-info-circle fa-margin"></i>Es existiert eine neuere Version {{appupdate.release.version}} vom {{appupdate.release.releasedate | date: "dd.MM.yyyy"}}!<a href="" ng-disabled="!appupdate.releaseChecked" ng-click="appupdate.installRelease()" class="button tiny radius secondary left15 bottom0"><i class="fa fa-cloud-download fa-margin"></i>Jetzt installieren...</a></alert>
+              <alert ng-if="appupdate.releaseLoaded && !appupdate.newVersion" ng-hide="appupdate.msgClose" close="appupdate.msgClose=true" class="info radius"><i class="fa fa-check fa-margin"></i>Sie verfügen bereits über die neueste Version.</alert>
+              <alert ng-if="!appupdate.releaseLoaded" ng-hide="appupdate.msgClose" close="appupdate.msgClose=true" class="error radius"><i class="fa fa-exclamation-triangle fa-margin"></i>Die Releasedaten konnten nicht geladen werden.</alert>
             </div>
-            <div ng-if="appupdate.newVersion" class="row">
-              <div class="small-4 columns"><strong>Name des Skins</strong></div>
-              <div class="small-4 columns"><strong>Änderungsdatum</strong></div>
-              <div class="small-4 columns"><strong>Aktualisierungsstatus</strong></div>
+          </div>
+          <div ng-if="appupdate.newVersion" class="row releaseheader">
+            <div class="small-4 columns">
+              <label>Version</label>{{appupdate.release.version}}
             </div>
-            <div ng-if="appupdate.newVersion" ng-repeat="skin in appupdate.release.skins" class="row">
-              <div class="small-4 columns">{{skin.name}}</div>
-              <div class="small-4 columns">{{skin.update | date: 'dd.MM.yyyy HH:mm'}}</div>
-              <div class="small-4 columns">{{appupdate.updateStatus(skin.status)}}<i ng-if="skin.status==='updated'" class="fa fa-check-circle fa-lg left10 green"></i><i ng-if="skin.status.substr(0,5)==='error'" class="fa fa-times-circle fa-lg left10 red"></i></div>
+            <div class="small-4 columns">
+              <label>Freigegeben am</label>{{appupdate.release.releasedate | date: 'dd.MM.yyyy HH:mm'}}
             </div>
-          </fieldset>
+            <div class="small-4 columns">
+              <label>Autor</label>{{appupdate.release.author}}
+            </div>
+          </div>
+          <div ng-if="appupdate.newVersion" class="row">
+            <div class="small-4 columns"><strong>Name des Skins</strong></div>
+            <div class="small-4 columns"><strong>Änderungsdatum</strong></div>
+            <div class="small-4 columns"><strong>Aktualisierungsstatus</strong></div>
+          </div>
+          <div ng-if="appupdate.newVersion" ng-repeat="skin in appupdate.release.skins" class="row">
+            <div class="small-4 columns">{{skin.name}}</div>
+            <div class="small-4 columns">{{skin.update | date: 'dd.MM.yyyy HH:mm'}}</div>
+            <div class="small-4 columns">{{appupdate.updateStatus(skin.status)}}<i ng-if="skin.status==='updated'" class="fa fa-check-circle fa-lg left10 green"></i><i ng-if="skin.status.substr(0,5)==='error'" class="fa fa-times-circle fa-lg left10 red"></i></div>
+          </div>
         </form>
       </tab>
     </tabset>

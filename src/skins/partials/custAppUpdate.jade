@@ -1,44 +1,43 @@
 //- template: Einstelloptionen - Aktualisierung
 form(ng-controller="CustAppUpdateCtrl as appupdate")
-    fieldset
-        .row
-            .small-12.columns.bottom15 Ihre derzeitige Layout-Version ist <strong>{{customize.param.update.version}}</strong>.
-        .row
-            .small-4.columns
-                label Aktualisierungsprüfung
-                a.button.tiny.split {{customize.param.update.check}} <span dropdown-toggle="#dropdown-updatecheck"></span>
-                ul#dropdown-updatecheck.f-dropdown
-                    li(ng-repeat="frequency in appupdate.updateChecks"): a(ng-click="appupdate.useFrequency($index)") {{frequency.check}}
-            .small-4.columns
-                label Datum der letzten Prüfung
-                #dtLastCheck {{customize.param.update.lastCheck | date: 'dd.MM.yyyy HH:mm'}}
-            .small-4.columns
-                label Datum der nächsten Prüfung
-                #dtNextCheck {{appupdate.dateNextCheck()}}
-        .row
-            .small-12.columns
-                a.button.small.radius.secondary(href="", ng-show="appupdate.msgClose", ng-click="appupdate.checkReleaseUpdate($event)") <i class="fa fa-refresh fa-margin" ng-class="{'fa-spin':appupdate.isChecking}"></i>Jetzt auf mögliche Aktualisierung prüfen...
-                alert.warning.radius(ng-if!="appupdate.releaseLoaded && appupdate.newVersion", ng-hide="appupdate.msgClose" close="appupdate.msgClose=true") <i class="fa fa-info-circle fa-margin"></i>Es existiert eine neuere Version {{appupdate.release.version}} vom {{appupdate.release.releasedate | date: "dd.MM.yyyy"}}!
-                    a.button.tiny.radius.secondary.left15.bottom0(href="", ng-disabled="!appupdate.releaseChecked", ng-click="appupdate.installRelease()") <i class="fa fa-cloud-download fa-margin"></i>Jetzt installieren...
-                alert.info.radius(ng-if!="appupdate.releaseLoaded && !appupdate.newVersion", ng-hide="appupdate.msgClose" close="appupdate.msgClose=true") <i class="fa fa-check fa-margin"></i>Sie verfügen bereits über die neueste Version.
-                alert.error.radius(ng-if="!appupdate.releaseLoaded", ng-hide="appupdate.msgClose" close="appupdate.msgClose=true") <i class="fa fa-exclamation-triangle fa-margin"></i>Die Releasedaten konnten nicht geladen werden.
-        .row.releaseheader(ng-if="appupdate.newVersion")
-            .small-4.columns
-                label Version
-                | {{appupdate.release.version}}
-            .small-4.columns
-                label Freigegeben am
-                | {{appupdate.release.releasedate | date: 'dd.MM.yyyy HH:mm'}}
-            .small-4.columns
-                label Autor
-                | {{appupdate.release.author}}
-        .row(ng-if="appupdate.newVersion")
-            .small-4.columns: strong Name des Skins
-            .small-4.columns: strong Änderungsdatum
-            .small-4.columns: strong Aktualisierungsstatus
-        .row(ng-if="appupdate.newVersion", ng-repeat="skin in appupdate.release.skins")
-            .small-4.columns {{skin.name}}
-            .small-4.columns {{skin.update | date: 'dd.MM.yyyy HH:mm'}}
-            .small-4.columns {{appupdate.updateStatus(skin.status)}}
-                i.fa.fa-check-circle.fa-lg.left10.green(ng-if="skin.status==='updated'")
-                i.fa.fa-times-circle.fa-lg.left10.red(ng-if="skin.status.substr(0,5)==='error'")
+    .row
+        .small-12.columns.bottom15 Ihre derzeitige Layout-Version ist <strong>{{customize.param.update.version}}</strong>.
+    .row
+        .small-4.columns
+            label Aktualisierungsprüfung
+            a.button.tiny.split {{customize.param.update.check}} <span dropdown-toggle="#dropdown-updatecheck"></span>
+            ul#dropdown-updatecheck.f-dropdown
+                li(ng-repeat="frequency in appupdate.updateChecks"): a(ng-click="appupdate.useFrequency($index)") {{frequency.check}}
+        .small-4.columns
+            label Datum der letzten Prüfung
+            #dtLastCheck {{customize.param.update.lastCheck | date: 'dd.MM.yyyy HH:mm'}}
+        .small-4.columns
+            label Datum der nächsten Prüfung
+            #dtNextCheck {{appupdate.dateNextCheck()}}
+    .row
+        .small-12.columns
+            a.button.small.radius.secondary(href="", ng-show="appupdate.msgClose", ng-click="appupdate.checkReleaseUpdate($event)") <i class="fa fa-refresh fa-margin" ng-class="{'fa-spin':appupdate.isChecking}"></i>Jetzt auf mögliche Aktualisierung prüfen...
+            alert.warning.radius(ng-if!="appupdate.releaseLoaded && appupdate.newVersion", ng-hide="appupdate.msgClose" close="appupdate.msgClose=true") <i class="fa fa-info-circle fa-margin"></i>Es existiert eine neuere Version {{appupdate.release.version}} vom {{appupdate.release.releasedate | date: "dd.MM.yyyy"}}!
+                a.button.tiny.radius.secondary.left15.bottom0(href="", ng-disabled="!appupdate.releaseChecked", ng-click="appupdate.installRelease()") <i class="fa fa-cloud-download fa-margin"></i>Jetzt installieren...
+            alert.info.radius(ng-if!="appupdate.releaseLoaded && !appupdate.newVersion", ng-hide="appupdate.msgClose" close="appupdate.msgClose=true") <i class="fa fa-check fa-margin"></i>Sie verfügen bereits über die neueste Version.
+            alert.error.radius(ng-if="!appupdate.releaseLoaded", ng-hide="appupdate.msgClose" close="appupdate.msgClose=true") <i class="fa fa-exclamation-triangle fa-margin"></i>Die Releasedaten konnten nicht geladen werden.
+    .row.releaseheader(ng-if="appupdate.newVersion")
+        .small-4.columns
+            label Version
+            | {{appupdate.release.version}}
+        .small-4.columns
+            label Freigegeben am
+            | {{appupdate.release.releasedate | date: 'dd.MM.yyyy HH:mm'}}
+        .small-4.columns
+            label Autor
+            | {{appupdate.release.author}}
+    .row(ng-if="appupdate.newVersion")
+        .small-4.columns: strong Name des Skins
+        .small-4.columns: strong Änderungsdatum
+        .small-4.columns: strong Aktualisierungsstatus
+    .row(ng-if="appupdate.newVersion", ng-repeat="skin in appupdate.release.skins")
+        .small-4.columns {{skin.name}}
+        .small-4.columns {{skin.update | date: 'dd.MM.yyyy HH:mm'}}
+        .small-4.columns {{appupdate.updateStatus(skin.status)}}
+            i.fa.fa-check-circle.fa-lg.left10.green(ng-if="skin.status==='updated'")
+            i.fa.fa-times-circle.fa-lg.left10.red(ng-if="skin.status.substr(0,5)==='error'")

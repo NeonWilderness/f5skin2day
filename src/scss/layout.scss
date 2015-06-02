@@ -186,15 +186,11 @@ span[ng-click] { cursor: pointer; }
 /* ---- Site.ngTemplates Skin CSS ---- */
 #customizeBlog {
   p { font-size: 12px; }
-  fieldset {
-    margin-top: 0;
-    label { font-size: 12px; cursor: default; }
-  }
+  form label { font-size: 12px; cursor: default; }
   th .button, th button { margin-bottom: 0; }
   .split.button.tiny { padding-left: .75rem; padding-right: 3rem; }
   .tabs dd>a { font-size: 12px; padding: 1em 2em; }
   .tabs dd.active>a { background-color: #008cba; color: #fff; }
-  #chkLoader { margin-top: 25px; }
   #btnLoader { margin-top: 18px; }
   .photo {
     position: relative;

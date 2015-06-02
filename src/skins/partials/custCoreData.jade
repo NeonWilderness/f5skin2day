@@ -1,42 +1,43 @@
 //- partial template: Customization -> Core Blog Data
 form(ng-controller="CustCoreDataCtrl as coredata")
-    fieldset
-        .row
-            .small-4.columns
-                label(for="txtTitle") Blogtitel
-                    input(type="text", id="txtTitle", ng-model="customize.param.site.title")
-            .small-4.columns
-                label(for="txtSubtitle") Bloguntertitel
-                    input(type="text", id="txtSubtitle", ng-model="customize.param.site.subtitle")
-            .small-4.columns
-                label(for="txtAuthor") Autor
-                    input(type="text", id="txtAuthor", ng-model="customize.param.site.author")
-        .row
-            .small-12.columns
-                label(for="txtDescription") Blogbeschreibung
-                    input(type="text", id="txtDescription", ng-model="customize.param.site.description")
-        .row
-            .small-12.columns
-                .row.collapse
-                    label.bottom0(for="txtImgFolder") GoogleDrive-Verzeichnis für öffentliche Bilder
-                    .small-11.columns
-                        input(type="text", id="txtImgFolder", ng-model="customize.param.site.imgFolder")
-                    .small-1.columns
-                        span.postfix(ng-click="coredata.setStaticFolder()"): i.fa.fa-image
-        .row
-            .small-4.columns
+    .row
+        .small-4.columns
+            label(for="txtTitle") Blogtitel
+                input(type="text", id="txtTitle", ng-model="customize.param.site.title")
+        .small-4.columns
+            label(for="txtSubtitle") Bloguntertitel
+                input(type="text", id="txtSubtitle", ng-model="customize.param.site.subtitle")
+        .small-4.columns
+            label(for="txtAuthor") Autor
+                input(type="text", id="txtAuthor", ng-model="customize.param.site.author")
+    .row
+        .small-12.columns
+            label(for="txtDescription") Blogbeschreibung
+                input(type="text", id="txtDescription", ng-model="customize.param.site.description")
+    .row
+        .small-12.columns
+            .row.collapse
+                label.bottom0(for="txtImgFolder") GoogleDrive-Verzeichnis für öffentliche Bilder
+                .small-11.columns
+                    input(type="text", id="txtImgFolder", ng-model="customize.param.site.imgFolder")
+                .small-1.columns
+                    span.postfix(ng-click="coredata.setStaticFolder()"): i.fa.fa-image
+    .row
+        .small-4.columns.text-center
+            label Lade-Animation anzeigen?
+            .switch.round
                 input(type="checkbox", id="chkLoader", ng-model="customize.param.site.loader.animation")
-                label(for="chkLoader") Lade-Animation anzeigen?
-            .small-2.columns
-                label(for="txtColor1") Farbe 1
-                    input(type="text", id="txtColor1", ng-model="customize.param.site.loader.color1")
-            .small-2.columns
-                label(for="txtColor2") Farbe 2
-                    input(type="text", id="txtColor2", ng-model="customize.param.site.loader.color2")
-            .small-2.columns
-                label(for="txtColor3") Farbe 3
-                    input(type="text", id="txtColor3", ng-model="customize.param.site.loader.color3")
-            .small-2.columns
-                a.button.secondary.tiny.radius(href="", id="btnLoader", ng-click="coredata.testLoader()")
-                    i.fa.fa-play.fa-margin
-                    | Test
+                label(for="chkLoader")
+        .small-2.columns
+            label(for="txtColor1") Farbe 1
+                input(type="text", id="txtColor1", ng-model="customize.param.site.loader.color1")
+        .small-2.columns
+            label(for="txtColor2") Farbe 2
+                input(type="text", id="txtColor2", ng-model="customize.param.site.loader.color2")
+        .small-2.columns
+            label(for="txtColor3") Farbe 3
+                input(type="text", id="txtColor3", ng-model="customize.param.site.loader.color3")
+        .small-2.columns
+            a.button.secondary.tiny.radius(href="", id="btnLoader", ng-click="coredata.testLoader()")
+                i.fa.fa-play.fa-margin
+                | Test

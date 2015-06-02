@@ -1,114 +1,113 @@
 //- partial template: Customization -> Background images
 form(ng-controller="CustBackgroundsCtrl as backgrounds")
-    fieldset
-        .row(ng-show="backgrounds.isQueryImage")
-            .small-12.columns
-                .row
-                    .small-4.medium-3.large-2.columns
-                        label Bildquelle
-                        a.button.tiny.split {{backgrounds.navImagePool.provider.name}} <span dropdown-toggle="#dropdown-imgprovider"></span>
-                        ul#dropdown-imgprovider.f-dropdown
-                            li(ng-repeat="provider in backgrounds.navImagePool.providers"): a(ng-click="backgrounds.navImagePool.useProvider($index)") {{provider.name}}
-                    .small-8.medium-9.large-10.columns
-                        label
-                            span(ng-hide="backgrounds.navImagePool.isLoadingImages")
-                                | Seite&ensp;{{backgrounds.navImagePool.page+1}}&ensp;von&ensp;{{backgrounds.navImagePool.lastPage+1}}&ensp;({{backgrounds.navImagePool.images.length}}&ensp;Bilder)
-                                span.subFolder {{backgrounds.navImagePool.subFolder}}
-                            | &nbsp;
-                        button.tiny.radius.secondary.square.right5(title="Erste Bildseite", ng-disabled="backgrounds.navImagePool.isFirstPage()", ng-click="backgrounds.navImagePool.toFirstPage()"): i.fa.fa-fast-backward.fa-fw
-                        button.tiny.radius.secondary.square.right5(title="Vorhergehende Bildseite", ng-disabled="backgrounds.navImagePool.isFirstPage()", ng-click="backgrounds.navImagePool.prevPage()"): i.fa.fa-backward.fa-fw
-                        button.tiny.radius.secondary.square.right5(title="Nächste Bildseite", ng-disabled="backgrounds.navImagePool.isLastPage()", ng-click="backgrounds.navImagePool.nextPage()"): i.fa.fa-forward.fa-fw
-                        button.tiny.radius.secondary.square(title="Letzte Bildseite", ng-disabled="backgrounds.navImagePool.isLastPage()", ng-click="backgrounds.navImagePool.toLastPage()"): i.fa.fa-fast-forward.fa-fw
-                        button.tiny.radius.secondary.square.left10(title="Schließen", ng-click="backgrounds.isQueryImage=false") <i class="fa fa-times fa-margin"></i>Schließen
-                        span.loadstatus(ng-show="backgrounds.navImagePool.isLoadingImages")
-                            i.fa.fa-spinner.fa-pulse.fa-margin
-                            | Lade Inhalte...
-            .small-12.columns
-                .row
-                    .small-4.medium-3.large-2.columns.end(ng-repeat="image in backgrounds.navImagePool.pageImages track by $index")
-                        div.photo(ng-style="image.style", resizable="", alt="")
-                            div.folder-overlay(ng-if="!image.isImage", ng-click="backgrounds.navImagePool.selectFolder($index)")
-                                span(ng-class="{'folder-levelup': image.fName==='zurück'}") {{image.fName}}
-                            div.photo-overlay(ng-if="image.isImage")
-                                i.fa.fa-search-plus.fa-2x.fa-fw(title="Bild ansehen", ng-click="backgrounds.navImagePool.viewImage($index)")
-                                i.fa.fa-check.fa-2x.fa-fw.left10(title="Als Hintergrund auswählen", ng-click="backgrounds.navImagePool.selectImage($index)")
-        .row(ng-show="!backgrounds.isQueryImage && (backgrounds.isEditMode || backgrounds.isCreateMode)")
-            .small-12.columns
-                .row
-                    .small-2.columns
-                        label(for="timeFrom") Von <i class="fa fa-clock-o"></i>
-                            input(type="time", ng-model="backgrounds.slot.from", id="timeFrom", placeholder="HH:mm", min="00:00", max="23:59", required)
-                    .small-2.columns
-                        label(for="timeTo") Bis <i class="fa fa-clock-o"></i>
-                            input(type="time", ng-model="backgrounds.slot.to", id="timeTo", placeholder="HH:mm", min="00:00", max="23:59", required)
-                    .small-2.columns
-                        label Position
-                            a.extlink(href="http://www.w3schools.com/cssref/pr_background-position.asp" target="_blank")
-                        a.button.tiny.split {{backgrounds.slot.position}} <span dropdown-toggle="#dropdown-position"></span>
-                        ul#dropdown-position.f-dropdown
-                            li(ng-repeat="position in backgrounds.positions"): a(ng-click="backgrounds.usePosition($index)") {{position}}
-                    .small-2.columns
-                        label Repeat
-                            a.extlink(href="http://www.w3schools.com/cssref/pr_background-repeat.asp", target="_blank")
-                        a.button.tiny.split {{backgrounds.slot.repeat}} <span dropdown-toggle="#dropdown-repeat"></span>
-                        ul#dropdown-repeat.f-dropdown
-                            li(ng-repeat="repeat in backgrounds.repeats"): a(ng-click="backgrounds.useRepeat($index)") {{repeat}}
-                    .small-2.columns
-                        label Size
-                            a.extlink(href="http://www.w3schools.com/cssref/css3_pr_background-size.asp", target="_blank")
-                        a.button.tiny.split {{backgrounds.slot.size}} <span dropdown-toggle="#dropdown-size"></span>
-                        ul#dropdown-size.f-dropdown
-                            li(ng-repeat="size in backgrounds.sizes"): a(ng-click="backgrounds.useSize($index)") {{size}}
-                    .small-2.columns
-                        label Attachment
-                            a.extlink(href="http://www.w3schools.com/cssref/pr_background-attachment.asp", target="_blank")
-                        a.button.tiny.split {{backgrounds.slot.attachment}} <span dropdown-toggle="#dropdown-attachment"></span>
-                        ul#dropdown-attachment.f-dropdown
-                            li(ng-repeat="attachment in backgrounds.attachments"): a(ng-click="backgrounds.useAttachment($index)") {{attachment}}
-                .row
-                    .small-10.columns
-                        label(for="txtHref") Bildadresse (URL)
-                            input(type="text", id="txtHref", ng-model="backgrounds.slot.href")
-                    .small-2.columns
-                        label Bildanbieter
-                            a.button.secondary.tiny.radius(ng-click="backgrounds.queryImage()") <i class="fa fa-camera fa-margin"></i>Foto wählen
-                .row
-                    .small-12.columns.small-centered
-                        a.button.success.radius.tiny(ng-click="backgrounds.save()") <i class="fa fa-check fa-margin"></i>Übernehmen
-                        a.button.alert.radius.tiny.left10(ng-click="backgrounds.cancel()") <i class="fa fa-times fa-margin"></i>Abbrechen
-        .row(ng-hide="backgrounds.isQueryImage || backgrounds.isEditMode || backgrounds.isCreateMode")
-            .small-12.columns
-                table.fullsize
-                    thead
-                        tr
-                            th &nbsp;
-                            th Von <i class="fa fa-clock-o"></i>
-                            th Bis <i class="fa fa-clock-o"></i>
-                            th Position
-                            th Repeat
-                            th Size
-                            th Attachment
-                            th Bild
-                    tbody
-                        tr(ng-repeat="slot in customize.param.timeSlots")
-                            th
-                                ul.button-group
-                                    li: a.button.tiny.radius.secondary.square.right5(href="", title="Eintrag bearbeiten", ng-click="backgrounds.edit($index)"): i.fa.fa-edit.fa-fw
-                                    li: a.button.tiny.radius.secondary.square(href="", title="Eintrag entfernen", ng-click="backgrounds.remove($index)"): i.fa.fa-trash-o.fa-fw
-                            th {{slot.from | date:'HH:mm'}}
-                            th {{slot.to| date:'HH:mm'}}
-                            th {{slot.position}}
-                            th {{slot.repeat}}
-                            th {{slot.size}}
-                            th {{slot.attachment}}
-                            th: a(ng-href="{{slot.href}}", class="th", target="_blank"): img(ng-src="{{slot.href}}", width="120", alt="")
-                        tr
-                            th(colspan="8", id="slotStatus", ng-class="{'red': !backgrounds.slotStatusOK, 'green': backgrounds.slotStatusOK}")
-                                i.fa.fa-margin(ng-class="{'fa-info-circle': !backgrounds.slotStatusOK, 'fa-check': backgrounds.slotStatusOK}")
-                                | {{backgrounds.slotStatus}}
-                        tr
-                            th(colspan="8")
-                                ul.button-group
-                                    li: a.button.tiny.radius.secondary(href="", ng-click="backgrounds.create()", ng-disabled="backgrounds.isEditMode || backgrounds.isCreateMode")
-                                        i.fa.fa-plus.fa-margin
-                                        | Neuen Hintergrund definieren
+    .row.collapse(ng-show="backgrounds.isQueryImage")
+        .small-12.columns
+            .row
+                .small-4.medium-3.large-2.columns
+                    label Bildquelle
+                    a.button.tiny.split {{backgrounds.navImagePool.provider.name}} <span dropdown-toggle="#dropdown-imgprovider"></span>
+                    ul#dropdown-imgprovider.f-dropdown
+                        li(ng-repeat="provider in backgrounds.navImagePool.providers"): a(ng-click="backgrounds.navImagePool.useProvider($index)") {{provider.name}}
+                .small-8.medium-9.large-10.columns
+                    label
+                        span(ng-hide="backgrounds.navImagePool.isLoadingImages")
+                            | Seite&ensp;{{backgrounds.navImagePool.page+1}}&ensp;von&ensp;{{backgrounds.navImagePool.lastPage+1}}&ensp;({{backgrounds.navImagePool.images.length}}&ensp;Bilder)
+                            span.subFolder {{backgrounds.navImagePool.subFolder}}
+                        | &nbsp;
+                    button.tiny.radius.secondary.square.right5(title="Erste Bildseite", ng-disabled="backgrounds.navImagePool.isFirstPage()", ng-click="backgrounds.navImagePool.toFirstPage()"): i.fa.fa-fast-backward.fa-fw
+                    button.tiny.radius.secondary.square.right5(title="Vorhergehende Bildseite", ng-disabled="backgrounds.navImagePool.isFirstPage()", ng-click="backgrounds.navImagePool.prevPage()"): i.fa.fa-backward.fa-fw
+                    button.tiny.radius.secondary.square.right5(title="Nächste Bildseite", ng-disabled="backgrounds.navImagePool.isLastPage()", ng-click="backgrounds.navImagePool.nextPage()"): i.fa.fa-forward.fa-fw
+                    button.tiny.radius.secondary.square(title="Letzte Bildseite", ng-disabled="backgrounds.navImagePool.isLastPage()", ng-click="backgrounds.navImagePool.toLastPage()"): i.fa.fa-fast-forward.fa-fw
+                    button.tiny.radius.secondary.square.left10(title="Schließen", ng-click="backgrounds.isQueryImage=false") <i class="fa fa-times fa-margin"></i>Schließen
+                    span.loadstatus(ng-show="backgrounds.navImagePool.isLoadingImages")
+                        i.fa.fa-spinner.fa-pulse.fa-margin
+                        | Lade Inhalte...
+        .small-12.columns
+            .row
+                .small-4.medium-3.large-2.columns.end(ng-repeat="image in backgrounds.navImagePool.pageImages track by $index")
+                    div.photo(ng-style="image.style", resizable="", alt="")
+                        div.folder-overlay(ng-if="!image.isImage", ng-click="backgrounds.navImagePool.selectFolder($index)")
+                            span(ng-class="{'folder-levelup': image.fName==='zurück'}") {{image.fName}}
+                        div.photo-overlay(ng-if="image.isImage")
+                            i.fa.fa-search-plus.fa-2x.fa-fw(title="Bild ansehen", ng-click="backgrounds.navImagePool.viewImage($index)")
+                            i.fa.fa-check.fa-2x.fa-fw.left10(title="Als Hintergrund auswählen", ng-click="backgrounds.navImagePool.selectImage($index)")
+    .row.collapse(ng-show="!backgrounds.isQueryImage && (backgrounds.isEditMode || backgrounds.isCreateMode)")
+        .small-12.columns
+            .row
+                .small-2.columns
+                    label(for="timeFrom") Von <i class="fa fa-clock-o"></i>
+                        input(type="time", ng-model="backgrounds.slot.from", id="timeFrom", placeholder="HH:mm", min="00:00", max="23:59", required)
+                .small-2.columns
+                    label(for="timeTo") Bis <i class="fa fa-clock-o"></i>
+                        input(type="time", ng-model="backgrounds.slot.to", id="timeTo", placeholder="HH:mm", min="00:00", max="23:59", required)
+                .small-2.columns
+                    label Position
+                        a.extlink(href="http://www.w3schools.com/cssref/pr_background-position.asp" target="_blank")
+                    a.button.tiny.split {{backgrounds.slot.position}} <span dropdown-toggle="#dropdown-position"></span>
+                    ul#dropdown-position.f-dropdown
+                        li(ng-repeat="position in backgrounds.positions"): a(ng-click="backgrounds.usePosition($index)") {{position}}
+                .small-2.columns
+                    label Repeat
+                        a.extlink(href="http://www.w3schools.com/cssref/pr_background-repeat.asp", target="_blank")
+                    a.button.tiny.split {{backgrounds.slot.repeat}} <span dropdown-toggle="#dropdown-repeat"></span>
+                    ul#dropdown-repeat.f-dropdown
+                        li(ng-repeat="repeat in backgrounds.repeats"): a(ng-click="backgrounds.useRepeat($index)") {{repeat}}
+                .small-2.columns
+                    label Size
+                        a.extlink(href="http://www.w3schools.com/cssref/css3_pr_background-size.asp", target="_blank")
+                    a.button.tiny.split {{backgrounds.slot.size}} <span dropdown-toggle="#dropdown-size"></span>
+                    ul#dropdown-size.f-dropdown
+                        li(ng-repeat="size in backgrounds.sizes"): a(ng-click="backgrounds.useSize($index)") {{size}}
+                .small-2.columns
+                    label Attachment
+                        a.extlink(href="http://www.w3schools.com/cssref/pr_background-attachment.asp", target="_blank")
+                    a.button.tiny.split {{backgrounds.slot.attachment}} <span dropdown-toggle="#dropdown-attachment"></span>
+                    ul#dropdown-attachment.f-dropdown
+                        li(ng-repeat="attachment in backgrounds.attachments"): a(ng-click="backgrounds.useAttachment($index)") {{attachment}}
+            .row
+                .small-10.columns
+                    label(for="txtHref") Bildadresse (URL)
+                        input(type="text", id="txtHref", ng-model="backgrounds.slot.href")
+                .small-2.columns
+                    label Bildanbieter
+                        a.button.secondary.tiny.radius(ng-click="backgrounds.queryImage()") <i class="fa fa-camera fa-margin"></i>Foto wählen
+            .row
+                .small-12.columns.small-centered
+                    a.button.success.radius.tiny(ng-click="backgrounds.save()") <i class="fa fa-check fa-margin"></i>Übernehmen
+                    a.button.alert.radius.tiny.left10(ng-click="backgrounds.cancel()") <i class="fa fa-times fa-margin"></i>Abbrechen
+    .row.collapse(ng-hide="backgrounds.isQueryImage || backgrounds.isEditMode || backgrounds.isCreateMode")
+        .small-12.columns
+            table.fullsize
+                thead
+                    tr
+                        th &nbsp;
+                        th Von <i class="fa fa-clock-o"></i>
+                        th Bis <i class="fa fa-clock-o"></i>
+                        th Position
+                        th Repeat
+                        th Size
+                        th Attachment
+                        th Bild
+                tbody
+                    tr(ng-repeat="slot in customize.param.timeSlots")
+                        th
+                            ul.button-group
+                                li: a.button.tiny.radius.secondary.square.right5(href="", title="Eintrag bearbeiten", ng-click="backgrounds.edit($index)"): i.fa.fa-edit.fa-fw
+                                li: a.button.tiny.radius.secondary.square(href="", title="Eintrag entfernen", ng-click="backgrounds.remove($index)"): i.fa.fa-trash-o.fa-fw
+                        th {{slot.from | date:'HH:mm'}}
+                        th {{slot.to| date:'HH:mm'}}
+                        th {{slot.position}}
+                        th {{slot.repeat}}
+                        th {{slot.size}}
+                        th {{slot.attachment}}
+                        th: a(ng-href="{{slot.href}}", class="th", target="_blank"): img(ng-src="{{slot.href}}", width="120", alt="")
+                    tr
+                        th(colspan="8", id="slotStatus", ng-class="{'red': !backgrounds.slotStatusOK, 'green': backgrounds.slotStatusOK}")
+                            i.fa.fa-margin(ng-class="{'fa-info-circle': !backgrounds.slotStatusOK, 'fa-check': backgrounds.slotStatusOK}")
+                            | {{backgrounds.slotStatus}}
+                    tr
+                        th(colspan="8")
+                            ul.button-group
+                                li: a.button.tiny.radius.secondary(href="", ng-click="backgrounds.create()", ng-disabled="backgrounds.isEditMode || backgrounds.isCreateMode")
+                                    i.fa.fa-plus.fa-margin
+                                    | Neuen Hintergrund definieren

@@ -1,22 +1,21 @@
 //- partial template: Menu --> Basic Options
 form(ng-controller="MenuBasicOptionsCtrl as menuBasic")
-    fieldset
-        .row
-            .small-3.columns
-                label(for="txtMenuTitle") Menütext
-                    input(type="text", id="txtMenuTitle", ng-model="customize.param.topbar.title")
-            .small-3.columns
-                label Fixed
-                .switch.round
-                    input(type="checkbox", id="chkFixed", ng-model="customize.param.topbar.class.fixed")
-                    label(for="chkFixed")
-            .small-3.columns
-                label ContainToGrid
-                .switch.round
-                    input(type="checkbox", id="chkContainToGrid", ng-model="customize.param.topbar.class.containToGrid")
-                    label(for="chkContainToGrid")
-            .small-3.columns
-                label Sticky
-                .switch.round
-                    input(type="checkbox", id="chkSticky", ng-model="customize.param.topbar.class.sticky")
-                    label(for="chkSticky")
+    .row
+        .small-3.columns
+            label(for="txtMenuTitle") Menütext
+                input(type="text", id="txtMenuTitle", ng-model="customize.param.topbar.title")
+        .small-3.columns
+            label Fixed
+            .switch.round
+                input(type="checkbox", id="chkFixed", ng-model="customize.param.topbar.class.fixed")
+                label(for="chkFixed")
+        .small-3.columns
+            label ContainToGrid
+            .switch.round
+                input(type="checkbox", id="chkContainToGrid", ng-model="customize.param.topbar.class.containToGrid")
+                label(for="chkContainToGrid")
+        .small-3.columns
+            label Sticky
+            .switch.round
+                input(type="checkbox", id="chkSticky", ng-model="customize.param.topbar.class.sticky")
+                label(for="chkSticky")

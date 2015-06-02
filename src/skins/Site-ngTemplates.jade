@@ -2,7 +2,6 @@
 script#customizeBlogHtml(type="text/ng-template")
     #customizeBlog
         h5 Mein Foundation-Blog anpassen
-        p Die Einstelloptionen zu Ihrem Blog erreichen Sie über die unten angezeigten Tabs:
         tabset
             tab(heading="Grunddaten")
                 include partials/custCoreData
@@ -15,13 +14,13 @@ script#customizeBlogHtml(type="text/ng-template")
             tab(heading="Menüanzeige")
                 tabset(vertical="true")
                     tab
-                        tab-heading <i class="fa fa-cog fa-fw fa-margin"></i>Basisoptionen
+                        tab-heading <i class="fa fa-cog fa-fw fa-margin"></i>Menüleiste
                         include partials/menuBasicOptions
                     tab
-                        tab-heading <i class="fa fa-bars fa-fw fa-margin"></i>Standardmenü
+                        tab-heading <i class="fa fa-bars fa-fw fa-margin"></i>Menüeinträge
                         include partials/menuStandardItems
                     tab
-                        tab-heading <i class="fa fa-rocket fa-fw fa-margin"></i>Individualmenü
+                        tab-heading <i class="fa fa-rocket fa-fw fa-margin"></i>Schnellmenü
                         include partials/menuCustomItems
                     tab
                         tab-heading <i class="fa fa-envelope fa-fw fa-margin"></i>Spezialmenü
