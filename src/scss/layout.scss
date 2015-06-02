@@ -36,9 +36,7 @@ body {
   font-size: 14px;
   line-height: 21px;
 }
-#f5Topbar {
-  i { font-size: 105%; }
-}
+.top-bar i { font-size: 105%; }
 .fa-margin { margin-right: 6px; }
 .message {
   br { display: none; }
@@ -57,7 +55,7 @@ span[ng-click] { cursor: pointer; }
 .right5 { margin-right: 5px; }
 .right10 { margin-right: 10px; }
 .fullsize { width: 100%; }
-.extlink:before { font-family: "FontAwesome"; content: "\f059"; color: #ddd; margin-left: 6px; }
+.extlink:before { font-family: "FontAwesome"; content: "\f059"; color: #008cba; margin-left: 6px; }
 .tiny.square {
   padding-left: 0.625rem;
   padding-right: 0.625rem;
@@ -247,4 +245,9 @@ span[ng-click] { cursor: pointer; }
   }
   #slotStatus { text-align: center; font-weight: normal; font-size: small; }
   .releaseheader { border-top: 2px solid #eee; border-bottom: 2px solid #eee; margin: 10px 0; padding: 4px 0; }
+}
+#standardItems {
+  th, input { font-size: 13px; }
+  tbody th { font-weight: normal; }
+  input, .switch { margin-bottom: 0; }
 }

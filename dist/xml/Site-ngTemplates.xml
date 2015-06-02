@@ -1,5 +1,5 @@
 <!-- Skin: Site.ngTemplates -->
-<skin key="Site.ngTemplates" lastupdate="2015-06-02T01:40:05.817Z" crc="1741557267">
+<skin key="Site.ngTemplates" lastupdate="2015-06-02T01:40:05.817Z" crc="3902580396">
 <content>
 &lt;script id="customizeBlogHtml" type="text/ng-template"&gt;
   &lt;div id="customizeBlog"&gt;
@@ -214,25 +214,25 @@
             &lt;form ng-controller="MenuBasicOptionsCtrl as menuBasic"&gt;
               &lt;div class="row"&gt;
                 &lt;div class="small-3 columns"&gt;
-                  &lt;label for="txtMenuTitle"&gt;Menütext
-                    &lt;input type="text" id="txtMenuTitle" ng-model="customize.param.topbar.title"/&gt;
+                  &lt;label for="txtMenuTitle"&gt;Menütitel
+                    &lt;input type="text" id="txtMenuTitle" ng-model="customize.param.topbar.title" placeholder="Text"/&gt;
                   &lt;/label&gt;
                 &lt;/div&gt;
-                &lt;div class="small-3 columns"&gt;
+                &lt;div class="small-3 columns text-center"&gt;
                   &lt;label&gt;Fixed&lt;/label&gt;
                   &lt;div class="switch round"&gt;
                     &lt;input type="checkbox" id="chkFixed" ng-model="customize.param.topbar.class.fixed"/&gt;
                     &lt;label for="chkFixed"&gt;&lt;/label&gt;
                   &lt;/div&gt;
                 &lt;/div&gt;
-                &lt;div class="small-3 columns"&gt;
+                &lt;div class="small-3 columns text-center"&gt;
                   &lt;label&gt;ContainToGrid&lt;/label&gt;
-                  &lt;div class="switch round"&gt;
+                  &lt;div class="switch round text-center"&gt;
                     &lt;input type="checkbox" id="chkContainToGrid" ng-model="customize.param.topbar.class.containToGrid"/&gt;
                     &lt;label for="chkContainToGrid"&gt;&lt;/label&gt;
                   &lt;/div&gt;
                 &lt;/div&gt;
-                &lt;div class="small-3 columns"&gt;
+                &lt;div class="small-3 columns text-center"&gt;
                   &lt;label&gt;Sticky&lt;/label&gt;
                   &lt;div class="switch round"&gt;
                     &lt;input type="checkbox" id="chkSticky" ng-model="customize.param.topbar.class.sticky"/&gt;
@@ -244,7 +244,44 @@
           &lt;/tab&gt;
           &lt;tab&gt;
             &lt;tab-heading&gt;&lt;i class="fa fa-bars fa-fw fa-margin"&gt;&lt;/i&gt;Menüeinträge&lt;/tab-heading&gt;
-            &lt;p&gt;menuStandardItems...&lt;/p&gt;
+            &lt;form ng-controller="MenuStandardItemsCtrl as menuStandard"&gt;
+              &lt;div class="row collapse"&gt;
+                &lt;div class="small-12 columns"&gt;
+                  &lt;table id="standardItems"&gt;
+                    &lt;thead&gt;
+                      &lt;tr&gt;
+                        &lt;th&gt;Menüeintrag&lt;/th&gt;
+                        &lt;th&gt;Text&lt;/th&gt;
+                        &lt;th&gt;Icon&lt;a href="http://fortawesome.github.io/Font-Awesome/cheatsheet/" target="_blank" title="Font Awesome Icons anzeigen" class="extlink"&gt;&lt;/a&gt;&lt;/th&gt;
+                        &lt;th&gt;Trenner&lt;/th&gt;
+                      &lt;/tr&gt;
+                    &lt;/thead&gt;
+                    &lt;tbody&gt;
+                      &lt;tr ng-repeat="(menuitem, pref) in customize.param.topbar.menuItems"&gt;
+                        &lt;th&gt;&lt;em&gt;{{menuitem}}&lt;/em&gt;&lt;/th&gt;
+                        &lt;th&gt;
+                          &lt;input type="text" ng-model="pref.text"/&gt;
+                        &lt;/th&gt;
+                        &lt;th&gt;
+                          &lt;div class="row collapse"&gt;
+                            &lt;div class="small-10 columns"&gt;
+                              &lt;input type="text" ng-model="pref.icon"/&gt;
+                            &lt;/div&gt;
+                            &lt;div class="small-2 columns"&gt;&lt;span class="postfix"&gt;&lt;i ng-class="menuStandard.getMenuIcon(menuitem)"&gt;&lt;/i&gt;&lt;/span&gt;&lt;/div&gt;
+                          &lt;/div&gt;
+                        &lt;/th&gt;
+                        &lt;th&gt;
+                          &lt;div class="switch round"&gt;
+                            &lt;input type="checkbox" ng-model="pref.divider" id="chk{{menuitem}}"/&gt;
+                            &lt;label for="chk{{menuitem}}"&gt;&lt;/label&gt;
+                          &lt;/div&gt;
+                        &lt;/th&gt;
+                      &lt;/tr&gt;
+                    &lt;/tbody&gt;
+                  &lt;/table&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/form&gt;
           &lt;/tab&gt;
           &lt;tab&gt;
             &lt;tab-heading&gt;&lt;i class="fa fa-rocket fa-fw fa-margin"&gt;&lt;/i&gt;Schnellmenü&lt;/tab-heading&gt;

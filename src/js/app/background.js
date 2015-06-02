@@ -5,6 +5,11 @@
  *
  */
 
+function isSlotIdent(actual, stored){
+    return (typeof stored === "undefined" ? false :
+        actual.href===stored.href && actual.repeat===stored.repeat && actual.position===stored.position && actual.size===stored.size && actual.attachment===stored.attachment);
+}
+
 module.exports = {
 
     setImage: function(timeSlots){
@@ -17,15 +22,15 @@ module.exports = {
         $.each( timeSlots, function(){
             if (h>=getMinute(this.from) && h<=getMinute(this.to)){
                 var $body = $('body');
-//------------- do nothing if this background image has already been installed before
-                if ($body.data('url')===this.href) return false;
-//------------- once timeslot was found, preload the image
+//------------- do nothing if this background image has already been installed before with same params
+                if (isSlotIdent(this, $body.data('timeSlot'))) return false;
+//------------- once timeslot was found and needs to be installed, then preload/cache the image
                 var self = this;
                 $('<img/>').attr('src', self.href).load( function(){
 //----------------- remove the temp img to prevent memory leaks
                     $(this).remove();
-//----------------- now set the background-image with all params
-                    $body.data('url', self.href)
+//----------------- now save and set the background-image with all params
+                    $body.data('timeSlot', self)
                          .css({
                             'background-image': 'url("'+self.href+'")',
                             'background-repeat': self.repeat,

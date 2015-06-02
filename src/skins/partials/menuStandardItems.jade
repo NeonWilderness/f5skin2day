@@ -1,1 +1,26 @@
-p menuStandardItems...
+//- partial template: Menu --> Standard Items
+form(ng-controller="MenuStandardItemsCtrl as menuStandard")
+    .row.collapse
+        .small-12.columns
+            table#standardItems
+                thead
+                    tr
+                        th Menüeintrag
+                        th Text
+                        th Icon
+                            a.extlink(href="http://fortawesome.github.io/Font-Awesome/cheatsheet/", target="_blank", title="Font Awesome Icons anzeigen")
+                        th Trenner
+                tbody
+                    tr(ng-repeat="(menuitem, pref) in customize.param.topbar.menuItems")
+                        th: em {{menuitem}}
+                        th: input(type="text", ng-model="pref.text")
+                        th
+                            .row.collapse
+                                .small-10.columns
+                                    input(type="text", ng-model="pref.icon")
+                                .small-2.columns
+                                    span.postfix:  i(ng-class="menuStandard.getMenuIcon(menuitem)")
+                        th
+                            .switch.round
+                                input(type="checkbox", ng-model="pref.divider", id="chk{{menuitem}}")
+                                label(for="chk{{menuitem}}")

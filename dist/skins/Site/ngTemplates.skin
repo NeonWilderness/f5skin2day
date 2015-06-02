@@ -211,25 +211,25 @@
             <form ng-controller="MenuBasicOptionsCtrl as menuBasic">
               <div class="row">
                 <div class="small-3 columns">
-                  <label for="txtMenuTitle">Menütext
-                    <input type="text" id="txtMenuTitle" ng-model="customize.param.topbar.title"/>
+                  <label for="txtMenuTitle">Menütitel
+                    <input type="text" id="txtMenuTitle" ng-model="customize.param.topbar.title" placeholder="Text"/>
                   </label>
                 </div>
-                <div class="small-3 columns">
+                <div class="small-3 columns text-center">
                   <label>Fixed</label>
                   <div class="switch round">
                     <input type="checkbox" id="chkFixed" ng-model="customize.param.topbar.class.fixed"/>
                     <label for="chkFixed"></label>
                   </div>
                 </div>
-                <div class="small-3 columns">
+                <div class="small-3 columns text-center">
                   <label>ContainToGrid</label>
-                  <div class="switch round">
+                  <div class="switch round text-center">
                     <input type="checkbox" id="chkContainToGrid" ng-model="customize.param.topbar.class.containToGrid"/>
                     <label for="chkContainToGrid"></label>
                   </div>
                 </div>
-                <div class="small-3 columns">
+                <div class="small-3 columns text-center">
                   <label>Sticky</label>
                   <div class="switch round">
                     <input type="checkbox" id="chkSticky" ng-model="customize.param.topbar.class.sticky"/>
@@ -241,7 +241,44 @@
           </tab>
           <tab>
             <tab-heading><i class="fa fa-bars fa-fw fa-margin"></i>Menüeinträge</tab-heading>
-            <p>menuStandardItems...</p>
+            <form ng-controller="MenuStandardItemsCtrl as menuStandard">
+              <div class="row collapse">
+                <div class="small-12 columns">
+                  <table id="standardItems">
+                    <thead>
+                      <tr>
+                        <th>Menüeintrag</th>
+                        <th>Text</th>
+                        <th>Icon<a href="http://fortawesome.github.io/Font-Awesome/cheatsheet/" target="_blank" title="Font Awesome Icons anzeigen" class="extlink"></a></th>
+                        <th>Trenner</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="(menuitem, pref) in customize.param.topbar.menuItems">
+                        <th><em>{{menuitem}}</em></th>
+                        <th>
+                          <input type="text" ng-model="pref.text"/>
+                        </th>
+                        <th>
+                          <div class="row collapse">
+                            <div class="small-10 columns">
+                              <input type="text" ng-model="pref.icon"/>
+                            </div>
+                            <div class="small-2 columns"><span class="postfix"><i ng-class="menuStandard.getMenuIcon(menuitem)"></i></span></div>
+                          </div>
+                        </th>
+                        <th>
+                          <div class="switch round">
+                            <input type="checkbox" ng-model="pref.divider" id="chk{{menuitem}}"/>
+                            <label for="chk{{menuitem}}"></label>
+                          </div>
+                        </th>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </form>
           </tab>
           <tab>
             <tab-heading><i class="fa fa-rocket fa-fw fa-margin"></i>Schnellmenü</tab-heading>

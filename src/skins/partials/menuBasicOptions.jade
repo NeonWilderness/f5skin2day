@@ -2,19 +2,19 @@
 form(ng-controller="MenuBasicOptionsCtrl as menuBasic")
     .row
         .small-3.columns
-            label(for="txtMenuTitle") Menütext
-                input(type="text", id="txtMenuTitle", ng-model="customize.param.topbar.title")
-        .small-3.columns
+            label(for="txtMenuTitle") Menütitel
+                input(type="text", id="txtMenuTitle", ng-model="customize.param.topbar.title", placeholder="Text")
+        .small-3.columns.text-center
             label Fixed
             .switch.round
                 input(type="checkbox", id="chkFixed", ng-model="customize.param.topbar.class.fixed")
                 label(for="chkFixed")
-        .small-3.columns
+        .small-3.columns.text-center
             label ContainToGrid
-            .switch.round
+            .switch.round.text-center
                 input(type="checkbox", id="chkContainToGrid", ng-model="customize.param.topbar.class.containToGrid")
                 label(for="chkContainToGrid")
-        .small-3.columns
+        .small-3.columns.text-center
             label Sticky
             .switch.round
                 input(type="checkbox", id="chkSticky", ng-model="customize.param.topbar.class.sticky")

@@ -12,4 +12,5 @@ require('angular')
     .controller('CustCoreDataCtrl', ['$rootScope', require('./CustCoreDataCtrl')])
     .controller('CustBackgroundsCtrl', ['$rootScope', 'ImageProvider', '$window', 'toastr', require('./CustBackgroundsCtrl')])
     .controller('CustAppUpdateCtrl', ['$rootScope', '$filter', '$q', 'UpdateCheck', 'TwodaySkin', 'toastr', require('./CustAppUpdateCtrl')])
-    .controller('MenuBasicOptionsCtrl', ['$rootScope', require('./MenuBasicOptionsCtrl')]);
+    .controller('MenuBasicOptionsCtrl', ['$rootScope', require('./MenuBasicOptionsCtrl')])
+    .controller('MenuStandardItemsCtrl', ['$rootScope', require('./MenuStandardItemsCtrl')]);
