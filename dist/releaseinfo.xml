@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?><layout>
 <version>0.1.5</version>
 <author>NeonWilderness</author>
-<releasedate>Tue Jun 02 2015 17:34:23 GMT+0200 (Mitteleuropäische Sommerzeit)</releasedate>
+<releasedate>Sat Jun 06 2015 03:00:24 GMT+0200 (Mitteleuropäische Sommerzeit)</releasedate>
 <!-- Skin: Site.browsertest -->
 <skin key="Site.browsertest" lastupdate="2015-03-20T15:15:09.354Z" crc="1403166455">
 <content>
@@ -89,9 +89,9 @@
 </content>
 </skin>
 <!-- Skin: Site.cssLayout -->
-<skin key="Site.cssLayout" lastupdate="2015-06-02T15:24:35.679Z" crc="550959342">
+<skin key="Site.cssLayout" lastupdate="2015-06-06T00:52:02.141Z" crc="911596729">
 <content>
-/*! Layout Modifications/Enhancements to the Foundation5 CSS | NeonWilderness | MIT License */@font-face{font-family:'Open Sans';font-style:normal;font-weight:300;src:local("Open Sans Light"),local("OpenSans-Light"),url(http://themes.googleusercontent.com/static/fonts/opensans/v8/DXI1ORHCpsQm3Vp6mXoaTXhCUOGz7vYGh680lGh-uXM.woff) format("woff")}@font-face{font-family:'Open Sans';font-style:normal;font-weight:400;src:local("Open Sans"),local("OpenSans"),url(http://themes.googleusercontent.com/static/fonts/opensans/v8/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff) format("woff")}@font-face{font-family:'Open Sans';font-style:normal;font-weight:700;src:local("Open Sans Bold"),local("OpenSans-Bold"),url(http://themes.googleusercontent.com/static/fonts/opensans/v8/k3k702ZOKiLJc3WVjuplzHhCUOGz7vYGh680lGh-uXM.woff) format("woff")}@font-face{font-family:'Open Sans';font-style:italic;font-weight:400;src:local("Open Sans Italic"),local("OpenSans-Italic"),url(http://themes.googleusercontent.com/static/fonts/opensans/v8/xjAJXh38I15wypJXxuGMBobN6UDyHWBl620a-IRfuBk.woff) format("woff")}@font-face{font-family:'Oswald';font-style:normal;font-weight:400;src:local("Oswald Regular"),local("Oswald-Regular"),url(http://themes.googleusercontent.com/static/fonts/oswald/v8/-g5pDUSRgvxvOl5u-a_WHw.woff) format("woff")}body{font-size:14px;line-height:21px}.top-bar i{font-size:105%}.fa-margin{margin-right:6px}.message br{display:none}.message .button{margin:0 0 0 15px}span[ng-click]{cursor:pointer}.green{color:#43ac6a}.blue{color:#008cba}.red{color:#f04124}.yellow{color:#f9c922}.top20{margin-top:20px}.bottom0{margin-bottom:0}.bottom15{margin-bottom:15px}.left10{margin-left:10px}.left15{margin-left:15px}.right5{margin-right:5px}.right10{margin-right:10px}.fullsize{width:100%}.extlink:before{font-family:"FontAwesome";content:"\f059";color:#008cba;margin-left:6px}.tiny.square{padding-left:0.625rem;padding-right:0.625rem}.tiny.square:focus{outline:none}#loader-wrapper{position:fixed;top:0;left:0;width:100%;height:100%;z-index:1010;background-color:rgba(0,0,0,0.9)}#loader{display:block;position:relative;left:50%;top:50%;width:150px;height:150px;margin:-75px 0 0 -75px;border-radius:50%;border:3px solid transparent;border-top-color:#3498db;-webkit-animation:spin 2s linear infinite;animation:spin 2s linear infinite}#loader:before{content:"";position:absolute;top:5px;left:5px;right:5px;bottom:5px;border-radius:50%;border:3px solid transparent;border-top-color:#f04124;-webkit-animation:spin 3s linear infinite;animation:spin 3s linear infinite}#loader:after{content:"";position:absolute;top:15px;left:15px;right:15px;bottom:15px;border-radius:50%;border:3px solid transparent;border-top-color:#f9c922;-webkit-animation:spin 1.5s linear infinite;animation:spin 1.5s linear infinite}@-webkit-keyframes spin{0%{-webkit-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg)}100%{-webkit-transform:rotate(360deg);-ms-transform:rotate(360deg);transform:rotate(360deg)}}@keyframes spin{0%{-webkit-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg)}100%{-webkit-transform:rotate(360deg);-ms-transform:rotate(360deg);transform:rotate(360deg)}}.maincontent{position:relative;background:#fff;margin-bottom:15px;padding:15px;-webkit-transition:opacity 1s,width 0.4s;transition:opacity 1s,width 0.4s;-webkit-border-radius:4px;border-radius:4px;-webkit-opacity:0.8;opacity:0.8}.maincontent:hover{-webkit-opacity:0.95;opacity:0.95}.sidebarItem{position:relative;background:#fff;margin-bottom:15px;padding:15px;-webkit-transition:opacity 1s,width 0.4s;transition:opacity 1s,width 0.4s;-webkit-border-radius:4px;border-radius:4px;-webkit-opacity:0.6;opacity:0.6}.sidebarItem:hover{-webkit-opacity:0.8;opacity:0.8}.fade{-webkit-opacity:0;opacity:0;-webkit-transition:opacity 0.15s linear;transition:opacity 0.15s linear}.fade.in{-webkit-opacity:1;opacity:1}.sbBookItem{margin-bottom:20px;font-size:13px}.sbBookItem img{box-shadow:3px 4px 6px #ccc;max-height:120px}.sbBookAuthor{font-style:italic;margin-top:10px}#customizeBlog p{font-size:12px}#customizeBlog form label{font-size:12px;cursor:default}#customizeBlog th .button,#customizeBlog th button{margin-bottom:0}#customizeBlog .split.button.tiny{padding-left:.75rem;padding-right:3rem}#customizeBlog .tabs dd>a{font-size:12px;padding:1em 2em}#customizeBlog .tabs dd.active>a{background-color:#008cba;color:#fff}#customizeBlog #btnLoader{margin-top:18px}#customizeBlog .photo{position:relative;width:100%;background-size:cover;background-repeat:no-repeat;background-position:center center;margin-bottom:10px}#customizeBlog .photo:hover .photo-overlay{opacity:1}#customizeBlog .photo:hover .folder-overlay{color:#fff}#customizeBlog .photo-overlay{position:absolute;left:0;right:0;bottom:0;padding:8px 0;text-align:center;background-color:rgba(0,0,0,0.5);-webkit-transition:all 0.4s ease-in-out;transition:all 0.4s ease-in-out;opacity:0}#customizeBlog .photo-overlay i{color:rgba(255,255,255,0.6);cursor:pointer}#customizeBlog .photo-overlay i:hover{color:#6bccf9}#customizeBlog .folder-overlay{position:absolute;top:0;left:0;right:0;bottom:0;font-size:13px;text-align:center;cursor:pointer;color:rgba(255,255,255,0.6);-webkit-transition:all 0.4s ease-in-out;transition:all 0.4s ease-in-out}#customizeBlog .folder-overlay span{position:absolute;left:0;right:0;bottom:30%}#customizeBlog .folder-overlay span.folder-levelup{content:"nach oben"}#customizeBlog .folder-overlay span.folder-levelup:after{font-family:"FontAwesome";content:"\f148";margin-left:4px}#customizeBlog .subFolder{position:absolute;top:0;right:8px;font-weight:bold;color:#008cba}#customizeBlog .loadstatus{font-size:12px;margin-left:10px;background-color:#008cba;color:#fff;padding:10px 15px}#customizeBlog #slotStatus{text-align:center;font-weight:normal;font-size:small}#customizeBlog .releaseheader{border-top:2px solid #eee;border-bottom:2px solid #eee;margin:10px 0;padding:4px 0}#standardItems th,#standardItems input{font-size:13px}#standardItems tbody th{font-weight:normal}#standardItems input,#standardItems .switch{margin-bottom:0}
+/*! Layout Modifications/Enhancements to the Foundation5 CSS | NeonWilderness | MIT License */@font-face{font-family:'Open Sans';font-style:normal;font-weight:300;src:local("Open Sans Light"),local("OpenSans-Light"),url(http://themes.googleusercontent.com/static/fonts/opensans/v8/DXI1ORHCpsQm3Vp6mXoaTXhCUOGz7vYGh680lGh-uXM.woff) format("woff")}@font-face{font-family:'Open Sans';font-style:normal;font-weight:400;src:local("Open Sans"),local("OpenSans"),url(http://themes.googleusercontent.com/static/fonts/opensans/v8/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff) format("woff")}@font-face{font-family:'Open Sans';font-style:normal;font-weight:700;src:local("Open Sans Bold"),local("OpenSans-Bold"),url(http://themes.googleusercontent.com/static/fonts/opensans/v8/k3k702ZOKiLJc3WVjuplzHhCUOGz7vYGh680lGh-uXM.woff) format("woff")}@font-face{font-family:'Open Sans';font-style:italic;font-weight:400;src:local("Open Sans Italic"),local("OpenSans-Italic"),url(http://themes.googleusercontent.com/static/fonts/opensans/v8/xjAJXh38I15wypJXxuGMBobN6UDyHWBl620a-IRfuBk.woff) format("woff")}@font-face{font-family:'Oswald';font-style:normal;font-weight:400;src:local("Oswald Regular"),local("Oswald-Regular"),url(http://themes.googleusercontent.com/static/fonts/oswald/v8/-g5pDUSRgvxvOl5u-a_WHw.woff) format("woff")}body{font-size:14px;line-height:21px}.top-bar i{font-size:105%}.fa-margin{margin-right:6px}.message br{display:none}.message .button{margin:0 0 0 15px}span[ng-click]{cursor:pointer}.green{color:#43ac6a}.blue{color:#008cba}.red{color:#f04124}.yellow{color:#f9c922}.bgwhite{background-color:#fff !important}.top20{margin-top:20px}.bottom0{margin-bottom:0}.bottom15{margin-bottom:15px}.left10{margin-left:10px}.left15{margin-left:15px}.right5{margin-right:5px}.right10{margin-right:10px}.fullsize{width:100%}.fs13{font-size:13px}.vtop{vertical-align:top}.extlink:before{font-family:"FontAwesome";content:"\f059";color:#008cba;margin-left:6px}.tiny.square{padding-left:0.625rem;padding-right:0.625rem}.tiny.square:focus{outline:none}.twinbuttons{width:80px}#loader-wrapper{position:fixed;top:0;left:0;width:100%;height:100%;z-index:1010;background-color:rgba(0,0,0,0.9)}#loader{display:block;position:relative;left:50%;top:50%;width:150px;height:150px;margin:-75px 0 0 -75px;border-radius:50%;border:3px solid transparent;border-top-color:#3498db;-webkit-animation:spin 2s linear infinite;animation:spin 2s linear infinite}#loader:before{content:"";position:absolute;top:5px;left:5px;right:5px;bottom:5px;border-radius:50%;border:3px solid transparent;border-top-color:#f04124;-webkit-animation:spin 3s linear infinite;animation:spin 3s linear infinite}#loader:after{content:"";position:absolute;top:15px;left:15px;right:15px;bottom:15px;border-radius:50%;border:3px solid transparent;border-top-color:#f9c922;-webkit-animation:spin 1.5s linear infinite;animation:spin 1.5s linear infinite}@-webkit-keyframes spin{0%{-webkit-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg)}100%{-webkit-transform:rotate(360deg);-ms-transform:rotate(360deg);transform:rotate(360deg)}}@keyframes spin{0%{-webkit-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg)}100%{-webkit-transform:rotate(360deg);-ms-transform:rotate(360deg);transform:rotate(360deg)}}.maincontent{position:relative;background:#fff;margin-bottom:15px;padding:15px;-webkit-transition:opacity 1s,width 0.4s;transition:opacity 1s,width 0.4s;-webkit-border-radius:4px;border-radius:4px;-webkit-opacity:0.8;opacity:0.8}.maincontent:hover{-webkit-opacity:0.95;opacity:0.95}.sidebarItem{position:relative;background:#fff;margin-bottom:15px;padding:15px;-webkit-transition:opacity 1s,width 0.4s;transition:opacity 1s,width 0.4s;-webkit-border-radius:4px;border-radius:4px;-webkit-opacity:0.6;opacity:0.6}.sidebarItem:hover{-webkit-opacity:0.8;opacity:0.8}.fade{-webkit-opacity:0;opacity:0;-webkit-transition:opacity 0.15s linear;transition:opacity 0.15s linear}.fade.in{-webkit-opacity:1;opacity:1}.sbBookItem{margin-bottom:20px;font-size:13px}.sbBookItem img{box-shadow:3px 4px 6px #ccc;max-height:120px}.sbBookAuthor{font-style:italic;margin-top:10px}#customizeBlog p{font-size:12px}#customizeBlog form label{font-size:12px;cursor:default}#customizeBlog th .button,#customizeBlog th button{margin-bottom:0}#customizeBlog .split.button.tiny{padding-left:.75rem;padding-right:3rem}#customizeBlog .tabs dd>a{font-size:12px;padding:1em 2em}#customizeBlog .tabs dd.active>a{background-color:#008cba;color:#fff}#customizeBlog #btnLoader{margin-top:14px}#customizeBlog .photo{position:relative;width:100%;background-size:cover;background-repeat:no-repeat;background-position:center center;margin-bottom:10px}#customizeBlog .photo:hover .photo-overlay{opacity:1}#customizeBlog .photo:hover .folder-overlay{color:#fff}#customizeBlog .photo-overlay{position:absolute;left:0;right:0;bottom:0;padding:8px 0;text-align:center;background-color:rgba(0,0,0,0.5);-webkit-transition:all 0.4s ease-in-out;transition:all 0.4s ease-in-out;opacity:0}#customizeBlog .photo-overlay i{color:rgba(255,255,255,0.6);cursor:pointer}#customizeBlog .photo-overlay i:hover{color:#6bccf9}#customizeBlog .folder-overlay{position:absolute;top:0;left:0;right:0;bottom:0;font-size:13px;text-align:center;cursor:pointer;color:rgba(255,255,255,0.6);-webkit-transition:all 0.4s ease-in-out;transition:all 0.4s ease-in-out}#customizeBlog .folder-overlay span{position:absolute;left:0;right:0;bottom:30%}#customizeBlog .folder-overlay span.folder-levelup{content:"nach oben"}#customizeBlog .folder-overlay span.folder-levelup:after{font-family:"FontAwesome";content:"\f148";margin-left:4px}#customizeBlog .subFolder{position:absolute;top:0;right:8px;font-weight:bold;color:#008cba}#customizeBlog .loadstatus{font-size:12px;margin-left:10px;background-color:#008cba;color:#fff;padding:10px 15px}#customizeBlog #slotStatus{text-align:center;font-weight:normal;font-size:small}#customizeBlog .releaseheader{border-top:2px solid #eee;border-bottom:2px solid #eee;margin:10px 0;padding:4px 0}#tabMenu{margin-bottom:15px !important}#standardItems th,#standardItems input,#customItems th,#customItems input{font-size:13px}#standardItems tbody th,#customItems tbody th{font-weight:normal}#standardItems input,#standardItems .switch,#customItems input,#customItems .switch{margin-bottom:0}.customlabel{color:#777;font-weight:bolder;text-transform:uppercase;font-size:12px}.customhref{font-size:12px;color:#888}.sp-choose{margin-bottom:0;background-image:none !important;background-color:#008cba !important;color:#fff !important;font:normal 12px "Open Sans" !important;text-shadow:none !important;border:none !important;padding:3px 5px !important;opacity:.7}.sp-choose:hover{opacity:1}.sp-cancel{background-color:#fafafa;padding:3px 5px !important;border-radius:3px;opacity:.7}.sp-cancel:hover{text-decoration:none !important;opacity:1}
 
 </content>
 </skin>
@@ -152,12 +152,12 @@
 </content>
 </skin>
 <!-- Skin: Site.ngTemplates -->
-<skin key="Site.ngTemplates" lastupdate="2015-06-02T01:40:05.817Z" crc="3902580396">
+<skin key="Site.ngTemplates" lastupdate="2015-06-04T12:51:11.244Z" crc="366580332">
 <content>
 &lt;script id="customizeBlogHtml" type="text/ng-template"&gt;
   &lt;div id="customizeBlog"&gt;
     &lt;h5&gt;Mein Foundation-Blog anpassen&lt;/h5&gt;
-    &lt;tabset&gt;
+    &lt;tabset id="tabMain"&gt;
       &lt;tab heading="Grunddaten"&gt;
         &lt;form ng-controller="CustCoreDataCtrl as coredata"&gt;
           &lt;div class="row"&gt;
@@ -185,13 +185,13 @@
             &lt;/div&gt;
           &lt;/div&gt;
           &lt;div class="row"&gt;
-            &lt;div class="small-12 columns"&gt;
+            &lt;div class="small-12 columns bottom15"&gt;
               &lt;div class="row collapse"&gt;
                 &lt;label for="txtImgFolder" class="bottom0"&gt;GoogleDrive-Verzeichnis für öffentliche Bilder&lt;/label&gt;
-                &lt;div class="small-11 columns"&gt;
-                  &lt;input type="text" id="txtImgFolder" ng-model="customize.param.site.imgFolder"/&gt;
+                &lt;div class="small-10 columns"&gt;
+                  &lt;input type="text" id="txtImgFolder" ng-model="customize.param.site.imgFolder" ng-change="customize.param.site.isFolderVerified=false"/&gt;
                 &lt;/div&gt;
-                &lt;div class="small-1 columns"&gt;&lt;span ng-click="coredata.setStaticFolder()" class="postfix"&gt;&lt;i class="fa fa-image"&gt;&lt;/i&gt;&lt;/span&gt;&lt;/div&gt;
+                &lt;div class="small-2 columns"&gt;&lt;span ng-click="coredata.verifyDriveFolder()" class="postfix"&gt;&lt;i ng-class="{'fa-search red': !customize.param.site.isFolderVerified, 'fa-check green': customize.param.site.isFolderVerified}" class="fa fa-margin"&gt;&lt;/i&gt;&lt;span ng-if="customize.param.site.isFolderVerified"&gt;Geprüft!&lt;/span&gt;&lt;span ng-if="!customize.param.site.isFolderVerified"&gt;Prüfen...&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
               &lt;/div&gt;
             &lt;/div&gt;
           &lt;/div&gt;
@@ -204,19 +204,16 @@
               &lt;/div&gt;
             &lt;/div&gt;
             &lt;div class="small-2 columns"&gt;
-              &lt;label for="txtColor1"&gt;Farbe 1
-                &lt;input type="text" id="txtColor1" ng-model="customize.param.site.loader.color1"/&gt;
-              &lt;/label&gt;
+              &lt;label&gt;Farbe 1&lt;/label&gt;
+              &lt;spectrum-colorpicker ng-model="customize.param.site.loader.color1"&gt;&lt;/spectrum-colorpicker&gt;
             &lt;/div&gt;
             &lt;div class="small-2 columns"&gt;
-              &lt;label for="txtColor2"&gt;Farbe 2
-                &lt;input type="text" id="txtColor2" ng-model="customize.param.site.loader.color2"/&gt;
-              &lt;/label&gt;
+              &lt;label&gt;Farbe 2&lt;/label&gt;
+              &lt;spectrum-colorpicker ng-model="customize.param.site.loader.color2"&gt;&lt;/spectrum-colorpicker&gt;
             &lt;/div&gt;
             &lt;div class="small-2 columns"&gt;
-              &lt;label for="txtColor3"&gt;Farbe 3
-                &lt;input type="text" id="txtColor3" ng-model="customize.param.site.loader.color3"/&gt;
-              &lt;/label&gt;
+              &lt;label&gt;Farbe 3&lt;/label&gt;
+              &lt;spectrum-colorpicker ng-model="customize.param.site.loader.color3"&gt;&lt;/spectrum-colorpicker&gt;
             &lt;/div&gt;
             &lt;div class="small-2 columns"&gt;&lt;a href="" id="btnLoader" ng-click="coredata.testLoader()" class="button secondary tiny radius"&gt;&lt;i class="fa fa-play fa-margin"&gt;&lt;/i&gt;Test&lt;/a&gt;&lt;/div&gt;
           &lt;/div&gt;
@@ -361,31 +358,52 @@
         &lt;p&gt;Typographie&lt;/p&gt;
       &lt;/tab&gt;
       &lt;tab heading="Menüanzeige"&gt;
-        &lt;tabset vertical="true"&gt;
+        &lt;tabset id="tabMenu" vertical="true"&gt;
           &lt;tab&gt;
             &lt;tab-heading&gt;&lt;i class="fa fa-cog fa-fw fa-margin"&gt;&lt;/i&gt;Menüleiste&lt;/tab-heading&gt;
             &lt;form ng-controller="MenuBasicOptionsCtrl as menuBasic"&gt;
-              &lt;div class="row"&gt;
+              &lt;div class="row bottom15"&gt;
                 &lt;div class="small-3 columns"&gt;
                   &lt;label for="txtMenuTitle"&gt;Menütitel
                     &lt;input type="text" id="txtMenuTitle" ng-model="customize.param.topbar.title" placeholder="Text"/&gt;
                   &lt;/label&gt;
                 &lt;/div&gt;
                 &lt;div class="small-3 columns text-center"&gt;
+                  &lt;label&gt;Iconfarbe&lt;/label&gt;
+                  &lt;spectrum-colorpicker ng-model="customize.param.topbar.menuIconColor"&gt;&lt;/spectrum-colorpicker&gt;
+                &lt;/div&gt;
+                &lt;div class="small-6 columns"&gt;
+                  &lt;label&gt;Vorschau&lt;/label&gt;
+                  &lt;top-bar id="menuPreview"&gt;
+                    &lt;ul class="title-area"&gt;
+                      &lt;li class="name"&gt;
+                        &lt;h1 ng-hide="customize.param.topbar.title.length===0"&gt;&lt;a href="#"&gt;{{customize.param.topbar.title}}&lt;/a&gt;&lt;/h1&gt;
+                      &lt;/li&gt;
+                    &lt;/ul&gt;
+                    &lt;top-bar-section&gt;
+                      &lt;ul class="left"&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;&lt;i class="fa {{customize.param.topbar.menuItems.twoday.icon}}"&gt;&lt;/i&gt;{{customize.param.topbar.menuItems.twoday.text}}&lt;/a&gt;&lt;/li&gt;
+                      &lt;/ul&gt;
+                    &lt;/top-bar-section&gt;
+                  &lt;/top-bar&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class="row"&gt;
+                &lt;div class="small-4 columns text-center"&gt;
                   &lt;label&gt;Fixed&lt;/label&gt;
                   &lt;div class="switch round"&gt;
                     &lt;input type="checkbox" id="chkFixed" ng-model="customize.param.topbar.class.fixed"/&gt;
                     &lt;label for="chkFixed"&gt;&lt;/label&gt;
                   &lt;/div&gt;
                 &lt;/div&gt;
-                &lt;div class="small-3 columns text-center"&gt;
+                &lt;div class="small-4 columns text-center"&gt;
                   &lt;label&gt;ContainToGrid&lt;/label&gt;
                   &lt;div class="switch round text-center"&gt;
                     &lt;input type="checkbox" id="chkContainToGrid" ng-model="customize.param.topbar.class.containToGrid"/&gt;
                     &lt;label for="chkContainToGrid"&gt;&lt;/label&gt;
                   &lt;/div&gt;
                 &lt;/div&gt;
-                &lt;div class="small-3 columns text-center"&gt;
+                &lt;div class="small-4 columns text-center"&gt;
                   &lt;label&gt;Sticky&lt;/label&gt;
                   &lt;div class="switch round"&gt;
                     &lt;input type="checkbox" id="chkSticky" ng-model="customize.param.topbar.class.sticky"/&gt;
@@ -438,7 +456,111 @@
           &lt;/tab&gt;
           &lt;tab&gt;
             &lt;tab-heading&gt;&lt;i class="fa fa-rocket fa-fw fa-margin"&gt;&lt;/i&gt;Schnellmenü&lt;/tab-heading&gt;
-            &lt;p&gt;menuCustomItems...&lt;/p&gt;
+            &lt;form ng-controller="MenuCustomItemsCtrl as menuCustom"&gt;
+              &lt;div class="row"&gt;
+                &lt;div class="small-3 columns text-center"&gt;
+                  &lt;label&gt;Aktivieren?&lt;/label&gt;
+                  &lt;div class="switch round"&gt;
+                    &lt;input type="checkbox" id="chkCustomMenu" ng-model="customize.param.topbar.addCustomMenu.activate" class="fs13"/&gt;
+                    &lt;label for="chkCustomMenu"&gt;&lt;/label&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class="small-3 columns"&gt;
+                  &lt;label for="txtCustomMenu"&gt;Text
+                    &lt;input type="text" ng-model="customize.param.topbar.addCustomMenu.text" placeholder="Text" class="fs13"/&gt;
+                  &lt;/label&gt;
+                &lt;/div&gt;
+                &lt;div class="small-3 columns"&gt;
+                  &lt;label&gt;Icon
+                    &lt;div class="row collapse"&gt;
+                      &lt;div class="small-10 columns"&gt;
+                        &lt;input type="text" id="txtCustomIcon" ng-model="customize.param.topbar.addCustomMenu.icon"/&gt;
+                      &lt;/div&gt;
+                      &lt;div class="small-2 columns"&gt;&lt;span class="postfix"&gt;&lt;i ng-class="menuCustom.getIcon()"&gt;&lt;/i&gt;&lt;/span&gt;&lt;/div&gt;
+                    &lt;/div&gt;
+                  &lt;/label&gt;
+                &lt;/div&gt;
+                &lt;div class="small-3 columns text-center"&gt;
+                  &lt;label&gt;Trenner&lt;/label&gt;
+                  &lt;div class="switch round"&gt;
+                    &lt;input type="checkbox" id="chkCustomDivider" ng-model="customize.param.topbar.addCustomMenu.divider"/&gt;
+                    &lt;label for="chkCustomDivider"&gt;&lt;/label&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class="row collapse"&gt;
+                &lt;div class="small-12 columns"&gt;
+                  &lt;table id="customItems" class="fullsize"&gt;
+                    &lt;thead&gt;
+                      &lt;tr ng-hide="menuCustom.isEditMode || menuCustom.isCreateMode"&gt;
+                        &lt;th&gt;&amp;nbsp;&lt;/th&gt;
+                        &lt;th&gt;Typ&lt;/th&gt;
+                        &lt;th&gt;Überschrift / Link&lt;/th&gt;
+                        &lt;th&gt;Sortieren&lt;/th&gt;
+                      &lt;/tr&gt;
+                      &lt;tr ng-show="menuCustom.isCreateMode"&gt;
+                        &lt;th colspan="4"&gt;Schnellmenüeintrag hinzufügen&lt;/th&gt;
+                      &lt;/tr&gt;
+                      &lt;tr ng-show="menuCustom.isEditMode"&gt;
+                        &lt;th colspan="4"&gt;Schnellmenüeintrag ändern&lt;/th&gt;
+                      &lt;/tr&gt;
+                    &lt;/thead&gt;
+                    &lt;tbody&gt;
+                      &lt;tr ng-repeat="customItem in customize.param.topbar.addCustomMenu.items" ng-hide="menuCustom.isEditMode || menuCustom.isCreateMode"&gt;
+                        &lt;th&gt;
+                          &lt;div class="twinbuttons"&gt;
+                            &lt;button href="" title="Eintrag bearbeiten" ng-click="menuCustom.edit($index)" class="tiny radius secondary square right5"&gt;&lt;i class="fa fa-edit fa-fw"&gt;&lt;/i&gt;&lt;/button&gt;
+                            &lt;button href="" title="Eintrag entfernen" ng-click="menuCustom.remove($index)" class="tiny radius secondary square"&gt;&lt;i class="fa fa-trash-o fa-fw"&gt;&lt;/i&gt;&lt;/button&gt;
+                          &lt;/div&gt;
+                        &lt;/th&gt;
+                        &lt;th&gt;&lt;i ng-if="customItem.link" class="fa fa-external-link"&gt;&lt;/i&gt;&lt;i ng-if="!customItem.link" class="fa fa-tag"&gt;&lt;/i&gt;&lt;/th&gt;
+                        &lt;th&gt;
+                          &lt;div ng-class="{'customlink': customItem.link, 'customlabel': !customItem.link}"&gt;{{customItem.text}}&lt;/div&gt;
+                          &lt;div ng-if="customItem.link" class="customhref"&gt;{{customItem.href}}&lt;/div&gt;
+                        &lt;/th&gt;
+                        &lt;th&gt;
+                          &lt;div class="twinbuttons"&gt;
+                            &lt;button href="" title="Nach oben" ng-click="menuCustom.moveup($index)" ng-disabled="$index===0" class="tiny radius secondary square right5"&gt;&lt;i class="fa fa-caret-up fa-fw"&gt;&lt;/i&gt;&lt;/button&gt;
+                            &lt;button href="" title="Nach unten" ng-click="menuCustom.movedown($index)" ng-disabled="$index===customize.param.topbar.addCustomMenu.items.length-1" class="tiny radius secondary square"&gt;&lt;i class="fa fa-caret-down fa-fw"&gt;&lt;/i&gt;&lt;/button&gt;
+                          &lt;/div&gt;
+                        &lt;/th&gt;
+                      &lt;/tr&gt;
+                      &lt;tr ng-show="menuCustom.isEditMode || menuCustom.isCreateMode" class="bgwhite"&gt;
+                        &lt;th class="vtop"&gt;
+                          &lt;label&gt;&amp;nbsp;&lt;/label&gt;
+                          &lt;div class="twinbuttons"&gt;
+                            &lt;button href="" title="Speichern" ng-click="menuCustom.save()" class="tiny radius secondary square right5"&gt;&lt;i class="fa fa-check fa-fw"&gt;&lt;/i&gt;&lt;/button&gt;
+                            &lt;button href="" title="Abbrechen" ng-click="menuCustom.cancel()" class="tiny radius secondary square"&gt;&lt;i class="fa fa-times fa-fw"&gt;&lt;/i&gt;&lt;/button&gt;
+                          &lt;/div&gt;
+                        &lt;/th&gt;
+                        &lt;th class="vtop text-center"&gt;
+                          &lt;label&gt;Typ&lt;/label&gt;
+                          &lt;div class="switch round"&gt;
+                            &lt;input type="checkbox" id="chkCustomType" ng-model="menuCustom.entry.link"/&gt;
+                            &lt;label for="chkCustomType"&gt;&lt;/label&gt;
+                          &lt;/div&gt;
+                        &lt;/th&gt;
+                        &lt;th colspan="2" class="vtop"&gt;
+                          &lt;div class="bottom15"&gt;
+                            &lt;label&gt;{{menuCustom.getEntryType()}}&lt;/label&gt;
+                            &lt;input type="text" ng-model="menuCustom.entry.text"/&gt;
+                          &lt;/div&gt;
+                          &lt;div ng-if="menuCustom.entry.link" class="bottom15"&gt;
+                            &lt;label&gt;Linkadresse&lt;/label&gt;
+                            &lt;input type="text" ng-model="menuCustom.entry.href"/&gt;
+                          &lt;/div&gt;
+                        &lt;/th&gt;
+                      &lt;/tr&gt;
+                      &lt;tr ng-hide="menuCustom.isEditMode || menuCustom.isCreateMode"&gt;
+                        &lt;th colspan="4"&gt;
+                          &lt;button href="" ng-click="menuCustom.create()" ng-disabled="menuCustom.isEditMode || menuCustom.isCreateMode" class="tiny radius secondary"&gt;&lt;i class="fa fa-plus fa-margin"&gt;&lt;/i&gt;Neuer Schnellmenüeintrag&lt;/button&gt;
+                        &lt;/th&gt;
+                      &lt;/tr&gt;
+                    &lt;/tbody&gt;
+                  &lt;/table&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/form&gt;
           &lt;/tab&gt;
           &lt;tab&gt;
             &lt;tab-heading&gt;&lt;i class="fa fa-envelope fa-fw fa-margin"&gt;&lt;/i&gt;Spezialmenü&lt;/tab-heading&gt;
@@ -496,6 +618,9 @@
             &lt;div class="small-4 columns"&gt;{{appupdate.updateStatus(skin.status)}}&lt;i ng-if="skin.status==='updated'" class="fa fa-check-circle fa-lg left10 green"&gt;&lt;/i&gt;&lt;i ng-if="skin.status.substr(0,5)==='error'" class="fa fa-times-circle fa-lg left10 red"&gt;&lt;/i&gt;&lt;/div&gt;
           &lt;/div&gt;
         &lt;/form&gt;
+      &lt;/tab&gt;
+      &lt;tab heading="Community"&gt;
+        &lt;p&gt;custCommunity...&lt;/p&gt;
       &lt;/tab&gt;
     &lt;/tabset&gt;
     &lt;p class="text-center bottom0"&gt;&lt;a ng-click="customize.ok()" class="button success radius tiny"&gt;&lt;i class="fa fa-check fa-margin"&gt;&lt;/i&gt;Einstellungen sichern&lt;/a&gt;&lt;a ng-click="customize.cancel()" class="button alert radius tiny left15"&gt;&lt;i class="fa fa-times fa-margin"&gt;&lt;/i&gt;Änderung abbrechen&lt;/a&gt;&lt;/p&gt;&lt;a ng-click="customize.cancel()" class="close-reveal-modal"&gt;&amp;times;&lt;/a&gt;
@@ -646,11 +771,11 @@
 </content>
 </skin>
 <!-- Skin: Site.skinStyles -->
-<skin key="Site.skinStyles" lastupdate="2015-05-19T16:06:01.896Z" crc="3769135222">
+<skin key="Site.skinStyles" lastupdate="2015-06-05T14:38:34.633Z" crc="1734579667">
 <content>
 &lt;style&gt;
   /* Topbar overrides */
-  #f5Topbar i { color: {{f5main.param.topbar.menuIconColor}}; }
+  #f5Topbar i, #menuPreview i { color: {{f5main.param.topbar.menuIconColor}}; }
   #toolbarMail:hover i { color: {{f5main.param.topbar.mailIcon.hover}}; }
   #toolbarSearch:hover i { color: {{f5main.param.topbar.searchIcon.hover}}; }
   #toolbarCustomize:hover i { color: {{f5main.param.topbar.customizeIcon.hover}}; }
@@ -663,7 +788,7 @@
 </content>
 </skin>
 <!-- Skin: Site.stdPreferences -->
-<skin key="Site.stdPreferences" lastupdate="2015-05-04T11:08:43.605Z" crc="1545613366">
+<skin key="Site.stdPreferences" lastupdate="2015-06-06T00:24:39.013Z" crc="753470395">
 <content>
 &lt;div id="stdPreferences" style="display:none"&gt;
   {
@@ -673,6 +798,7 @@
           "author": "&lt;% site.alias %&gt;",
           "description": "&lt;% site.title %&gt; &lt;% site.tagline %&gt;",
           "imgFolder": "https://googledrive.com/host/0B87rILW4RVIJNlN3eUJxVWN5ZWM/",
+          "isFolderVerified": false,
           "loader": { "animation": true, "wrapper": "rgba(0,0,0,.9)", "color1": "#3498db", "color2": "#f04124", "color3": "#f9c922" },
           "debug": true
       },

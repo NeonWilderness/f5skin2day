@@ -103,6 +103,13 @@ module.exports = {
 //- remove trailing slash from a given pathname
     removeTrailingSlash: function(path){
         return path.replace(/\/+$/, '');
+    },
+
+//- swaps two index entries of an array
+    swap: function(swapArray, atIndex, toIndex){
+        var tmp = swapArray[toIndex];
+        swapArray[toIndex] = swapArray[atIndex];
+        swapArray[atIndex] = tmp;
     }
 
 };

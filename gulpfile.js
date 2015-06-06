@@ -158,6 +158,7 @@ gulp.task( "headjs", function(){
     return gulp.src([
             './src/js/vendor/fastclick*.js',
             './src/js/vendor/mm-foundation*.js',
+            './src/js/vendor/angular-spectrum-colorpicker*.js',
             './src/js/vendor/angular-toastr*.js',
             './src/js/vendor/swipebox.min.js',
             './src/js/vendor/ga.js'
@@ -270,6 +271,37 @@ gulp.task("picjumbo", [], function(){
                 if (err) throw err;
                 console.log('*** picjumbo.json successfully created/saved to GoogleDrive.');
             });
+        });
+
+});
+
+//-------- Convert fontawesome.csv to json data
+gulp.task("fontawesome", [], function(){
+
+    var csvParse = require('fast-csv'),
+        icons=[], i=-1;
+
+    fs.createReadStream('./src/csv/fontawesome.csv')
+        .pipe(csvParse())
+        .on("data", function(data){
+            if (++i > 0){
+                icons.push({ name: data[0], code: data[1].match(/f.{3}/)[0] });
+            }
+        })
+        .on("end", function(){
+            var folderGoogleDrive = "D:/Dokumente/Google Drive/Public";
+            fs.writeFile(
+                folderGoogleDrive+'/site/twoday/f5skin/fontawesome.json',
+                JSON.stringify(icons.sort(function(a,b){
+                    if(a.name < b.name) return -1;
+                    if(a.name > b.name) return 1;
+                    return 0;
+                })),
+                function(err){
+                    if (err) throw err;
+                    console.log('*** fontawesome.json ('+icons.length+' icons) successfully created/saved to GoogleDrive.');
+                }
+            );
         });
 
 });

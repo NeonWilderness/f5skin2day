@@ -1,7 +1,7 @@
 <script id="customizeBlogHtml" type="text/ng-template">
   <div id="customizeBlog">
     <h5>Mein Foundation-Blog anpassen</h5>
-    <tabset>
+    <tabset id="tabMain">
       <tab heading="Grunddaten">
         <form ng-controller="CustCoreDataCtrl as coredata">
           <div class="row">
@@ -29,13 +29,13 @@
             </div>
           </div>
           <div class="row">
-            <div class="small-12 columns">
+            <div class="small-12 columns bottom15">
               <div class="row collapse">
                 <label for="txtImgFolder" class="bottom0">GoogleDrive-Verzeichnis für öffentliche Bilder</label>
-                <div class="small-11 columns">
-                  <input type="text" id="txtImgFolder" ng-model="customize.param.site.imgFolder"/>
+                <div class="small-10 columns">
+                  <input type="text" id="txtImgFolder" ng-model="customize.param.site.imgFolder" ng-change="customize.param.site.isFolderVerified=false"/>
                 </div>
-                <div class="small-1 columns"><span ng-click="coredata.setStaticFolder()" class="postfix"><i class="fa fa-image"></i></span></div>
+                <div class="small-2 columns"><span ng-click="coredata.verifyDriveFolder()" class="postfix"><i ng-class="{'fa-search red': !customize.param.site.isFolderVerified, 'fa-check green': customize.param.site.isFolderVerified}" class="fa fa-margin"></i><span ng-if="customize.param.site.isFolderVerified">Geprüft!</span><span ng-if="!customize.param.site.isFolderVerified">Prüfen...</span></span></div>
               </div>
             </div>
           </div>
@@ -48,19 +48,16 @@
               </div>
             </div>
             <div class="small-2 columns">
-              <label for="txtColor1">Farbe 1
-                <input type="text" id="txtColor1" ng-model="customize.param.site.loader.color1"/>
-              </label>
+              <label>Farbe 1</label>
+              <spectrum-colorpicker ng-model="customize.param.site.loader.color1"></spectrum-colorpicker>
             </div>
             <div class="small-2 columns">
-              <label for="txtColor2">Farbe 2
-                <input type="text" id="txtColor2" ng-model="customize.param.site.loader.color2"/>
-              </label>
+              <label>Farbe 2</label>
+              <spectrum-colorpicker ng-model="customize.param.site.loader.color2"></spectrum-colorpicker>
             </div>
             <div class="small-2 columns">
-              <label for="txtColor3">Farbe 3
-                <input type="text" id="txtColor3" ng-model="customize.param.site.loader.color3"/>
-              </label>
+              <label>Farbe 3</label>
+              <spectrum-colorpicker ng-model="customize.param.site.loader.color3"></spectrum-colorpicker>
             </div>
             <div class="small-2 columns"><a href="" id="btnLoader" ng-click="coredata.testLoader()" class="button secondary tiny radius"><i class="fa fa-play fa-margin"></i>Test</a></div>
           </div>
@@ -205,31 +202,52 @@
         <p>Typographie</p>
       </tab>
       <tab heading="Menüanzeige">
-        <tabset vertical="true">
+        <tabset id="tabMenu" vertical="true">
           <tab>
             <tab-heading><i class="fa fa-cog fa-fw fa-margin"></i>Menüleiste</tab-heading>
             <form ng-controller="MenuBasicOptionsCtrl as menuBasic">
-              <div class="row">
+              <div class="row bottom15">
                 <div class="small-3 columns">
                   <label for="txtMenuTitle">Menütitel
                     <input type="text" id="txtMenuTitle" ng-model="customize.param.topbar.title" placeholder="Text"/>
                   </label>
                 </div>
                 <div class="small-3 columns text-center">
+                  <label>Iconfarbe</label>
+                  <spectrum-colorpicker ng-model="customize.param.topbar.menuIconColor"></spectrum-colorpicker>
+                </div>
+                <div class="small-6 columns">
+                  <label>Vorschau</label>
+                  <top-bar id="menuPreview">
+                    <ul class="title-area">
+                      <li class="name">
+                        <h1 ng-hide="customize.param.topbar.title.length===0"><a href="#">{{customize.param.topbar.title}}</a></h1>
+                      </li>
+                    </ul>
+                    <top-bar-section>
+                      <ul class="left">
+                        <li><a href="#"><i class="fa {{customize.param.topbar.menuItems.twoday.icon}}"></i>{{customize.param.topbar.menuItems.twoday.text}}</a></li>
+                      </ul>
+                    </top-bar-section>
+                  </top-bar>
+                </div>
+              </div>
+              <div class="row">
+                <div class="small-4 columns text-center">
                   <label>Fixed</label>
                   <div class="switch round">
                     <input type="checkbox" id="chkFixed" ng-model="customize.param.topbar.class.fixed"/>
                     <label for="chkFixed"></label>
                   </div>
                 </div>
-                <div class="small-3 columns text-center">
+                <div class="small-4 columns text-center">
                   <label>ContainToGrid</label>
                   <div class="switch round text-center">
                     <input type="checkbox" id="chkContainToGrid" ng-model="customize.param.topbar.class.containToGrid"/>
                     <label for="chkContainToGrid"></label>
                   </div>
                 </div>
-                <div class="small-3 columns text-center">
+                <div class="small-4 columns text-center">
                   <label>Sticky</label>
                   <div class="switch round">
                     <input type="checkbox" id="chkSticky" ng-model="customize.param.topbar.class.sticky"/>
@@ -282,7 +300,111 @@
           </tab>
           <tab>
             <tab-heading><i class="fa fa-rocket fa-fw fa-margin"></i>Schnellmenü</tab-heading>
-            <p>menuCustomItems...</p>
+            <form ng-controller="MenuCustomItemsCtrl as menuCustom">
+              <div class="row">
+                <div class="small-3 columns text-center">
+                  <label>Aktivieren?</label>
+                  <div class="switch round">
+                    <input type="checkbox" id="chkCustomMenu" ng-model="customize.param.topbar.addCustomMenu.activate" class="fs13"/>
+                    <label for="chkCustomMenu"></label>
+                  </div>
+                </div>
+                <div class="small-3 columns">
+                  <label for="txtCustomMenu">Text
+                    <input type="text" ng-model="customize.param.topbar.addCustomMenu.text" placeholder="Text" class="fs13"/>
+                  </label>
+                </div>
+                <div class="small-3 columns">
+                  <label>Icon
+                    <div class="row collapse">
+                      <div class="small-10 columns">
+                        <input type="text" id="txtCustomIcon" ng-model="customize.param.topbar.addCustomMenu.icon"/>
+                      </div>
+                      <div class="small-2 columns"><span class="postfix"><i ng-class="menuCustom.getIcon()"></i></span></div>
+                    </div>
+                  </label>
+                </div>
+                <div class="small-3 columns text-center">
+                  <label>Trenner</label>
+                  <div class="switch round">
+                    <input type="checkbox" id="chkCustomDivider" ng-model="customize.param.topbar.addCustomMenu.divider"/>
+                    <label for="chkCustomDivider"></label>
+                  </div>
+                </div>
+              </div>
+              <div class="row collapse">
+                <div class="small-12 columns">
+                  <table id="customItems" class="fullsize">
+                    <thead>
+                      <tr ng-hide="menuCustom.isEditMode || menuCustom.isCreateMode">
+                        <th>&nbsp;</th>
+                        <th>Typ</th>
+                        <th>Überschrift / Link</th>
+                        <th>Sortieren</th>
+                      </tr>
+                      <tr ng-show="menuCustom.isCreateMode">
+                        <th colspan="4">Schnellmenüeintrag hinzufügen</th>
+                      </tr>
+                      <tr ng-show="menuCustom.isEditMode">
+                        <th colspan="4">Schnellmenüeintrag ändern</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="customItem in customize.param.topbar.addCustomMenu.items" ng-hide="menuCustom.isEditMode || menuCustom.isCreateMode">
+                        <th>
+                          <div class="twinbuttons">
+                            <button href="" title="Eintrag bearbeiten" ng-click="menuCustom.edit($index)" class="tiny radius secondary square right5"><i class="fa fa-edit fa-fw"></i></button>
+                            <button href="" title="Eintrag entfernen" ng-click="menuCustom.remove($index)" class="tiny radius secondary square"><i class="fa fa-trash-o fa-fw"></i></button>
+                          </div>
+                        </th>
+                        <th><i ng-if="customItem.link" class="fa fa-external-link"></i><i ng-if="!customItem.link" class="fa fa-tag"></i></th>
+                        <th>
+                          <div ng-class="{'customlink': customItem.link, 'customlabel': !customItem.link}">{{customItem.text}}</div>
+                          <div ng-if="customItem.link" class="customhref">{{customItem.href}}</div>
+                        </th>
+                        <th>
+                          <div class="twinbuttons">
+                            <button href="" title="Nach oben" ng-click="menuCustom.moveup($index)" ng-disabled="$index===0" class="tiny radius secondary square right5"><i class="fa fa-caret-up fa-fw"></i></button>
+                            <button href="" title="Nach unten" ng-click="menuCustom.movedown($index)" ng-disabled="$index===customize.param.topbar.addCustomMenu.items.length-1" class="tiny radius secondary square"><i class="fa fa-caret-down fa-fw"></i></button>
+                          </div>
+                        </th>
+                      </tr>
+                      <tr ng-show="menuCustom.isEditMode || menuCustom.isCreateMode" class="bgwhite">
+                        <th class="vtop">
+                          <label>&nbsp;</label>
+                          <div class="twinbuttons">
+                            <button href="" title="Speichern" ng-click="menuCustom.save()" class="tiny radius secondary square right5"><i class="fa fa-check fa-fw"></i></button>
+                            <button href="" title="Abbrechen" ng-click="menuCustom.cancel()" class="tiny radius secondary square"><i class="fa fa-times fa-fw"></i></button>
+                          </div>
+                        </th>
+                        <th class="vtop text-center">
+                          <label>Typ</label>
+                          <div class="switch round">
+                            <input type="checkbox" id="chkCustomType" ng-model="menuCustom.entry.link"/>
+                            <label for="chkCustomType"></label>
+                          </div>
+                        </th>
+                        <th colspan="2" class="vtop">
+                          <div class="bottom15">
+                            <label>{{menuCustom.getEntryType()}}</label>
+                            <input type="text" ng-model="menuCustom.entry.text"/>
+                          </div>
+                          <div ng-if="menuCustom.entry.link" class="bottom15">
+                            <label>Linkadresse</label>
+                            <input type="text" ng-model="menuCustom.entry.href"/>
+                          </div>
+                        </th>
+                      </tr>
+                      <tr ng-hide="menuCustom.isEditMode || menuCustom.isCreateMode">
+                        <th colspan="4">
+                          <button href="" ng-click="menuCustom.create()" ng-disabled="menuCustom.isEditMode || menuCustom.isCreateMode" class="tiny radius secondary"><i class="fa fa-plus fa-margin"></i>Neuer Schnellmenüeintrag</button>
+                        </th>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </form>
           </tab>
           <tab>
             <tab-heading><i class="fa fa-envelope fa-fw fa-margin"></i>Spezialmenü</tab-heading>
@@ -340,6 +462,9 @@
             <div class="small-4 columns">{{appupdate.updateStatus(skin.status)}}<i ng-if="skin.status==='updated'" class="fa fa-check-circle fa-lg left10 green"></i><i ng-if="skin.status.substr(0,5)==='error'" class="fa fa-times-circle fa-lg left10 red"></i></div>
           </div>
         </form>
+      </tab>
+      <tab heading="Community">
+        <p>custCommunity...</p>
       </tab>
     </tabset>
     <p class="text-center bottom0"><a ng-click="customize.ok()" class="button success radius tiny"><i class="fa fa-check fa-margin"></i>Einstellungen sichern</a><a ng-click="customize.cancel()" class="button alert radius tiny left15"><i class="fa fa-times fa-margin"></i>Änderung abbrechen</a></p><a ng-click="customize.cancel()" class="close-reveal-modal">&times;</a>

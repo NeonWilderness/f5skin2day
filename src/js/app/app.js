@@ -13,13 +13,13 @@ utils.pimpClasses();
 
 //--- Set up the Angular app, Modernizr constant and run the FastClick js
 angular
-    .module('f5SkinApp', ['mm.foundation', 'toastr'])
+    .module('f5SkinApp', ['mm.foundation', 'angularSpectrumColorpicker', 'toastr'])
     .config(function(toastrConfig){
         angular.extend(toastrConfig, {
             allowHtml: true,
             closeButton: true,
             progressBar: true,
-            timeOut: 8000
+            timeOut: 5000
         });
     })
     .constant('Modernizr', window.Modernizr)

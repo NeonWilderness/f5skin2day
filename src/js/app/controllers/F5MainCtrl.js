@@ -56,31 +56,68 @@ module.exports = function ($scope, $rootScope, Preferences, UpdateCheck, $window
 
     vm.customize = {
 
-        hide: function(){ $('#f5container').fadeOut(); },
+        hide: function(){ $('#f5container').fadeOut(400); },
 
-        show: function(){ $('#f5container').fadeIn(); },
+        show: function(){ $('#f5container').fadeIn(400); },
+
+        loadSpectrum: function(){
+        },
 
         open: function(){
             var self = this;
             self.hide();
-            var copyOfParam = $.extend(true, {}, vm.param);
-            var modalCustomize = $modal.open({
-                templateUrl:  "customizeBlogHtml", // in Site-ngTemplates.jade
-                controller:   "CustomizeCtrl as customize",
-                resolve: {},
-                backdrop: "static",
-                keyboard: false,
-                windowClass: "xlarge"
-            });
-            modalCustomize.result.then(
-                function(){ // User confirmed change
-                    if (!angular.equals(copyOfParam, vm.param)) Preferences.save(vm.param);
-                    self.show();
-                },
-                function(){ // User cancelled change
-                    if (!angular.equals(copyOfParam, vm.param)) vm.param = copyOfParam;
-                    self.show();
-                });
+            Modernizr.load(
+                {
+                    test: (typeof $.fn.spectrum === "undefined"),
+                    yep: [
+                        'https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.7.0/spectrum.min.css',
+                        'https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.7.0/spectrum.min.js'
+                    ],
+                    complete: function(){
+
+                        var localization = $.spectrum.localization["de"] = {
+                            cancelText: "Abbrechen",
+                            chooseText: "Wählen",
+                            clearText: "Farbauswahl zurücksetzen",
+                            noColorSelectedText: "Keine Farbe ausgewählt",
+                            togglePaletteMoreText: "Mehr",
+                            togglePaletteLessText: "Weniger"
+                        }, spectrumDefaults = {
+                            allowEmpty: true,
+                            clickoutFiresChange: false,
+                            localStorageKey: "f5spectrum",
+                            preferredFormat: "hex",
+                            showAlpha: true,
+                            showInitial: true,
+                            showInput: true
+                        };
+
+                        $.extend($.fn.spectrum.defaults, spectrumDefaults, localization);
+
+                        var copyOfParam = $.extend(true, {}, vm.param);
+
+                        var modalCustomize = $modal.open({
+                            templateUrl: "customizeBlogHtml", // in Site-ngTemplates.jade
+                            controller:  "CustomizeCtrl as customize",
+                            resolve: {},
+                            backdrop: "static",
+                            keyboard: false,
+                            windowClass: "xlarge"
+                        });
+
+                        modalCustomize.result.then(
+                            function(){ // User confirmed change
+                                if (!angular.equals(copyOfParam, vm.param)) Preferences.save(vm.param);
+                                self.show();
+                            },
+                            function(){ // User cancelled change
+                                if (!angular.equals(copyOfParam, vm.param)) vm.param = copyOfParam;
+                                self.show();
+                            }
+                        );
+                    }
+                }
+            );
         }
     };
 

@@ -47,6 +47,7 @@ span[ng-click] { cursor: pointer; }
 .blue { color: #008cba; }
 .red { color: #f04124; }
 .yellow { color: #f9c922; }
+.bgwhite { background-color: #fff!important; }
 .top20 { margin-top: 20px; }
 .bottom0 { margin-bottom: 0; }
 .bottom15 { margin-bottom: 15px; }
@@ -55,12 +56,15 @@ span[ng-click] { cursor: pointer; }
 .right5 { margin-right: 5px; }
 .right10 { margin-right: 10px; }
 .fullsize { width: 100%; }
+.fs13 { font-size: 13px; }
+.vtop { vertical-align: top; }
 .extlink:before { font-family: "FontAwesome"; content: "\f059"; color: #008cba; margin-left: 6px; }
 .tiny.square {
   padding-left: 0.625rem;
   padding-right: 0.625rem;
   &:focus { outline: none; }
 }
+.twinbuttons { width: 80px; }
 
 /* ---- SCSS Mixins ---- */
 
@@ -189,7 +193,7 @@ span[ng-click] { cursor: pointer; }
   .split.button.tiny { padding-left: .75rem; padding-right: 3rem; }
   .tabs dd>a { font-size: 12px; padding: 1em 2em; }
   .tabs dd.active>a { background-color: #008cba; color: #fff; }
-  #btnLoader { margin-top: 18px; }
+  #btnLoader { margin-top: 14px; }
   .photo {
     position: relative;
     width: 100%;
@@ -246,8 +250,32 @@ span[ng-click] { cursor: pointer; }
   #slotStatus { text-align: center; font-weight: normal; font-size: small; }
   .releaseheader { border-top: 2px solid #eee; border-bottom: 2px solid #eee; margin: 10px 0; padding: 4px 0; }
 }
-#standardItems {
+#tabMenu { margin-bottom: 15px!important; }
+#standardItems, #customItems {
   th, input { font-size: 13px; }
   tbody th { font-weight: normal; }
   input, .switch { margin-bottom: 0; }
+}
+.customlabel { color: #777; font-weight: bolder; text-transform: uppercase; font-size: 12px; }
+.customlink {}
+.customhref { font-size: 12px; color: #888; }
+/* spectrum colorpicker */
+.sp-choose {
+  margin-bottom: 0;
+  background-image: none!important;
+  background-color: #008cba!important;
+  color: #fff!important;
+  font: normal 12px "Open Sans" !important;
+  text-shadow: none!important;
+  border: none!important;
+  padding: 3px 5px!important;
+  opacity: .7;
+  &:hover { opacity: 1; }
+}
+.sp-cancel {
+  background-color: #fafafa;
+  padding: 3px 5px!important;
+  border-radius: 3px;
+  opacity: .7;
+  &:hover { text-decoration: none!important; opacity: 1; }
 }

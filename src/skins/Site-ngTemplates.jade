@@ -2,7 +2,7 @@
 script#customizeBlogHtml(type="text/ng-template")
     #customizeBlog
         h5 Mein Foundation-Blog anpassen
-        tabset
+        tabset#tabMain
             tab(heading="Grunddaten")
                 include partials/custCoreData
             tab(heading="Hintergrundbilder")
@@ -12,7 +12,7 @@ script#customizeBlogHtml(type="text/ng-template")
             tab(heading="Typographie")
                 p Typographie
             tab(heading="Menüanzeige")
-                tabset(vertical="true")
+                tabset#tabMenu(vertical="true")
                     tab
                         tab-heading <i class="fa fa-cog fa-fw fa-margin"></i>Menüleiste
                         include partials/menuBasicOptions
@@ -27,6 +27,9 @@ script#customizeBlogHtml(type="text/ng-template")
                         include partials/menuSpecialItems
             tab(heading="Aktualisierung")
                 include partials/custAppUpdate
+            tab(heading="Community")
+                include partials/custCommunity
+
         p.text-center.bottom0
             a.button.success.radius.tiny(ng-click="customize.ok()") <i class="fa fa-check fa-margin"></i>Einstellungen sichern
             a.button.alert.radius.tiny.left15(ng-click="customize.cancel()") <i class="fa fa-times fa-margin"></i>Änderung abbrechen
