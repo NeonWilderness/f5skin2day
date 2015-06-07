@@ -1,5 +1,5 @@
 <!-- Skin: Site.stdPreferences -->
-<skin key="Site.stdPreferences" lastupdate="2015-06-06T00:24:39.013Z" crc="753470395">
+<skin key="Site.stdPreferences" lastupdate="2015-06-07T15:41:42.471Z" crc="3024457514">
 <content>
 &lt;div id="stdPreferences" style="display:none"&gt;
   {
@@ -83,6 +83,7 @@
       "topbar": {
           "title": "",
           "class": {"fixed": true, "containToGrid": false, "sticky": false},
+          "menuBackgroundColor": "#333",
           "menuIconColor": "#407099",
           "menuItems": {
               "twoday": { "text": "twoday", "icon": "fa-circle-o fa-margin", "divider": false },
@@ -112,19 +113,19 @@
                   { "link": true,  "text": "Font Awesome Cheatsheet", "href": "http://fortawesome.github.io/Font-Awesome/cheatsheet/" }
               ]
           },
-          "addLeft": "",
-          "addRight": "",
-          "mailIcon": {
-              "activate": true, "text": "", "icon": "fa-envelope", "divider": true, "title": "Mail senden",
-              "href": "znvygb:arbajvyqrearff@lznvy.pbz", "hover": "#fff"
-          },
-          "searchIcon": {
-              "activate": true, "text": "", "icon": "fa-search", "divider": true, "title": "Blog durchsuchen",
-              "href": "&lt;% site.url %&gt;stories/search", "hover": "#fff"
-          },
-          "customizeIcon": {
-              "activate": true, "text": "", "icon": "fa-cogs", "divider": false, "title": "Blog anpassen",
-              "href": "", "hover": "#fff"
+          "specialIcons": {
+              "mail": {
+                  "activate": true, "text": "", "icon": "fa-envelope", "divider": true, "title": "Mail senden",
+                  "href": "znvygb:arbajvyqrearff@lznvy.pbz", "color": "#eee", "hover": "#fff", "delete": false, "position": 0
+              },
+              "search": {
+                  "activate": true, "text": "", "icon": "fa-search", "divider": true, "title": "Blog durchsuchen",
+                  "href": "&lt;% site.url %&gt;stories/search", "color": "#eee", "hover": "#fff", "delete": false, "position": 1
+              },
+              "customize": {
+                  "activate": true, "text": "", "icon": "fa-cogs", "divider": false, "title": "Blog anpassen",
+                  "href": "", "color": "#eee", "hover": "#fff", "delete": false, "position": 2
+              }
           }
       }
   }

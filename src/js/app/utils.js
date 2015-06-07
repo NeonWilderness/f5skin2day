@@ -110,6 +110,12 @@ module.exports = {
         var tmp = swapArray[toIndex];
         swapArray[toIndex] = swapArray[atIndex];
         swapArray[atIndex] = tmp;
+    },
+
+//- removes "fa-margin" from an input iconname value and returns a displayable Font Awesome icon
+    getIcon: function(iconname){
+        var faIcon = $.trim(iconname.replace(/fa-margin/gi, ''));
+        return (faIcon.length>0 ? 'fa '+faIcon : '');
     }
 
 };

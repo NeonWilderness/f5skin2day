@@ -9,8 +9,7 @@ module.exports = function($rootScope){
     vm.isCreateMode = vm.isEditMode = false;
 
     vm.getIcon = function(){
-        var faIcon = $.trim(vm.param.topbar.addCustomMenu.icon.replace(/fa-margin/gi, ''));
-        return (faIcon.length>0 ? 'fa '+faIcon : '');
+        return utils.getIcon(vm.param.topbar.addCustomMenu.icon);
     };
 
     vm.getEntryType = function(){

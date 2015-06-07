@@ -14,4 +14,5 @@ require('angular')
     .controller('CustAppUpdateCtrl', ['$rootScope', '$filter', '$q', 'UpdateCheck', 'TwodaySkin', 'toastr', require('./CustAppUpdateCtrl')])
     .controller('MenuBasicOptionsCtrl', ['$rootScope', require('./MenuBasicOptionsCtrl')])
     .controller('MenuStandardItemsCtrl', ['$rootScope', require('./MenuStandardItemsCtrl')])
-    .controller('MenuCustomItemsCtrl', ['$rootScope', require('./MenuCustomItemsCtrl')]);
+    .controller('MenuCustomItemsCtrl', ['$rootScope', require('./MenuCustomItemsCtrl')])
+    .controller('MenuSpecialItemsCtrl', ['$rootScope', require('./MenuSpecialItemsCtrl')]);

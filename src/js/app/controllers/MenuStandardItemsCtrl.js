@@ -1,4 +1,6 @@
 'use strict';
+var utils = require('../utils.js');
+
 
 module.exports = function($rootScope){
 
@@ -7,8 +9,7 @@ module.exports = function($rootScope){
     vm.param = $rootScope.param;
 
     vm.getMenuIcon = function(item){
-        var faIcon = $.trim(vm.param.topbar.menuItems[item].icon.replace(/fa-margin/gi,''));
-        return (faIcon.length>0 ? 'fa '+faIcon : '');
+        return utils.getIcon(vm.param.topbar.menuItems[item].icon);
     }
 
 };

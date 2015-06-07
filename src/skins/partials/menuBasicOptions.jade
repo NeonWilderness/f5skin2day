@@ -5,11 +5,14 @@ form(ng-controller="MenuBasicOptionsCtrl as menuBasic")
             label(for="txtMenuTitle") Menütitel
                 input(type="text", id="txtMenuTitle", ng-model="customize.param.topbar.title", placeholder="Text")
         .small-3.columns.text-center
-            label Iconfarbe
+            label Hintergrund
+            spectrum-colorpicker(ng-model="customize.param.topbar.menuBackgroundColor")
+        .small-3.columns.text-center
+            label Icon
             spectrum-colorpicker(ng-model="customize.param.topbar.menuIconColor")
-        .small-6.columns
+        .small-3.columns
             label Vorschau
-            top-bar#menuPreview
+            top-bar
                 ul.title-area
                     li.name: h1(ng-hide="customize.param.topbar.title.length===0"): a(href="#") {{customize.param.topbar.title}}
                 top-bar-section

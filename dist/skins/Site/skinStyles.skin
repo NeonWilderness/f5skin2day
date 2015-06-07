@@ -1,9 +1,12 @@
 <style>
   /* Topbar overrides */
   #f5Topbar i, #menuPreview i { color: {{f5main.param.topbar.menuIconColor}}; }
-  #toolbarMail:hover i { color: {{f5main.param.topbar.mailIcon.hover}}; }
-  #toolbarSearch:hover i { color: {{f5main.param.topbar.searchIcon.hover}}; }
-  #toolbarCustomize:hover i { color: {{f5main.param.topbar.customizeIcon.hover}}; }
+  #toolbarMail i, mailPreview i { color: {{f5main.param.topbar.mail.color}}; }
+  #toolbarMail:hover i, mailPreview:hover i { color: {{f5main.param.topbar.mail.hover}}; }
+  #toolbarSearch i, searchPreview i { color: {{f5main.param.topbar.search.color}}; }
+  #toolbarSearch:hover i, searchPreview:hover i { color: {{f5main.param.topbar.search.hover}}; }
+  #toolbarCustomize i, customizePreview i { color: {{f5main.param.topbar.customize.color}}; }
+  #toolbarCustomize:hover i, customizePreview:hover i { color: {{f5main.param.topbar.customize.hover}}; }
   /* Loader animation */
   #loader-wrapper { background-color: {{f5main.param.site.loader.wrapper}}; }
   #loader { border-top-color: {{f5main.param.site.loader.color1}}; }

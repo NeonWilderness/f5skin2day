@@ -36,39 +36,37 @@ form(ng-controller="MenuCustomItemsCtrl as menuCustom")
                         th(colspan="4") Schnellmenüeintrag ändern
                 tbody
                     tr(ng-repeat="customItem in customize.param.topbar.addCustomMenu.items", ng-hide="menuCustom.isEditMode || menuCustom.isCreateMode")
-                        th
-                            div.twinbuttons
-                                button.tiny.radius.secondary.square.right5(href="", title="Eintrag bearbeiten", ng-click="menuCustom.edit($index)"): i.fa.fa-edit.fa-fw
-                                button.tiny.radius.secondary.square(href="", title="Eintrag entfernen", ng-click="menuCustom.remove($index)"): i.fa.fa-trash-o.fa-fw
-                        th
+                        td: ul.button-group.twinbuttons
+                            li: button.tiny.radius.secondary.square.right5(href="", title="Eintrag bearbeiten", ng-click="menuCustom.edit($index)"): i.fa.fa-edit.fa-fw
+                            li: button.tiny.radius.secondary.square(href="", title="Eintrag entfernen", ng-click="menuCustom.remove($index)"): i.fa.fa-trash-o.fa-fw
+                        td
                             i.fa.fa-external-link(ng-if="customItem.link")
                             i.fa.fa-tag(ng-if="!customItem.link")
-                        th
+                        td
                             div(ng-class="{'customlink': customItem.link, 'customlabel': !customItem.link}") {{customItem.text}}
                             div.customhref(ng-if="customItem.link") {{customItem.href}}
-                        th
-                            div.twinbuttons
-                                button.tiny.radius.secondary.square.right5(href="", title="Nach oben", ng-click="menuCustom.moveup($index)", ng-disabled="$index===0"): i.fa.fa-caret-up.fa-fw
-                                button.tiny.radius.secondary.square(href="", title="Nach unten", ng-click="menuCustom.movedown($index)", ng-disabled="$index===customize.param.topbar.addCustomMenu.items.length-1"): i.fa.fa-caret-down.fa-fw
+                        td: ul.button-group.twinbuttons
+                            li: button.tiny.radius.secondary.square.right5(href="", title="Nach oben", ng-click="menuCustom.moveup($index)", ng-disabled="$index===0"): i.fa.fa-caret-up.fa-fw
+                            li: button.tiny.radius.secondary.square(href="", title="Nach unten", ng-click="menuCustom.movedown($index)", ng-disabled="$index===customize.param.topbar.addCustomMenu.items.length-1"): i.fa.fa-caret-down.fa-fw
                     tr.bgwhite(ng-show="menuCustom.isEditMode || menuCustom.isCreateMode")
-                        th.vtop
+                        td.vtop
                             label &nbsp;
-                            div.twinbuttons
-                                button.tiny.radius.secondary.square.right5(href="", title="Speichern", ng-click="menuCustom.save()"): i.fa.fa-check.fa-fw
-                                button.tiny.radius.secondary.square(href="", title="Abbrechen", ng-click="menuCustom.cancel()"): i.fa.fa-times.fa-fw
-                        th.vtop.text-center
+                            ul.button-group.twinbuttons
+                                li: button.tiny.radius.secondary.square.right5(href="", title="Speichern", ng-click="menuCustom.save()"): i.fa.fa-check.fa-fw
+                                li: button.tiny.radius.secondary.square(href="", title="Abbrechen", ng-click="menuCustom.cancel()"): i.fa.fa-times.fa-fw
+                        td.vtop.text-center
                             label Typ
                             .switch.round
                                 input(type="checkbox", id="chkCustomType", ng-model="menuCustom.entry.link")
                                 label(for="chkCustomType")
-                        th.vtop(colspan="2")
+                        td.vtop(colspan="2")
                             div.bottom15
                                 label {{menuCustom.getEntryType()}}
                                 input(type="text", ng-model="menuCustom.entry.text")
                             div.bottom15(ng-if="menuCustom.entry.link")
                                 label Linkadresse
                                 input(type="text", ng-model="menuCustom.entry.href")
-                    tr(ng-hide="menuCustom.isEditMode || menuCustom.isCreateMode"): th(colspan="4")
+                    tr(ng-hide="menuCustom.isEditMode || menuCustom.isCreateMode"): td(colspan="4")
                         button.tiny.radius.secondary(href="", ng-click="menuCustom.create()", ng-disabled="menuCustom.isEditMode || menuCustom.isCreateMode")
                             i.fa.fa-plus.fa-margin
                             | Neuer Schnellmenüeintrag

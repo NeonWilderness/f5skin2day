@@ -62,9 +62,10 @@ span[ng-click] { cursor: pointer; }
 .tiny.square {
   padding-left: 0.625rem;
   padding-right: 0.625rem;
+  margin-bottom: 0;
   &:focus { outline: none; }
 }
-.twinbuttons { width: 80px; }
+.twinbuttons { width: 75px; }
 
 /* ---- SCSS Mixins ---- */
 
@@ -251,14 +252,31 @@ span[ng-click] { cursor: pointer; }
   .releaseheader { border-top: 2px solid #eee; border-bottom: 2px solid #eee; margin: 10px 0; padding: 4px 0; }
 }
 #tabMenu { margin-bottom: 15px!important; }
-#standardItems, #customItems {
-  th, input { font-size: 13px; }
-  tbody th { font-weight: normal; }
+#standardItems, #customItems, #specialItems, .headerEditArea {
+  th, td, input { font-size: 13px; }
   input, .switch { margin-bottom: 0; }
 }
 .customlabel { color: #777; font-weight: bolder; text-transform: uppercase; font-size: 12px; }
 .customlink {}
-.customhref { font-size: 12px; color: #888; }
+.customhref, .specialhref { font-size: 12px; color: #888; }
+.specialtitle { font-size: 12px; font-weight: bold; color: #777; }
+
+/*#specialItems {
+  table-layout: fixed;
+  width: 100%;
+  white-space: nowrap;
+  td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .rowEditButtons { width: 88px; }
+  .rowMenuIcon { }
+  .rowText { }
+  .rowIcon { }
+  .rowHover { }
+  .rowSortButtons { width: 88px; }
+}*/
 /* spectrum colorpicker */
 .sp-choose {
   margin-bottom: 0;
