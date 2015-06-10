@@ -1,5 +1,5 @@
 <!-- Skin: Site.ngTemplates -->
-<skin key="Site.ngTemplates" lastupdate="2015-06-04T12:51:11.244Z" crc="116431921">
+<skin key="Site.ngTemplates" lastupdate="2015-06-04T12:51:11.244Z" crc="1981802424">
 <content>
 &lt;script id="customizeBlogHtml" type="text/ng-template"&gt;
   &lt;div id="customizeBlog"&gt;
@@ -232,7 +232,7 @@
                       &lt;/li&gt;
                     &lt;/ul&gt;
                     &lt;top-bar-section&gt;
-                      &lt;ul class="left"&gt;
+                      &lt;ul class="left menuPreview"&gt;
                         &lt;li&gt;&lt;a href="#"&gt;&lt;i class="fa {{customize.param.topbar.menuItems.twoday.icon}}"&gt;&lt;/i&gt;{{customize.param.topbar.menuItems.twoday.text}}&lt;/a&gt;&lt;/li&gt;
                       &lt;/ul&gt;
                     &lt;/top-bar-section&gt;
@@ -376,10 +376,10 @@
                         &lt;td&gt;
                           &lt;ul class="button-group twinbuttons"&gt;
                             &lt;li&gt;
-                              &lt;button href="" title="Nach oben" ng-click="menuCustom.moveup($index)" ng-disabled="$index===0" class="tiny radius secondary square right5"&gt;&lt;i class="fa fa-caret-up fa-fw"&gt;&lt;/i&gt;&lt;/button&gt;
+                              &lt;button href="" title="Nach oben" ng-click="menuCustom.moveup($index)" ng-disabled="$first" class="tiny radius secondary square right5"&gt;&lt;i class="fa fa-caret-up fa-fw"&gt;&lt;/i&gt;&lt;/button&gt;
                             &lt;/li&gt;
                             &lt;li&gt;
-                              &lt;button href="" title="Nach unten" ng-click="menuCustom.movedown($index)" ng-disabled="$index===customize.param.topbar.addCustomMenu.items.length-1" class="tiny radius secondary square"&gt;&lt;i class="fa fa-caret-down fa-fw"&gt;&lt;/i&gt;&lt;/button&gt;
+                              &lt;button href="" title="Nach unten" ng-click="menuCustom.movedown($index)" ng-disabled="$last" class="tiny radius secondary square"&gt;&lt;i class="fa fa-caret-down fa-fw"&gt;&lt;/i&gt;&lt;/button&gt;
                             &lt;/li&gt;
                           &lt;/ul&gt;
                         &lt;/td&gt;
@@ -442,29 +442,31 @@
                       &lt;/tr&gt;
                     &lt;/thead&gt;
                     &lt;tbody&gt;
-                      &lt;tr ng-repeat="icon in menuSpecial.sortedIcons"&gt;
+                      &lt;tr ng-repeat="icon in menuSpecial.param.topbar.specialIcons"&gt;
                         &lt;td&gt;
                           &lt;ul class="button-group twinbuttons"&gt;
                             &lt;li&gt;
                               &lt;button href="" title="Eintrag bearbeiten" ng-click="menuSpecial.edit($index)" class="tiny radius secondary square right5"&gt;&lt;i class="fa fa-edit fa-fw"&gt;&lt;/i&gt;&lt;/button&gt;
                             &lt;/li&gt;
                             &lt;li&gt;
-                              &lt;button href="" title="Eintrag entfernen" ng-click="menuSpecial.remove($index)" ng-if="icon.delete" class="tiny radius secondary square"&gt;&lt;i class="fa fa-trash-o fa-fw"&gt;&lt;/i&gt;&lt;/button&gt;
+                              &lt;button href="" title="Eintrag entfernen" ng-click="menuSpecial.remove($index)" ng-if="icon.user" class="tiny radius secondary square"&gt;&lt;i class="fa fa-trash-o fa-fw"&gt;&lt;/i&gt;&lt;/button&gt;
                             &lt;/li&gt;
                           &lt;/ul&gt;
                         &lt;/td&gt;
-                        &lt;td&gt;&lt;em&gt;{{icon.key}}&lt;/em&gt;&lt;/td&gt;
+                        &lt;td&gt;&lt;em&gt;{{icon.name}}&lt;/em&gt;&lt;/td&gt;
                         &lt;td class="text-center"&gt;
                           &lt;div class="switch round"&gt;
-                            &lt;input type="checkbox" ng-model="icon.activate" id="act{{icon.key}}"/&gt;
-                            &lt;label for="act{{icon.key}}"&gt;&lt;/label&gt;
+                            &lt;input type="checkbox" ng-model="icon.activate" id="icn{{icon.name}}"/&gt;
+                            &lt;label for="icn{{icon.name}}"&gt;&lt;/label&gt;
                           &lt;/div&gt;
                         &lt;/td&gt;
                         &lt;td&gt;
                           &lt;top-bar&gt;
                             &lt;top-bar-section&gt;
                               &lt;ul class="left"&gt;
-                                &lt;li&gt;&lt;a href="" title="icon.title"&gt;&lt;i class="fa {{icon.icon}}"&gt;&lt;/i&gt; {{icon.text}}&lt;/a&gt;&lt;/li&gt;
+                                &lt;li&gt;&lt;a href="" title="{{icon.title}}"&gt;
+                                    &lt;i class="fa {{icon.icon}}"&gt;&lt;/i&gt;
+                                    {{icon.text}}&lt;/a&gt;&lt;/li&gt;
                                 &lt;li ng-show="icon.divider" class="divider"&gt;&lt;/li&gt;
                               &lt;/ul&gt;
                             &lt;/top-bar-section&gt;
@@ -477,10 +479,10 @@
                         &lt;td&gt;
                           &lt;ul class="button-group twinbuttons"&gt;
                             &lt;li&gt;
-                              &lt;button href="" title="Nach oben" ng-click="menuSpecial.moveup($index)" ng-disabled="$index===0" class="tiny radius secondary square right5"&gt;&lt;i class="fa fa-caret-up fa-fw"&gt;&lt;/i&gt;&lt;/button&gt;
+                              &lt;button href="" title="Nach oben" ng-click="menuSpecial.moveup($index)" ng-disabled="$first" class="tiny radius secondary square right5"&gt;&lt;i class="fa fa-caret-up fa-fw"&gt;&lt;/i&gt;&lt;/button&gt;
                             &lt;/li&gt;
                             &lt;li&gt;
-                              &lt;button href="" title="Nach unten" ng-click="menuSpecial.movedown($index)" ng-disabled="$index===menuSpecial.sortedIcons.length-1" class="tiny radius secondary square"&gt;&lt;i class="fa fa-caret-down fa-fw"&gt;&lt;/i&gt;&lt;/button&gt;
+                              &lt;button href="" title="Nach unten" ng-click="menuSpecial.movedown($index)" ng-disabled="$last" class="tiny radius secondary square"&gt;&lt;i class="fa fa-caret-down fa-fw"&gt;&lt;/i&gt;&lt;/button&gt;
                             &lt;/li&gt;
                           &lt;/ul&gt;
                         &lt;/td&gt;
@@ -499,7 +501,7 @@
                   &lt;table class="fullsize headerEditArea"&gt;
                     &lt;thead&gt;
                       &lt;tr&gt;
-                        &lt;th&gt;&lt;span ng-if="menuSpecial.isEditMode"&gt;Menüicon&amp;ensp;&lt;span class="blue"&gt;{{menuSpecial.icon.key}}&lt;/span&gt;&amp;ensp;bearbeiten&lt;/span&gt;&lt;span ng-if="menuSpecial.isCreateMode"&gt;Neues Menüicon hinzufügen&lt;/span&gt;&lt;/th&gt;
+                        &lt;th&gt;&lt;span ng-if="menuSpecial.isEditMode"&gt;Menüicon&amp;ensp;&lt;span class="blue"&gt;{{menuSpecial.icon.name}}&lt;/span&gt;&amp;ensp;bearbeiten&lt;/span&gt;&lt;span ng-if="menuSpecial.isCreateMode"&gt;Neues Menüicon hinzufügen&lt;/span&gt;&lt;/th&gt;
                       &lt;/tr&gt;
                     &lt;/thead&gt;
                   &lt;/table&gt;
@@ -519,21 +521,21 @@
                       &lt;div class="row"&gt;
                         &lt;div class="small-6 columns"&gt;
                           &lt;label&gt;Iconbezeichnung
-                            &lt;input type="text" ng-model="menuSpecial.icon.key" ng-disabled="menuSpecial.isKeyLocked()"/&gt;
+                            &lt;input type="text" ng-model="menuSpecial.icon.name" ng-disabled="menuSpecial.isKeyLocked()"/&gt;
                           &lt;/label&gt;
                         &lt;/div&gt;
                         &lt;div class="small-3 columns text-center"&gt;
                           &lt;label&gt;Aktiviert?&lt;/label&gt;
                           &lt;div class="switch round"&gt;
-                            &lt;input type="checkbox" ng-model="menuSpecial.icon.activate" id="ac{{menuSpecial.icon.key}}"/&gt;
-                            &lt;label for="ac{{menuSpecial.icon.key}}"&gt;&lt;/label&gt;
+                            &lt;input type="checkbox" ng-model="menuSpecial.icon.activate" id="act{{menuSpecial.icon.name}}"/&gt;
+                            &lt;label for="act{{menuSpecial.icon.name}}"&gt;&lt;/label&gt;
                           &lt;/div&gt;
                         &lt;/div&gt;
                         &lt;div class="small-3 columns text-center"&gt;
                           &lt;label&gt;Trenner?&lt;/label&gt;
                           &lt;div class="switch round"&gt;
-                            &lt;input type="checkbox" ng-model="menuSpecial.icon.divider" id="dv{{menuSpecial.icon.key}}"/&gt;
-                            &lt;label for="dv{{menuSpecial.icon.key}}"&gt;&lt;/label&gt;
+                            &lt;input type="checkbox" ng-model="menuSpecial.icon.divider" id="sep{{menuSpecial.icon.name}}"/&gt;
+                            &lt;label for="sep{{menuSpecial.icon.name}}"&gt;&lt;/label&gt;
                           &lt;/div&gt;
                         &lt;/div&gt;
                       &lt;/div&gt;
@@ -551,10 +553,10 @@
                       &lt;/div&gt;
                       &lt;div class="row"&gt;
                         &lt;div class="small-12 columns"&gt;
-                          &lt;label ng-if="menuSpecial.icon.key==='mail'"&gt;E-Mail-Adresse (wird verschlüsselt gespeichert)
-                            &lt;input type="email" ng-model="menuSpecial.icon.href"/&gt;
+                          &lt;label ng-if="menuSpecial.icon.name==='mail'"&gt;E-Mail-Adresse (wird verschlüsselt gespeichert)
+                            &lt;input type="email" encode="" ng-model="menuSpecial.icon.href"/&gt;
                           &lt;/label&gt;
-                          &lt;label ng-if="menuSpecial.icon.key!=='mail' &amp;amp;&amp;amp; !menuSpecial.isUrlLocked()"&gt;URL
+                          &lt;label ng-if="menuSpecial.icon.name!=='mail' &amp;amp;&amp;amp; !menuSpecial.isUrlLocked()"&gt;URL
                             &lt;input type="url" ng-model="menuSpecial.icon.href"/&gt;
                           &lt;/label&gt;
                         &lt;/div&gt;
@@ -575,7 +577,7 @@
                           &lt;label&gt;Vorschau&lt;/label&gt;
                           &lt;top-bar&gt;
                             &lt;top-bar-section&gt;
-                              &lt;ul class="left"&gt;
+                              &lt;ul class="left menuPreview"&gt;
                                 &lt;li&gt;&lt;a href="" title="{{menuSpecial.icon.title}}" ng-class="menuSpecial.getPreviewClass()" ng-show="menuSpecial.icon.activate"&gt;
                                     &lt;i class="fa {{menuSpecial.icon.icon}}"&gt;&lt;/i&gt;
                                     {{menuSpecial.icon.text}}&lt;/a&gt;&lt;/li&gt;

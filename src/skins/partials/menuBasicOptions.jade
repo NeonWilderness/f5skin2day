@@ -16,7 +16,7 @@ form(ng-controller="MenuBasicOptionsCtrl as menuBasic")
                 ul.title-area
                     li.name: h1(ng-hide="customize.param.topbar.title.length===0"): a(href="#") {{customize.param.topbar.title}}
                 top-bar-section
-                    ul.left
+                    ul.left.menuPreview
                         li
                             a(href="#") <i class="fa {{customize.param.topbar.menuItems.twoday.icon}}"></i>{{customize.param.topbar.menuItems.twoday.text}}
     .row

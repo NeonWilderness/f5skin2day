@@ -12,26 +12,28 @@ form(ng-controller="MenuSpecialItemsCtrl as menuSpecial")
                         th Tooltip / Adresse
                         th Sortieren
                 tbody
-                    tr(ng-repeat="icon in menuSpecial.sortedIcons")
+                    tr(ng-repeat="icon in menuSpecial.param.topbar.specialIcons")
                         td: ul.button-group.twinbuttons
                             li: button.tiny.radius.secondary.square.right5(href="", title="Eintrag bearbeiten", ng-click="menuSpecial.edit($index)"): i.fa.fa-edit.fa-fw
-                            li: button.tiny.radius.secondary.square(href="", title="Eintrag entfernen", ng-click="menuSpecial.remove($index)", ng-if="icon.delete"): i.fa.fa-trash-o.fa-fw
+                            li: button.tiny.radius.secondary.square(href="", title="Eintrag entfernen", ng-click="menuSpecial.remove($index)", ng-if="icon.user"): i.fa.fa-trash-o.fa-fw
                         td
-                            em {{icon.key}}
+                            em {{icon.name}}
                         td.text-center
                             .switch.round
-                                input(type="checkbox", ng-model="icon.activate", id="act{{icon.key}}")
-                                label(for="act{{icon.key}}")
+                                input(type="checkbox", ng-model="icon.activate", id="icn{{icon.name}}")
+                                label(for="icn{{icon.name}}")
                         td
                             top-bar: top-bar-section: ul.left
-                                li: a(href="", title="icon.title") <i class="fa {{icon.icon}}"></i> {{icon.text}}
+                                li: a(href="", title="{{icon.title}}")
+                                    <i class="fa {{icon.icon}}"></i>
+                                    | {{icon.text}}
                                 li.divider(ng-show="icon.divider")
                         td
                             .specialtitle {{icon.title}}
                             .specialhref {{icon.href}}
                         td: ul.button-group.twinbuttons
-                            li: button.tiny.radius.secondary.square.right5(href="", title="Nach oben", ng-click="menuSpecial.moveup($index)", ng-disabled="$index===0"): i.fa.fa-caret-up.fa-fw
-                            li: button.tiny.radius.secondary.square(href="", title="Nach unten", ng-click="menuSpecial.movedown($index)", ng-disabled="$index===menuSpecial.sortedIcons.length-1"): i.fa.fa-caret-down.fa-fw
+                            li: button.tiny.radius.secondary.square.right5(href="", title="Nach oben", ng-click="menuSpecial.moveup($index)", ng-disabled="$first"): i.fa.fa-caret-up.fa-fw
+                            li: button.tiny.radius.secondary.square(href="", title="Nach unten", ng-click="menuSpecial.movedown($index)", ng-disabled="$last"): i.fa.fa-caret-down.fa-fw
                     tr: td(colspan="6")
                         button.tiny.radius.secondary(href="", ng-click="menuSpecial.create()")
                             i.fa.fa-plus.fa-margin
@@ -39,7 +41,7 @@ form(ng-controller="MenuSpecialItemsCtrl as menuSpecial")
     .row.collapse(ng-show="menuSpecial.isEditMode || menuSpecial.isCreateMode")
         .small-12.columns
             table.fullsize.headerEditArea: thead: tr: th
-                span(ng-if="menuSpecial.isEditMode") Menüicon&ensp;<span class="blue">{{menuSpecial.icon.key}}</span>&ensp;bearbeiten
+                span(ng-if="menuSpecial.isEditMode") Menüicon&ensp;<span class="blue">{{menuSpecial.icon.name}}</span>&ensp;bearbeiten
                 span(ng-if="menuSpecial.isCreateMode") Neues Menüicon hinzufügen
             .row
                 .small-2.columns
@@ -51,17 +53,17 @@ form(ng-controller="MenuSpecialItemsCtrl as menuSpecial")
                     .row
                         .small-6.columns
                             label Iconbezeichnung
-                                input(type="text", ng-model="menuSpecial.icon.key", ng-disabled="menuSpecial.isKeyLocked()")
+                                input(type="text", ng-model="menuSpecial.icon.name", ng-disabled="menuSpecial.isKeyLocked()")
                         .small-3.columns.text-center
                             label Aktiviert?
                             .switch.round
-                                input(type="checkbox", ng-model="menuSpecial.icon.activate", id="ac{{menuSpecial.icon.key}}")
-                                label(for="ac{{menuSpecial.icon.key}}")
+                                input(type="checkbox", ng-model="menuSpecial.icon.activate", id="act{{menuSpecial.icon.name}}")
+                                label(for="act{{menuSpecial.icon.name}}")
                         .small-3.columns.text-center
                             label Trenner?
                             .switch.round
-                                input(type="checkbox", ng-model="menuSpecial.icon.divider", id="dv{{menuSpecial.icon.key}}")
-                                label(for="dv{{menuSpecial.icon.key}}")
+                                input(type="checkbox", ng-model="menuSpecial.icon.divider", id="sep{{menuSpecial.icon.name}}")
+                                label(for="sep{{menuSpecial.icon.name}}")
                     .row
                         .small-6.columns
                             label Text
@@ -71,9 +73,9 @@ form(ng-controller="MenuSpecialItemsCtrl as menuSpecial")
                                 input(type="text", ng-model="menuSpecial.icon.title")
                     .row
                         .small-12.columns
-                            label(ng-if="menuSpecial.icon.key==='mail'") E-Mail-Adresse (wird verschlüsselt gespeichert)
-                                input(type="email", ng-model="menuSpecial.icon.href")
-                            label(ng-if="menuSpecial.icon.key!=='mail' && !menuSpecial.isUrlLocked()") URL
+                            label(ng-if="menuSpecial.icon.name==='mail'") E-Mail-Adresse (wird verschlüsselt gespeichert)
+                                input(type="email", encode="", ng-model="menuSpecial.icon.href")
+                            label(ng-if="menuSpecial.icon.name!=='mail' && !menuSpecial.isUrlLocked()") URL
                                 input(type="url", ng-model="menuSpecial.icon.href")
                     .row
                         .small-12.columns
@@ -87,7 +89,7 @@ form(ng-controller="MenuSpecialItemsCtrl as menuSpecial")
                     .row
                         .small-6.columns
                             label Vorschau
-                            top-bar: top-bar-section: ul.left
+                            top-bar: top-bar-section: ul.left.menuPreview
                                 li: a(href="", title="{{menuSpecial.icon.title}}", ng-class="menuSpecial.getPreviewClass()", ng-show="menuSpecial.icon.activate")
                                     <i class="fa {{menuSpecial.icon.icon}}"></i>
                                     | {{menuSpecial.icon.text}}

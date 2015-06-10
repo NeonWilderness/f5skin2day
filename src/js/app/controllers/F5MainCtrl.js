@@ -3,13 +3,17 @@
 var background = require('../background.js'),
     utils = require('../utils.js');
 
-module.exports = function ($scope, $rootScope, Preferences, UpdateCheck, $window, $interval, $modal){
+module.exports = function ($scope, $rootScope, Preferences, UpdateCheck, UserStyles, $window, $interval, $modal){
     
 //- Define viewmodel as this
     var vm = this;
 
 //- Get the consolidated preferences data (includes standard and user modified settings)
     vm.param = $rootScope.param = Preferences.get("consolidated");
+
+//- Dynamically generate CSS form user preferences / overrides (e.g. icon colors)
+    UserStyles.initRulesFromPreferences();
+    vm.userStyles = $rootScope.userStyles;
 
 //- Set background image based on time of the day and user defined image items/slots
     var UpdateBackgroundImage = function(){

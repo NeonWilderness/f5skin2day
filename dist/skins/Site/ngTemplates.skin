@@ -229,7 +229,7 @@
                       </li>
                     </ul>
                     <top-bar-section>
-                      <ul class="left">
+                      <ul class="left menuPreview">
                         <li><a href="#"><i class="fa {{customize.param.topbar.menuItems.twoday.icon}}"></i>{{customize.param.topbar.menuItems.twoday.text}}</a></li>
                       </ul>
                     </top-bar-section>
@@ -373,10 +373,10 @@
                         <td>
                           <ul class="button-group twinbuttons">
                             <li>
-                              <button href="" title="Nach oben" ng-click="menuCustom.moveup($index)" ng-disabled="$index===0" class="tiny radius secondary square right5"><i class="fa fa-caret-up fa-fw"></i></button>
+                              <button href="" title="Nach oben" ng-click="menuCustom.moveup($index)" ng-disabled="$first" class="tiny radius secondary square right5"><i class="fa fa-caret-up fa-fw"></i></button>
                             </li>
                             <li>
-                              <button href="" title="Nach unten" ng-click="menuCustom.movedown($index)" ng-disabled="$index===customize.param.topbar.addCustomMenu.items.length-1" class="tiny radius secondary square"><i class="fa fa-caret-down fa-fw"></i></button>
+                              <button href="" title="Nach unten" ng-click="menuCustom.movedown($index)" ng-disabled="$last" class="tiny radius secondary square"><i class="fa fa-caret-down fa-fw"></i></button>
                             </li>
                           </ul>
                         </td>
@@ -439,29 +439,31 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr ng-repeat="icon in menuSpecial.sortedIcons">
+                      <tr ng-repeat="icon in menuSpecial.param.topbar.specialIcons">
                         <td>
                           <ul class="button-group twinbuttons">
                             <li>
                               <button href="" title="Eintrag bearbeiten" ng-click="menuSpecial.edit($index)" class="tiny radius secondary square right5"><i class="fa fa-edit fa-fw"></i></button>
                             </li>
                             <li>
-                              <button href="" title="Eintrag entfernen" ng-click="menuSpecial.remove($index)" ng-if="icon.delete" class="tiny radius secondary square"><i class="fa fa-trash-o fa-fw"></i></button>
+                              <button href="" title="Eintrag entfernen" ng-click="menuSpecial.remove($index)" ng-if="icon.user" class="tiny radius secondary square"><i class="fa fa-trash-o fa-fw"></i></button>
                             </li>
                           </ul>
                         </td>
-                        <td><em>{{icon.key}}</em></td>
+                        <td><em>{{icon.name}}</em></td>
                         <td class="text-center">
                           <div class="switch round">
-                            <input type="checkbox" ng-model="icon.activate" id="act{{icon.key}}"/>
-                            <label for="act{{icon.key}}"></label>
+                            <input type="checkbox" ng-model="icon.activate" id="icn{{icon.name}}"/>
+                            <label for="icn{{icon.name}}"></label>
                           </div>
                         </td>
                         <td>
                           <top-bar>
                             <top-bar-section>
                               <ul class="left">
-                                <li><a href="" title="icon.title"><i class="fa {{icon.icon}}"></i> {{icon.text}}</a></li>
+                                <li><a href="" title="{{icon.title}}">
+                                    <i class="fa {{icon.icon}}"></i>
+                                    {{icon.text}}</a></li>
                                 <li ng-show="icon.divider" class="divider"></li>
                               </ul>
                             </top-bar-section>
@@ -474,10 +476,10 @@
                         <td>
                           <ul class="button-group twinbuttons">
                             <li>
-                              <button href="" title="Nach oben" ng-click="menuSpecial.moveup($index)" ng-disabled="$index===0" class="tiny radius secondary square right5"><i class="fa fa-caret-up fa-fw"></i></button>
+                              <button href="" title="Nach oben" ng-click="menuSpecial.moveup($index)" ng-disabled="$first" class="tiny radius secondary square right5"><i class="fa fa-caret-up fa-fw"></i></button>
                             </li>
                             <li>
-                              <button href="" title="Nach unten" ng-click="menuSpecial.movedown($index)" ng-disabled="$index===menuSpecial.sortedIcons.length-1" class="tiny radius secondary square"><i class="fa fa-caret-down fa-fw"></i></button>
+                              <button href="" title="Nach unten" ng-click="menuSpecial.movedown($index)" ng-disabled="$last" class="tiny radius secondary square"><i class="fa fa-caret-down fa-fw"></i></button>
                             </li>
                           </ul>
                         </td>
@@ -496,7 +498,7 @@
                   <table class="fullsize headerEditArea">
                     <thead>
                       <tr>
-                        <th><span ng-if="menuSpecial.isEditMode">Menüicon&ensp;<span class="blue">{{menuSpecial.icon.key}}</span>&ensp;bearbeiten</span><span ng-if="menuSpecial.isCreateMode">Neues Menüicon hinzufügen</span></th>
+                        <th><span ng-if="menuSpecial.isEditMode">Menüicon&ensp;<span class="blue">{{menuSpecial.icon.name}}</span>&ensp;bearbeiten</span><span ng-if="menuSpecial.isCreateMode">Neues Menüicon hinzufügen</span></th>
                       </tr>
                     </thead>
                   </table>
@@ -516,21 +518,21 @@
                       <div class="row">
                         <div class="small-6 columns">
                           <label>Iconbezeichnung
-                            <input type="text" ng-model="menuSpecial.icon.key" ng-disabled="menuSpecial.isKeyLocked()"/>
+                            <input type="text" ng-model="menuSpecial.icon.name" ng-disabled="menuSpecial.isKeyLocked()"/>
                           </label>
                         </div>
                         <div class="small-3 columns text-center">
                           <label>Aktiviert?</label>
                           <div class="switch round">
-                            <input type="checkbox" ng-model="menuSpecial.icon.activate" id="ac{{menuSpecial.icon.key}}"/>
-                            <label for="ac{{menuSpecial.icon.key}}"></label>
+                            <input type="checkbox" ng-model="menuSpecial.icon.activate" id="act{{menuSpecial.icon.name}}"/>
+                            <label for="act{{menuSpecial.icon.name}}"></label>
                           </div>
                         </div>
                         <div class="small-3 columns text-center">
                           <label>Trenner?</label>
                           <div class="switch round">
-                            <input type="checkbox" ng-model="menuSpecial.icon.divider" id="dv{{menuSpecial.icon.key}}"/>
-                            <label for="dv{{menuSpecial.icon.key}}"></label>
+                            <input type="checkbox" ng-model="menuSpecial.icon.divider" id="sep{{menuSpecial.icon.name}}"/>
+                            <label for="sep{{menuSpecial.icon.name}}"></label>
                           </div>
                         </div>
                       </div>
@@ -548,10 +550,10 @@
                       </div>
                       <div class="row">
                         <div class="small-12 columns">
-                          <label ng-if="menuSpecial.icon.key==='mail'">E-Mail-Adresse (wird verschlüsselt gespeichert)
-                            <input type="email" ng-model="menuSpecial.icon.href"/>
+                          <label ng-if="menuSpecial.icon.name==='mail'">E-Mail-Adresse (wird verschlüsselt gespeichert)
+                            <input type="email" encode="" ng-model="menuSpecial.icon.href"/>
                           </label>
-                          <label ng-if="menuSpecial.icon.key!=='mail' &amp;&amp; !menuSpecial.isUrlLocked()">URL
+                          <label ng-if="menuSpecial.icon.name!=='mail' &amp;&amp; !menuSpecial.isUrlLocked()">URL
                             <input type="url" ng-model="menuSpecial.icon.href"/>
                           </label>
                         </div>
@@ -572,7 +574,7 @@
                           <label>Vorschau</label>
                           <top-bar>
                             <top-bar-section>
-                              <ul class="left">
+                              <ul class="left menuPreview">
                                 <li><a href="" title="{{menuSpecial.icon.title}}" ng-class="menuSpecial.getPreviewClass()" ng-show="menuSpecial.icon.activate">
                                     <i class="fa {{menuSpecial.icon.icon}}"></i>
                                     {{menuSpecial.icon.text}}</a></li>

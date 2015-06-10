@@ -11,4 +11,5 @@ require('angular')
     .factory('ImageProvider', ['$http', '$q', require('./ImageProvider')])
     .factory('TwodaySkin', ['$http', '$q', require('./TwodaySkin')])
     .factory('Preferences', ['CacheItem', 'TwodaySkin', 'toastr', require('./Preferences')])
-    .factory('UpdateCheck', ['$http', '$q', 'Preferences', 'toastr', require('./UpdateCheck')]);
+    .factory('UpdateCheck', ['$http', '$q', 'Preferences', 'toastr', require('./UpdateCheck')])
+    .factory('UserStyles', ['$rootScope', require('./UserStyles')]);

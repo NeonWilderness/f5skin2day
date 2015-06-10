@@ -1,5 +1,5 @@
 <!-- Skin: Site.stdPreferences -->
-<skin key="Site.stdPreferences" lastupdate="2015-06-07T15:41:42.471Z" crc="3024457514">
+<skin key="Site.stdPreferences" lastupdate="2015-06-09T01:50:32.101Z" crc="3983092328">
 <content>
 &lt;div id="stdPreferences" style="display:none"&gt;
   {
@@ -113,20 +113,20 @@
                   { "link": true,  "text": "Font Awesome Cheatsheet", "href": "http://fortawesome.github.io/Font-Awesome/cheatsheet/" }
               ]
           },
-          "specialIcons": {
-              "mail": {
-                  "activate": true, "text": "", "icon": "fa-envelope", "divider": true, "title": "Mail senden",
-                  "href": "znvygb:arbajvyqrearff@lznvy.pbz", "color": "#eee", "hover": "#fff", "delete": false, "position": 0
+          "specialIcons": [
+              {
+                  "name": "mail", "activate": true, "text": "", "icon": "fa-envelope", "divider": false, "title": "Mail senden",
+                  "href": "znvygb:arbajvyqrearff@lznvy.pbz", "color": "#eee", "hover": "#fff", "user": false, "position": 0
               },
-              "search": {
-                  "activate": true, "text": "", "icon": "fa-search", "divider": true, "title": "Blog durchsuchen",
-                  "href": "&lt;% site.url %&gt;stories/search", "color": "#eee", "hover": "#fff", "delete": false, "position": 1
+              {
+                  "name": "search", "activate": true, "text": "", "icon": "fa-search", "divider": false, "title": "Blog durchsuchen",
+                  "href": "&lt;% site.url %&gt;stories/search", "color": "#eee", "hover": "#fff", "user": false, "position": 1
               },
-              "customize": {
-                  "activate": true, "text": "", "icon": "fa-cogs", "divider": false, "title": "Blog anpassen",
-                  "href": "", "color": "#eee", "hover": "#fff", "delete": false, "position": 2
+              {
+                  "name": "customize", "activate": true, "text": "", "icon": "fa-cogs", "divider": false, "title": "Blog anpassen",
+                  "href": "", "color": "#eee", "hover": "#fff", "user": false, "position": 2
               }
-          }
+          ]
       }
   }
 &lt;/div&gt;

@@ -46,8 +46,8 @@ form(ng-controller="MenuCustomItemsCtrl as menuCustom")
                             div(ng-class="{'customlink': customItem.link, 'customlabel': !customItem.link}") {{customItem.text}}
                             div.customhref(ng-if="customItem.link") {{customItem.href}}
                         td: ul.button-group.twinbuttons
-                            li: button.tiny.radius.secondary.square.right5(href="", title="Nach oben", ng-click="menuCustom.moveup($index)", ng-disabled="$index===0"): i.fa.fa-caret-up.fa-fw
-                            li: button.tiny.radius.secondary.square(href="", title="Nach unten", ng-click="menuCustom.movedown($index)", ng-disabled="$index===customize.param.topbar.addCustomMenu.items.length-1"): i.fa.fa-caret-down.fa-fw
+                            li: button.tiny.radius.secondary.square.right5(href="", title="Nach oben", ng-click="menuCustom.moveup($index)", ng-disabled="$first"): i.fa.fa-caret-up.fa-fw
+                            li: button.tiny.radius.secondary.square(href="", title="Nach unten", ng-click="menuCustom.movedown($index)", ng-disabled="$last"): i.fa.fa-caret-down.fa-fw
                     tr.bgwhite(ng-show="menuCustom.isEditMode || menuCustom.isCreateMode")
                         td.vtop
                             label &nbsp;

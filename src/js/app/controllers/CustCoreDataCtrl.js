@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function($rootScope, ImageProvider, toastr){
+module.exports = function($scope, $rootScope, ImageProvider, UserStyles, toastr){
 
     var vm = this;
     
@@ -30,5 +30,20 @@ module.exports = function($rootScope, ImageProvider, toastr){
     vm.testLoader = function(){
         $("#loader-wrapper").show(0).delay(3000).hide(0);
     };
+
+    $scope.$watch('param.topbar.loaderColor1', function(){
+        console.log('$watch loaderColor1', vm.param.site.loader.color1);
+        UserStyles.pushDependency('loaderColor1', vm.param.site.loader.color1);
+    });
+
+    $scope.$watch('param.topbar.loaderColor2', function(){
+        console.log('$watch loaderColor2', vm.param.site.loader.color2);
+        UserStyles.pushDependency('loaderColor2', vm.param.site.loader.color2);
+    });
+
+    $scope.$watch('param.topbar.loaderColor3', function(){
+        console.log('$watch loaderColor3', vm.param.site.loader.color3);
+        UserStyles.pushDependency('loaderColor3', vm.param.site.loader.color3);
+    });
 
 };

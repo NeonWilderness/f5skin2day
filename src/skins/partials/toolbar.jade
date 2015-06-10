@@ -1,8 +1,10 @@
-mixin topicslist
+mixin tmplTopicslist
     a(href!="<% site.url %>")
         <i class="fa {{f5main.param.topbar.menuItems.topics.icon}}"></i>
         | {{f5main.param.topbar.menuItems.topics.text}}
     | <% topiclist prefix="<ul class='dropdown'>" itemprefix="<li>" itemsuffix="</li>" suffix="</ul>" %>
+mixin tmplSpecialIcon
+    <i class="fa {{icon.icon}}"></i> {{icon.text}}
 div(ng-class="{'fixed': f5main.param.topbar.class.fixed, 'containToGrid': f5main.param.topbar.class.containToGrid, 'sticky': f5main.param.topbar.class.sticky}")
     top-bar#f5Topbar(ng-cloak, role="navigation", back-text="Eine Ebene höher")
         ul.title-area
@@ -15,8 +17,8 @@ div(ng-class="{'fixed': f5main.param.topbar.class.fixed, 'containToGrid': f5main
                         <i class="fa {{f5main.param.topbar.menuItems.twoday.icon}}"></i>
                         | {{f5main.param.topbar.menuItems.twoday.text}}
                 li.divider(ng-show="f5main.param.topbar.menuItems.twoday.divider")
-                li#toolbarTopics(has-dropdown, ng-if="f5main.param.topbar.menuItems.topics.drop"): +topicslist
-                li#toolbarTopics(ng-if="!f5main.param.topbar.menuItems.topics.drop"): +topicslist
+                li#toolbarTopics(has-dropdown, ng-if="f5main.param.topbar.menuItems.topics.drop"): +tmplTopicslist
+                li#toolbarTopics(ng-if="!f5main.param.topbar.menuItems.topics.drop"): +tmplTopicslist
                 li.divider(ng-show="f5main.param.topbar.menuItems.topics.divider")
                 li#toolbarImages(has-dropdown, ng-hide="f5main.param.topbar.menuItems.images.items.length===0")
                     a(href!="<% site.url %>images/topics")
@@ -55,6 +57,13 @@ div(ng-class="{'fixed': f5main.param.topbar.class.fixed, 'containToGrid': f5main
                             label(ng-if="!item.link") {{item.text}}
                             a(ng-if="item.link", href="{{item.href}}", target="_blank") {{item.text}}
                 li.divider(ng-show="f5main.param.topbar.addCustomMenu.divider")
+                //-li.has-form: a.button(href="" ng-click="f5main.customize.open()") <i class="fa fa-fw fa-cogs" style="color:#fff"></i>
+            ul#f5TopbarSpecial.right(ng-repeat="icon in f5main.param.topbar.specialIcons | orderBy:'-position'")
+                li(ng-if="icon.activate", ng-class="{{icon.name}}Icon")
+                    a(href="", title="{{icon.title}}", ng-click="f5main.param.sendMail()", ng-if="icon.name==='mail'"): +tmplSpecialIcon
+                    a(href="", title="{{icon.title}}", ng-click="f5main.customize.open()", ng-if="icon.name==='customize' && f5main.param.isAdmin()"): +tmplSpecialIcon
+                    a(ng-href="{{icon.href}}", title="{{icon.title}}", ng-if="icon.name==='search' || icon.user"): +tmplSpecialIcon
+                li.divider(ng-show="icon.divider && icon.activate")
             ul#f5TopbarRight.right
                 li#toolbarLogin(ng-hide="f5main.param.isLoggedIn()")
                     a(href!="<% site.url %>members/login")
@@ -78,18 +87,4 @@ div(ng-class="{'fixed': f5main.param.topbar.class.fixed, 'containToGrid': f5main
                         li(ng-repeat="item in f5main.param.topbar.menuItems.abo.items")
                             a(href="{{item.href}}", target="_blank") {{item.text}}
                 li.divider(ng-show="f5main.param.topbar.menuItems.abo.divider")
-                li#toolbarMail(ng-show="f5main.param.topbar.specialIcons.mail.activate")
-                    a(href="", title="{{f5main.param.topbar.specialIcons.mail.title}}", ng-click="f5main.param.sendMail()")
-                        <i class="fa {{f5main.param.topbar.specialIcons.mail.icon}}"></i>
-                        | {{f5main.param.topbar.specialIcons.mail.text}}
-                li.divider(ng-show="f5main.param.topbar.specialIcons.mail.divider && f5main.param.topbar.specialIcons.mail.activate")
-                li#toolbarSearch(ng-show="f5main.param.topbar.specialIcons.search.activate")
-                    a(href="{{f5main.param.topbar.specialIcons.search.href}}", title="{{f5main.param.topbar.specialIcons.search.title}}")
-                        <i class="fa {{f5main.param.topbar.specialIcons.search.icon}}"></i>
-                        | {{f5main.param.topbar.specialIcons.search.text}}
-                li.divider(ng-show="f5main.param.topbar.specialIcons.search.divider && f5main.param.topbar.specialIcons.search.activate")
-                li#toolbarCustomize(ng-if="f5main.param.topbar.specialIcons.customize.activate && f5main.param.isAdmin()")
-                    a(href="", ng-click="f5main.customize.open()", title="{{f5main.param.topbar.specialIcons.customize.title}}")
-                        <i class="fa {{f5main.param.topbar.specialIcons.customize.icon}}"></i>
-                        | {{f5main.param.topbar.specialIcons.customize.text}}
-                li.divider(ng-show="f5main.param.topbar.specialIcons.customize.divider && f5main.param.topbar.specialIcons.customize.activate && f5main.param.isAdmin()")
+
