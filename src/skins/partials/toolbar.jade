@@ -6,7 +6,7 @@ mixin tmplTopicslist
 mixin tmplSpecialIcon
     <i class="fa {{icon.icon}}"></i> {{icon.text}}
 div(ng-class="{'fixed': f5main.param.topbar.class.fixed, 'containToGrid': f5main.param.topbar.class.containToGrid, 'sticky': f5main.param.topbar.class.sticky}")
-    top-bar#f5Topbar(ng-cloak, role="navigation", back-text="Eine Ebene höher")
+    top-bar#f5Topbar(ng-cloak, role="navigation", back-text="Eine Ebene höher", sticky-class="sticky", is-hover="!Modernizr.touch")
         ul.title-area
             li.name: h1(ng-hide="f5main.param.topbar.title.length===0"): a(href="#") {{f5main.param.topbar.title}}
             li.menu-icon(toggle-top-bar): a(href="#"): span
@@ -59,10 +59,10 @@ div(ng-class="{'fixed': f5main.param.topbar.class.fixed, 'containToGrid': f5main
                 li.divider(ng-show="f5main.param.topbar.addCustomMenu.divider")
                 //-li.has-form: a.button(href="" ng-click="f5main.customize.open()") <i class="fa fa-fw fa-cogs" style="color:#fff"></i>
             ul#f5TopbarSpecial.right(ng-repeat="icon in f5main.param.topbar.specialIcons | orderBy:'-position'")
-                li(ng-if="icon.activate", ng-class="{{icon.name}}Icon")
-                    a(href="", title="{{icon.title}}", ng-click="f5main.param.sendMail()", ng-if="icon.name==='mail'"): +tmplSpecialIcon
-                    a(href="", title="{{icon.title}}", ng-click="f5main.customize.open()", ng-if="icon.name==='customize' && f5main.param.isAdmin()"): +tmplSpecialIcon
-                    a(ng-href="{{icon.href}}", title="{{icon.title}}", ng-if="icon.name==='search' || icon.user"): +tmplSpecialIcon
+                li(ng-if="icon.activate")
+                    a(href="", title="{{icon.title}}", ng-click="f5main.param.sendMail()", class="menuspecial-mail", ng-if="icon.name==='mail'"): +tmplSpecialIcon
+                    a(href="", title="{{icon.title}}", ng-click="f5main.customize.open()", class="menuspecial-customize", ng-if="icon.name==='customize' && f5main.param.isAdmin()"): +tmplSpecialIcon
+                    a(ng-href="{{icon.href}}", title="{{icon.title}}", target="_blank", class="menuspecial-{{icon.name}}", ng-if="icon.name==='search' || icon.user"): +tmplSpecialIcon
                 li.divider(ng-show="icon.divider && icon.activate")
             ul#f5TopbarRight.right
                 li#toolbarLogin(ng-hide="f5main.param.isLoggedIn()")

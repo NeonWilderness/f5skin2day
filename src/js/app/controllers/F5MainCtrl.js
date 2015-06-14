@@ -11,7 +11,7 @@ module.exports = function ($scope, $rootScope, Preferences, UpdateCheck, UserSty
 //- Get the consolidated preferences data (includes standard and user modified settings)
     vm.param = $rootScope.param = Preferences.get("consolidated");
 
-//- Dynamically generate CSS form user preferences / overrides (e.g. icon colors)
+//- Dynamically generate CSS from user preferences / overrides (e.g. icon colors)
     UserStyles.initRulesFromPreferences();
     vm.userStyles = $rootScope.userStyles;
 

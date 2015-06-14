@@ -153,22 +153,22 @@ module.exports = function($rootScope, ImageProvider, $window, toastr){
                 name: 'Unsplash',
                 url: function(){ return vm.param.update.releaseUrl+'unsplash.json'; },
                 load: function(data){ return data || []; },
-                append: function(target, srcRatio){
+                getFormatInfo: function(target, srcRatio){
                     var w, h;
                     switch (target){
-                        case 'gallery': w=300; h=200; break;
+                        case 'gallery': w=240; h=160; break;
                         case 'fullscreen': w=$window.screen.width; h=$window.screen.height; break;
                         case 'background': w=1920; h=Math.round(1920/srcRatio); break;
                     }
-                    return '?fm=jpg&q=75&w='+w+'&h='+h+'&fit=crop';
+                    return { image: 'img_url', suffix: '?fm=jpg&q=75&w='+w+'&h='+h+'&fit=crop' };
                 }
             },
             {
                 name: 'Picjumbo',
-                load: function(data){ return data || []; },
                 url: function(){ return vm.param.update.releaseUrl+'picjumbo.json'; },
-                append: function(target, srcRatio){
-                    return '';
+                load: function(data){ return data || []; },
+                getFormatInfo: function(target, srcRatio){
+                    return { image: 'img_url', suffix: '' };
                 }
             },
             {
@@ -206,10 +206,51 @@ module.exports = function($rootScope, ImageProvider, $window, toastr){
                     }
                     return gd;
                 },
-                append: function(target, srcRatio){
-                    return '';
+                getFormatInfo: function(target, srcRatio){
+                    return { image: 'img_url', suffix: '' };
+                }
+            },
+            {
+                name: 'Flickr',
+                load: function(data){
+                    var items = [];
+                    angular.forEach( data.query.results.photo, function(item){
+                        items.push({
+                            'isImage': (item.media==='photo'),
+                            'img_url': item.url_o,
+                            'fname': item.title,
+                            'img_sml': item.url_s,
+                            'ratio': (parseInt(item.width_o, 10) / parseInt(item.height_o, 10))
+                        });
+                    });
+                    return items;
+                },
+                url: function() {
+                    if (vm.param.site.flickrUserID.length===0){
+                        toastr.warning('Bitte geben Sie zuerst Ihr Flickr-Benutzer-ID im Tab "Grunddaten" ein!', vm.param.msgHeader);
+                        return '';
+                    }
+                    if (!vm.param.site.isFlickrVerified){
+                        toastr.warning('Die eingegebene Benutzer-ID muss vorher noch überprüft werden (Tab "Grunddaten")!', vm.param.msgHeader);
+                        return '';
+                    }
+                    var yql = 'https://query.yahooapis.com/v1/public/yql?q=#q',
+                        qry = encodeURIComponent(
+                            'SELECT * FROM flickr.people.publicphotos(0) WHERE api_key="#k" AND user_id="#u" AND extras="media,o_dims,url_o,url_s"'
+                            .replace('#k', utils.getRequestID())
+                            .replace('#u', vm.param.site.flickrUserID));
+                    return yql.replace('#q', qry)+'&env=store://datatables.org/alltableswithkeys&format=json&callback=';
+                },
+                getFormatInfo: function(target, srcRatio){
+                    var field;
+                    switch (target){
+                        case 'gallery': field = 'img_sml'; break;
+                        default: field = 'img_url'; break;
+                    }
+                    return { image: field, suffix: '' };
                 }
             }
+
         ],
         provider: {},
         images: [],
@@ -239,30 +280,32 @@ module.exports = function($rootScope, ImageProvider, $window, toastr){
         viewImage: function(index){
             var i = this.page*this.pageSize,
                 j = Math.min(i+this.pageSize, this.images.length),
+                fmt = this.provider.getFormatInfo('fullscreen'),
                 swipeImages = [];
             while (i<j){
-                swipeImages.push({ href: this.images[i]['img_url']+this.provider.append('fullscreen') });
+                swipeImages.push({ href: this.images[i][fmt.image]+fmt.suffix });
                 ++i;
             }
             $.swipebox( swipeImages, {useSVG: false, initialIndexOnArray: index} );
         },
         selectImage: function(index){
             var i = this.page*this.pageSize+index,
-                ratio = (typeof this.images[i].ratio !== 'undefined' ? this.images[i].ratio : 1.5);
-            vm.slot.href = this.images[i]['img_url']+this.provider.append('background', ratio);
+                ratio = (typeof this.images[i].ratio !== 'undefined' ? this.images[i].ratio : 1.5),
+                fmt = this.provider.getFormatInfo('background', ratio);
+            vm.slot.href = this.images[i][fmt.image]+fmt.suffix;
             vm.isQueryImage = false;
         },
         showImages: function(){
             var i = this.page*this.pageSize,
                 j = Math.min(i+this.pageSize, this.images.length),
                 item, isImage, fName, bgUrl,
-                suffix = this.provider.append('gallery');
+                fmt = this.provider.getFormatInfo('gallery');
             this.pageImages.length = 0;
             while (i<j){
                 item = this.images[i];
                 isImage = (item.hasOwnProperty('isImage') ? item.isImage : true);
                 fName = (item.hasOwnProperty('fname') ? item.fname : '');
-                bgUrl = 'url("'+item['img_url']+suffix+'")';
+                bgUrl = 'url("'+item[fmt.image]+fmt.suffix+'")';
                 this.pageImages.push({
                     isImage: isImage,
                     fName: fName,
@@ -281,13 +324,14 @@ module.exports = function($rootScope, ImageProvider, $window, toastr){
             if (url.length===0) return;
             ImageProvider.load( url+subFolder ).then(
                 function(data){
+                    console.log(data);
                     self.images = self.provider.load(data);
                     self.lastPage = (self.images.length===0 ? 0 : Math.floor((self.images.length-1)/self.pageSize));
                     self.showImages();
                     self.isLoadingImages = false;
                 },
                 function(data, status){
-                    toastr.error("Fehler beim Lesen der Bilddaten von "+self.provider+", Status: "+status, vm.param.msgHeader);
+                    toastr.error("Fehler beim Lesen der Bilddaten von "+self.provider.name+", Status: "+status, vm.param.msgHeader);
                     self.lastPage = 0;
                     self.isLoadingImages = false;
                 }

@@ -60,6 +60,7 @@
     "gulp-util": "^3.0.4",
     "gulp-zip": "^2.0.3",
     "jshint-stylish": "^1.0.1",
+    "lightness": "^1.0.0",
     "rfc6902-json-diff": "^0.1.2",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"

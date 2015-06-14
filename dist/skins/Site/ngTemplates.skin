@@ -29,14 +29,35 @@
             </div>
           </div>
           <div class="row">
-            <div class="small-12 columns bottom15">
+            <div class="small-12 columns">
               <div class="row collapse">
                 <label for="txtImgFolder" class="bottom0">GoogleDrive-Verzeichnis für öffentliche Bilder</label>
                 <div class="small-10 columns">
-                  <input type="text" id="txtImgFolder" ng-model="customize.param.site.imgFolder" ng-change="customize.param.site.isFolderVerified=false"/>
+                  <input type="text" id="txtImgFolder" ng-model="customize.param.site.imgFolder" ng-change="customize.param.site.isDriveVerified=false"/>
                 </div>
-                <div class="small-2 columns"><span ng-click="coredata.verifyDriveFolder()" class="postfix"><i ng-class="{'fa-search red': !customize.param.site.isFolderVerified, 'fa-check green': customize.param.site.isFolderVerified}" class="fa fa-margin"></i><span ng-if="customize.param.site.isFolderVerified">Geprüft!</span><span ng-if="!customize.param.site.isFolderVerified">Prüfen...</span></span></div>
+                <div class="small-2 columns"><span ng-click="coredata.verifyDriveFolder()" class="postfix"><i ng-class="{'fa-search red': !customize.param.site.isDriveVerified, 'fa-check green': customize.param.site.isDriveVerified}" class="fa fa-margin"></i><span ng-if="customize.param.site.isDriveVerified">Geprüft!</span><span ng-if="!customize.param.site.isDriveVerified">Prüfen...</span></span></div>
               </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 columns bottom15">
+              <div class="row collapse">
+                <label for="txtFlickrUser" class="bottom0">Flickr Benutzer-ID</label>
+                <div class="small-10 columns">
+                  <input type="text" id="txtFlickrUser" ng-model="customize.param.site.flickrUserID" ng-change="customize.param.site.isFlickrVerified=false"/>
+                </div>
+                <div class="small-2 columns"><span ng-click="coredata.verifyFlickrUser()" class="postfix"><i ng-class="{'fa-search red': !customize.param.site.isFlickrVerified, 'fa-check green': customize.param.site.isFlickrVerified}" class="fa fa-margin"></i><span ng-if="customize.param.site.isFlickrVerified">Geprüft!</span><span ng-if="!customize.param.site.isFlickrVerified">Prüfen...</span></span></div>
+              </div>
+            </div>
+          </div>
+          <div class="row bottom30">
+            <div class="small-2 small-offset-4 columns">
+              <label>Hintergrund</label>
+              <spectrum-colorpicker ng-model="customize.param.site.body.background" ng-change="customize.changeInProp('bodyBackground', customize.param.site.body.background)"></spectrum-colorpicker>
+            </div>
+            <div class="small-2 columns end">
+              <label>Textfarbe</label>
+              <spectrum-colorpicker ng-model="customize.param.site.body.color" ng-change="customize.changeInProp('bodyColor', customize.param.site.body.color)"></spectrum-colorpicker>
             </div>
           </div>
           <div class="row">
@@ -49,15 +70,15 @@
             </div>
             <div class="small-2 columns">
               <label>Farbe 1</label>
-              <spectrum-colorpicker ng-model="customize.param.site.loader.color1"></spectrum-colorpicker>
+              <spectrum-colorpicker ng-model="customize.param.site.loader.color1" ng-change="customize.changeInProp('loaderColor1', customize.param.site.loader.color1)"></spectrum-colorpicker>
             </div>
             <div class="small-2 columns">
               <label>Farbe 2</label>
-              <spectrum-colorpicker ng-model="customize.param.site.loader.color2"></spectrum-colorpicker>
+              <spectrum-colorpicker ng-model="customize.param.site.loader.color2" ng-change="customize.changeInProp('loaderColor2', customize.param.site.loader.color2)"></spectrum-colorpicker>
             </div>
             <div class="small-2 columns">
               <label>Farbe 3</label>
-              <spectrum-colorpicker ng-model="customize.param.site.loader.color3"></spectrum-colorpicker>
+              <spectrum-colorpicker ng-model="customize.param.site.loader.color3" ng-change="customize.changeInProp('loaderColor3', customize.param.site.loader.color3)"></spectrum-colorpicker>
             </div>
             <div class="small-2 columns"><a href="" id="btnLoader" ng-click="coredata.testLoader()" class="button secondary tiny radius"><i class="fa fa-play fa-margin"></i>Test</a></div>
           </div>
@@ -214,11 +235,11 @@
                 </div>
                 <div class="small-3 columns text-center">
                   <label>Hintergrund</label>
-                  <spectrum-colorpicker ng-model="customize.param.topbar.menuBackgroundColor"></spectrum-colorpicker>
+                  <spectrum-colorpicker ng-model="customize.param.topbar.menuBackgroundColor" ng-change="customize.changeInProp('menuBackgroundColor', customize.param.topbar.menuBackgroundColor)"></spectrum-colorpicker>
                 </div>
                 <div class="small-3 columns text-center">
                   <label>Icon</label>
-                  <spectrum-colorpicker ng-model="customize.param.topbar.menuIconColor"></spectrum-colorpicker>
+                  <spectrum-colorpicker ng-model="customize.param.topbar.menuIconColor" ng-change="customize.changeInProp('menuIconColor', customize.param.topbar.menuIconColor)"></spectrum-colorpicker>
                 </div>
                 <div class="small-3 columns">
                   <label>Vorschau</label>
@@ -461,7 +482,7 @@
                           <top-bar>
                             <top-bar-section>
                               <ul class="left">
-                                <li><a href="" title="{{icon.title}}">
+                                <li><a href="" title="{{icon.title}}" class="menuspecial-{{icon.name}}">
                                     <i class="fa {{icon.icon}}"></i>
                                     {{icon.text}}</a></li>
                                 <li ng-show="icon.divider" class="divider"></li>
@@ -574,7 +595,7 @@
                           <label>Vorschau</label>
                           <top-bar>
                             <top-bar-section>
-                              <ul class="left menuPreview">
+                              <ul class="left">
                                 <li><a href="" title="{{menuSpecial.icon.title}}" ng-class="menuSpecial.getPreviewClass()" ng-show="menuSpecial.icon.activate">
                                     <i class="fa {{menuSpecial.icon.icon}}"></i>
                                     {{menuSpecial.icon.text}}</a></li>
@@ -585,11 +606,11 @@
                         </div>
                         <div class="small-3 columns text-center">
                           <label>Iconfarbe</label>
-                          <spectrum-colorpicker ng-model="menuSpecial.icon.color"></spectrum-colorpicker>
+                          <spectrum-colorpicker ng-model="menuSpecial.icon.color" ng-change="menuSpecial.changeColor()"></spectrum-colorpicker>
                         </div>
                         <div class="small-3 columns text-center">
                           <label>Hover</label>
-                          <spectrum-colorpicker ng-model="menuSpecial.icon.hover"></spectrum-colorpicker>
+                          <spectrum-colorpicker ng-model="menuSpecial.icon.hover" ng-change="menuSpecial.changeHover()"></spectrum-colorpicker>
                         </div>
                       </div>
                     </div>

@@ -15,16 +15,34 @@ form(ng-controller="CustCoreDataCtrl as coredata")
             label(for="txtDescription") Blogbeschreibung
                 input(type="text", id="txtDescription", ng-model="customize.param.site.description")
     .row
-        .small-12.columns.bottom15
+        .small-12.columns
             .row.collapse
                 label.bottom0(for="txtImgFolder") GoogleDrive-Verzeichnis für öffentliche Bilder
                 .small-10.columns
-                    input(type="text", id="txtImgFolder", ng-model="customize.param.site.imgFolder", ng-change="customize.param.site.isFolderVerified=false")
+                    input(type="text", id="txtImgFolder", ng-model="customize.param.site.imgFolder", ng-change="customize.param.site.isDriveVerified=false")
                 .small-2.columns
                     span.postfix(ng-click="coredata.verifyDriveFolder()")
-                        i.fa.fa-margin(ng-class="{'fa-search red': !customize.param.site.isFolderVerified, 'fa-check green': customize.param.site.isFolderVerified}")
-                        span(ng-if="customize.param.site.isFolderVerified") Geprüft!
-                        span(ng-if="!customize.param.site.isFolderVerified") Prüfen...
+                        i.fa.fa-margin(ng-class="{'fa-search red': !customize.param.site.isDriveVerified, 'fa-check green': customize.param.site.isDriveVerified}")
+                        span(ng-if="customize.param.site.isDriveVerified") Geprüft!
+                        span(ng-if="!customize.param.site.isDriveVerified") Prüfen...
+    .row
+        .small-12.columns.bottom15
+            .row.collapse
+                label.bottom0(for="txtFlickrUser") Flickr Benutzer-ID
+                .small-10.columns
+                    input(type="text", id="txtFlickrUser", ng-model="customize.param.site.flickrUserID", ng-change="customize.param.site.isFlickrVerified=false")
+                .small-2.columns
+                    span.postfix(ng-click="coredata.verifyFlickrUser()")
+                        i.fa.fa-margin(ng-class="{'fa-search red': !customize.param.site.isFlickrVerified, 'fa-check green': customize.param.site.isFlickrVerified}")
+                        span(ng-if="customize.param.site.isFlickrVerified") Geprüft!
+                        span(ng-if="!customize.param.site.isFlickrVerified") Prüfen...
+    .row.bottom30
+        .small-2.small-offset-4.columns
+            label Hintergrund
+            spectrum-colorpicker(ng-model="customize.param.site.body.background", ng-change="customize.changeInProp('bodyBackground', customize.param.site.body.background)")
+        .small-2.columns.end
+            label Textfarbe
+            spectrum-colorpicker(ng-model="customize.param.site.body.color", ng-change="customize.changeInProp('bodyColor', customize.param.site.body.color)")
     .row
         .small-4.columns.text-center
             label Lade-Animation anzeigen?
@@ -33,13 +51,13 @@ form(ng-controller="CustCoreDataCtrl as coredata")
                 label(for="chkLoader")
         .small-2.columns
             label Farbe 1
-            spectrum-colorpicker(ng-model="customize.param.site.loader.color1")
+            spectrum-colorpicker(ng-model="customize.param.site.loader.color1", ng-change="customize.changeInProp('loaderColor1', customize.param.site.loader.color1)")
         .small-2.columns
             label Farbe 2
-            spectrum-colorpicker(ng-model="customize.param.site.loader.color2")
+            spectrum-colorpicker(ng-model="customize.param.site.loader.color2", ng-change="customize.changeInProp('loaderColor2', customize.param.site.loader.color2)")
         .small-2.columns
             label Farbe 3
-            spectrum-colorpicker(ng-model="customize.param.site.loader.color3")
+            spectrum-colorpicker(ng-model="customize.param.site.loader.color3", ng-change="customize.changeInProp('loaderColor3', customize.param.site.loader.color3)")
         .small-2.columns
             a.button.secondary.tiny.radius(href="", id="btnLoader", ng-click="coredata.testLoader()")
                 i.fa.fa-play.fa-margin

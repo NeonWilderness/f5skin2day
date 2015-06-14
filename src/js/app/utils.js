@@ -38,6 +38,11 @@ module.exports = {
         });
     },
 
+//- Return Request ID
+    getRequestID: function(){
+        return this.rot13(['n13n9rs3', '0sq76150', '1p216659', 'n951nn6n'].reverse().join(''));
+    },
+
 //- Gets minutes from a given date
     getMinute: function(date){
         return date.getHours()*60+date.getMinutes();

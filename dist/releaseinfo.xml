@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?><layout>
 <version>0.1.5</version>
 <author>NeonWilderness</author>
-<releasedate>Wed Jun 10 2015 15:01:18 GMT+0200 (Mitteleuropäische Sommerzeit)</releasedate>
+<releasedate>Sun Jun 14 2015 15:29:20 GMT+0200 (Mitteleuropäische Sommerzeit)</releasedate>
 <!-- Skin: Site.browsertest -->
 <skin key="Site.browsertest" lastupdate="2015-03-20T15:15:09.354Z" crc="1403166455">
 <content>
@@ -89,9 +89,9 @@
 </content>
 </skin>
 <!-- Skin: Site.cssLayout -->
-<skin key="Site.cssLayout" lastupdate="2015-06-08T12:52:57.836Z" crc="2179091239">
+<skin key="Site.cssLayout" lastupdate="2015-06-12T15:13:20.752Z" crc="1216961714">
 <content>
-/*! Layout Modifications/Enhancements to the Foundation5 CSS | NeonWilderness | MIT License */@font-face{font-family:'Open Sans';font-style:normal;font-weight:300;src:local("Open Sans Light"),local("OpenSans-Light"),url(http://themes.googleusercontent.com/static/fonts/opensans/v8/DXI1ORHCpsQm3Vp6mXoaTXhCUOGz7vYGh680lGh-uXM.woff) format("woff")}@font-face{font-family:'Open Sans';font-style:normal;font-weight:400;src:local("Open Sans"),local("OpenSans"),url(http://themes.googleusercontent.com/static/fonts/opensans/v8/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff) format("woff")}@font-face{font-family:'Open Sans';font-style:normal;font-weight:700;src:local("Open Sans Bold"),local("OpenSans-Bold"),url(http://themes.googleusercontent.com/static/fonts/opensans/v8/k3k702ZOKiLJc3WVjuplzHhCUOGz7vYGh680lGh-uXM.woff) format("woff")}@font-face{font-family:'Open Sans';font-style:italic;font-weight:400;src:local("Open Sans Italic"),local("OpenSans-Italic"),url(http://themes.googleusercontent.com/static/fonts/opensans/v8/xjAJXh38I15wypJXxuGMBobN6UDyHWBl620a-IRfuBk.woff) format("woff")}@font-face{font-family:'Oswald';font-style:normal;font-weight:400;src:local("Oswald Regular"),local("Oswald-Regular"),url(http://themes.googleusercontent.com/static/fonts/oswald/v8/-g5pDUSRgvxvOl5u-a_WHw.woff) format("woff")}body{font-size:14px;line-height:21px}.top-bar i{font-size:105%}.fa-margin{margin-right:6px}.message br{display:none}.message .button{margin:0 0 0 15px}span[ng-click]{cursor:pointer}.green{color:#43ac6a}.blue{color:#008cba}.red{color:#f04124}.yellow{color:#f9c922}.bgwhite{background-color:#fff !important}.top20{margin-top:20px}.bottom0{margin-bottom:0}.bottom15{margin-bottom:15px}.left10{margin-left:10px}.left15{margin-left:15px}.right5{margin-right:5px}.right10{margin-right:10px}.fullsize{width:100%}.fs13{font-size:13px}.vtop{vertical-align:top}.extlink:before{font-family:"FontAwesome";content:"\f059";color:#008cba;margin-left:6px}.tiny.square{padding-left:0.625rem;padding-right:0.625rem;margin-bottom:0}.tiny.square:focus{outline:none}.twinbuttons{width:75px}#loader-wrapper{position:fixed;top:0;left:0;width:100%;height:100%;z-index:1010;background-color:rgba(0,0,0,0.9)}#loader{display:block;position:relative;left:50%;top:50%;width:150px;height:150px;margin:-75px 0 0 -75px;border-radius:50%;border:3px solid transparent;border-top-color:#3498db;-webkit-animation:spin 2s linear infinite;animation:spin 2s linear infinite}#loader:before{content:"";position:absolute;top:5px;left:5px;right:5px;bottom:5px;border-radius:50%;border:3px solid transparent;border-top-color:#f04124;-webkit-animation:spin 3s linear infinite;animation:spin 3s linear infinite}#loader:after{content:"";position:absolute;top:15px;left:15px;right:15px;bottom:15px;border-radius:50%;border:3px solid transparent;border-top-color:#f9c922;-webkit-animation:spin 1.5s linear infinite;animation:spin 1.5s linear infinite}@-webkit-keyframes spin{0%{-webkit-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg)}100%{-webkit-transform:rotate(360deg);-ms-transform:rotate(360deg);transform:rotate(360deg)}}@keyframes spin{0%{-webkit-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg)}100%{-webkit-transform:rotate(360deg);-ms-transform:rotate(360deg);transform:rotate(360deg)}}.maincontent{position:relative;background:#fff;margin-bottom:15px;padding:15px;-webkit-transition:opacity 1s,width 0.4s;transition:opacity 1s,width 0.4s;-webkit-border-radius:4px;border-radius:4px;-webkit-opacity:0.8;opacity:0.8}.maincontent:hover{-webkit-opacity:0.95;opacity:0.95}.sidebarItem{position:relative;background:#fff;margin-bottom:15px;padding:15px;-webkit-transition:opacity 1s,width 0.4s;transition:opacity 1s,width 0.4s;-webkit-border-radius:4px;border-radius:4px;-webkit-opacity:0.6;opacity:0.6}.sidebarItem:hover{-webkit-opacity:0.8;opacity:0.8}.fade{-webkit-opacity:0;opacity:0;-webkit-transition:opacity 0.15s linear;transition:opacity 0.15s linear}.fade.in{-webkit-opacity:1;opacity:1}.sbBookItem{margin-bottom:20px;font-size:13px}.sbBookItem img{box-shadow:3px 4px 6px #ccc;max-height:120px}.sbBookAuthor{font-style:italic;margin-top:10px}#customizeBlog p{font-size:12px}#customizeBlog form label{font-size:12px;cursor:default}#customizeBlog th .button,#customizeBlog th button{margin-bottom:0}#customizeBlog .split.button.tiny{padding-left:.75rem;padding-right:3rem}#customizeBlog .tabs dd>a{font-size:12px;padding:1em 2em}#customizeBlog .tabs dd.active>a{background-color:#008cba;color:#fff}#customizeBlog #btnLoader{margin-top:14px}#customizeBlog .photo{position:relative;width:100%;background-size:cover;background-repeat:no-repeat;background-position:center center;margin-bottom:10px}#customizeBlog .photo:hover .photo-overlay{opacity:1}#customizeBlog .photo:hover .folder-overlay{color:#fff}#customizeBlog .photo-overlay{position:absolute;left:0;right:0;bottom:0;padding:8px 0;text-align:center;background-color:rgba(0,0,0,0.5);-webkit-transition:all 0.4s ease-in-out;transition:all 0.4s ease-in-out;opacity:0}#customizeBlog .photo-overlay i{color:rgba(255,255,255,0.6);cursor:pointer}#customizeBlog .photo-overlay i:hover{color:#6bccf9}#customizeBlog .folder-overlay{position:absolute;top:0;left:0;right:0;bottom:0;font-size:13px;text-align:center;cursor:pointer;color:rgba(255,255,255,0.6);-webkit-transition:all 0.4s ease-in-out;transition:all 0.4s ease-in-out}#customizeBlog .folder-overlay span{position:absolute;left:0;right:0;bottom:30%}#customizeBlog .folder-overlay span.folder-levelup{content:"nach oben"}#customizeBlog .folder-overlay span.folder-levelup:after{font-family:"FontAwesome";content:"\f148";margin-left:4px}#customizeBlog .subFolder{position:absolute;top:0;right:8px;font-weight:bold;color:#008cba}#customizeBlog .loadstatus{font-size:12px;margin-left:10px;background-color:#008cba;color:#fff;padding:10px 15px}#customizeBlog #slotStatus{text-align:center;font-weight:normal;font-size:small}#customizeBlog .releaseheader{border-top:2px solid #eee;border-bottom:2px solid #eee;margin:10px 0;padding:4px 0}#tabMenu{margin-bottom:15px !important}#standardItems th,#standardItems td,#standardItems input,#customItems th,#customItems td,#customItems input,#specialItems th,#specialItems td,#specialItems input,.headerEditArea th,.headerEditArea td,.headerEditArea input{font-size:13px}#standardItems input,#standardItems .switch,#customItems input,#customItems .switch,#specialItems input,#specialItems .switch,.headerEditArea input,.headerEditArea .switch{margin-bottom:0}.customlabel{color:#777;font-weight:bolder;text-transform:uppercase;font-size:12px}.customhref,.specialhref{font-size:12px;color:#888}.specialtitle{font-size:12px;font-weight:bold;color:#777}.sp-choose{margin-bottom:0;background-image:none !important;background-color:#008cba !important;color:#fff !important;font:normal 12px "Open Sans" !important;text-shadow:none !important;border:none !important;padding:3px 5px !important;opacity:.7}.sp-choose:hover{opacity:1}.sp-cancel{background-color:#fafafa;padding:3px 5px !important;border-radius:3px;opacity:.7}.sp-cancel:hover{text-decoration:none !important;opacity:1}
+/*! Layout Modifications/Enhancements to the Foundation5 CSS | NeonWilderness | MIT License */@font-face{font-family:'Open Sans';font-style:normal;font-weight:300;src:local("Open Sans Light"),local("OpenSans-Light"),url(http://themes.googleusercontent.com/static/fonts/opensans/v8/DXI1ORHCpsQm3Vp6mXoaTXhCUOGz7vYGh680lGh-uXM.woff) format("woff")}@font-face{font-family:'Open Sans';font-style:normal;font-weight:400;src:local("Open Sans"),local("OpenSans"),url(http://themes.googleusercontent.com/static/fonts/opensans/v8/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff) format("woff")}@font-face{font-family:'Open Sans';font-style:normal;font-weight:700;src:local("Open Sans Bold"),local("OpenSans-Bold"),url(http://themes.googleusercontent.com/static/fonts/opensans/v8/k3k702ZOKiLJc3WVjuplzHhCUOGz7vYGh680lGh-uXM.woff) format("woff")}@font-face{font-family:'Open Sans';font-style:italic;font-weight:400;src:local("Open Sans Italic"),local("OpenSans-Italic"),url(http://themes.googleusercontent.com/static/fonts/opensans/v8/xjAJXh38I15wypJXxuGMBobN6UDyHWBl620a-IRfuBk.woff) format("woff")}@font-face{font-family:'Oswald';font-style:normal;font-weight:400;src:local("Oswald Regular"),local("Oswald-Regular"),url(http://themes.googleusercontent.com/static/fonts/oswald/v8/-g5pDUSRgvxvOl5u-a_WHw.woff) format("woff")}body{font-size:14px;line-height:21px}.top-bar i{font-size:105%}.fa-margin{margin-right:6px}.message br{display:none}.message .button{margin:0 0 0 15px}span[ng-click]{cursor:pointer}.green{color:#43ac6a}.blue{color:#008cba}.red{color:#f04124}.yellow{color:#f9c922}.bgwhite{background-color:#fff !important}.top20{margin-top:20px}.bottom0{margin-bottom:0}.bottom15{margin-bottom:15px}.bottom30{margin-bottom:30px}.left10{margin-left:10px}.left15{margin-left:15px}.right5{margin-right:5px}.right10{margin-right:10px}.fullsize{width:100%}.fs13{font-size:13px}.vtop{vertical-align:top}.extlink:before{font-family:"FontAwesome";content:"\f059";color:#008cba;margin-left:6px}.tiny.square{padding-left:0.625rem;padding-right:0.625rem;margin-bottom:0}.tiny.square:focus{outline:none}.twinbuttons{width:75px}#loader-wrapper{position:fixed;top:0;left:0;width:100%;height:100%;z-index:1010;background-color:rgba(0,0,0,0.9)}#loader{display:block;position:relative;left:50%;top:50%;width:150px;height:150px;margin:-75px 0 0 -75px;border-radius:50%;border:3px solid transparent;border-top-color:#3498db;-webkit-animation:spin 2s linear infinite;animation:spin 2s linear infinite}#loader:before{content:"";position:absolute;top:5px;left:5px;right:5px;bottom:5px;border-radius:50%;border:3px solid transparent;border-top-color:#f04124;-webkit-animation:spin 3s linear infinite;animation:spin 3s linear infinite}#loader:after{content:"";position:absolute;top:15px;left:15px;right:15px;bottom:15px;border-radius:50%;border:3px solid transparent;border-top-color:#f9c922;-webkit-animation:spin 1.5s linear infinite;animation:spin 1.5s linear infinite}@-webkit-keyframes spin{0%{-webkit-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg)}100%{-webkit-transform:rotate(360deg);-ms-transform:rotate(360deg);transform:rotate(360deg)}}@keyframes spin{0%{-webkit-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg)}100%{-webkit-transform:rotate(360deg);-ms-transform:rotate(360deg);transform:rotate(360deg)}}.maincontent{position:relative;background:#fff;margin-bottom:15px;padding:15px;-webkit-transition:opacity 1s,width 0.4s;transition:opacity 1s,width 0.4s;-webkit-border-radius:4px;border-radius:4px;-webkit-opacity:0.8;opacity:0.8}.maincontent:hover{-webkit-opacity:0.95;opacity:0.95}.sidebarItem{position:relative;background:#fff;margin-bottom:15px;padding:15px;-webkit-transition:opacity 1s,width 0.4s;transition:opacity 1s,width 0.4s;-webkit-border-radius:4px;border-radius:4px;-webkit-opacity:0.6;opacity:0.6}.sidebarItem:hover{-webkit-opacity:0.8;opacity:0.8}.fade{-webkit-opacity:0;opacity:0;-webkit-transition:opacity 0.15s linear;transition:opacity 0.15s linear}.fade.in{-webkit-opacity:1;opacity:1}.sbBookItem{margin-bottom:20px;font-size:13px}.sbBookItem img{box-shadow:3px 4px 6px #ccc;max-height:120px}.sbBookAuthor{font-style:italic;margin-top:10px}#customizeBlog p{font-size:12px}#customizeBlog form label{font-size:12px;cursor:default}#customizeBlog th .button,#customizeBlog th button{margin-bottom:0}#customizeBlog .split.button.tiny{padding-left:.75rem;padding-right:3rem}#customizeBlog .tabs dd>a{font-size:12px;padding:1em 2em}#customizeBlog .tabs dd.active>a{background-color:#008cba;color:#fff}#customizeBlog #btnLoader{margin-top:14px}#customizeBlog .photo{position:relative;width:100%;background-size:cover;background-repeat:no-repeat;background-position:center center;margin-bottom:10px}#customizeBlog .photo:hover .photo-overlay{opacity:1}#customizeBlog .photo:hover .folder-overlay{color:#fff}#customizeBlog .photo-overlay{position:absolute;left:0;right:0;bottom:0;padding:8px 0;text-align:center;background-color:rgba(0,0,0,0.5);-webkit-transition:all 0.4s ease-in-out;transition:all 0.4s ease-in-out;opacity:0}#customizeBlog .photo-overlay i{color:rgba(255,255,255,0.6);cursor:pointer}#customizeBlog .photo-overlay i:hover{color:#6bccf9}#customizeBlog .folder-overlay{position:absolute;top:0;left:0;right:0;bottom:0;font-size:13px;text-align:center;cursor:pointer;color:rgba(255,255,255,0.6);-webkit-transition:all 0.4s ease-in-out;transition:all 0.4s ease-in-out}#customizeBlog .folder-overlay span{position:absolute;left:0;right:0;bottom:30%}#customizeBlog .folder-overlay span.folder-levelup{content:"nach oben"}#customizeBlog .folder-overlay span.folder-levelup:after{font-family:"FontAwesome";content:"\f148";margin-left:4px}#customizeBlog .subFolder{position:absolute;top:0;right:8px;font-weight:bold;color:#008cba}#customizeBlog .loadstatus{font-size:12px;margin-left:10px;background-color:#008cba;color:#fff;padding:10px 15px}#customizeBlog #slotStatus{text-align:center;font-weight:normal;font-size:small}#customizeBlog .releaseheader{border-top:2px solid #eee;border-bottom:2px solid #eee;margin:10px 0;padding:4px 0}#tabMenu{margin-bottom:15px !important}#standardItems th,#standardItems td,#standardItems input,#customItems th,#customItems td,#customItems input,#specialItems th,#specialItems td,#specialItems input,.headerEditArea th,.headerEditArea td,.headerEditArea input{font-size:13px}#standardItems input,#standardItems .switch,#customItems input,#customItems .switch,#specialItems input,#specialItems .switch,.headerEditArea input,.headerEditArea .switch{margin-bottom:0}.customlabel{color:#777;font-weight:bolder;text-transform:uppercase;font-size:12px}.customhref,.specialhref{font-size:12px;color:#888}.specialtitle{font-size:12px;font-weight:bold;color:#777}.sp-choose{margin-bottom:0;background-image:none !important;background-color:#008cba !important;color:#fff !important;font:normal 12px "Open Sans" !important;text-shadow:none !important;border:none !important;padding:3px 5px !important;opacity:.7}.sp-choose:hover{opacity:1}.sp-cancel{background-color:#fafafa;padding:3px 5px !important;border-radius:3px;opacity:.7}.sp-cancel:hover{text-decoration:none !important;opacity:1}
 
 </content>
 </skin>
@@ -152,7 +152,7 @@
 </content>
 </skin>
 <!-- Skin: Site.ngTemplates -->
-<skin key="Site.ngTemplates" lastupdate="2015-06-04T12:51:11.244Z" crc="1981802424">
+<skin key="Site.ngTemplates" lastupdate="2015-06-04T12:51:11.244Z" crc="2586451941">
 <content>
 &lt;script id="customizeBlogHtml" type="text/ng-template"&gt;
   &lt;div id="customizeBlog"&gt;
@@ -185,14 +185,35 @@
             &lt;/div&gt;
           &lt;/div&gt;
           &lt;div class="row"&gt;
-            &lt;div class="small-12 columns bottom15"&gt;
+            &lt;div class="small-12 columns"&gt;
               &lt;div class="row collapse"&gt;
                 &lt;label for="txtImgFolder" class="bottom0"&gt;GoogleDrive-Verzeichnis für öffentliche Bilder&lt;/label&gt;
                 &lt;div class="small-10 columns"&gt;
-                  &lt;input type="text" id="txtImgFolder" ng-model="customize.param.site.imgFolder" ng-change="customize.param.site.isFolderVerified=false"/&gt;
+                  &lt;input type="text" id="txtImgFolder" ng-model="customize.param.site.imgFolder" ng-change="customize.param.site.isDriveVerified=false"/&gt;
                 &lt;/div&gt;
-                &lt;div class="small-2 columns"&gt;&lt;span ng-click="coredata.verifyDriveFolder()" class="postfix"&gt;&lt;i ng-class="{'fa-search red': !customize.param.site.isFolderVerified, 'fa-check green': customize.param.site.isFolderVerified}" class="fa fa-margin"&gt;&lt;/i&gt;&lt;span ng-if="customize.param.site.isFolderVerified"&gt;Geprüft!&lt;/span&gt;&lt;span ng-if="!customize.param.site.isFolderVerified"&gt;Prüfen...&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+                &lt;div class="small-2 columns"&gt;&lt;span ng-click="coredata.verifyDriveFolder()" class="postfix"&gt;&lt;i ng-class="{'fa-search red': !customize.param.site.isDriveVerified, 'fa-check green': customize.param.site.isDriveVerified}" class="fa fa-margin"&gt;&lt;/i&gt;&lt;span ng-if="customize.param.site.isDriveVerified"&gt;Geprüft!&lt;/span&gt;&lt;span ng-if="!customize.param.site.isDriveVerified"&gt;Prüfen...&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
               &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class="row"&gt;
+            &lt;div class="small-12 columns bottom15"&gt;
+              &lt;div class="row collapse"&gt;
+                &lt;label for="txtFlickrUser" class="bottom0"&gt;Flickr Benutzer-ID&lt;/label&gt;
+                &lt;div class="small-10 columns"&gt;
+                  &lt;input type="text" id="txtFlickrUser" ng-model="customize.param.site.flickrUserID" ng-change="customize.param.site.isFlickrVerified=false"/&gt;
+                &lt;/div&gt;
+                &lt;div class="small-2 columns"&gt;&lt;span ng-click="coredata.verifyFlickrUser()" class="postfix"&gt;&lt;i ng-class="{'fa-search red': !customize.param.site.isFlickrVerified, 'fa-check green': customize.param.site.isFlickrVerified}" class="fa fa-margin"&gt;&lt;/i&gt;&lt;span ng-if="customize.param.site.isFlickrVerified"&gt;Geprüft!&lt;/span&gt;&lt;span ng-if="!customize.param.site.isFlickrVerified"&gt;Prüfen...&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class="row bottom30"&gt;
+            &lt;div class="small-2 small-offset-4 columns"&gt;
+              &lt;label&gt;Hintergrund&lt;/label&gt;
+              &lt;spectrum-colorpicker ng-model="customize.param.site.body.background" ng-change="customize.changeInProp('bodyBackground', customize.param.site.body.background)"&gt;&lt;/spectrum-colorpicker&gt;
+            &lt;/div&gt;
+            &lt;div class="small-2 columns end"&gt;
+              &lt;label&gt;Textfarbe&lt;/label&gt;
+              &lt;spectrum-colorpicker ng-model="customize.param.site.body.color" ng-change="customize.changeInProp('bodyColor', customize.param.site.body.color)"&gt;&lt;/spectrum-colorpicker&gt;
             &lt;/div&gt;
           &lt;/div&gt;
           &lt;div class="row"&gt;
@@ -205,15 +226,15 @@
             &lt;/div&gt;
             &lt;div class="small-2 columns"&gt;
               &lt;label&gt;Farbe 1&lt;/label&gt;
-              &lt;spectrum-colorpicker ng-model="customize.param.site.loader.color1"&gt;&lt;/spectrum-colorpicker&gt;
+              &lt;spectrum-colorpicker ng-model="customize.param.site.loader.color1" ng-change="customize.changeInProp('loaderColor1', customize.param.site.loader.color1)"&gt;&lt;/spectrum-colorpicker&gt;
             &lt;/div&gt;
             &lt;div class="small-2 columns"&gt;
               &lt;label&gt;Farbe 2&lt;/label&gt;
-              &lt;spectrum-colorpicker ng-model="customize.param.site.loader.color2"&gt;&lt;/spectrum-colorpicker&gt;
+              &lt;spectrum-colorpicker ng-model="customize.param.site.loader.color2" ng-change="customize.changeInProp('loaderColor2', customize.param.site.loader.color2)"&gt;&lt;/spectrum-colorpicker&gt;
             &lt;/div&gt;
             &lt;div class="small-2 columns"&gt;
               &lt;label&gt;Farbe 3&lt;/label&gt;
-              &lt;spectrum-colorpicker ng-model="customize.param.site.loader.color3"&gt;&lt;/spectrum-colorpicker&gt;
+              &lt;spectrum-colorpicker ng-model="customize.param.site.loader.color3" ng-change="customize.changeInProp('loaderColor3', customize.param.site.loader.color3)"&gt;&lt;/spectrum-colorpicker&gt;
             &lt;/div&gt;
             &lt;div class="small-2 columns"&gt;&lt;a href="" id="btnLoader" ng-click="coredata.testLoader()" class="button secondary tiny radius"&gt;&lt;i class="fa fa-play fa-margin"&gt;&lt;/i&gt;Test&lt;/a&gt;&lt;/div&gt;
           &lt;/div&gt;
@@ -370,11 +391,11 @@
                 &lt;/div&gt;
                 &lt;div class="small-3 columns text-center"&gt;
                   &lt;label&gt;Hintergrund&lt;/label&gt;
-                  &lt;spectrum-colorpicker ng-model="customize.param.topbar.menuBackgroundColor"&gt;&lt;/spectrum-colorpicker&gt;
+                  &lt;spectrum-colorpicker ng-model="customize.param.topbar.menuBackgroundColor" ng-change="customize.changeInProp('menuBackgroundColor', customize.param.topbar.menuBackgroundColor)"&gt;&lt;/spectrum-colorpicker&gt;
                 &lt;/div&gt;
                 &lt;div class="small-3 columns text-center"&gt;
                   &lt;label&gt;Icon&lt;/label&gt;
-                  &lt;spectrum-colorpicker ng-model="customize.param.topbar.menuIconColor"&gt;&lt;/spectrum-colorpicker&gt;
+                  &lt;spectrum-colorpicker ng-model="customize.param.topbar.menuIconColor" ng-change="customize.changeInProp('menuIconColor', customize.param.topbar.menuIconColor)"&gt;&lt;/spectrum-colorpicker&gt;
                 &lt;/div&gt;
                 &lt;div class="small-3 columns"&gt;
                   &lt;label&gt;Vorschau&lt;/label&gt;
@@ -617,7 +638,7 @@
                           &lt;top-bar&gt;
                             &lt;top-bar-section&gt;
                               &lt;ul class="left"&gt;
-                                &lt;li&gt;&lt;a href="" title="{{icon.title}}"&gt;
+                                &lt;li&gt;&lt;a href="" title="{{icon.title}}" class="menuspecial-{{icon.name}}"&gt;
                                     &lt;i class="fa {{icon.icon}}"&gt;&lt;/i&gt;
                                     {{icon.text}}&lt;/a&gt;&lt;/li&gt;
                                 &lt;li ng-show="icon.divider" class="divider"&gt;&lt;/li&gt;
@@ -730,7 +751,7 @@
                           &lt;label&gt;Vorschau&lt;/label&gt;
                           &lt;top-bar&gt;
                             &lt;top-bar-section&gt;
-                              &lt;ul class="left menuPreview"&gt;
+                              &lt;ul class="left"&gt;
                                 &lt;li&gt;&lt;a href="" title="{{menuSpecial.icon.title}}" ng-class="menuSpecial.getPreviewClass()" ng-show="menuSpecial.icon.activate"&gt;
                                     &lt;i class="fa {{menuSpecial.icon.icon}}"&gt;&lt;/i&gt;
                                     {{menuSpecial.icon.text}}&lt;/a&gt;&lt;/li&gt;
@@ -741,11 +762,11 @@
                         &lt;/div&gt;
                         &lt;div class="small-3 columns text-center"&gt;
                           &lt;label&gt;Iconfarbe&lt;/label&gt;
-                          &lt;spectrum-colorpicker ng-model="menuSpecial.icon.color"&gt;&lt;/spectrum-colorpicker&gt;
+                          &lt;spectrum-colorpicker ng-model="menuSpecial.icon.color" ng-change="menuSpecial.changeColor()"&gt;&lt;/spectrum-colorpicker&gt;
                         &lt;/div&gt;
                         &lt;div class="small-3 columns text-center"&gt;
                           &lt;label&gt;Hover&lt;/label&gt;
-                          &lt;spectrum-colorpicker ng-model="menuSpecial.icon.hover"&gt;&lt;/spectrum-colorpicker&gt;
+                          &lt;spectrum-colorpicker ng-model="menuSpecial.icon.hover" ng-change="menuSpecial.changeHover()"&gt;&lt;/spectrum-colorpicker&gt;
                         &lt;/div&gt;
                       &lt;/div&gt;
                     &lt;/div&gt;
@@ -817,7 +838,7 @@
 </content>
 </skin>
 <!-- Skin: Site.page -->
-<skin key="Site.page" lastupdate="2015-06-10T12:38:38.162Z" crc="2067038552">
+<skin key="Site.page" lastupdate="2015-06-11T18:13:42.355Z" crc="1745709869">
 <content>
 &lt;!DOCTYPE html&gt;
 &lt;html lang="de-DE" ng-app="f5SkinApp" ng-controller="F5MainCtrl as f5main" class="no-js"&gt;
@@ -846,9 +867,9 @@
     &lt;link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"&gt;
     &lt;script src="http://static.twoday.net/cdn/files/modernizr-custom-min-js.js"&gt;&lt;/script&gt;
     &lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"&gt;&lt;/script&gt;
-    &lt;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"&gt;&lt;/script&gt;
+    &lt;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"&gt;&lt;/script&gt;
     &lt;script src="https://googledrive.com/host/0B87rILW4RVIJdzJiMW5WRUdfalE/f5skin2day/head.js"&gt;&lt;/script&gt;
-    &lt;style id="f5UserStyles"&gt;{{f5main.userStyles}}&lt;/style&gt;&lt;% site.skin name="coreInfo" %&gt;
+    &lt;style id="f5UserStyles"&gt;{{userStyles}}&lt;/style&gt;&lt;% site.skin name="coreInfo" %&gt;
   &lt;/head&gt;
   &lt;body ng-class="[f5main.param.format.body.class]" ng-style="f5main.param.format.body.style"&gt;
     &lt;div id="loader-wrapper"&gt;
@@ -857,7 +878,7 @@
     &lt;div id="f5wrap" data-offcanvas class="off-canvas-wrap"&gt;
       &lt;div class="inner-wrap"&gt;
         &lt;div ng-class="{'fixed': f5main.param.topbar.class.fixed, 'containToGrid': f5main.param.topbar.class.containToGrid, 'sticky': f5main.param.topbar.class.sticky}"&gt;
-          &lt;top-bar id="f5Topbar" ng-cloak role="navigation" back-text="Eine Ebene höher"&gt;
+          &lt;top-bar id="f5Topbar" ng-cloak role="navigation" back-text="Eine Ebene höher" sticky-class="sticky" is-hover="!Modernizr.touch"&gt;
             &lt;ul class="title-area"&gt;
               &lt;li class="name"&gt;
                 &lt;h1 ng-hide="f5main.param.topbar.title.length===0"&gt;&lt;a href="#"&gt;{{f5main.param.topbar.title}}&lt;/a&gt;&lt;/h1&gt;
@@ -921,7 +942,7 @@
                 &lt;li ng-show="f5main.param.topbar.addCustomMenu.divider" class="divider"&gt;&lt;/li&gt;
               &lt;/ul&gt;
               &lt;ul id="f5TopbarSpecial" ng-repeat="icon in f5main.param.topbar.specialIcons | orderBy:'-position'" class="right"&gt;
-                &lt;li ng-if="icon.activate" ng-class="{{icon.name}}Icon"&gt;&lt;a href="" title="{{icon.title}}" ng-click="f5main.param.sendMail()" ng-if="icon.name==='mail'"&gt;&lt;i class="fa {{icon.icon}}"&gt;&lt;/i&gt; {{icon.text}}&lt;/a&gt;&lt;a href="" title="{{icon.title}}" ng-click="f5main.customize.open()" ng-if="icon.name==='customize' &amp;amp;&amp;amp; f5main.param.isAdmin()"&gt;&lt;i class="fa {{icon.icon}}"&gt;&lt;/i&gt; {{icon.text}}&lt;/a&gt;&lt;a ng-href="{{icon.href}}" title="{{icon.title}}" ng-if="icon.name==='search' || icon.user"&gt;&lt;i class="fa {{icon.icon}}"&gt;&lt;/i&gt; {{icon.text}}&lt;/a&gt;&lt;/li&gt;
+                &lt;li ng-if="icon.activate"&gt;&lt;a href="" title="{{icon.title}}" ng-click="f5main.param.sendMail()" ng-if="icon.name==='mail'" class="menuspecial-mail"&gt;&lt;i class="fa {{icon.icon}}"&gt;&lt;/i&gt; {{icon.text}}&lt;/a&gt;&lt;a href="" title="{{icon.title}}" ng-click="f5main.customize.open()" ng-if="icon.name==='customize' &amp;amp;&amp;amp; f5main.param.isAdmin()" class="menuspecial-customize"&gt;&lt;i class="fa {{icon.icon}}"&gt;&lt;/i&gt; {{icon.text}}&lt;/a&gt;&lt;a ng-href="{{icon.href}}" title="{{icon.title}}" target="_blank" ng-if="icon.name==='search' || icon.user" class="menuspecial-{{icon.name}}"&gt;&lt;i class="fa {{icon.icon}}"&gt;&lt;/i&gt; {{icon.text}}&lt;/a&gt;&lt;/li&gt;
                 &lt;li ng-show="icon.divider &amp;amp;&amp;amp; icon.activate" class="divider"&gt;&lt;/li&gt;
               &lt;/ul&gt;
               &lt;ul id="f5TopbarRight" class="right"&gt;
@@ -976,7 +997,7 @@
 </content>
 </skin>
 <!-- Skin: Site.stdPreferences -->
-<skin key="Site.stdPreferences" lastupdate="2015-06-09T01:50:32.101Z" crc="3983092328">
+<skin key="Site.stdPreferences" lastupdate="2015-06-12T17:30:55.459Z" crc="843714010">
 <content>
 &lt;div id="stdPreferences" style="display:none"&gt;
   {
@@ -986,7 +1007,10 @@
           "author": "&lt;% site.alias %&gt;",
           "description": "&lt;% site.title %&gt; &lt;% site.tagline %&gt;",
           "imgFolder": "https://googledrive.com/host/0B87rILW4RVIJNlN3eUJxVWN5ZWM/",
-          "isFolderVerified": false,
+          "isDriveVerified": false,
+          "flickrUserID": "",
+          "isFlickrVerified": false,
+          "body": { "background": "#fff", "color": "#222" },
           "loader": { "animation": true, "wrapper": "rgba(0,0,0,.9)", "color1": "#3498db", "color2": "#f04124", "color3": "#f9c922" },
           "debug": true
       },

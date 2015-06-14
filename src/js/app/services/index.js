@@ -12,4 +12,4 @@ require('angular')
     .factory('TwodaySkin', ['$http', '$q', require('./TwodaySkin')])
     .factory('Preferences', ['CacheItem', 'TwodaySkin', 'toastr', require('./Preferences')])
     .factory('UpdateCheck', ['$http', '$q', 'Preferences', 'toastr', require('./UpdateCheck')])
-    .factory('UserStyles', ['$rootScope', require('./UserStyles')]);
+    .factory('UserStyles', ['$rootScope', 'toastr', require('./UserStyles')]);

@@ -1,7 +1,7 @@
 'use strict';
 var utils = require('../utils.js');
 
-module.exports = function($scope, $rootScope){
+module.exports = function($scope, $rootScope, UserStyles){
 
     var vm = this;
 
@@ -13,15 +13,23 @@ module.exports = function($scope, $rootScope){
     };
 
     vm.getPreviewClass = function(){
-        return (typeof vm.icon === "undefined" ? "" : vm.icon.name + "Preview");
+        return (typeof vm.icon === 'undefined' ? '' : 'menuspecial-'+vm.icon.name);
     };
 
     vm.isKeyLocked = function(){
-        return (typeof vm.icon === "undefined" ? false : !vm.icon.user);
+        return (typeof vm.icon === 'undefined' ? false : !vm.icon.user);
     };
 
     vm.isUrlLocked = function(){
-        return (typeof vm.icon === "undefined" ? false : vm.icon.name==="customize");
+        return (typeof vm.icon === 'undefined' ? false : vm.icon.name==='customize');
+    };
+
+    vm.changeColor = function(){
+        UserStyles.setRule('.menuspecial-'+vm.icon.name+' i', UserStyles.formatRule('color', vm.icon.color, true)).pushCSS();
+    };
+
+    vm.changeHover = function(){
+        UserStyles.setRule('li:hover .menuspecial-'+vm.icon.name+' i', UserStyles.formatRule('color', vm.icon.hover, true)).pushCSS();
     };
 
     vm.create = function(){

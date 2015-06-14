@@ -24,7 +24,7 @@ form(ng-controller="MenuSpecialItemsCtrl as menuSpecial")
                                 label(for="icn{{icon.name}}")
                         td
                             top-bar: top-bar-section: ul.left
-                                li: a(href="", title="{{icon.title}}")
+                                li: a(href="", title="{{icon.title}}", class="menuspecial-{{icon.name}}")
                                     <i class="fa {{icon.icon}}"></i>
                                     | {{icon.text}}
                                 li.divider(ng-show="icon.divider")
@@ -89,14 +89,14 @@ form(ng-controller="MenuSpecialItemsCtrl as menuSpecial")
                     .row
                         .small-6.columns
                             label Vorschau
-                            top-bar: top-bar-section: ul.left.menuPreview
+                            top-bar: top-bar-section: ul.left
                                 li: a(href="", title="{{menuSpecial.icon.title}}", ng-class="menuSpecial.getPreviewClass()", ng-show="menuSpecial.icon.activate")
                                     <i class="fa {{menuSpecial.icon.icon}}"></i>
                                     | {{menuSpecial.icon.text}}
                                 li.divider(ng-show="menuSpecial.icon.divider && menuSpecial.icon.activate")
                         .small-3.columns.text-center
                             label Iconfarbe
-                            spectrum-colorpicker(ng-model="menuSpecial.icon.color")
+                            spectrum-colorpicker(ng-model="menuSpecial.icon.color", ng-change="menuSpecial.changeColor()")
                         .small-3.columns.text-center
                             label Hover
-                            spectrum-colorpicker(ng-model="menuSpecial.icon.hover")
+                            spectrum-colorpicker(ng-model="menuSpecial.icon.hover", ng-change="menuSpecial.changeHover()")

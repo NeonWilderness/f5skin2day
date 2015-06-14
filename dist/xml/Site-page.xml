@@ -1,5 +1,5 @@
 <!-- Skin: Site.page -->
-<skin key="Site.page" lastupdate="2015-06-10T12:38:38.162Z" crc="2067038552">
+<skin key="Site.page" lastupdate="2015-06-11T18:13:42.355Z" crc="1745709869">
 <content>
 &lt;!DOCTYPE html&gt;
 &lt;html lang="de-DE" ng-app="f5SkinApp" ng-controller="F5MainCtrl as f5main" class="no-js"&gt;
@@ -28,9 +28,9 @@
     &lt;link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"&gt;
     &lt;script src="http://static.twoday.net/cdn/files/modernizr-custom-min-js.js"&gt;&lt;/script&gt;
     &lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"&gt;&lt;/script&gt;
-    &lt;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"&gt;&lt;/script&gt;
+    &lt;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"&gt;&lt;/script&gt;
     &lt;script src="https://googledrive.com/host/0B87rILW4RVIJdzJiMW5WRUdfalE/f5skin2day/head.js"&gt;&lt;/script&gt;
-    &lt;style id="f5UserStyles"&gt;{{f5main.userStyles}}&lt;/style&gt;&lt;% site.skin name="coreInfo" %&gt;
+    &lt;style id="f5UserStyles"&gt;{{userStyles}}&lt;/style&gt;&lt;% site.skin name="coreInfo" %&gt;
   &lt;/head&gt;
   &lt;body ng-class="[f5main.param.format.body.class]" ng-style="f5main.param.format.body.style"&gt;
     &lt;div id="loader-wrapper"&gt;
@@ -39,7 +39,7 @@
     &lt;div id="f5wrap" data-offcanvas class="off-canvas-wrap"&gt;
       &lt;div class="inner-wrap"&gt;
         &lt;div ng-class="{'fixed': f5main.param.topbar.class.fixed, 'containToGrid': f5main.param.topbar.class.containToGrid, 'sticky': f5main.param.topbar.class.sticky}"&gt;
-          &lt;top-bar id="f5Topbar" ng-cloak role="navigation" back-text="Eine Ebene höher"&gt;
+          &lt;top-bar id="f5Topbar" ng-cloak role="navigation" back-text="Eine Ebene höher" sticky-class="sticky" is-hover="!Modernizr.touch"&gt;
             &lt;ul class="title-area"&gt;
               &lt;li class="name"&gt;
                 &lt;h1 ng-hide="f5main.param.topbar.title.length===0"&gt;&lt;a href="#"&gt;{{f5main.param.topbar.title}}&lt;/a&gt;&lt;/h1&gt;
@@ -103,7 +103,7 @@
                 &lt;li ng-show="f5main.param.topbar.addCustomMenu.divider" class="divider"&gt;&lt;/li&gt;
               &lt;/ul&gt;
               &lt;ul id="f5TopbarSpecial" ng-repeat="icon in f5main.param.topbar.specialIcons | orderBy:'-position'" class="right"&gt;
-                &lt;li ng-if="icon.activate" ng-class="{{icon.name}}Icon"&gt;&lt;a href="" title="{{icon.title}}" ng-click="f5main.param.sendMail()" ng-if="icon.name==='mail'"&gt;&lt;i class="fa {{icon.icon}}"&gt;&lt;/i&gt; {{icon.text}}&lt;/a&gt;&lt;a href="" title="{{icon.title}}" ng-click="f5main.customize.open()" ng-if="icon.name==='customize' &amp;amp;&amp;amp; f5main.param.isAdmin()"&gt;&lt;i class="fa {{icon.icon}}"&gt;&lt;/i&gt; {{icon.text}}&lt;/a&gt;&lt;a ng-href="{{icon.href}}" title="{{icon.title}}" ng-if="icon.name==='search' || icon.user"&gt;&lt;i class="fa {{icon.icon}}"&gt;&lt;/i&gt; {{icon.text}}&lt;/a&gt;&lt;/li&gt;
+                &lt;li ng-if="icon.activate"&gt;&lt;a href="" title="{{icon.title}}" ng-click="f5main.param.sendMail()" ng-if="icon.name==='mail'" class="menuspecial-mail"&gt;&lt;i class="fa {{icon.icon}}"&gt;&lt;/i&gt; {{icon.text}}&lt;/a&gt;&lt;a href="" title="{{icon.title}}" ng-click="f5main.customize.open()" ng-if="icon.name==='customize' &amp;amp;&amp;amp; f5main.param.isAdmin()" class="menuspecial-customize"&gt;&lt;i class="fa {{icon.icon}}"&gt;&lt;/i&gt; {{icon.text}}&lt;/a&gt;&lt;a ng-href="{{icon.href}}" title="{{icon.title}}" target="_blank" ng-if="icon.name==='search' || icon.user" class="menuspecial-{{icon.name}}"&gt;&lt;i class="fa {{icon.icon}}"&gt;&lt;/i&gt; {{icon.text}}&lt;/a&gt;&lt;/li&gt;
                 &lt;li ng-show="icon.divider &amp;amp;&amp;amp; icon.activate" class="divider"&gt;&lt;/li&gt;
               &lt;/ul&gt;
               &lt;ul id="f5TopbarRight" class="right"&gt;

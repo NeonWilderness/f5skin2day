@@ -8,42 +8,58 @@ module.exports = function($scope, $rootScope, ImageProvider, UserStyles, toastr)
 
     vm.verifyDriveFolder = function(){
         if (vm.param.site.imgFolder.length===0){
-            vm.param.site.isFolderVerified = false;
+            vm.param.site.isDriveVerified = false;
             return;
         }
         ImageProvider.load( vm.param.site.imgFolder ).then(
             function(data){
                 var linkToGoogleDrive = $(data).find(".folder-drive-logo>a").eq(0);
-                vm.param.site.isFolderVerified = (linkToGoogleDrive.length>0 && linkToGoogleDrive[0].href.indexOf("drive.google.com")>0);
-                if (vm.param.site.isFolderVerified)
+                vm.param.site.isDriveVerified = (linkToGoogleDrive.length>0 && linkToGoogleDrive[0].href.indexOf("drive.google.com")>0);
+                if (vm.param.site.isDriveVerified)
                     toastr.success("Das GoogleDrive-Verzeichnis kann nun verwendet werden!", vm.param.msgHeader);
                 else
                     toastr.error("Das Verzeichnis ist kein gültiges GoogleDrive-Verzeichnis!", vm.param.msgHeader);
             },
             function(){
-                vm.param.site.isFolderVerified = false;
+                vm.param.site.isDriveVerified = false;
                 toastr.error("Auf das angegebene Verzeichnis konnte nicht zugegriffen werden!", vm.param.msgHeader);
             }
         );
+    };
+    
+    vm.verifyFlickrUser = function() {
+        if (vm.param.site.flickrUserID.length === 0) {
+            vm.param.site.isFlickrVerified = false;
+            return;
+        }
+        var params = {
+            method: 'flickr.people.getInfo',
+            api_key: '',
+            user_id: vm.param.site.flickrUserID,
+            format: 'json',
+            nojsoncallback: 1
+        };
+        ImageProvider.load( 'https://api.flickr.com/services/rest/', params ).then(
+            function(data){
+                console.log(data);
+                vm.param.site.isFlickrVerified = (data.stat==='ok');
+                if (vm.param.site.isFlickrVerified){
+                    vm.param.site.flickrUserID = data.person.nsid;
+                    toastr.success('Die Verbindung mit Benutzerkonto ' + data.person.username._content + ' wurde erfolgreich hergestellt.', vm.param.msgHeader);
+                }
+                else
+                    toastr.error('Das Benutzerkonto '+vm.param.site.flickrUserID+' konnte nicht gefunden werden!', vm.param.msgHeader);
+            },
+            function(){
+                vm.param.site.isDriveVerified = false;
+                toastr.error('Auf das angegebene Benutzerkonto konnte nicht zugegriffen werden!', vm.param.msgHeader);
+            }
+        );
+
     };
 
     vm.testLoader = function(){
         $("#loader-wrapper").show(0).delay(3000).hide(0);
     };
-
-    $scope.$watch('param.topbar.loaderColor1', function(){
-        console.log('$watch loaderColor1', vm.param.site.loader.color1);
-        UserStyles.pushDependency('loaderColor1', vm.param.site.loader.color1);
-    });
-
-    $scope.$watch('param.topbar.loaderColor2', function(){
-        console.log('$watch loaderColor2', vm.param.site.loader.color2);
-        UserStyles.pushDependency('loaderColor2', vm.param.site.loader.color2);
-    });
-
-    $scope.$watch('param.topbar.loaderColor3', function(){
-        console.log('$watch loaderColor3', vm.param.site.loader.color3);
-        UserStyles.pushDependency('loaderColor3', vm.param.site.loader.color3);
-    });
 
 };
