@@ -121,6 +121,52 @@ module.exports = {
     getIcon: function(iconname){
         var faIcon = $.trim(iconname.replace(/fa-margin/gi, ''));
         return (faIcon.length>0 ? 'fa '+faIcon : '');
+    },
+
+//- formats JSON object to CSS
+    /**
+     * @return {string}
+     */
+    JsonToCss: function(styleJson, linebreak){
+        var css = '',
+            divider = (linebreak ? '\r\n' : ' ');
+        $.each( styleJson || {}, function(style, attr){
+            css += (css.length>0 ? divider : '')+style+': '+attr+';';
+        });
+        return css;
+    },
+
+//- format preference: copies color/bgcolor-values to the (ng-)style field
+    extendColor: function(formatOptions){
+        if (formatOptions){
+            formatOptions.style['color'] = formatOptions.color;
+            formatOptions.style['background-color'] = formatOptions.bgcolor;
+        }
+        return formatOptions;
+    },
+
+//- format preference: extracts color/bgcolor-values from the style field to their original fields
+    extractColor: function(formatOptions){
+        if (formatOptions){
+            formatOptions.color = (formatOptions.style.hasOwnProperty('color') ? formatOptions.style['color'] : '#444444');
+            formatOptions.bgcolor = (formatOptions.style.hasOwnProperty('background-color') ? formatOptions.style['background-color'] : 'transparent');
+            delete formatOptions.style['color'];
+            delete formatOptions.style['background-color'];
+        }
+        return formatOptions;
+    },
+
+//- make sure only legit characters are part of the selector name (a-z 0-9 _ -)
+    legitSlug: function(slug){
+        return slug
+            .toLowerCase()
+            .replace(/ä/g, "ae")
+            .replace(/ö/g, "oe")
+            .replace(/ü/g, "ue")
+            .replace(/ß/g, "ss")
+            .replace(/[^\w ]+/g,'')
+            .trim()
+            .replace(/ +/g,'-');
     }
 
 };

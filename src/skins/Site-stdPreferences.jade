@@ -50,34 +50,51 @@
         "format": {
             "body": {
                 "selector": "body",
-                "class": ["antialiased"],
-                "style": { "background-color": "#e6e6e6", "color": "#444" }
+                "text": "Gesamtseite",
+                "user": false,
+                "color": "#444444",
+                "bgcolor": "#e6e6e6",
+                "style": {}
             },
             "header": {
                 "selector": "#header",
-                "class": [],
-                "style": {"margin": "100px 0 50px", "text-align": "center"},
-                "titledelimiter": " "
+                "text": "Kopfbereich",
+                "user": false,
+                "color": "transparent",
+                "bgcolor": "transparent",
+                "style": {"margin": "100px 0 50px", "text-align": "center"}
             },
             "title": {
                 "selector": "#header h1",
-                "class": [],
-                "style": {"color": "rgba(255,255,255,.9)"}
+                "text": "Blogtitel",
+                "user": false,
+                "color": "rgba(255, 255, 255, 0.9)",
+                "bgcolor": "transparent",
+                "style": {}
             },
             "subtitle": {
                 "selector": "#header h1>span",
-                "class": [],
-                "style": {"color": "rgba(255,255,255,.6)"}
+                "text": "Bloguntertitel",
+                "user": false,
+                "color": "rgba(255, 255, 255, 0.6)",
+                "bgcolor": "transparent",
+                "style": {}
             },
             "link": {
                 "selector": "a",
-                "class": [],
-                "style": {"color": "<% layout.linkcolor %>"}
+                "text": "Link",
+                "user": false,
+                "color": "<% layout.linkcolor %>",
+                "bgcolor": "transparent",
+                "style": {}
             },
-            "hover": {
+            "linkhover": {
                 "selector": "a:hover",
-                "class": [],
-                "style": {"color": "<% layout.alinkcolor %>"}
+                "text": "Mouse über Link",
+                "user": false,
+                "color": "<% layout.alinkcolor %>",
+                "bgcolor": "transparent",
+                "style": {}
             }
         },
         "topbar": {

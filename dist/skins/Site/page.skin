@@ -25,11 +25,11 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <script src="http://static.twoday.net/cdn/files/modernizr-custom-min-js.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.1/angular.min.js"></script>
     <script src="https://googledrive.com/host/0B87rILW4RVIJdzJiMW5WRUdfalE/f5skin2day/head.js"></script>
     <style id="f5UserStyles">{{userStyles}}</style><% site.skin name="coreInfo" %>
   </head>
-  <body ng-class="[f5main.param.format.body.class]" ng-style="f5main.param.format.body.style">
+  <body ng-style="f5main.param.format.body.style" class="antialiased">
     <div id="loader-wrapper">
       <div id="loader" ng-cloak ng-if="f5main.param.site.loader.animation"></div>
     </div>
@@ -130,8 +130,8 @@
             </top-bar-section>
           </top-bar>
         </div>
-        <div id="header" ng-cloak ng-class="[f5main.param.format.header.class]" ng-style="f5main.param.format.header.style">
-          <h1 ng-class="[f5main.param.format.title.class]" ng-style="f5main.param.format.title.style">{{f5main.param.site.title}}{{f5main.param.format.header.titledelimiter}}<small ng-class="[f5main.param.format.subtitle.class]" ng-style="f5main.param.format.subtitle.style">{{f5main.param.site.subtitle}}</small></h1>
+        <div id="header" ng-cloak ng-style="f5main.param.format.header.style">
+          <h1 ng-style="f5main.param.format.title.style">{{f5main.param.site.title}}&nbsp;<small ng-style="f5main.param.format.subtitle.style">{{f5main.param.site.subtitle}}</small></h1>
         </div>
         <div id="f5container" ng-cloak class="container">
           <div class="row">

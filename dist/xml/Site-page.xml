@@ -1,5 +1,5 @@
 <!-- Skin: Site.page -->
-<skin key="Site.page" lastupdate="2015-06-11T18:13:42.355Z" crc="1745709869">
+<skin key="Site.page" lastupdate="2015-06-22T12:22:04.389Z" crc="1793560653">
 <content>
 &lt;!DOCTYPE html&gt;
 &lt;html lang="de-DE" ng-app="f5SkinApp" ng-controller="F5MainCtrl as f5main" class="no-js"&gt;
@@ -28,11 +28,11 @@
     &lt;link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"&gt;
     &lt;script src="http://static.twoday.net/cdn/files/modernizr-custom-min-js.js"&gt;&lt;/script&gt;
     &lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"&gt;&lt;/script&gt;
-    &lt;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"&gt;&lt;/script&gt;
+    &lt;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.1/angular.min.js"&gt;&lt;/script&gt;
     &lt;script src="https://googledrive.com/host/0B87rILW4RVIJdzJiMW5WRUdfalE/f5skin2day/head.js"&gt;&lt;/script&gt;
     &lt;style id="f5UserStyles"&gt;{{userStyles}}&lt;/style&gt;&lt;% site.skin name="coreInfo" %&gt;
   &lt;/head&gt;
-  &lt;body ng-class="[f5main.param.format.body.class]" ng-style="f5main.param.format.body.style"&gt;
+  &lt;body ng-style="f5main.param.format.body.style" class="antialiased"&gt;
     &lt;div id="loader-wrapper"&gt;
       &lt;div id="loader" ng-cloak ng-if="f5main.param.site.loader.animation"&gt;&lt;/div&gt;
     &lt;/div&gt;
@@ -133,8 +133,8 @@
             &lt;/top-bar-section&gt;
           &lt;/top-bar&gt;
         &lt;/div&gt;
-        &lt;div id="header" ng-cloak ng-class="[f5main.param.format.header.class]" ng-style="f5main.param.format.header.style"&gt;
-          &lt;h1 ng-class="[f5main.param.format.title.class]" ng-style="f5main.param.format.title.style"&gt;{{f5main.param.site.title}}{{f5main.param.format.header.titledelimiter}}&lt;small ng-class="[f5main.param.format.subtitle.class]" ng-style="f5main.param.format.subtitle.style"&gt;{{f5main.param.site.subtitle}}&lt;/small&gt;&lt;/h1&gt;
+        &lt;div id="header" ng-cloak ng-style="f5main.param.format.header.style"&gt;
+          &lt;h1 ng-style="f5main.param.format.title.style"&gt;{{f5main.param.site.title}}&amp;nbsp;&lt;small ng-style="f5main.param.format.subtitle.style"&gt;{{f5main.param.site.subtitle}}&lt;/small&gt;&lt;/h1&gt;
         &lt;/div&gt;
         &lt;div id="f5container" ng-cloak class="container"&gt;
           &lt;div class="row"&gt;

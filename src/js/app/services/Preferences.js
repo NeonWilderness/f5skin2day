@@ -24,9 +24,14 @@ module.exports = function(CacheItem, TwodaySkin, toastr){
 
                 //- Parse stringified/converted dates and re-convert to true date format
                 preferences.update.lastCheck = new Date(Date.parse(preferences.update.lastCheck));
-                $.each(preferences.timeSlots, function () {
-                    this.from = new Date(1970, 0, 1, (this.from / 60 >> 0), (this.from % 60), 0);
-                    this.to = new Date(1970, 0, 1, (this.to / 60 >> 0), (this.to % 60), 0);
+                angular.forEach(preferences.timeSlots, function (slot) {
+                    slot.from = new Date(1970, 0, 1, (slot.from / 60 >> 0), (slot.from % 60), 0);
+                    slot.to = new Date(1970, 0, 1, (slot.to / 60 >> 0), (slot.to % 60), 0);
+                });
+
+                //- Add all format color/background-color attributes to the style option
+                angular.forEach(preferences.format, function(options){
+                    utils.extendColor(options);
                 });
 
                 //- Put preferences into cache area
@@ -43,10 +48,15 @@ module.exports = function(CacheItem, TwodaySkin, toastr){
 
             var prefs = {};
             $.extend( true, prefs, param );
-            $.each(prefs.timeSlots, function () {
-                this.from = utils.getMinute(this.from);
-                this.to = utils.getMinute(this.to);
-                if (typeof this.$$hashKey !== 'undefined') delete(this.$$hashKey);
+            //- Refactor timeslots to a minute number
+            angular.forEach(prefs.timeSlots, function (slot) {
+                slot.from = utils.getMinute(slot.from);
+                slot.to = utils.getMinute(slot.to);
+                if (typeof slot.$$hashKey !== 'undefined') delete(slot.$$hashKey);
+            });
+            //- Remove the format color/background-color attributes from the style option
+            angular.forEach(prefs.format, function(options){
+                utils.extractColor(options);
             });
             return prefs;
 

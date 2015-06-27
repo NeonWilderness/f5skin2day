@@ -168,7 +168,13 @@ module.exports = function($rootScope, ImageProvider, $window, toastr){
                 url: function(){ return vm.param.update.releaseUrl+'picjumbo.json'; },
                 load: function(data){ return data || []; },
                 getFormatInfo: function(target, srcRatio){
-                    return { image: 'img_url', suffix: '' };
+                    var w, h;
+                    switch (target){
+                        case 'gallery': w=240; h=160; break;
+                        case 'fullscreen': w=$window.screen.width; h=$window.screen.height; break;
+                        case 'background': w=1920; h=Math.round(1920/srcRatio); break;
+                    }
+                    return { image: 'img_url', suffix: '?fm=jpg&q=75&w='+w+'&h='+h+'&fit=crop' };
                 }
             },
             {
@@ -324,7 +330,6 @@ module.exports = function($rootScope, ImageProvider, $window, toastr){
             if (url.length===0) return;
             ImageProvider.load( url+subFolder ).then(
                 function(data){
-                    console.log(data);
                     self.images = self.provider.load(data);
                     self.lastPage = (self.images.length===0 ? 0 : Math.floor((self.images.length-1)/self.pageSize));
                     self.showImages();

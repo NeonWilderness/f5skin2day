@@ -18,20 +18,20 @@ html.no-js(lang="de-DE", ng-app="f5SkinApp", ng-controller="F5MainCtrl as f5main
         link(rel="stylesheet", href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css")
         script(src="http://static.twoday.net/cdn/files/modernizr-custom-min-js.js")
         script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js")
-        script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js")
+        script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.1/angular.min.js")
         script(src="#{jsFolder}/f5skin2day/head.js")
         style#f5UserStyles
             | {{userStyles}}
         | <% site.skin name="coreInfo" %>
 
-    body(ng-class="[f5main.param.format.body.class]", ng-style="f5main.param.format.body.style")
+    body.antialiased(ng-style="f5main.param.format.body.style")
         #loader-wrapper: #loader(ng-cloak, ng-if="f5main.param.site.loader.animation")
         #f5wrap.off-canvas-wrap(data-offcanvas)
             .inner-wrap
                 include partials/toolbar
-                #header(ng-cloak, ng-class="[f5main.param.format.header.class]", ng-style="f5main.param.format.header.style")
-                    h1(ng-class="[f5main.param.format.title.class]", ng-style="f5main.param.format.title.style") {{f5main.param.site.title}}{{f5main.param.format.header.titledelimiter}}
-                        small(ng-class="[f5main.param.format.subtitle.class]", ng-style="f5main.param.format.subtitle.style") {{f5main.param.site.subtitle}}
+                #header(ng-cloak, ng-style="f5main.param.format.header.style")
+                    h1(ng-style="f5main.param.format.title.style") {{f5main.param.site.title}}&nbsp;
+                        small(ng-style="f5main.param.format.subtitle.style") {{f5main.param.site.subtitle}}
                 #f5container.container(ng-cloak)
                     .row
                         div(id="{{f5main.param.leftColumn.id}}", ng-hide="!f5main.param.leftColumn.activate", ng-class="f5main.param.leftColumn.class", ng-style="f5main.param.leftColumn.style")

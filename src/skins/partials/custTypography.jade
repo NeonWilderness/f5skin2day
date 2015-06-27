@@ -1,0 +1,110 @@
+//- partial template: Menu --> Special Items
+form(ng-controller="CustTypographyCtrl as typography")
+    .row.collapse(ng-hide="typography.isEditMode || typography.isCreateMode")
+        .small-12.columns
+            table#typographyItems
+                thead
+                    tr
+                        th &nbsp;
+                        th Name<br><span>Bezeichnung</span>
+                        th Selector<br>&nbsp;
+                        th Farben<br><span>VG</span>
+                        th <br><span>HG</span>
+                        th CSS Stile<br>&nbsp;
+                tbody
+                    tr(ng-repeat="(itemname, options) in typography.param.format")
+                        td: ul.button-group.twinbuttons
+                            li: button.tiny.radius.secondary.square.right5(href="", title="Eintrag bearbeiten", ng-click="typography.edit(itemname)"): i.fa.fa-edit.fa-fw
+                            li: button.tiny.radius.secondary.square(href="", title="Eintrag entfernen", ng-click="typography.remove(itemname)", ng-if="options.user"): i.fa.fa-trash-o.fa-fw
+                        td
+                            .formatname {{itemname}}
+                            .formattext {{options.text}}
+                        td
+                            .formatselector {{options.selector}}
+                        td
+                            spectrum-colorpicker(ng-model="options.color", ng-change="typography.changeColor(itemname)")
+                        td
+                            spectrum-colorpicker(ng-model="options.bgcolor", ng-change="typography.changeColor(itemname)")
+                        td
+                            textarea.formatstyle(id="css-{{itemname}}", rows="2", convertcss="", disabled="disabled", ng-model="options.style", data-divide="linebreak")
+                    tr: td(colspan="6")
+                        button.tiny.radius.secondary(href="", ng-click="typography.create()")
+                            i.fa.fa-plus.fa-margin
+                            | Neue Formatanweisung hinzufügen
+    .row.collapse(ng-show="typography.isEditMode || typography.isCreateMode")
+        .small-12.columns
+            table.fullsize.headerEditArea: thead: tr: th
+                h6(ng-if="typography.isEditMode") Formatanweisung für&ensp;<span class="blue">{{typography.itemname}}</span>&ensp;bearbeiten
+                h6(ng-if="typography.isCreateMode") Neue Formatanweisung hinzufügen
+            .row
+                .small-2.columns
+                    label &nbsp;
+                    ul.button-group.twinbuttons
+                        li: button.tiny.radius.secondary.square.right5(href="", title="Speichern", ng-click="typography.save()"): i.fa.fa-check.fa-fw
+                        li: button.tiny.radius.secondary.square(href="", title="Abbrechen", ng-click="typography.cancel()"): i.fa.fa-times.fa-fw
+                .small-10.columns(ng-form="typographyForm", novalidate="novalidate")
+                    .row
+                        .small-6.columns
+                            label Selector
+                                input(
+                                    type="text",
+                                    name="itemselector",
+                                    required="",
+                                    ng-class="{'error': typographyForm.itemselector.$dirty && typographyForm.itemselector.$invalid}",
+                                    ng-model="typography.item.selector",
+                                    ng-change="typography.proposeName()",
+                                    ng-disabled="typography.isKeyLocked()"
+                                )
+                            small.error(ng-show="typographyForm.itemselector.$dirty && typographyForm.itemselector.$error.required")
+                                | Bitte geben Sie einen Selector für HTML-Elemente ein!
+                        .small-6.columns
+                            label Name
+                                input(
+                                    type="text",
+                                    name="itemname",
+                                    required="",
+                                    ng-class="{'error': typographyForm.itemname.$dirty && typographyForm.itemname.$invalid}",
+                                    ng-model="typography.itemname",
+                                    ng-disabled="typography.isKeyLocked()"
+                                )
+                            small.error(ng-show="typographyForm.itemname.$dirty && typographyForm.itemname.$error.required")
+                                | Bitte geben Sie eine eindeutige Kennung ein!
+
+                    .row
+                        .small-6.columns
+                            label Bezeichnung
+                                input(
+                                    type="text",
+                                    name="itemtext",
+                                    ng-model="typography.item.text"
+                                )
+                        .small-3.columns.text-center
+                            label Vordergrundfarbe
+                            spectrum-colorpicker(
+                                name="itemcolor",
+                                ng-model="typography.item.color",
+                                ng-change="typography.changeColor()"
+                            )
+                        .small-3.columns.text-center
+                            label Hintergrundfarbe
+                            spectrum-colorpicker(
+                                name="itembgcolor",
+                                ng-model="typography.item.bgcolor",
+                                ng-change="typography.changeColor()"
+                            )
+                    .row
+                        .small-12.columns
+                            label CSS-Stile
+                                textarea(
+                                    id="css-Item",
+                                    name="itemcss",
+                                    rows="2",
+                                    convertcss="",
+                                    ng-class="{'error': typographyForm.itemcss.$dirty && typographyForm.itemcss.$error.missingColon}",
+                                    ng-model="typography.item.style",
+                                    ng-change="typography.applyColors()",
+                                    data-divide="space"
+                                )
+                            small.error(ng-show="typographyForm.itemcss.$dirty && typographyForm.itemcss.$error.missingColon")
+                                | CSS-Anweisungen mit Semikolon trennen; jede Anweisung muss einen Doppelpunkt enthalten!<br>
+                                | <u>Beispiel:</u>&emsp;<span style="color:yellow">margin-top: 10px; border: 0;</span>

@@ -7,5 +7,6 @@
 
 require('angular')
     .module('f5SkinApp')
-    .directive('resizable', ['$window', require('./resizable')])
-    .directive('encode', [require('./encode')]);
+    .directive('convertcss', [require('./convertcss')])
+    .directive('encode', [require('./encode')])
+    .directive('resizable', ['$window', require('./resizable')]);
