@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <script src="http://static.twoday.net/cdn/files/modernizr-custom-min-js.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.1/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
     <script src="https://googledrive.com/host/0B87rILW4RVIJdzJiMW5WRUdfalE/f5skin2day/head.js"></script>
     <style id="f5UserStyles">{{userStyles}}</style><% site.skin name="coreInfo" %>
   </head>

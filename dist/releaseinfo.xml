@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?><layout>
 <version>0.1.5</version>
 <author>NeonWilderness</author>
-<releasedate>Sat Jun 27 2015 19:23:23 GMT+0200 (Mitteleuropäische Sommerzeit)</releasedate>
+<releasedate>Sat Jun 27 2015 19:26:34 GMT+0200 (Mitteleuropäische Sommerzeit)</releasedate>
 <!-- Skin: Site.browsertest -->
 <skin key="Site.browsertest" lastupdate="2015-03-20T15:15:09.354Z" crc="1403166455">
 <content>
@@ -962,7 +962,7 @@
 </content>
 </skin>
 <!-- Skin: Site.page -->
-<skin key="Site.page" lastupdate="2015-06-22T12:22:04.389Z" crc="1793560653">
+<skin key="Site.page" lastupdate="2015-07-09T16:39:13.628Z" crc="345623275">
 <content>
 &lt;!DOCTYPE html&gt;
 &lt;html lang="de-DE" ng-app="f5SkinApp" ng-controller="F5MainCtrl as f5main" class="no-js"&gt;
@@ -991,7 +991,7 @@
     &lt;link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"&gt;
     &lt;script src="http://static.twoday.net/cdn/files/modernizr-custom-min-js.js"&gt;&lt;/script&gt;
     &lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"&gt;&lt;/script&gt;
-    &lt;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.1/angular.min.js"&gt;&lt;/script&gt;
+    &lt;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"&gt;&lt;/script&gt;
     &lt;script src="https://googledrive.com/host/0B87rILW4RVIJdzJiMW5WRUdfalE/f5skin2day/head.js"&gt;&lt;/script&gt;
     &lt;style id="f5UserStyles"&gt;{{userStyles}}&lt;/style&gt;&lt;% site.skin name="coreInfo" %&gt;
   &lt;/head&gt;
